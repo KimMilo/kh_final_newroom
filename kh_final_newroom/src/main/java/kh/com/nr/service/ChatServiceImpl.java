@@ -1,8 +1,7 @@
 package kh.com.nr.service;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +14,11 @@ import com.ssafy.happyhouse.mapper.ChatMapper;
 @Service
 public class ChatServiceImpl implements ChatService{
 	@Autowired
-	SqlSession chatService;
+	private SqlSession sqlSession;
 	
 	@Override
-	public ArrayList<ChatDto> getChatListByID(ChatDto dto) { //채팅 목록 조회
-		ArrayList<ChatDto> cList = chatService.getMapper(ChatMapper.class).getChatListByID(dto);
-		return cList;
+	public List<ChatDto> getChatListByID(ChatDto dto) { //채팅 목록 조회
+		return sqlSession.selectList("chat.getChatListById", dto);
 	}
 
 	@Override

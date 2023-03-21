@@ -2,68 +2,37 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:property-placeholder location="classpath:properties/*.properties"/>
 	
-		<bean id="dddd" class="org.apache.commons.dbcp.BasicDataSource">
-					<property name="driverClassName" value="${DB.log4DriverName}"/> 
-					<property name="url" value="${DB2.url}"/> 
-					<property name="username" value="${DB2.username}"/> 
-					<property name="password" value="${DB2.password}"/> 
-		</bean>	
-		
-		<!-- mybatis 등록 -->
-		<bean id="ffff" class="org.mybatis.spring.SqlSessionFactoryBean">
-			<property name="dataSource" ref="dddd"/>
-			<property name="typeAliasesPackage" value="com.ssafy.happyhouse.dto"/> <!-- 모든 dto클래스 -->
-			<property name="mapperLocations" value="classpath:/**/mapper/*.xml"/>
-		</bean>
-		
-		<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-			<constructor-arg ref="ffff"/>
-		</bean>
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="${DB.log4DriverName}"/> 
+			<property name="url" value="${DB2.url}"/> 
+			<property name="username" value="${DB2.username}"/> 
+			<property name="password" value="${DB2.password}"/> 
+	</bean>	
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+	</bean>
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<!-- @Transactional -->
+	<tx:annotation-driven/>
 </beans>
-
-
-<!-- <?xml version="1.0" encoding="UTF-8"?> -->
-<!-- <beans xmlns="http://www.springframework.org/schema/beans" -->
-<!-- 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" -->
-<!-- 	xmlns:aop="http://www.springframework.org/schema/aop" -->
-<!-- 	xmlns:tx="http://www.springframework.org/schema/tx" -->
-<!-- 	xmlns:context="http://www.springframework.org/schema/context" -->
-<!-- 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd -->
-<!-- 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd -->
-<!-- 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd -->
-<!-- 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd"> -->
-	
- 	<!-- Root Context: defines shared resources visible to all other web components -->
-<!-- 	<context:property-placeholder location="classpath:properties/*.properties"/> -->
-	
-<!-- 	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource"> -->
-<!-- 		<property name="driverClassName" value="${DB.log4DriverName}"/>  -->
-<!-- 		<property name="url" value="${DB2.url}"/>  -->
-<!-- 		<property name="username" value="${DB2.username}"/>  -->
-<!-- 		<property name="password" value="${DB2.password}"/>  -->
-<!-- 	</bean> -->
-<!-- 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean"> -->
-<!-- 		<property name="dataSource" ref="dataSource"/> -->
-<!-- 		<property name="configLocation" value="classpath:mybatis-config.xml"/> -->
-<!-- 		<property name="mapperLocations" value="classpath:mappers/*"/> -->
-<!-- 	</bean> -->
-<!-- 	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession"> -->
-<!-- 		<constructor-arg ref="sqlSessionFactoryBean"/>	 -->
-<!-- 	</bean> -->
-	
-	<!-- 트랜젝션 적용을 위한 빈 -->
-<!-- 	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager"> -->
-<!-- 		<property name="dataSource" ref="dataSource"></property> -->
-<!-- 	</bean> -->
-	
-	<!-- @Transational -->	
-<!-- 	<tx:annotation-driven/> -->
-<!-- </beans> -->
 
 
