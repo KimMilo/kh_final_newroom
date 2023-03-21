@@ -31,9 +31,9 @@
 
 	<!-- 어노테이션 설정 -->
 	<context:component-scan
-		base-package="com.ssafy.happyhouse.controller" /> <!-- 이 패키지 아래 모든 클래스 스캔 -->
+		base-package="kh.com.nr.controller" /> <!-- 이 패키지 아래 모든 클래스 스캔 -->
 	<context:component-scan
-		base-package="com.ssafy.happyhouse.service" />
+		base-package="kh.com.nr.service" />
 	<context:component-scan
 		base-package="com.ssafy.happyhouse.dao" />
 

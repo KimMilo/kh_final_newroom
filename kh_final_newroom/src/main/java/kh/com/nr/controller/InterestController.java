@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.controller;
+package kh.com.nr.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ssafy.happyhouse.dto.HouseDealDto;
 import com.ssafy.happyhouse.dto.InterestDto;
 import com.ssafy.happyhouse.dto.MemberDto;
-import com.ssafy.happyhouse.service.HouseMapService;
-import com.ssafy.happyhouse.service.InterestService;
+
+import kh.com.nr.service.HouseMapService;
+import kh.com.nr.service.InterestService;
 
 @RequestMapping("/interest")
 @Controller

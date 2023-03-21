@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.service;
+package kh.com.nr.service;
 
 import java.util.ArrayList;
 import com.ssafy.happyhouse.dto.ChatDto;

@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.controller;
+package kh.com.nr.controller;
 
 import java.util.List;
 
@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.dto.CovidTestCenterDto;
 import com.ssafy.happyhouse.dto.SafetyHospitalDto;
-import com.ssafy.happyhouse.service.HospitalService;
+
+import kh.com.nr.service.HospitalService;
 
 @RequestMapping("/hospital")
 @RestController

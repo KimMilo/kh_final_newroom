@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.controller;
+package kh.com.nr.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,7 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssafy.happyhouse.dto.MemberDto;
-import com.ssafy.happyhouse.service.MemberService;
+
+import kh.com.nr.service.MemberService;
 
 @RequestMapping("/member")
 @Controller

@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.controller;
+package kh.com.nr.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssafy.happyhouse.dto.ChatDto;
 import com.ssafy.happyhouse.dto.RoomDto;
-import com.ssafy.happyhouse.service.ChatService;
+
+import kh.com.nr.service.ChatService;
 
 @Controller
 @RequestMapping("/chat")

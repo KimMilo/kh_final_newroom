@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.controller;
+package kh.com.nr.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssafy.happyhouse.dto.MemberDto;
 import com.ssafy.happyhouse.dto.QnaDto;
-import com.ssafy.happyhouse.service.QnaService;
+
+import kh.com.nr.service.QnaService;
 
 @Controller
 @RequestMapping("/qna")

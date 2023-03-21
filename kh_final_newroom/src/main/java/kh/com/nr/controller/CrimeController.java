@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.controller;
+package kh.com.nr.controller;
 
 import java.util.List;
 
@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happyhouse.dto.CrimeDto;
-import com.ssafy.happyhouse.service.CrimeService;
+
+import kh.com.nr.service.CrimeService;
 
 @RequestMapping("/crime")
 @RestController

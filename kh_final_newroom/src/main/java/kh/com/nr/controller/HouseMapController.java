@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.controller;
+package kh.com.nr.controller;
 
 import java.util.List;
 
@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssafy.happyhouse.dto.HouseInfoDto;
 import com.ssafy.happyhouse.dto.SidoGugunCodeDto;
-import com.ssafy.happyhouse.service.HouseMapService;
+
+import kh.com.nr.service.HouseMapService;
 
 @Controller
 @RequestMapping("/map")

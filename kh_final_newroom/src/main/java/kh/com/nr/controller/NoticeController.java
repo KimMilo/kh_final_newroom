@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.controller;
+package kh.com.nr.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.ssafy.happyhouse.dto.MemberDto;
 import com.ssafy.happyhouse.dto.NoticeDto;
 import com.ssafy.happyhouse.dto.NoticePageDto;
-import com.ssafy.happyhouse.service.NoticeService;
+
+import kh.com.nr.service.NoticeService;
 
 
 @Controller

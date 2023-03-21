@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.controller;
+package kh.com.nr.controller;
 
 import java.util.List;
 
@@ -13,7 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.ssafy.happyhouse.dto.InterestDto;
 import com.ssafy.happyhouse.dto.MemberDto;
-import com.ssafy.happyhouse.service.InterestService;
+
+import kh.com.nr.service.InterestService;
 
 @Controller
 public class HomeController {

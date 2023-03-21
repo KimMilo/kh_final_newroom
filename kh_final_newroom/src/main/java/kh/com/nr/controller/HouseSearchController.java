@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.controller;
+package kh.com.nr.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.ssafy.happyhouse.dto.HouseDealDto;
-import com.ssafy.happyhouse.service.HouseMapService;
+
+import kh.com.nr.service.HouseMapService;
 
 @Controller
 public class HouseSearchController extends HttpServlet {

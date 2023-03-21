@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.controller;
+package kh.com.nr.controller;
 
 import java.util.List;
 
@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.gson.Gson;
 import com.ssafy.happyhouse.dto.CommentDto;
 import com.ssafy.happyhouse.dto.MemberDto;
-import com.ssafy.happyhouse.service.NoticeService;
+
+import kh.com.nr.service.NoticeService;
 
 @RestController
 @RequestMapping("/comment")

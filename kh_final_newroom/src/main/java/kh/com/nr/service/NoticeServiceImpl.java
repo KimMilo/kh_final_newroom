@@ -1,4 +1,4 @@
-package com.ssafy.happyhouse.service;
+package kh.com.nr.service;
 
 import java.util.HashMap;
 import java.util.List;
