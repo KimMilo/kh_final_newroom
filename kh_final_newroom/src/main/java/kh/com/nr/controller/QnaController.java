@@ -18,10 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ssafy.happyhouse.dto.MemberDto;
-import com.ssafy.happyhouse.dto.QnaDto;
-
-import kh.com.nr.service.QnaService;
+import kh.com.nr.model.dto.MemberDto;
+import kh.com.nr.model.dto.QnaDto;
+import kh.com.nr.model.service.QnaService;
 
 @Controller
 @RequestMapping("/qna")

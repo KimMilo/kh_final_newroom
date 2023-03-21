@@ -11,9 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.ssafy.happyhouse.dto.HouseDealDto;
-
-import kh.com.nr.service.HouseMapService;
+import kh.com.nr.model.dto.HouseDealDto;
+import kh.com.nr.model.service.HouseMapService;
 
 @Controller
 public class HouseSearchController extends HttpServlet {

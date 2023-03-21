@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ssafy.happyhouse.dto.ChatDto;
-import com.ssafy.happyhouse.dto.RoomDto;
-
-import kh.com.nr.service.ChatService;
+import kh.com.nr.model.dto.ChatDto;
+import kh.com.nr.model.dto.RoomDto;
+import kh.com.nr.model.service.ChatService;
 
 @Controller
 @RequestMapping("/chat")

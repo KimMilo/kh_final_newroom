@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.happyhouse.dto.CrimeDto;
-
-import kh.com.nr.service.CrimeService;
+import kh.com.nr.model.dto.CrimeDto;
+import kh.com.nr.model.service.CrimeService;
 
 @RequestMapping("/crime")
 @RestController

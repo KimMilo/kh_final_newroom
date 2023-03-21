@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ssafy.happyhouse.dto.HouseInfoDto;
-import com.ssafy.happyhouse.dto.SidoGugunCodeDto;
-
-import kh.com.nr.service.HouseMapService;
+import kh.com.nr.model.dto.HouseInfoDto;
+import kh.com.nr.model.dto.SidoGugunCodeDto;
+import kh.com.nr.model.service.HouseMapService;
 
 @Controller
 @RequestMapping("/map")

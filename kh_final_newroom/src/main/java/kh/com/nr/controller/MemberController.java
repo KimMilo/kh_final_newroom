@@ -22,9 +22,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ssafy.happyhouse.dto.MemberDto;
-
-import kh.com.nr.service.MemberService;
+import kh.com.nr.model.dto.MemberDto;
+import kh.com.nr.model.service.MemberService;
 
 @RequestMapping("/member")
 @Controller

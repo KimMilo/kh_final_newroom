@@ -12,11 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.ssafy.happyhouse.dto.MemberDto;
-import com.ssafy.happyhouse.dto.NoticeDto;
-import com.ssafy.happyhouse.dto.NoticePageDto;
-
-import kh.com.nr.service.NoticeService;
+import kh.com.nr.model.dto.MemberDto;
+import kh.com.nr.model.dto.NoticeDto;
+import kh.com.nr.model.dto.NoticePageDto;
+import kh.com.nr.model.service.NoticeService;
 
 
 @Controller

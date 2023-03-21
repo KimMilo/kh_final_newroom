@@ -15,12 +15,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ssafy.happyhouse.dto.HouseDealDto;
-import com.ssafy.happyhouse.dto.InterestDto;
-import com.ssafy.happyhouse.dto.MemberDto;
-
-import kh.com.nr.service.HouseMapService;
-import kh.com.nr.service.InterestService;
+import kh.com.nr.model.dto.HouseDealDto;
+import kh.com.nr.model.dto.InterestDto;
+import kh.com.nr.model.dto.MemberDto;
+import kh.com.nr.model.service.HouseMapService;
+import kh.com.nr.model.service.InterestService;
 
 @RequestMapping("/interest")
 @Controller

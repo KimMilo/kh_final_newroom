@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ssafy.happyhouse.dto.CovidTestCenterDto;
-import com.ssafy.happyhouse.dto.SafetyHospitalDto;
-
-import kh.com.nr.service.HospitalService;
+import kh.com.nr.model.dto.CovidTestCenterDto;
+import kh.com.nr.model.dto.SafetyHospitalDto;
+import kh.com.nr.model.service.HospitalService;
 
 @RequestMapping("/hospital")
 @RestController

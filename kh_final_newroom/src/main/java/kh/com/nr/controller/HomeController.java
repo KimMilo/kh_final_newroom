@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.ssafy.happyhouse.dto.InterestDto;
-import com.ssafy.happyhouse.dto.MemberDto;
-
-import kh.com.nr.service.InterestService;
+import kh.com.nr.model.dto.InterestDto;
+import kh.com.nr.model.dto.MemberDto;
+import kh.com.nr.model.service.InterestService;
 
 @Controller
 public class HomeController {

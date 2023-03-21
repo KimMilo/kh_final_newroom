@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
-import com.ssafy.happyhouse.dto.CommentDto;
-import com.ssafy.happyhouse.dto.MemberDto;
 
-import kh.com.nr.service.NoticeService;
+import kh.com.nr.model.dto.CommentDto;
+import kh.com.nr.model.dto.MemberDto;
+import kh.com.nr.model.service.NoticeService;
 
 @RestController
 @RequestMapping("/comment")
