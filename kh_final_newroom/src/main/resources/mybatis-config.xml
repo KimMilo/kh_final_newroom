@@ -11,8 +11,9 @@
 	<!-- typeAlias setting  -->
 	<typeAliases>
 		<typeAlias type="kh.com.nr.model.dto.ChatDto" alias="ChatDto"/>
+		<typeAlias type="kh.com.nr.model.dto.RoomDto" alias="RoomDto"/>
 	</typeAliases>
 	<mappers>
-		<mapper resource="mappers/home-mapper.xml"/>
+		<mapper resource="mappers/chat-mapper.xml"/>
 	</mappers>
 </configuration>

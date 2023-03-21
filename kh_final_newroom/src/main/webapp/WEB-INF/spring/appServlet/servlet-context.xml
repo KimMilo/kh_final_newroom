@@ -13,7 +13,7 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-	<aop:aspectj-autoproxy/>
+
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<!-- webapp 내의 resources에 css파일 jpg파일 등등 을 넣었을 때 해당 코드가 resources의 내부 모든 경로의 파일을 get방식으로 출력해줌. -->
@@ -25,28 +25,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="kh.spring.s02" />
+	<context:component-scan base-package="kh.com.nr" />
 	
-	<!-- 
-		 # @Bean
-		
-		 # @Component (vo, dto 에 사용)
-		 Bean 은 MVC 모델이 아닌 구조에서 객체를 생성할 때 사용하며, MVC모델에서는 Component를 사용함
-		
-		context:component-scan
-		@Componet 내에 Service, Repository, Controller가 있는 개념	
-		 └ # @Service (ServiceImpl에서 사용)
-		
-		 └ # @Repository (Dao에서 사용)
-		========================================================================	
-		 
-		 Controller는 기능이 상기보다 조금 더 있음
-		 └ # @Controller 
-		
-		========================================================================
-		@Aspect 필터처럼 동일 중복 코드를 하나의 Controller에 작성하여 적용할 컨트롤러에서 사용할 수 있는기능
-	-->	
-	
+	<aop:aspectj-autoproxy/>
 	
 	<!-- fileUpload :  bean 생성 -->
 	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
