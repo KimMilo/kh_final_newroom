@@ -2,37 +2,41 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
-
+	 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:property-placeholder location="classpath:properties/*.properties"/>
 	
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-			<property name="driverClassName" value="${DB.log4DriverName}"/> 
-			<property name="url" value="${DB2.url}"/> 
-			<property name="username" value="${DB2.username}"/> 
-			<property name="password" value="${DB2.password}"/> 
-	</bean>	
-
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	
+	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
+		<property name="driverClassName" value="${DB.driverName}"/>
+		<property name="url" value="${DB2.url}"/>
+		<property name="username" value="${DB2.username}"/>
+		<property name="password" value="${DB2.password}"/>
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactory">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<!-- mybatis-config.xml 에 mappers > mapper resource="" 를 안해도 됨.
+			 단, 컴파일이 진행된 후에 가능(restart해야 인식함)
+		 -->
+		<!-- property name="mapperLocations" value="classpath:mappers/*"/-->
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSession">
+		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+	
+
+	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transactionManager">
+		<property name="dataSource" ref="dataSource"/>		
 	</bean>
 
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<constructor-arg ref="sqlSessionFactory"/>
-	</bean>
-
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
 	<!-- @Transactional -->
 	<tx:annotation-driven/>
+	
 </beans>
-
-
