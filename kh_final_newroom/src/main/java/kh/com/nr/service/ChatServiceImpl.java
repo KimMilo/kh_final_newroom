@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.happyhouse.dto.ChatDto;
 import com.ssafy.happyhouse.dto.RoomDto;
-import com.ssafy.happyhouse.mapper.ChatMapper;
 
 @Service
 public class ChatServiceImpl implements ChatService{
