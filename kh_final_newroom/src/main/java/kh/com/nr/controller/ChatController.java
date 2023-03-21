@@ -7,13 +7,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.nr.model.dto.ChatDto;
-import kh.com.nr.model.dto.RoomDto;
 import kh.com.nr.model.service.ChatService;
 
 @Controller
@@ -21,18 +19,19 @@ import kh.com.nr.model.service.ChatService;
 @CrossOrigin(origins = "*")
 public class ChatController {
 	@Autowired
-	ChatService chatService;
+	private ChatService chatService;
 	
 	// 채팅 목록 조회
 	@GetMapping("/{fromID}/{toID}")
 	@ResponseBody
-	public List<ChatDto> getChatListByID(@PathVariable("fromID") String fromID, @PathVariable("toID") String toID) throws Exception {
-		List<ChatDto> cList = new ArrayList<ChatDto>();
+	public ModelAndView getChatListByID(ModelAndView mv, @PathVariable("fromID") String fromID, @PathVariable("toID") String toID) throws Exception {
 		ChatDto dto = new ChatDto();
 		dto.setFromID(fromID);
 		dto.setToID(toID);
-		cList = chatService.getChatListByID(dto);
-		return cList;
+		List<ChatDto> cList = chatService.getChatListByID(dto);
+		mv.addObject("cList", cList);
+		mv.setViewName("/{fromID}/toID}");
+		return mv;
 	}
 	
 //	// 새로운 메시지 조회

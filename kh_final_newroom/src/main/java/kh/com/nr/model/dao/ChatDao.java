@@ -16,7 +16,7 @@ public class ChatDao {
 	private SqlSession sqlSession;
 
 	public List<ChatDto> getChatListByID(ChatDto dto) {
-		return sqlSession.selectList("chat.getChatListByID, dto");
+		return sqlSession.selectList("chat.getChatListByID", dto);
 	}
 
 	public int submit(ChatDto dto) {
