@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- Appenders -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<param name="Target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- file에 저장하기 -->
+	
+	
+	
+	<!-- logger name="프로젝트 경로" 
+		level value="" 등급을 나눠서 하게 되면 각각 프로젝트에서 맡은 담당 경로마다 설정해서 개발하면서 보기 좋음
+	-->
+	
+	<!-- Application Loggers -->
+	<logger name="kh.spring.s02">
+		<level value="info" />
+	</logger>
+	
+	<!-- 3rdparty Loggers -->
+	<logger name="org.springframework.core">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.beans">
+		<level value="info" />
+	</logger>
+	
+	<logger name="org.springframework.context">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework.web">
+		<level value="info" />
+	</logger>
+
+	<!-- SQL Logger -->
+    <logger name="jdbc.sqltiming" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="console"/>
+    </logger>
+
+    <logger name="jdbc.sqlonly" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="console"/>
+    </logger>
+
+    <logger name="jdbc.audit" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="console"/>
+    </logger>
+
+    <logger name="jdbc.resultset" additivity="false">
+        <level value="warn"/>
+        <appender-ref ref="console"/>
+    </logger>
+
+    <logger name="jdbc.resultsettable" additivity="false">
+        <level value="info"/>
+        <appender-ref ref="console"/>
+    </logger>
+
+	<!-- Root Logger -->
+	<root>
+		<!--  등급 높은 순서대로
+			fatal 시스템이 죽기 직전 죽는 포이트를 알림
+			
+			error 오류를 나타낼 때 
+			
+			warn 위험 상황을 알리기 위함 
+			
+			info 고객사들에게 오픈되는 정보레벨(ex- 접속자 수 알림)
+			
+			debug 개발자들이 오류를 체크하기 위한 정확한 데이터 결과물을 체크
+			
+			trace 모든 flow를 추적
+		-->
+		<!-- priority value="warn" /  warnning 문구-->
+		<!-- priority value="trace" / 전달 되는 DB 값들까지 보임--> 
+		<!-- priority value="debug" / -->
+		<priority value="info" />
+		<appender-ref ref="console" /> 
+		<!-- 콘솔에 나타냄 -->
+	</root>
+	
+</log4j:configuration>
