@@ -6,10 +6,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ssafy.happyhouse.dto.InterestDto;
 import com.ssafy.happyhouse.dto.MemberDto;
@@ -20,20 +20,21 @@ public class HomeController {
 	@Autowired
 	private InterestService iservice;
 	
-	@GetMapping("introduction.do")
-	public String getComment() {
-		return "introduction";
+	@GetMapping("introduction")
+	public ModelAndView getComment(ModelAndView mv) {
+		return mv;
 	}
 	
 	//홈으로
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(HttpSession session, Model model) {
+	public ModelAndView home(HttpSession session, ModelAndView mv) {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
 		if(loginInfo != null) {
 			String userid = loginInfo.getUserid();
 			List<InterestDto> interList = iservice.getInterest(userid);
-			model.addAttribute("interList", interList);
+			mv.addObject("interList", interList);
 		}
-		return "index";
+		mv.setViewName("index");
+		return mv;
 	}
 }

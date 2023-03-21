@@ -39,7 +39,7 @@
 <script type="text/javascript" src="${root}/resources/js/main.js"></script>
 <script src="${root}/resources/js/scrolloverflow.min.js"></script>
 <script src="${root}/resources/js/jquery.fullPage.min.js"></script>
-<title>사이트 소개</title>
+<title>NewRoom 소개</title>
 </head>
 <body>
 	<div id="wrap">
@@ -49,19 +49,8 @@
 			<div class="navbar navbar__logo">
 				<i class="fas fa-home logo pr-1"  style="color:#fff"></i> <a
 					class="navbar-brand happy-font title" href="${root}/"
-					style="color: #fff"><b>해피</b></a>
+					style="color: #fff"><b>NewRoom</b></a>
 			</div>
-
-			<%-- <div class="navbar navbar__menu">
-				<ul class="navbar-nav menu mx-md-3">
-					<li class="nav-item"><a href="${root}/noticeList.do"
-						class="nav-link font-weight-bold text-light">공지사항</a></li>
-					<li class="nav-item"><a href="${root}/qna"
-						class="nav-link font-weight-bold text-light">QnA</a></li>
-					<li class="nav-item"><a href="${root}/search"
-						class="nav-link font-weight-bold text-light">실거래가 검색</a></li>
-				</ul>
-			</div> --%>
 		</nav>
 
 		<div id="fullpage">
@@ -74,7 +63,7 @@
 					</div>
 					<div class="slider_p01">
 						<p>
-							당신의 부동산 전문가,<br> 해피하우스
+							당신의 부동산 전문가,<br> NewRoom
 						</p>
 					</div>
 				</div>
@@ -91,7 +80,7 @@
 				<div class="con02_in">
 					<div class="intro_ttl">
 						<h3>서비스 소개</h3>
-						<p>우리는 세상에 없던 부동산 서비스를 만들어 갑니다.
+						<p>고품질의 서비스를 제공해 드리겠습니다.
 						<p>
 					</div>
 					<ul class="intro_box">
@@ -180,7 +169,7 @@
 						<p>
 							집에서도 쉽고 간편하게!<br>집 구할 때 꼭 필요한 정보 놓치지 마세요
 						</p>
-						<button class="btn" onclick="location.href='${root}/'">해피하우스 이용하기</button>
+						<button class="btn" onclick="location.href='${root}/'">RewRoom 서비스 이용하기</button>
 					</div>
 				</div>
 				<footer id="footer" class="footer bg-light py-3 my-md-3">

@@ -1,94 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" import="java.text.SimpleDateFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="root" value="${pageContext.request.contextPath}" />
+<c:set var="r" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://sta.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="${root}/resources/css/style.css" />
-<script src="https://kit.fontawesome.com/5d2954c3f8.js" crossorigin="anonymous"></script>
-<script>
-	$(function() {
-		// 시도 옵션 리스트 목록
-		$.ajax({
-			url : '${root}/map/sido',
-			type : 'GET',
-			contextType : 'application/json;charset=utf-8',
-			dataType : 'json',
-			success : function(result) {
-				var optionList = '';
-				for (let i = 0; i < result.length; i++) {
-					optionList += '<option value="';
-			optionList += result[i]["sidoCode"] + '">';
-					optionList += result[i]["sidoName"]
-					optionList += '</option>';
-				}
-				$("#sido").append(optionList);
-			},
-			error : function(xhr, status, msg) {
-				console.log(status + " " + msg);
-			}
-		});
-
-		// 시도에 따른 구군 옵션 리스트 목록
-		$("#sido").change(
-			function() {
-				$.ajax({
-					url : '${root}/map/gugun/'+ $("#sido").val(),
-					type : 'GET',
-					contextType : 'application/json;charset=utf-8',
-					dataType : 'json',
-					success : function(result) {
-						$("#gugun").empty();
-						$("#gugun").append("<option selected disabled>구/군</option>");
-						var optionList = '';
-						for (let i = 0; i < result.length; i++) {
-							optionList += '<option value="';
-							optionList += result[i]["gugunCode"] + '">';
-							optionList += result[i]["gugunName"]
-							optionList += '</option>';
-						}
-						$("#gugun").append(optionList);
-					},
-					error : function(xhr,status, msg) {
-						console.log(status+ " "+ msg);
-					}
-				});
-			});
-
-		// 구군에 따른 동 옵션 리스트 목록
-		$("#gugun").change(function() {
-			$.ajax({
-				url : '${root}/map/dong/'+ $("#gugun").val(),
-				type : 'GET',
-				contextType : 'application/json;charset=utf-8',
-				dataType : 'json',
-				success : function(result) {
-					$("#dong").empty();
-					$("#dong").append("<option selected disabled>동</option>");
-					var optionList = '';
-					for (let i = 0; i < result.length; i++) {
-						optionList += '<option value="';
-						optionList += result[i]["dong"] + '">';
-						optionList += result[i]["dong"]
-						optionList += '</option>';
-					}
-					$("#dong").append(optionList);
-				},
-				error : function(xhr,status, msg) {
-					console.log(status+ " "+ msg);
-				}
-			});
-		});
-	});
-</script>
-<title>메인페이지</title>
 <style type="text/css">
 	.card-text {
 		border-radius: 5px;
@@ -103,10 +18,16 @@
 	#gotoInterDetail {
 		float: right;
 	}
-	/* #chat{
-		display:none;
-	} */
+
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${r}/resources/css/style.css" />
+<title>메인페이지</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/5d2954c3f8.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -129,11 +50,11 @@
 	<div class="container contents">
 		<div class="jumbotron text-center bg-transparent pb-0">
 			<h6 class="display-4">
-				<span style="color: #1abc9c;">당신이 원하는 방</span><br>모두 여기 <span style="color: #1abc9c;">다~</span> 있다!
+				당신이 원하는 <span style="color: orange;">NewRoom</span><br>여기서 <span style="color: orange;">찾아</span> 보세요!
 			</h6>
 			<hr class="my-4">
 			<div class="btn-group">
-				<form action="${root}/search" method="post" class="form-inline">
+				<form action="${r}/search" method="post" class="form-inline">
 					<div class="form-group mx-md-1">
 						<select name="sido" id="sido" class="form-control">
 							<option selected disabled>시/도</option>
@@ -171,6 +92,82 @@
 
 	<!-- Footer -->
 	<jsp:include page="footer.jsp" />
+	
+<script>
+	$(function() {
+		// 시도 옵션 리스트 목록
+		$.ajax({
+			url : '${r}/map/sido',
+			type : 'GET',
+			contextType : 'application/json;charset=utf-8',
+			dataType : 'json',
+			success : function(result) {
+				var optionList = '';
+				for (let i = 0; i < result.length; i++) {
+					optionList += '<option value="';
+			optionList += result[i]["sidoCode"] + '">';
+					optionList += result[i]["sidoName"]
+					optionList += '</option>';
+				}
+				$("#sido").append(optionList);
+			},
+			error : function(xhr, status, msg) {
+				console.log(status + " " + msg);
+			}
+		});
+
+		// 시도에 따른 구군 옵션 리스트 목록
+		$("#sido").change(
+			function() {
+				$.ajax({
+					url : '${r}/map/gugun/'+ $("#sido").val(),
+					type : 'GET',
+					contextType : 'application/json;charset=utf-8',
+					dataType : 'json',
+					success : function(result) {
+						$("#gugun").empty();
+						$("#gugun").append("<option selected disabled>구/군</option>");
+						var optionList = '';
+						for (let i = 0; i < result.length; i++) {
+							optionList += '<option value="';
+							optionList += result[i]["gugunCode"] + '">';
+							optionList += result[i]["gugunName"]
+							optionList += '</option>';
+						}
+						$("#gugun").append(optionList);
+					},
+					error : function(xhr,status, msg) {
+						console.log(status+ " "+ msg);
+					}
+				});
+			});
+
+		// 구군에 따른 동 옵션 리스트 목록
+		$("#gugun").change(function() {
+			$.ajax({
+				url : '${r}/map/dong/'+ $("#gugun").val(),
+				type : 'GET',
+				contextType : 'application/json;charset=utf-8',
+				dataType : 'json',
+				success : function(result) {
+					$("#dong").empty();
+					$("#dong").append("<option selected disabled>동</option>");
+					var optionList = '';
+					for (let i = 0; i < result.length; i++) {
+						optionList += '<option value="';
+						optionList += result[i]["dong"] + '">';
+						optionList += result[i]["dong"]
+						optionList += '</option>';
+					}
+					$("#dong").append(optionList);
+				},
+				error : function(xhr,status, msg) {
+					console.log(status+ " "+ msg);
+				}
+			});
+		});
+	});
+</script>
 </body>
 
 </html>

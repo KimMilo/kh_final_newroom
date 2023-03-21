@@ -36,25 +36,25 @@
     <div class="row justify-content-end">
       <div class="col-3">
         <i class="fas fa-home logo pr-1 d-block" style="color:black; font-size: 48px;"></i>
-        <small class="text-muted">© 2020</small>
+        <small class="text-muted">© 2023</small>
       </div>
       <div class="col-3">
         <h3>Features</h3>
         <ul class="list-unstyled">
           <li><a href="${root}/noticeList.do" class="text-muted">공지사항</a></li>
-          <li><a href="${root}/qna" class="text-muted">Qna</a></li>
+          <li><a href="${root}/qna" class="text-muted">Q&A</a></li>
         </ul>
       </div>
       <div class="col-3">
         <h3>About</h3>
         <ul class="list-unstyled">
-          <li><a href="${root}/introduction.do" class="text-muted">소개</a></li>
+          <li><a href="${root}/introduction" class="text-muted">소개</a></li>
         </ul>
       </div>
     </div>
 	<!-- CopyRight -->
     <div class="container">
-      <span class="text-muted float-right">Copyright 2020. 성진옥정다운. ALL RIGHTS RESERVED</span>
+      <span class="text-muted float-right">Copyright 2023. 김태룡. ALL RIGHTS RESERVED</span>
     </div>    
   </footer>
 </body>

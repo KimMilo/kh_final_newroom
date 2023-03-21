@@ -10,7 +10,17 @@
 	
 	<!-- typeAlias setting  -->
 	<typeAliases>
-<!-- 		<typeAlias type="kh.com.gb.home.model.dto.HomeDto" alias="hdto"/> -->
+		<typeAlias type="kh.com.gb.home.model.dto.HomeDto" alias="hdto"/>
+		<typeAlias type="kh.com.gb.home.model.dto.HomeDto" alias="hdto"/>
+		<typeAlias type="kh.com.gb.home.model.dto.HomeDto" alias="hdto"/>
+		<typeAlias type="kh.com.gb.home.model.dto.HomeDto" alias="hdto"/>
+		<typeAlias type="kh.com.gb.home.model.dto.HomeDto" alias="hdto"/>
+		<typeAlias type="kh.com.gb.home.model.dto.HomeDto" alias="hdto"/>
+		<typeAlias type="kh.com.gb.home.model.dto.HomeDto" alias="hdto"/>
+		<typeAlias type="kh.com.gb.home.model.dto.HomeDto" alias="hdto"/>
+		<typeAlias type="kh.com.gb.home.model.dto.HomeDto" alias="hdto"/>
+		<typeAlias type="kh.com.gb.home.model.dto.HomeDto" alias="hdto"/>
+		<typeAlias type="kh.com.gb.home.model.dto.HomeDto" alias="hdto"/>
 
 	</typeAliases>
 	<mappers>
