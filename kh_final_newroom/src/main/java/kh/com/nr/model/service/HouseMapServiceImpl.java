@@ -2,12 +2,10 @@ package kh.com.nr.model.service;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.happyhouse.mapper.HouseMapMapper;
-
+import kh.com.nr.model.dao.HouseMapDao;
 import kh.com.nr.model.dto.HouseDealDto;
 import kh.com.nr.model.dto.HouseInfoDto;
 import kh.com.nr.model.dto.SidoGugunCodeDto;
@@ -15,48 +13,48 @@ import kh.com.nr.model.dto.SidoGugunCodeDto;
 @Service
 public class HouseMapServiceImpl implements HouseMapService {
 	@Autowired
-	SqlSession dao;
+	private HouseMapDao dao;
 	
 	@Override
 	public List<SidoGugunCodeDto> getSido() throws Exception {
-		return dao.getMapper(HouseMapMapper.class).getSido();
+		return dao.getSido();
 	}
 
 	@Override
 	public List<SidoGugunCodeDto> getGugunInSido(String sido) throws Exception {
-		return dao.getMapper(HouseMapMapper.class).getGugunInSido(sido);
+		return dao.getGugunInSido(sido);
 	}
 
 	@Override
 	public List<HouseInfoDto> getDongInGugun(String gugun) throws Exception {
-		return dao.getMapper(HouseMapMapper.class).getDongInGugun(gugun);
+		return dao.getDongInGugun(gugun);
 	}
 
 	@Override
 	public List<HouseInfoDto> getAptInDong(String dong) throws Exception {
-		return dao.getMapper(HouseMapMapper.class).getAptInDong(dong);
+		return dao.getAptInDong(dong);
 	}
 	
 	@Override
 	public List<HouseDealDto> getDealInfo() throws Exception{
-		return dao.getMapper(HouseMapMapper.class).getDealInfo();
+		return dao.getDealInfo();
 	}
 	
 	@Override
 	public HouseDealDto getDealInfo(int no) throws Exception{
-		return dao.getMapper(HouseMapMapper.class).getDealInfoOne(no);
+		return dao.getDealInfoOne(no);
 	}
 
 	@Override
 	public List<HouseDealDto> getDealInfoByAptName(String aptName) throws Exception {
 		// 아파트 이름으로 거래 정보 가져오기
-		return dao.getMapper(HouseMapMapper.class).getDealInfoByAptName(aptName);
+		return dao.getDealInfoByAptName(aptName);
 	}
 
 	@Override
 	public List<HouseDealDto> getDealInfoByDong(String dong) throws Exception {
 		// 동 이름으로 거래 정보 가져오기
-		return dao.getMapper(HouseMapMapper.class).getDealInfoByDong(dong);
+		return dao.getDealInfoByDong(dong);
 	}
 
 	@Override

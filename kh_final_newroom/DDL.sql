@@ -1,4 +1,7 @@
 --DDL
+-- 일단 테스트용으로만 생성 하는거고 생성 대충 마무리 되면 ERD 그려가면서 구조 짜야되고
+-- insert 등 짤 때도 서브쿼리 어떻게 진행할 것인지 같이 고민해봐야 할 것 같다.
+
 DROP TABLE CHAT;
 CREATE TABLE CHAT(
     chatID NUMBER PRIMARY KEY
@@ -94,4 +97,23 @@ SELECT hnum, city, gugun, hospitalName, address, diagnosisType, phone
                             );
 --TODO 하우스 넘버와 병원 넘버를 어떻게 맞출것인지 생각해야함.
  --------------------------------------------------------------------------------------------
-       
+
+DROP TABLE SIDOCODE;
+CREATE TABLE SIDOCODE(
+
+);
+
+DROP TABLE GUGUNCODE;
+CREATE TABLE GUGUNCODE(
+
+);
+
+DROP TABLE HOUSEDEAL;
+CREATE TABLE HOUSEDEAL(
+
+);
+
+--------------------------------------------------------------------------------
+
+
+
