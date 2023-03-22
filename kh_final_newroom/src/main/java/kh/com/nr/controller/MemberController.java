@@ -30,13 +30,13 @@ import kh.com.nr.model.service.MemberService;
 @CrossOrigin(origins = "*")
 public class MemberController {
 	@Autowired
-	private MemberService service;
+	private MemberService mservice;
 	
 	//id 중복체크
 	@ResponseBody
 	@GetMapping("/idCheck/{userid}")
 	public String idCheck(@PathVariable("userid") String userid) {
-		if(service.idCheck(userid))
+		if(mservice.idCheck(userid))
 			return "true";
 		return "false";
 	}
@@ -45,7 +45,12 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("/login") 
     public MemberDto login(MemberDto dto, HttpSession session) throws IOException {
-		MemberDto member = service.loginCheck(dto.getUserid(), dto.getUserpw());
+		MemberDto data = new MemberDto();
+		data.setUserid(dto.getUserid());
+		data.setUserpw(dto.getUserpw());
+		
+		MemberDto member = mservice.loginCheck(data);
+		
 		if(member != null) { //로그인 성공
 			session.setAttribute("loginInfo", member);
 		}
@@ -68,7 +73,12 @@ public class MemberController {
 	//비밀번호 찾기
 	@PostMapping("/findpw.do") 
 	public String findPw(String username, String userid, String userphone, Model model) {
-		MemberDto member = service.findUser(username, userid, userphone);
+		MemberDto data = new MemberDto();
+		data.setUsername(username);
+		data.setUserid(userid);
+		data.setUserphone(userphone);
+		
+		MemberDto member = mservice.findUser(data);
 		if(member == null) { //회원 찾기 실패
 			model.addAttribute("findResult", "fail");
 		}
@@ -80,7 +90,7 @@ public class MemberController {
 	//비밀번호 수정
 	@PostMapping("/modifyPw.do") 
 	public String modifyPw(MemberDto dto) {
-		service.updateById(dto);
+		mservice.updateById(dto);
 		return "index";
 	}
 	
@@ -100,21 +110,21 @@ public class MemberController {
 	@PostMapping("/search") 
 	@ResponseBody
 	public List<MemberDto> memberNameSearchList(String name) {
-		return service.searchName(name);
+		return mservice.searchName(name);
 	}
 	
 	//회원가입
 	@ResponseBody
 	@PostMapping("/join") 
 	public void join(MemberDto dto) {
-		service.join(dto);
+		mservice.join(dto);
 	}
 	
 	//회원정보 수정
 	@ResponseBody
 	@PutMapping("") 
 	public String memberUpdate(@RequestBody MemberDto dto, HttpSession session) {
-		if(service.update(dto) == 1) {
+		if(mservice.update(dto) == 1) {
 			session.setAttribute("loginInfo", dto);
 			return "success";
 		}
@@ -125,7 +135,7 @@ public class MemberController {
 	@ResponseBody
 	@DeleteMapping("/{userid}") 
 	public String memberDelete(@PathVariable("userid") String userid, HttpSession session) {
-		if(service.delete(userid) == 1) {
+		if(mservice.delete(userid) == 1) {
 			session.invalidate();
 			return "success";
 		}
@@ -154,7 +164,7 @@ public class MemberController {
 	@ResponseBody
 	@PutMapping("/change")
 	public void changeMemberRole(@RequestBody MemberDto dto) {
-		service.modifyRole(dto);
+		mservice.modifyRole(dto);
 	}
 
 }

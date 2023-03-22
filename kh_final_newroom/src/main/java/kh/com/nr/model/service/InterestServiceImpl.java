@@ -2,23 +2,21 @@ package kh.com.nr.model.service;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.happyhouse.mapper.InterestMapper;
-
+import kh.com.nr.model.dao.InterestDao;
 import kh.com.nr.model.dto.InterestDto;
 
 @Service
 public class InterestServiceImpl implements InterestService{
 	@Autowired
-	SqlSession dao;
+	private InterestDao dao;
 	
 	@Override
 	public boolean setInterest(InterestDto dto) {
 		try {
-			dao.getMapper(InterestMapper.class).setInterest(dto);
+			dao.setInterest(dto);
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -29,7 +27,7 @@ public class InterestServiceImpl implements InterestService{
 	@Override
 	public boolean deleteInterest(InterestDto dto) {
 		try {
-			dao.getMapper(InterestMapper.class).deleteInterest(dto);
+			dao.deleteInterest(dto);
 		}catch(Exception e) {
 			e.printStackTrace();
 			return false;
@@ -39,11 +37,11 @@ public class InterestServiceImpl implements InterestService{
 	
 	@Override
 	public List<InterestDto> getInterest(String userid) {
-		return dao.getMapper(InterestMapper.class).getInterest(userid);
+		return dao.getInterest(userid);
 	}
 	
 	@Override
 	public InterestDto chkInterest(InterestDto dto) {
-		return dao.getMapper(InterestMapper.class).chkInterest(dto);
+		return dao.chkInterest(dto);
 	}
 }

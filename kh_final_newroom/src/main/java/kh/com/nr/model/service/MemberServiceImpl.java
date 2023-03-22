@@ -2,22 +2,20 @@ package kh.com.nr.model.service;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.happyhouse.mapper.MemberMapper;
-
+import kh.com.nr.model.dao.MemberDao;
 import kh.com.nr.model.dto.MemberDto;
 
 @Service
 public class MemberServiceImpl implements MemberService{
 	@Autowired
-	private SqlSession sqlSession;
+	private MemberDao dao;
 	
 	@Override
 	public boolean idCheck(String userid) {
-		if(sqlSession.getMapper(MemberMapper.class).idCheck(userid) == null) {
+		if(dao.idCheck(userid) == null) {
 			return true;
 		}else {
 			return false;
@@ -25,47 +23,47 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	@Override
-	public MemberDto loginCheck(String userid, String userpw) {
-		return sqlSession.getMapper(MemberMapper.class).loginCheck(userid, userpw);
+	public MemberDto loginCheck(MemberDto data) {
+		return dao.loginCheck(data);
 	}
 
 	@Override
 	public int join(MemberDto member) {
-		return sqlSession.getMapper(MemberMapper.class).join(member);
+		return dao.join(member);
 	}
 
 	@Override
 	public List<MemberDto> search() {
-		return sqlSession.getMapper(MemberMapper.class).search();
+		return dao.search();
 	}
 	
 	@Override
 	public List<MemberDto> searchName(String username) {
-		return sqlSession.getMapper(MemberMapper.class).searchName(username);
+		return dao.searchName(username);
 	}
 
 	@Override
 	public int update(MemberDto member) {
-		return sqlSession.getMapper(MemberMapper.class).update(member);
+		return dao.update(member);
 	}
 
 	@Override
 	public int updateById(MemberDto member) {
-		return sqlSession.getMapper(MemberMapper.class).updateById(member);
+		return dao.updateById(member);
 	}
 
 	@Override
 	public int delete(String userid) {
-		return sqlSession.getMapper(MemberMapper.class).delete(userid);
+		return dao.delete(userid);
 	}
 
 	@Override
-	public MemberDto findUser(String username, String userid, String userphone) {
-		return sqlSession.getMapper(MemberMapper.class).findUser(username, userid, userphone);
+	public MemberDto findUser(MemberDto data) {
+		return dao.findUser(data);
 	}
 	
 	@Override
 	public int modifyRole(MemberDto dto) {
-		return sqlSession.getMapper(MemberMapper.class).modifyRole(dto);
+		return dao.modifyRole(dto);
 	}
 }
