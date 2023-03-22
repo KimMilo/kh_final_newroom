@@ -22,4 +22,10 @@ public class CommentDto {
 	private String ccontent; // 코멘트 내용
 	private String cwriteDate; // 작성일시
 
+	public CommentDto(int bnum, String cwriter, String ccontent, String cwriteDate) {
+		this.bnum = bnum;
+		this.cwriter = cwriter;
+		this.ccontent = ccontent;
+		this.cwriteDate = cwriteDate;
+	}
 }
