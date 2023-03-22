@@ -23,4 +23,9 @@ public class InterestDto {
 	private String dealAmount; //월세
 	private String aptName; //아파트이름
 	private String img; //이미지
+	
+	public InterestDto(String userid, int no) {
+		this.userid = userid;
+		this.no = no;
+	}
 }
