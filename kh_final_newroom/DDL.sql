@@ -33,7 +33,7 @@ SELECT * FROM CHAT_ROOM;
 -------------------------------------------------------------------------------
 DROP TABLE HOSPITAL;
 CREATE TABLE HOSPITAL(
-    hostpitalNo NUMBER PRIMARY KEY
+    hnum NUMBER REFERENCES HOUSEINFO(housenum)
   , city VARCHAR2(20)
   , gugun VARCHAR2(20)
   , hospitalName VARCHAR2(30)
@@ -43,18 +43,55 @@ CREATE TABLE HOSPITAL(
 );
 
 INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '강남내과의원', '서울시 강남구 논현동 111-1', '내과', '02-1234-5678');
-INSERT INTO HOSPITAL VALUES(2, '서울시', '강남구', '강남외과의원', '서울시 강남구 논현동 111-2', '외과', '02-1234-7777');
-INSERT INTO HOSPITAL VALUES(3, '서울시', '강남구', '강남소아과의원', '서울시 강남구 논현동 111-3', '소아과', '02-1234-8888');
-
+INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '강남외과의원', '서울시 강남구 논현동 111-2', '외과', '02-1234-7777');
+INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '강남소아과의원', '서울시 강남구 논현동 111-3', '소아과', '02-1234-8888');
+INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '강남소아과의원', '서울시 강남구 논현동 111-3', '소아과', '02-1234-8888');
 -----------------------------------------------------------------------------------
 
+DROP TABLE BASEADDRESS;
+CREATE TABLE BASEADDRESS(
+    bnum NUMBER PRIMARY KEY
+  , city VARCHAR2(20)
+  , gugun VARCHAR2(20)
+  , dong VARCHAR2(20)
+  , jibun VARCHAR2(30)
+  , dongcode VARCHAR2(10)
+);
 
-SELECT hospitalNo, city, gugun, hospitalName, address, diagnosisType, phone
-  FROM HOSTPITAL
- WHERE (city, gugun) IN (SELECT DISTINCT LEFT(city, 2), gugun
+INSERT INTO BASEADDRESS VALUES(1, '서울시', '강남구', '001');
+INSERT INTO BASEADDRESS VALUES(2, '서울시', '강남구', '001');
+INSERT INTO BASEADDRESS VALUES(3, '서울시', '강남구', '002');
+
+SELECT * FROM BASEADDRESS;
+
+DROP TABLE HOUSEINFO;
+CREATE TABLE HOUSEINFO(
+    housenum NUMBER PRIMARY KEY
+  , dong VARCHAR2(20)
+  , aptName VARCHAR2(50)
+  , code VARCHAR2(10) REFERENCES BASEADDRESS(dongcode)
+  , buildYear VARCHAR2(20)
+  , jibun VARCHAR2(30)
+  , lat VARCHAR2(50)
+  , lng VARCHAR2(50)
+  , img VARCHAR2(4000)
+);
+
+INSERT INTO HOUSEINFO VALUES(1, '논현동', '논현아파트', '001', '2000', '100-01', null, null, null);
+INSERT INTO HOUSEINFO VALUES(2, '논현동', '현대아파트', '001', '2001', '200-01', null, null, null);
+INSERT INTO HOUSEINFO VALUES(3, '논현동', '아이파크아파트', '001', '2010', '300-01', null, null, null);
+
+SELECT * FROM HOUSEINFO;
+
+
+SELECT hnum, city, gugun, hospitalName, address, diagnosisType, phone
+  FROM HOSPITAL
+ WHERE (city, gugun) IN (SELECT DISTINCT city, gugun
                               FROM BASEADDRESS b
                              WHERE b.dongcode = (SELECT DISTINCT code 
                                                    FROM HOUSEINFO
-                                                  WHERE hospitalNo = #{no})	
+                                                  WHERE housenum = 2)	
                             );
-            
+--TODO 하우스 넘버와 병원 넘버를 어떻게 맞출것인지 생각해야함.
+ --------------------------------------------------------------------------------------------
+       

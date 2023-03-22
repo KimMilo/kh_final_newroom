@@ -15,7 +15,7 @@ public class HospitalDao {
 	private SqlSession sqlSession;
 	
 	public List<HospitalDto> getSafetyHospitalList(String houseinfoId) {
-		return sqlSession.selectOne("hospital.getSafetyHospitalList", houseinfoId);
+		return sqlSession.selectList("hospital.getSafetyHospitalList", houseinfoId);
 	}
 	
 }

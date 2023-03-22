@@ -3,13 +3,13 @@
 <mapper namespace="hospital">
 
 <select id="getSafetyHospitalList" parameterType="String" resultType="HospitalDto">
-	select * from Hospital
-	where (city, gugun) in (
-		select distinct left(city, 2), gugun
-		from baseaddress b
-		where b.dongcode = (select distinct code from houseinfo
-							where no=#{no}
-							)	
-		)	
+SELECT hnum, city, gugun, hospitalName, address, diagnosisType, phone
+  FROM HOSPITAL
+ WHERE (city, gugun) IN (SELECT DISTINCT city, gugun
+                              FROM BASEADDRESS b
+                             WHERE b.dongcode = (SELECT DISTINCT code 
+                                                   FROM HOUSEINFO
+                                                  WHERE housenum = #{no})	
+                            )
 </select>
 </mapper>
