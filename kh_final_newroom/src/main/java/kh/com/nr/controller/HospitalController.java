@@ -5,25 +5,26 @@ import java.util.List;
 import javax.servlet.http.HttpServlet;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import kh.com.nr.model.dto.CovidTestCenterDto;
 import kh.com.nr.model.dto.HospitalDto;
 import kh.com.nr.model.service.HospitalService;
 
+@Controller
 @RequestMapping("/hospital")
 @RestController
 public class HospitalController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	HospitalService hservice;
+	private HospitalService hservice;
 	
-	@GetMapping("/safety/{no}")
-	public List<HospitalDto> safety(@PathVariable("no") String no){
+	@GetMapping("/safety/{hospitalNo}")
+	public List<HospitalDto> safety(@PathVariable("hospitalNo") String no){
 		List<HospitalDto> hList = null;
 		try {
 			hList = hservice.getSafetyHospitalList(no);
@@ -31,17 +32,6 @@ public class HospitalController extends HttpServlet {
 			e.printStackTrace();
 		}
 		return hList;
-	}
-	
-	@GetMapping("/covid/{no}")
-	public List<CovidTestCenterDto> covid(@PathVariable("no") String no){
-		List<CovidTestCenterDto> cList = null;
-		try {
-			cList = hservice.getCovidTestCenterList(no);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return cList;
 	}
 	
 }

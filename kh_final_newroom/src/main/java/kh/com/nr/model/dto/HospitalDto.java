@@ -16,8 +16,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class HospitalDto {
-	private int no;
-	private String validDate; // 유효 날짜
+	private int hostpitalNo;
 	private String city; // 도시
 	private String gugun; // 구군
 	private String hospitalName; // 병원 이름

@@ -12,8 +12,10 @@
 	<typeAliases>
 		<typeAlias type="kh.com.nr.model.dto.ChatDto" alias="ChatDto"/>
 		<typeAlias type="kh.com.nr.model.dto.RoomDto" alias="RoomDto"/>
+		<typeAlias type="kh.com.nr.model.dto.HospitalDto" alias="HospitalDto"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/chat-mapper.xml"/>
+		<mapper resource="mappers/hospital-mapper.xml"/>
 	</mappers>
 </configuration>

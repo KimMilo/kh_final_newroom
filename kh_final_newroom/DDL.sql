@@ -31,3 +31,30 @@ INSERT INTO CHAT_ROOM VALUES(3, 'ccc');
 SELECT * FROM CHAT_ROOM;
 
 -------------------------------------------------------------------------------
+DROP TABLE HOSPITAL;
+CREATE TABLE HOSPITAL(
+    hostpitalNo NUMBER PRIMARY KEY
+  , city VARCHAR2(20)
+  , gugun VARCHAR2(20)
+  , hospitalName VARCHAR2(30)
+  , address VARCHAR2(200)
+  , diagnosisType VARCHAR2(200)
+  , phone VARCHAR2(30)
+);
+
+INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '강남내과의원', '서울시 강남구 논현동 111-1', '내과', '02-1234-5678');
+INSERT INTO HOSPITAL VALUES(2, '서울시', '강남구', '강남외과의원', '서울시 강남구 논현동 111-2', '외과', '02-1234-7777');
+INSERT INTO HOSPITAL VALUES(3, '서울시', '강남구', '강남소아과의원', '서울시 강남구 논현동 111-3', '소아과', '02-1234-8888');
+
+-----------------------------------------------------------------------------------
+
+
+SELECT hospitalNo, city, gugun, hospitalName, address, diagnosisType, phone
+  FROM HOSTPITAL
+ WHERE (city, gugun) IN (SELECT DISTINCT LEFT(city, 2), gugun
+                              FROM BASEADDRESS b
+                             WHERE b.dongcode = (SELECT DISTINCT code 
+                                                   FROM HOUSEINFO
+                                                  WHERE hospitalNo = #{no})	
+                            );
+            
