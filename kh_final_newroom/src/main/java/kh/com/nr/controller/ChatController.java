@@ -19,7 +19,7 @@ import kh.com.nr.model.service.ChatService;
 
 @Controller
 @RequestMapping("/chat")
-//@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "*")
 public class ChatController {
 	@Autowired
 	private ChatService chatService;

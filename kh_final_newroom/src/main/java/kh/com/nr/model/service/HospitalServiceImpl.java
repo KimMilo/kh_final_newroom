@@ -10,7 +10,7 @@ import com.ssafy.happyhouse.mapper.CovidTestCenterMapper;
 import com.ssafy.happyhouse.mapper.SafetyHospitalMapper;
 
 import kh.com.nr.model.dto.CovidTestCenterDto;
-import kh.com.nr.model.dto.SafetyHospitalDto;
+import kh.com.nr.model.dto.HospitalDto;
 
 @Service
 public class HospitalServiceImpl implements HospitalService {
@@ -18,7 +18,7 @@ public class HospitalServiceImpl implements HospitalService {
 	SqlSession dao;
 	
 	@Override
-	public List<SafetyHospitalDto> getSafetyHospitalList(String houseinfoId) {
+	public List<HospitalDto> getSafetyHospitalList(String houseinfoId) {
 		return dao.getMapper(SafetyHospitalMapper.class).getSafetyHospitalList(houseinfoId);
 	}
 

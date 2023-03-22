@@ -15,7 +15,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class SafetyHospitalDto {
+public class HospitalDto {
 	private int no;
 	private String validDate; // 유효 날짜
 	private String city; // 도시

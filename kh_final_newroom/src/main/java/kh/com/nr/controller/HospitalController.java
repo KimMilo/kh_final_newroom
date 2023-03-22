@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kh.com.nr.model.dto.CovidTestCenterDto;
-import kh.com.nr.model.dto.SafetyHospitalDto;
+import kh.com.nr.model.dto.HospitalDto;
 import kh.com.nr.model.service.HospitalService;
 
 @RequestMapping("/hospital")
@@ -23,8 +23,8 @@ public class HospitalController extends HttpServlet {
 	HospitalService hservice;
 	
 	@GetMapping("/safety/{no}")
-	public List<SafetyHospitalDto> safety(@PathVariable("no") String no){
-		List<SafetyHospitalDto> hList = null;
+	public List<HospitalDto> safety(@PathVariable("no") String no){
+		List<HospitalDto> hList = null;
 		try {
 			hList = hservice.getSafetyHospitalList(no);
 		} catch (Exception e) {
