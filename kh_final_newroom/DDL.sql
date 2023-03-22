@@ -129,6 +129,15 @@ CREATE TABLE USERINFO(
 
 -------------------------------------------------------------------------------
 
+DROP TABLE NOTICE;
+CREATE TABLE NOTICE(
+
+);
+
+DROP TABLE COMMENT_T;
+CREATE TABLE COMMENT_T(
+
+)
 
 
 ------------------------------------------------------------------------------
