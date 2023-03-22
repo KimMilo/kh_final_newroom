@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" import="java.text.SimpleDateFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="root" value="${pageContext.request.contextPath}" />
+<c:set var="r" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://sta.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="${root}/resources/css/style.css" />
-<link rel="stylesheet" type="text/css" href="${root}/resources/css/chat.css" />
+<link rel="stylesheet" type="text/css" href="${r}/resources/css/style.css" />
+<link rel="stylesheet" type="text/css" href="${r}/resources/css/chat.css" />
 <script src="https://kit.fontawesome.com/5d2954c3f8.js" crossorigin="anonymous"></script>
 <title>사용자용 채팅창</title>
 </head>
@@ -109,7 +109,7 @@ String time = df.format(today);
 			function submitFunction(){ 
 				var chatContent = $('#chatContent').val();
 				$.ajax({
-					url: "${root}/chat",
+					url: "${r}/chat",
 					type: "POST",
 					contentType: "application/json",
 					data: JSON.stringify({
@@ -131,7 +131,7 @@ String time = df.format(today);
 			//기존에 주고받은 채팅 목록
 			function chatListFunction(){ 
 				$.ajax({
-					url : '${root}/chat/${loginInfo.userid}/ssafy',
+					url : '${r}/chat/${loginInfo.userid}/ssafy',
 					method : 'get',
 					success: function(result){
 						if(result != ""){
@@ -157,7 +157,7 @@ String time = df.format(today);
 			//새로운 작성한 메시지가 있는지
 			function chatLoadNewMessage(){
 				$.ajax({
-					url : '${root}/chat/'+lastID+'/${loginInfo.userid}/ssafy',
+					url : '${r}/chat/'+lastID+'/${loginInfo.userid}/ssafy',
 					method : 'get',
 					success: function(result){
 						if(result == "") return;
@@ -215,7 +215,7 @@ String time = df.format(today);
 				var faqList = [];
 				//FAQ가져오기
 				$.ajax({
-					url : '${root}/qna/'+"faq",
+					url : '${r}/qna/'+"faq",
 					method : 'get',
 					success: function(result){
 						if(result == "") return;
