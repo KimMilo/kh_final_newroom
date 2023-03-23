@@ -23,12 +23,12 @@
 		</nav>
 		<div id="con01_slide" class="">
 			<div class="slider01_txt">
-				<div class="slider_h01">
+				<div>
 					<h1>
 						신뢰 기반 서비스 제공<br>Find your NewRoom
 					</h1>
 				</div>
-				<div class="slider_p01">
+				<div>
 					<p>
 						당신의 부동산 전문가<br> NewRoom
 					</p>
