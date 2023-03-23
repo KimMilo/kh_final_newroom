@@ -1,19 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="r" value="${pageContext.request.contextPath}" />
+<c:set var="rUrl" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-<!--web font-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="${r}/resources/css/style.css" />
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
+<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
 <title>header</title>
-<script src="https://kit.fontawesome.com/5d2954c3f8.js" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>  
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -21,7 +20,8 @@
 	<nav
 		class="navbar navbar-expand-sm navbar-default py-3 border-bottom justify-content-between">
 		<div class="navbar navbar__logo">
-			<i class="fas fa-home logo pr-1" style="color: orange"></i> <a class="navbar-brand happy-font title" style="color:orange" href="${r}/"><b>NewRoom</b></a>
+			<span class="bg-opacity-0 logo material-symbols-outlined" style="color: orange; font-size: 24px;">Home</span>
+			<a class="navbar-brand happy-font title" style="color: orange;" href="${rUrl}/"><b>NewRoom</b></a>
 		</div>
 		<div class="navbar navbar__menu">
 			<ul class="navbar-nav menu mx-md-3" id="navMenu">
@@ -47,7 +47,7 @@
 							class="my-2 form-control col-md-12 d-inline" placeholder="아이디"><br>
 						<input type="password" name="userpw" id="userpwLogin"
 							class="form-control col-md-12 d-inline" placeholder="패스워드">
-						<a href="${r}/member/findpw.do" class="text-secondary float-right py-2"
+						<a href="${rUrl}/member/findpw.do" class="text-secondary float-right py-2"
 							style="font-size: 13px;">비밀번호 찾기</a>
 						<button id="submitLogin" class="btn btn-outline-secondary col-md-12">로그인</button>
 					</div>					
@@ -138,7 +138,7 @@
     		updateNavMenu();
     		 $(document).on("click","#logout",function(event){
     			 $.ajax({
-     				url : '${r}/member/logout',
+     				url : '${rUrl}/member/logout',
      				method:'get',
      				success:function(result){
      					if(document.location.href.split("7777")[1] != '/happyhouse/#' && 
@@ -156,7 +156,7 @@
     				alert("ID를 입력하세요.");
     			}else{
     				$.ajax({
-    					url:'${r}/member/idCheck/'+$("#useridJoin").val(),
+    					url:'${rUrl}/member/idCheck/'+$("#useridJoin").val(),
     					method: 'get',
     					success: function(result){
     						if(result == "true"){
@@ -184,7 +184,7 @@
     				return false;
     			}else {
     				$.ajax({
-    					url:'${r}/member/join',
+    					url:'${rUrl}/member/join',
     					method : 'post',
     					data:{
     						'userid' : $("#useridJoin").val(),
@@ -215,7 +215,7 @@
     		
     		$("#submitLogin").click(function(){
     			$.ajax({
-    				url: '${r}/member/login',
+    				url: '${rUrl}/member/login',
     				method: 'post',
     				data:{
     					'userid' : $("#useridLogin").val(),
@@ -241,33 +241,33 @@
     	
     	var updateNavMenu = function(){
     		$.ajax({
-				url : '${r}/member/getUserId',
+				url : '${rUrl}/member/getUserId',
 				method: 'get',
 				success: function(user){
 					var content = '';
 					if(user.userId){
 						userName = user.name;
 		    			content += '<li class="nav-item">';
-		    			content += '<a href="${r}/noticeList.do" ';
+		    			content += '<a href="${rUrl}/noticeList.do" ';
 		    			content += 'class="nav-link font-weight-bold text-dark">공지사항 </a></li>';
 		    			content += '<li class="nav-item">';
-		    			content += '<a href="${r}/qna" ';
+		    			content += '<a href="${rUrl}/qna" ';
 		    			content += 'class="nav-link font-weight-bold text-dark">QnA </a></li>';
 		    			content += '<li class="nav-item">';
-		    			content += '<a href="${r}/search" ';
+		    			content += '<a href="${rUrl}/search" ';
 		    			content += 'class="nav-link font-weight-bold text-dark">실거래가 검색 </a></li>';
 		    			content += '<li class="nav-item">';
-		    			content += '<a href="${r}/interest" ';
+		    			content += '<a href="${rUrl}/interest" ';
 		    			content += 'class="nav-link font-weight-bold text-dark">찜한 매물 </a></li>';
 		    			
 		    			if(user.admin == "true"){
 		    				content += '<li class="nav-item">';
-		    				content += '<a href="${r}/member/list" ';
+		    				content += '<a href="${rUrl}/member/list" ';
 		    				content += 'class="nav-link text-dark"><b>회원 목록</b></a></li>';
 		    			}    				
 		    				
 		    			content += '<li class="nav-item">';
-		    			content += '<a href="${r}/member/mypage" ';
+		    			content += '<a href="${rUrl}/member/mypage" ';
 		    			content += 'class="nav-link text-dark"><b>마이페이지</b></a></li>';
 		    			content += '<li class="nav-item mr-4">';
 		    			content += '<a href="" id="logout" ';
@@ -298,14 +298,14 @@
     	// 로그인 되면 찜목록 보여주기
     	updateInterestLogin = function(){
     		$.ajax({
-    			url : '${r}/interest/list',
+    			url : '${rUrl}/interest/list',
     			method : 'get',
     			success : function(result){
     				var content = '<nav class="navbar navbar-expand-md navbar-light bg-transparent pl-0 pb-0">';
     				content += '<ul class="navbar-nav"><li class="nav-item">';
     				content += '<a href="" class="nav-link active font-weight-bold">';
     				content += '<h3>'+userName+'님이 찜한 매물</h3></a></li></ul>';
-    				content += '<a href="${r}/interest" id="gotoInterDetail">+ 자세히보기</a></nav>';
+    				content += '<a href="${rUrl}/interest" id="gotoInterDetail">+ 자세히보기</a></nav>';
     				content += '<div class="container text-center">';
     				content += '<div class="card d-inline-block" style="position:relative 0 0; width: 1080px; border:none;">';
     				if(result == null){
@@ -318,9 +318,9 @@
     						content += 'style="width: 280px; height: 325px;"> ';
     						
     						if(result[i].img == null){
-    							content += '<p class="card-text pt-1"><img src="${r}/resources/img/room_sample.PNG" alt="" style="width: 280px; height: 186px;"></p>';
+    							content += '<p class="card-text pt-1"><img src="${rUrl}/resources/img/room_sample.PNG" alt="" style="width: 280px; height: 186px;"></p>';
     						}else{
-    							content += '<p class="card-text pt-1"><img src="${r}/resources/img/houseimg/' + result[i].img + '" alt="" style="width: 280px; height: 186px;"></p>';
+    							content += '<p class="card-text pt-1"><img src="${rUrl}/resources/img/houseimg/' + result[i].img + '" alt="" style="width: 280px; height: 186px;"></p>';
     						}
     						content += '<h5 class="card-text pt-2">' + result[i].aptName + '</h5>';
     						content += '<p class="card-text pt-1" style="font-size:20px;">';
