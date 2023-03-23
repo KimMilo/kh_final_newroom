@@ -52,7 +52,7 @@ public class QnaController {
 	// 질문 작성
 	@PostMapping("")
 	@ResponseBody
-   	public boolean addEmployee(@RequestBody QnaDto dto, HttpSession session) throws Exception {
+   	public int addEmployee(@RequestBody QnaDto dto, HttpSession session) throws Exception {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
 		dto.setUserid(loginInfo.getUserid());
 		return qService.write(dto);
@@ -61,7 +61,7 @@ public class QnaController {
 	// 질문 수정
 	@PutMapping("")
 	@ResponseBody
-	private boolean qnaUpdate(@RequestBody QnaDto dto)
+	private int qnaUpdate(@RequestBody QnaDto dto)
 			throws IOException {
 		return qService.update(dto);
 	}
@@ -69,7 +69,7 @@ public class QnaController {
 	// 질문 삭제
 	@DeleteMapping("/{bnum}")
 	@ResponseBody
-	private boolean delete(@PathVariable("bnum") int bnum) {
+	private int delete(@PathVariable("bnum") int bnum) {
 		return qService.delete(bnum);
 	}
 	
@@ -92,7 +92,7 @@ public class QnaController {
 	//답변 작성
 	@PostMapping("/ans")
 	@ResponseBody
-   	public boolean addAnswer(@RequestBody QnaDto dto, HttpSession session) throws Exception {
+   	public int addAnswer(@RequestBody QnaDto dto, HttpSession session) throws Exception {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
 		dto.setBtitle("reply");
 		dto.setUserid(loginInfo.getUserid());
@@ -102,7 +102,7 @@ public class QnaController {
 	//답변 수정
 	@PutMapping("/ans")
 	@ResponseBody
-	private boolean ansUpdate(@RequestBody QnaDto dto)
+	private int ansUpdate(@RequestBody QnaDto dto)
 			throws IOException {
 		return qService.ansUpdate(dto);
 	}
@@ -110,7 +110,7 @@ public class QnaController {
 	//답변 삭제
 	@DeleteMapping("/ans/{bnum}")
 	@ResponseBody
-	private boolean ansDelete(@PathVariable("bnum") int bnum) {
+	private int ansDelete(@PathVariable("bnum") int bnum) {
 		return qService.ansDelete(bnum);
 	}
 	
