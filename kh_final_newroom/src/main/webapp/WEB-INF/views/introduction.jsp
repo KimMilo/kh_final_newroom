@@ -5,9 +5,8 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-<%-- <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/introduct.css" media="all" /> --%>
-<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/introduction.css" media="all" />
-<%-- <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" /> --%>
+<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/introduction.css"/>
+<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
