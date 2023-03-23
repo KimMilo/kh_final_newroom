@@ -185,3 +185,89 @@ a:visited {
   display: block;
   transition: ease-in 0.5s;
 }
+
+#con03_end {
+  position: relative 0 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  overflow: hidden;
+}
+
+#con03_end .con03_left {
+  float: left;
+  width: 50%;
+  height: 100%;
+}
+
+#con03_end .con03_left .img {
+  float: left;
+  width: 630px;
+  height: 420px;
+  margin-top: 17%;
+  margin-left: 20%;
+}
+
+#con03_end .con03_left .img img {
+  width: 100%;
+  height: 100%;
+}
+
+#con03_end .con03_right {
+  position: relative 0 0;
+}
+
+#con03_end .con03_right .ttl {
+  position: relative;
+  top: 200px;
+  left: 100px;
+}
+
+#con03_end .con03_right .ttl .btn {
+  margin-top: 30px;
+  padding: 15px 138px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4c9df8;
+  border: none;
+}
+
+#con03_end .con03_right .ttl h2 {
+  font-size: 40px;
+}
+
+#con03_end .con03_right .ttl p {
+  padding-top: 30px;
+  font-size: 20px;
+}
+
+#menu {
+  position: fixed;
+  top: 420px;
+  right: 35px;
+  width: 20px;
+  height: 130px;
+}
+#menu_circle {
+  float: left;
+  width: 20px;
+  height: 100%;
+  z-index: 9999;
+}
+#menu_circle li {
+  width: 10px;
+  height: 10px;
+  margin-bottom: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+#menu_circle li:hover,
+.active {
+  background: #ccc;
+  transition: 0.2s ease-out;
+}
+

@@ -21,7 +21,7 @@
 				<a class="navbar-brand happy-font title" href="${rUrl}/" style="color: gray;"><b>NewRoom</b></a>
 			</div>
 		</nav>
-		<div id="con01_slide" class="">
+		<div id="con01_slide" class="" data-bs-spy="scroll" data-bs-target="#scroll_tracking" data-bs-smooth-scroll="true">
 			<div class="slider01_txt">
 				<div>
 					<h1>
@@ -43,7 +43,7 @@
 				</a>
 			</div>
 		</div>
-		<div id="con02_intro">
+		<div id="con02_intro" class="">
 			<div class="con02_in">
 				<div class="intro_ttl">
 					<h3>서비스 소개</h3>
@@ -87,74 +87,53 @@
 				</ul>
 			</div>
 		</div>
-<!-- 		<div id="con03_notice" class="section"> -->
-<!-- 			<div class="con03_left"> -->
-<!-- 				<div class="ttl"> -->
-<!-- 					<h2>살기 좋은 아파트 찾기</h2> -->
-<!-- 					<p> -->
-<!-- 						관심있는 매물 주변의 범죄률을 지도에서 한눈에 파악해보세요<br>당신의 꼼꼼한 선택이 가족의 행복을 -->
-<!-- 						지킵니다. -->
-<!-- 					</p> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="con03_right"></div> -->
-<!-- 			<ul class="box_ul"> -->
-<!-- 				<li> -->
-<!-- 					<div class="img"> -->
-<%-- 						<img src="${rUrl}/resources/img/icon_1.png"> --%>
-<!-- 					</div> -->
-<!-- 					<h4>맞춤안전 지도</h4> -->
-<!-- 					<p>주요 5대 범죄 위험도 확인</p> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="img"> -->
-<%-- 						<img src="${rUrl}/resources/img/icon_2.png"> --%>
-<!-- 					</div> -->
-<!-- 					<h4>신뢰성있는 데이터</h4> -->
-<!-- 					<p> -->
-<!-- 						경찰청에서 제공받은 밀도분석 정보<br> -->
-<!-- 					</p> -->
-<!-- 				</li> -->
-<!-- 				<li> -->
-<!-- 					<div class="img"> -->
-<%-- 						<img src="${rUrl}/resources/img/icon_3.png"> --%>
-<!-- 					</div> -->
-<!-- 					<h4>범죄분포 시각화</h4> -->
-<!-- 					<p>치안 사고 발생현황을 5등급으로 분류</p> -->
-<!-- 				</li> -->
-<!-- 			</ul> -->
-<!-- 		</div> -->
-<!-- 		<div id="con04_end" class="section"> -->
-<!-- 			<div class="con04_left"> -->
-<!-- 				<div class="img"> -->
-<%-- 					<img src="${rUrl}/resources/img/web_img.png" /> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 			<div class="con04_right"> -->
-<!-- 				<div class="ttl"> -->
-<!-- 					<h2>주변 아파트 가격을 한눈에!</h2> -->
-<!-- 					<p> -->
-<!-- 						집에서도 쉽고 간편하게!<br>집 구할 때 꼭 필요한 정보 놓치지 마세요 -->
-<!-- 					</p> -->
-<%-- 					<button class="btn btn-outline-primary btn-sm" onclick="location.href='${rUrl}/'">NewRoom 서비스 이용하기</button> --%>
-<!-- 				</div> -->
-<!-- 			</div> -->
+		<div id="con03_end" class="">
+			<div class="con03_left">
+				<div class="img">
+					<img src="${rUrl}/resources/img/web_img.png" />
+				</div>
+			</div>
+			<div class="con03_right">
+				<div class="ttl">
+					<h2>아파트 가격을 한 눈에</h2>
+					<p>
+						집에서도 쉽고 간편하게<br>집 구할 때 꼭 필요한 정보 확인하세요!!
+					</p>
+					<button class="btn btn-outline-primary btn-sm" onclick="location.href='${rUrl}/'">NewRoom 서비스 이용하기</button>
+				</div>
+			</div>
+		</div>
 		<jsp:include page="footer.jsp" />
-<!-- 		</div> -->
-<!-- 	</div> -->
+		<div id="scroll_tracking">
+			<div id="menu">
+			<ul id="menu_circle">
+				<a href="#con01_slide">
+					<li data-menuanchor="firstPage" class="active"></li>
+				</a>
+				<a href="#con02_intro">
+					<li data-menuanchor="secondPage"></li>
+				</a>
+				<a href="#con03_end">
+					<li data-menuanchor="thirdPage"></li>
+				</a>
+			</ul>
+			</div>
+		</div>
+	</div>
 
-<script>
-	$('#box_active1').on("click", pageMoveHandler);
-	$('#box_active2').on("click", pageMoveHandler);
-	$('#box_active3').on("click", pageMoveHandler1);
+
+<!-- <script> -->
+// 	$('#box_active1').on("click", pageMoveHandler);
+// 	$('#box_active2').on("click", pageMoveHandler);
+// 	$('#box_active3').on("click", pageMoveHandler1);
 	
-	function pageMoveHandler(){
-		location.href="<%=request.getContextPath()%>/";
-	};
+// 	function pageMoveHandler(){
+<%-- 		location.href="<%=request.getContextPath()%>/"; --%>
+// 	};
 	
-	function pageMoveHandler1(){
-		location.href="<%=request.getContextPath()%>/chat";
-	}
-</script>
+// 	function pageMoveHandler1(){
+<%-- 		location.href="<%=request.getContextPath()%>/chat"; --%>
+// 	}
+<!-- </script> -->
 </body>
 </html>
