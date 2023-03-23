@@ -3,7 +3,6 @@
   padding: 0;
 }
 
-html,
 body {
   width: 100%;
   height: 100%;
@@ -75,4 +74,108 @@ a:visited {
   width: 25px;
   height: auto;
   margin: 0 auto;
+}
+
+#con02_intro {
+  float: left;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  overflow: hidden;
+}
+
+#con02_intro .con02_in {
+  margin: 0 auto;
+  width: 1290px;
+  height: 100%;
+}
+
+#con02_intro .con02_in .intro_ttl {
+  margin: 0 auto;
+  margin-top: 140px;
+  width: 100%;
+  text-align: center;
+}
+#con02_intro .con02_in .intro_ttl h3 {
+  color: #000;
+  font-size: 40px;
+}
+#con02_intro .con02_in .intro_ttl p {
+  margin-top: 10px;
+  color: #666;
+  font-size: 16px;
+  line-height: 1.3em;
+}
+#con02_intro .con02_in .intro_box {
+  margin: 0 auto;
+  margin-top: 60px;
+  width: 100%;
+  height: 350px;
+  text-align: center;
+}
+#con02_intro .con02_in .intro_box > li {
+  float: left;
+  width: 400px;
+  height: 100%;
+  margin-right: 12px;
+}
+#con02_intro .con02_in .intro_box > li:last-child {
+  float: left;
+  margin-right: 0px;
+}
+#con02_intro .con02_in .intro_box h4 {
+  margin-top: 150px;
+  color: #fff;
+  font-size: 30px;
+}
+#con02_intro .con02_in .intro_box p {
+  margin-top: 5px;
+  color: #fff;
+  font-size: 20px;
+}
+
+#con02_intro .con02_in .intro_box span {
+  margin-top: 70px;
+  display: block;
+}
+#con02_intro .con02_in .intro_box span a {
+  color: #fff;
+  font-size: 40px;
+}
+#con02_intro .con02_in .intro_box .intro_box00 {
+  background: url(../img/con02_box00.gif) no-repeat;
+  background-size: cover;
+}
+#con02_intro .con02_in .intro_box .intro_box00:hover {
+  background: url(../img/con02_box00_hover_01.jpg) no-repeat;
+  transition: ease-out 0.5s;
+}
+#con02_intro .con02_in .intro_box .intro_box00:hover h4 {
+  transform: scale(2, 2);
+  transition: ease-in 0.5s;
+}
+
+#con02_intro .con02_in .intro_box .intro_box01 {
+  background: url(../img/con02_box01.gif) no-repeat;
+  background-size: cover;
+}
+#con02_intro .con02_in .intro_box .intro_box01:hover {
+  background: url(../img/con02_box00_hover_02.jpg) no-repeat;
+  transition: ease-out 0.5s;
+}
+#con02_intro .con02_in .intro_box .intro_box01:hover h4 {
+  transform: scale(2, 2);
+  transition: ease-in 0.5s;
+}
+#con02_intro .con02_in .intro_box .intro_box02 {
+  background: url(../img/con02_box02.gif) no-repeat;
+  background-size: cover;
+}
+#con02_intro .con02_in .intro_box .intro_box02:hover {
+  background: url(../img/con02_box00_hover_03.jpg) no-repeat;
+  transition: ease-out 0.5s;
+}
+#con02_intro .con02_in .intro_box .intro_box02:hover h4 {
+  transform: scale(1.1, 1.1);
+  transition: ease-in 0.5s;
 }

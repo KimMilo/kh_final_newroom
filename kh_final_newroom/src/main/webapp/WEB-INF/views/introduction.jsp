@@ -38,18 +38,18 @@
 			</div>
 			<!--마우스-->
 			<div class="mouse_icon">
-				<a href="#secondPage"> <marquee align="top" height="100"
+				<a href="#con02_intro"> <marquee align="top" height="100"
 						direction="down" behavior="alternate" scrollamount="4">
 						<img src="${rUrl}/resources/img/con01_mouse.png" alt="이미지 없음">
 					</marquee>
 				</a>
 			</div>
 		</div>
-		<div id="con02_intro" class="section">
+		<div id="con02_intro" class="justify-content-between">
 			<div class="con02_in">
 				<div class="intro_ttl">
 					<h3>서비스 소개</h3>
-					<p>고품질의 서비스를 제공해 드리겠습니다.
+					<p>다양한 서비스 제공을 약속 드립니다.
 					<p>
 				</div>
 				<ul class="intro_box">
@@ -58,7 +58,7 @@
 							<h4>매물 검색</h4>
 							<p>SEARCH PROPERTY</p>
 						</div>
-						<div id="box_hover" style="display: none; margin-top: 35%;">
+						<div id="box_hover00" style="display: block; margin-top: 35%;">
 							<p>
 								내가 사는 지역의 동별, 아파트별<br> 매물을 검색해보고 찜해보세요<br>
 							</p>
@@ -69,7 +69,7 @@
 							<h4>주변 상권</h4>
 							<p>NEARBY AREAS</p>
 						</div>
-						<div id="box_hover" style="display: none; margin-top: 35%;">
+						<div id="box_hover01" style="display: none; margin-top: 35%;">
 							<p>
 								관심 매물 주변에 위치한<br>병원, 진료소, 치안안전등급,<br>부동산, 버스정류소 등을 찾아보세요
 							</p>
@@ -80,7 +80,7 @@
 							<h4>채팅 상담</h4>
 							<p>CAHT CONSULTATION</p>
 						</div>
-						<div id="box_hover" style="display: none; margin-top: 35%;">
+						<div id="box_hover02" style="display: none; margin-top: 35%;">
 							<p>
 								상담원과 1:1 채팅 상담을 시작해보세요<br>자주 묻는 FAQ를 확인할 수 있어요 
 							</p>
