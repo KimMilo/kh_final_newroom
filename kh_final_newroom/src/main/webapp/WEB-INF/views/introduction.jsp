@@ -8,17 +8,15 @@
 <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/introduction.css"/>
 <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
 <title>NewRoom 소개</title>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div>
 		<!-- Navbar -->
 		<nav id="header" class="navbar navbar-expand-sm navbar-default py-3 border-bottom justify-content-between">
-			<div class="ms-2 navbar navbar__logo">
+			<div class="ms-2 navbar navbar_logo">
 				<span class="bg-opacity-0  logo material-symbols-outlined" style="color: gray;">Home</span>
 				<a class="navbar-brand happy-font title" href="${rUrl}/" style="color: gray;"><b>NewRoom</b></a>
 			</div>
@@ -45,7 +43,7 @@
 				</a>
 			</div>
 		</div>
-		<div id="con02_intro" class="justify-content-between">
+		<div id="con02_intro">
 			<div class="con02_in">
 				<div class="intro_ttl">
 					<h3>서비스 소개</h3>
@@ -141,8 +139,8 @@
 <%-- 					<button class="btn btn-outline-primary btn-sm" onclick="location.href='${rUrl}/'">NewRoom 서비스 이용하기</button> --%>
 <!-- 				</div> -->
 <!-- 			</div> -->
-<%-- 			<jsp:include page="footer.jsp" /> --%>
+		<jsp:include page="footer.jsp" />
 <!-- 		</div> -->
-	</div>
+<!-- 	</div> -->
 </body>
 </html>

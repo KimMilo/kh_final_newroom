@@ -1,15 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="root" value="${pageContext.request.contextPath}"/>
+<c:set var="rUrl" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="kr">
 <head>
-  <meta charset="UTF-8">
   <title>Document </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://kit.fontawesome.com/5d2954c3f8.js" crossorigin="anonymous"></script>
   <!--CSS-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -19,7 +15,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <!--web font-->
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="${root}/resources/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
   <style>
   .footer_style{
   	width: 100%;
@@ -41,14 +37,14 @@
       <div class="col-3">
         <h3>Features</h3>
         <ul class="list-unstyled">
-          <li><a href="${root}/noticeList.do" class="text-muted">공지사항</a></li>
-          <li><a href="${root}/qna" class="text-muted">Q&A</a></li>
+          <li><a href="${rUrl}/noticeList.do" class="text-muted">공지사항</a></li>
+          <li><a href="${rUrl}/qna" class="text-muted">Q&A</a></li>
         </ul>
       </div>
       <div class="col-3">
         <h3>About</h3>
         <ul class="list-unstyled">
-          <li><a href="${root}/introduction" class="text-muted">소개</a></li>
+          <li><a href="${rUrl}/introduction" class="text-muted">소개</a></li>
         </ul>
       </div>
     </div>
