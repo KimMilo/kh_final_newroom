@@ -30,7 +30,7 @@
 				</div>
 				<div>
 					<p>
-						당신의 부동산 전문가<br> NewRoom
+						<strong>당신의 부동산 전문가</strong><br><strong>NewRoom</strong>
 					</p>
 				</div>
 			</div>
@@ -52,33 +52,33 @@
 				</div>
 				<ul class="intro_box">
 					<li class="intro_box00">
-						<div id="box_active">
+						<div id="box_active1">
 							<h4>매물 검색</h4>
 							<p>SEARCH PROPERTY</p>
 						</div>
-						<div id="box_hover00" style="display: block; margin-top: 35%;">
+						<div id="box_hover00">
 							<p>
-								내가 사는 지역의 동별, 아파트별<br> 매물을 검색해보고 찜해보세요<br>
+								내가 사는 지역의 동별, 아파트별<br> 매물을 검색해보고 찜 해보세요<br>
 							</p>
 						</div>
 					</li>
 					<li class="intro_box01">
-						<div id="box_active">
+						<div id="box_active2">
 							<h4>주변 상권</h4>
 							<p>NEARBY AREAS</p>
 						</div>
-						<div id="box_hover01" style="display: none; margin-top: 35%;">
+						<div id="box_hover01">
 							<p>
-								관심 매물 주변에 위치한<br>병원, 진료소, 치안안전등급,<br>부동산, 버스정류소 등을 찾아보세요
+								관심 매물 주변에 위치한<br>병원, 부동산, 버스정류소 등을 찾아보세요
 							</p>
 						</div>
 					</li>
 					<li class="intro_box02">
-						<div id="box_active">
+						<div id="box_active3">
 							<h4>채팅 상담</h4>
 							<p>CAHT CONSULTATION</p>
 						</div>
-						<div id="box_hover02" style="display: none; margin-top: 35%;">
+						<div id="box_hover02">
 							<p>
 								상담원과 1:1 채팅 상담을 시작해보세요<br>자주 묻는 FAQ를 확인할 수 있어요 
 							</p>
@@ -142,5 +142,19 @@
 		<jsp:include page="footer.jsp" />
 <!-- 		</div> -->
 <!-- 	</div> -->
+
+<script>
+	$('#box_active1').on("click", pageMoveHandler);
+	$('#box_active2').on("click", pageMoveHandler);
+	$('#box_active3').on("click", pageMoveHandler1);
+	
+	function pageMoveHandler(){
+		location.href="<%=request.getContextPath()%>/";
+	};
+	
+	function pageMoveHandler1(){
+		location.href="<%=request.getContextPath()%>/chat";
+	}
+</script>
 </body>
 </html>
