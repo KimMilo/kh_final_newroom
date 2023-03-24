@@ -106,6 +106,13 @@
 			</div>
 		</div>
 		<jsp:include page="footer.jsp" />
+		
+		<!-- 스크롤 액티브 모션 주기 부트스트랩이 적용이 깨지니까 아래 주소 내용 확인 해봐~
+		
+			https://falsy.me/%EC%8A%A4%ED%81%AC%EB%A1%A4-%EC%9C%84%EC%B9%98%EC%97%90-%EB%94%B0%EB%A5%B8-%EB%93%B1%EC%9E%A5-%EB%AA%A8%EC%85%98-%EC%A3%BC%EA%B8%B0/
+			
+			참고해서 해보쟈
+		 -->
 		<div id="menu">
 			<ul id="menu_circle">
 				<a href="#con01_slide">
