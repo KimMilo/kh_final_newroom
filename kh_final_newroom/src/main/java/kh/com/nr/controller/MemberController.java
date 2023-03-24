@@ -45,17 +45,17 @@ public class MemberController {
 	//로그인
 	@ResponseBody
 	@PostMapping("/login") 
-    public MemberDto login(MemberDto dto, HttpSession session) throws IOException {
+    public String login(MemberDto dto, HttpSession session) throws IOException {
 		MemberDto data = new MemberDto();
 		data.setUserid(dto.getUserid());
 		data.setUserpw(dto.getUserpw());
-		
 		MemberDto member = mservice.loginCheck(data);
 		
 		if(member != null) { //로그인 성공
 			session.setAttribute("loginInfo", member);
+			return "true";
 		}
-		return member;
+		return "false";
     }
 	
 	//로그아웃

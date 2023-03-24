@@ -205,11 +205,9 @@
         						$("#name").val("");
         						$("#email").val("");
         						$("#phone").val("");
-        						$(".modal").modal('hide');
-        						$(".modal-backdrop").attr("display", 'none');
         						
         						alert("회원가입 성공!!!");
-        						location.href="<%=request.getContextPath()%>/";
+        						location.href="${rUrl}";
     						}
     					},
     					error : function(){
@@ -228,16 +226,15 @@
     					'userpw' : $("#userpwLogin").val(),
     				},
     				success:function(result){
-    					if(result == null){
+    					if(result == "false"){
     						alert("아이디 또는 비밀번호를 확인해주세요");
     					}else{
     			    		updateNavMenu();
 							$("#useridLogin").val("");
     						$("#userpwLogin").val("");
-    						$(".modal-backdrop").css("display", 'none');
-    						$(".modal").modal('hide');
     						
     						alert("로그인 성공!!!");
+<%--     						location.href="${rUrl}"; --%>
     						
     					}
     				},

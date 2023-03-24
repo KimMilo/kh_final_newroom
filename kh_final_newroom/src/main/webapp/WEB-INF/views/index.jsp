@@ -79,7 +79,7 @@
 					</div>
 					<div class="form-group">
 						<input name="aptName" type="text" class="form-control mx-md-1"
-							placeholder="아파트(주택)명으로 검색하기">
+							placeholder="아파트(주택)명 검색">
 						<button class="btn btn-secondary" type="submit">찾아보기</button>
 					</div>
 				</form>
