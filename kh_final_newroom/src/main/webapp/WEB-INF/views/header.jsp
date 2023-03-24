@@ -50,8 +50,14 @@
 							class="my-2 form-control col-md-12 d-inline" placeholder="아이디"><br>
 						<input type="password" name="userpw" id="userpwLogin"
 							class="form-control col-md-12 d-inline" placeholder="패스워드">
-						<a href="${rUrl}/member/findpw.do" class="text-secondary float-right py-2"
-							style="font-size: 13px;">비밀번호 찾기</a>
+						<div style="float: left;">
+							<a href="${rUrl}/member/findid" class="text-secondary float-right py-2"
+								style="font-size: 13px;">아이디 찾기</a>
+						</div>
+						<div>
+							<a href="${rUrl}/member/findpw" class="text-secondary float-right py-2"
+								style="font-size: 13px;">비밀번호 찾기</a>
+						</div>
 						<button id="submitLogin" class="btn btn-outline-secondary col-md-12">로그인</button>
 					</div>					
 				</div>

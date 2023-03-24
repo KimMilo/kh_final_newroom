@@ -66,13 +66,13 @@ public class MemberController {
 	}
 	
 	//비밀번호 찾기 페이지 이동
-	@GetMapping("/findpw.do") 
+	@GetMapping("/findpw") 
 	public String findPwGet() {
-		return "findIdPw";
+		return "findPw";
 	}
 	
 	//비밀번호 찾기
-	@PostMapping("/findpw.do") 
+	@PostMapping("/findpw") 
 	public String findPw(String username, String userid, String userphone, Model model) {
 		MemberDto data = new MemberDto();
 		data.setUsername(username);
@@ -85,7 +85,7 @@ public class MemberController {
 		}
 		model.addAttribute("user", member);
 		model.addAttribute("findResult", "success");
-		return "findIdPw";
+		return "findPw";
 	}
 	
 	//비밀번호 수정
