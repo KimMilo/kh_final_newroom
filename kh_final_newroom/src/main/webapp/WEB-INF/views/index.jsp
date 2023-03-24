@@ -21,8 +21,9 @@
 
 </style>
 <link rel="stylesheet" type="text/css" href="${r}/resources/css/style.css" />
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <title>메인페이지</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
@@ -34,7 +35,7 @@
 	<!-- Chat -->
 	<c:if test="${not empty loginInfo}">
 		<c:choose>
-			<c:when test="${loginInfo.userid eq 'ssafy'}">
+			<c:when test="${loginInfo.userid eq 'admin'}">
 				<jsp:include page="chatManager.jsp" /><!-- 관리자용 채팅 -->
 			</c:when>
 			<c:otherwise>
@@ -42,7 +43,7 @@
 			</c:otherwise>
 		</c:choose>
 	</c:if>
-	<!-- Chat -->
+	<!-- Chat -->	
 	
 	
 	<!-- Contents -->

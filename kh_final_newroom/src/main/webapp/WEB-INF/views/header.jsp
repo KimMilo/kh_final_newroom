@@ -9,10 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <title>header</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -89,7 +92,7 @@
 								style="color: red;">*</span></label>
 							<div class="col-9">
 								<input type="password" class="form-control" id="userpwJoin" name="userpw"
-									placeholder="영문 숫자 포함 6자리 이상">
+									placeholder="비밀번호를 입력하세요">
 							</div>
 						</div>
 
@@ -141,9 +144,9 @@
      				url : '${rUrl}/member/logout',
      				method:'get',
      				success:function(result){
-     					if(document.location.href.split("7777")[1] != '/happyhouse/#' && 
-     							document.location.href.split("7777")[1] != '/happyhouse/search#'){
-							location.href='/happyhouse';
+     					if(document.location.href.split("7777")[1] != '/nr/#' && 
+     							document.location.href.split("7777")[1] != '/nr/search#'){
+							location.href='/nr';
      					}else{
      						updateNavMenu();
      					}
@@ -204,6 +207,9 @@
         						$("#phone").val("");
         						$(".modal").modal('hide');
         						$(".modal-backdrop").attr("display", 'none');
+        						
+        						alert("회원가입 성공!!!");
+        						location.href="<%=request.getContextPath()%>/";
     						}
     					},
     					error : function(){
@@ -230,6 +236,9 @@
     						$("#userpwLogin").val("");
     						$(".modal-backdrop").css("display", 'none');
     						$(".modal").modal('hide');
+    						
+    						alert("로그인 성공!!!");
+    						
     					}
     				},
     				error: function(){
@@ -271,10 +280,10 @@
 		    			content += 'class="nav-link text-dark"><b>마이페이지</b></a></li>';
 		    			content += '<li class="nav-item mr-4">';
 		    			content += '<a href="" id="logout" ';
-		    			content += 'class="nav-link text-dark">로그아웃</a></li>';
+		    			content += 'class="nav-link text-dark"><b>로그아웃</b></a></li>';
 		    			content += '<li class="nav-item ml-3 nav-link text-dark">';
 		    			content += '<b>' + user.name + '</b>';
-		    			content += '(' + user.userId + ')님 환영합니다 :)</li>';
+		    			content += '(' + user.userId + ')님 환영합니다 :D</li>';
 		    			
 		    			updateInterestLogin();
 		    		}else{

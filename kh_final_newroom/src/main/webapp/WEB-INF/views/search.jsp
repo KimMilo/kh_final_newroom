@@ -116,7 +116,7 @@
 				<input name="aptName" type="text" class="form-control mx-md-1"
 					placeholder="아파트 이름 입력" style="border: 0; font-size: 24px">
 				<button class="btn">
-					<i class="fas fa-search" style="font-size: 24px; color: #1abc9c"></i>
+					<i class="fas fa-search" style="font-size: 24px; color: orange"></i>
 				</button>
 			</div>
 			<div class="form-group">
@@ -163,7 +163,7 @@
 				<button type="button" id="btn__busstop" 
 					class="btn border btn-sm">주변 버스 정류소</button>
 				<button id="reset_btn" class="btn" type="reset">
-					<i class="fas fa-redo-alt" style="font-size: 24px; color: #1abc9c"></i>
+					<i class="fas fa-redo-alt" style="font-size: 24px; color: orange"></i>
 				</button>
 				<script>
 					$('#reset_btn').click(function(){
