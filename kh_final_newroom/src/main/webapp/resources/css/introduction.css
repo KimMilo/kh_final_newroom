@@ -245,29 +245,27 @@ a:visited {
   font-size: 20px;
 }
 
-#menu {
+#sidebar {
   position: fixed;
   top: 420px;
   right: 35px;
   width: 20px;
   height: 130px;
 }
-#menu_circle {
+#sidebar_cirvle {
   float: left;
   width: 20px;
   height: 100%;
   z-index: 9999;
 }
-#menu_circle li {
+#sidebar_cirvle li {
   width: 10px;
   height: 10px;
   margin-bottom: 8px;
   border: 1px solid #ccc;
-  border-radius: 6px;
 }
-#menu_circle li:hover,
+#sidebar_cirvle li:hover,
 .active {
   background: #ccc;
   transition: 0.2s ease-out;
 }
-

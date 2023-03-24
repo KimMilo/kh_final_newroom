@@ -6,10 +6,12 @@
 <html lang="kr">
 <head>
 <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/introduction.css"/>
-<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
+<%-- <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" /> --%>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap">
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 <title>NewRoom 소개</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 </head>
 <body>
@@ -21,94 +23,95 @@
 				<a class="navbar-brand happy-font title" href="${rUrl}/" style="color: gray;"><b>NewRoom</b></a>
 			</div>
 		</nav>
-		<div id="con01_slide" class="" data-bs-spy="scroll" data-bs-target="#scroll_tracking" data-bs-smooth-scroll="true">
-			<div class="slider01_txt">
-				<div>
-					<h1>
-						신뢰 기반 서비스 제공<br>Find your NewRoom
-					</h1>
+		<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-smooth-scroll="true">
+			<div id="con01_slide" class="">
+				<div class="slider01_txt">
+					<div>
+						<h1>
+							신뢰 기반 서비스 제공<br>Find your NewRoom
+						</h1>
+					</div>
+					<div>
+						<p>
+							<strong>당신의 부동산 전문가</strong><br><strong>NewRoom</strong>
+						</p>
+					</div>
 				</div>
-				<div>
-					<p>
-						<strong>당신의 부동산 전문가</strong><br><strong>NewRoom</strong>
-					</p>
-				</div>
-			</div>
-			<!--마우스-->
-			<div class="mouse_icon">
-				<a href="#con02_intro"> <marquee align="top" height="100"
-						direction="down" behavior="alternate" scrollamount="4">
-						<img src="${rUrl}/resources/img/con01_mouse.png" alt="이미지 없음">
-					</marquee>
-				</a>
-			</div>
-		</div>
-		<div id="con02_intro" class="">
-			<div class="con02_in">
-				<div class="intro_ttl">
-					<h3>서비스 소개</h3>
-					<p>다양한 서비스 제공을 약속 드립니다.
-					<p>
-				</div>
-				<ul class="intro_box">
-					<li class="intro_box00">
-						<div id="box_active1">
-							<h4>매물 검색</h4>
-							<p>SEARCH PROPERTY</p>
-						</div>
-						<div id="box_hover00">
-							<p>
-								내가 사는 지역의 동별, 아파트별<br> 매물을 검색해보고 찜 해보세요<br>
-							</p>
-						</div>
-					</li>
-					<li class="intro_box01">
-						<div id="box_active2">
-							<h4>주변 상권</h4>
-							<p>NEARBY AREAS</p>
-						</div>
-						<div id="box_hover01">
-							<p>
-								관심 매물 주변에 위치한<br>병원, 부동산, 버스정류소 등을 찾아보세요
-							</p>
-						</div>
-					</li>
-					<li class="intro_box02">
-						<div id="box_active3">
-							<h4>채팅 상담</h4>
-							<p>CAHT CONSULTATION</p>
-						</div>
-						<div id="box_hover02">
-							<p>
-								상담원과 1:1 채팅 상담을 시작해보세요<br>자주 묻는 FAQ를 확인할 수 있어요 
-							</p>
-						</div>
-					</li>
-				</ul>
-			</div>
-		</div>
-		<div id="con03_end" class="">
-			<div class="con03_left">
-				<div class="img">
-					<img src="${rUrl}/resources/img/web_img.png" />
+				<!--마우스-->
+				<div class="mouse_icon">
+					<a href="#con02_intro"> <marquee align="top" height="100"
+							direction="down" behavior="alternate" scrollamount="4">
+							<img src="${rUrl}/resources/img/con01_mouse.png" alt="이미지 없음">
+						</marquee>
+					</a>
 				</div>
 			</div>
-			<div class="con03_right">
-				<div class="ttl">
-					<h2>아파트 가격을 한 눈에</h2>
-					<p>
-						집에서도 쉽고 간편하게<br>집 구할 때 꼭 필요한 정보 확인하세요!!
-					</p>
-					<button class="btn btn-outline-primary btn-sm" onclick="location.href='${rUrl}/'">NewRoom 서비스 이용하기</button>
+			<div id="con02_intro" class="">
+				<div class="con02_in">
+					<div class="intro_ttl">
+						<h3>서비스 소개</h3>
+						<p>다양한 서비스 제공을 약속 드립니다.
+						<p>
+					</div>
+					<ul class="intro_box">
+						<li class="intro_box00">
+							<div id="box_active1">
+								<h4>매물 검색</h4>
+								<p>SEARCH PROPERTY</p>
+							</div>
+							<div id="box_hover00">
+								<p>
+									내가 사는 지역의 동별, 아파트별<br> 매물을 검색해보고 찜 해보세요<br>
+								</p>
+							</div>
+						</li>
+						<li class="intro_box01">
+							<div id="box_active2">
+								<h4>주변 상권</h4>
+								<p>NEARBY AREAS</p>
+							</div>
+							<div id="box_hover01">
+								<p>
+									관심 매물 주변에 위치한<br>병원, 부동산, 버스정류소 등을 찾아보세요
+								</p>
+							</div>
+						</li>
+						<li class="intro_box02">
+							<div id="box_active3">
+								<h4>채팅 상담</h4>
+								<p>CAHT CONSULTATION</p>
+							</div>
+							<div id="box_hover02">
+								<p>
+									상담원과 1:1 채팅 상담을 시작해보세요<br>자주 묻는 FAQ를 확인할 수 있어요 
+								</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div id="con03_end" class="">
+				<div class="con03_left">
+					<div class="img">
+						<img src="${rUrl}/resources/img/web_img.png" />
+					</div>
+				</div>
+				<div class="con03_right">
+					<div class="ttl">
+						<h2>아파트 가격을 한 눈에</h2>
+						<p>
+							집에서도 쉽고 간편하게<br>집 구할 때 꼭 필요한 정보 확인하세요!!
+						</p>
+						<button class="btn btn-outline-primary btn-sm" onclick="location.href='${rUrl}/'">NewRoom 서비스 이용하기</button>
+					</div>
 				</div>
 			</div>
 		</div>
 		<jsp:include page="footer.jsp" />
-		<div id="scroll_tracking">
-			<div id="menu">
-			<ul id="menu_circle">
+		<div id="sidebar">
+			<ul id="sidebar_cirvle">
 				<a href="#con01_slide">
-					<li data-menuanchor="firstPage" class="active"></li>
+					<li data-menuanchor="firstPage"></li>
 				</a>
 				<a href="#con02_intro">
 					<li data-menuanchor="secondPage"></li>
@@ -117,23 +120,21 @@
 					<li data-menuanchor="thirdPage"></li>
 				</a>
 			</ul>
-			</div>
 		</div>
 	</div>
 
 
-<!-- <script> -->
-// 	$('#box_active1').on("click", pageMoveHandler);
-// 	$('#box_active2').on("click", pageMoveHandler);
-// 	$('#box_active3').on("click", pageMoveHandler1);
+<!-- script> 
+$('#box_active1').on("click", pageMoveHandler);
+$('#box_active2').on("click", pageMoveHandler);
+$('#box_active3').on("click", pageMoveHandler1);
 	
-// 	function pageMoveHandler(){
-<%-- 		location.href="<%=request.getContextPath()%>/"; --%>
-// 	};
-	
-// 	function pageMoveHandler1(){
-<%-- 		location.href="<%=request.getContextPath()%>/chat"; --%>
-// 	}
-<!-- </script> -->
+function pageMoveHandler(){
+	location.href="<%=request.getContextPath()%>/";
+
+function pageMoveHandler1(){
+	location.href="<%=request.getContextPath()%>/chat";
+
+</script-->
 </body>
 </html>
