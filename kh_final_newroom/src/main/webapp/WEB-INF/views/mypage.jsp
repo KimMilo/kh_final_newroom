@@ -215,7 +215,8 @@ $(function () {
          	    	}else{
          	    		alert("수정에 실패하였습니다.");
          	    	}
-        	    		location.href="${rUrl}/member/mypage.do";
+         	    	
+        	    	location.href="${rUrl}/member/mypage";
          	    },
          	    error : function(xhr, status, msg){
  					console.log(status + " " + msg);
