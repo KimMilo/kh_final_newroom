@@ -15,6 +15,7 @@
  </style>
 <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">	
 <title>footer </title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
@@ -27,7 +28,7 @@
     <!-- 사이트 맵 -->
     <div class="row justify-content-end">
       	<div class="col-3">
-       		<i class="fas fa-home logo pr-1 d-block" style="color:black; font-size: 48px;"></i>
+       		<i class="bg-opacity-0  logo material-symbols-outlined text-muted" style="font-size:55px;">Home_Work</i>
        		<small class="text-muted">© 2023</small>
       	</div>
     <div class="col-3">
