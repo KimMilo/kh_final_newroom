@@ -140,6 +140,7 @@ public class MemberController {
 	public List<MemberDto> memberNameSearchList(String name) {
 		return mservice.searchName(name);
 	}
+	// TODO 시간 가능하면 회원 이름 말고 전화번호나 이메일주소도 추가하기
 	
 	//회원가입
 	@ResponseBody

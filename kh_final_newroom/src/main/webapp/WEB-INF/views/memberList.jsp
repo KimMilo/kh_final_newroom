@@ -3,32 +3,55 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="kr">
 <head>
-<meta charset="UTF-8">
-<title>회원 검색</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://kit.fontawesome.com/5d2954c3f8.js"
-	crossorigin="anonymous"></script>
-<!--CSS-->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-	crossorigin="anonymous">
-<!--JS -->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!--web font-->
-<link
-	href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap"
-	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="${root}/resources/css/style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<title>회원 검색</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<jsp:include page="header.jsp" />
 
+	<!--content-->
+	<div class="container text-center col-lg-12">
+		<h2 class="pt-5 py-4">회원 검색</h2>
+		<!--contents-->
+		<div class="form-group col-mr-5">
+           	<input type="text" id="searchKeyword" class="form-control" placeholder="회원 이름 검색">
+           	<button id="nameSearch" class="btn btn-outline-primary">검색</button>
+        </div>
+		<div class="container my-3">
+			<div>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th width="7%">번호</th>
+							<th width="15%">아이디</th>
+							<th width="15%" class="text-center">이름</th>
+							<th width="33%">이메일</th>
+							<th width="20%">전화번호</th>
+							<th width="15%">등급</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody id="memberListTable"></tbody>
+				</table>
+			</div>
+		</div>
+		<input type="button" class="btn-primary" id="setAdmin" value="관리자 설정">
+		<input type="button" class="btn-warning" id="delAdmin" value="관리자 해제">
+	</div>
+	<!--content-->
+
+	<!-- Footer -->
+	<jsp:include page="footer.jsp" />
+	
 <script>
 	$(function(){
 		memberSearch();
@@ -117,42 +140,4 @@
 		$("#memberListTable").html(content);
 	}
 </script>
-</head>
-
-<body>
-	<jsp:include page="header.jsp" />
-
-	<!--content-->
-	<div class="container text-center col-lg-12">
-		<h2 class="pt-5 py-4"">회원 검색</h2>
-		<!--contents-->
-		<div class="form-group col-mr-5">
-           	<input type="text" id="searchKeyword" class="form-control" placeholder="회원 이름 검색">
-           	<button id="nameSearch" class="btn btn-outline-primary">검색</button>
-        </div>
-		<div class="container my-3">
-			<div>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th width="7%">번호</th>
-							<th width="15%">아이디</th>
-							<th width="15%" class="text-center">이름</th>
-							<th width="33%">이메일</th>
-							<th width="20%">전화번호</th>
-							<th width="15%">등급</th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody id="memberListTable"></tbody>
-				</table>
-			</div>
-		</div>
-		<input type="button" class="btn-primary" id="setAdmin" value="관리자 설정">
-		<input type="button" class="btn-warning" id="delAdmin" value="관리자 해제">
-	</div>
-	<!--content-->
-
-	<!-- Footer -->
-	<jsp:include page="footer.jsp" />
 </body>
