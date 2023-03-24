@@ -30,7 +30,7 @@
     	<c:if test="${not empty user}">
     		<div class="container bg-light rounded" style="width: 700px;">
 	            <h1 class="m-md-3">${user.userid}님의 비밀번호 수정</h1>
-	            <form action="${rUrl}/member/modifyPw.do" method="post" class="m-md-3 py-md-3">
+	            <form action="${rUrl}/member/modifyPw" method="post" class="m-md-3 py-md-3">
 	            	<input type="hidden" name="userid" value="${user.userid}">
 	                <div class="form-group row">
 	                    <label for="newPw" class="col-md-2 col-form-label text-right">새 비밀번호</label>

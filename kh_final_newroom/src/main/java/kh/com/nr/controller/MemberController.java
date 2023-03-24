@@ -65,6 +65,33 @@ public class MemberController {
 		session.invalidate();
 	}
 	
+	/**
+	 * TODO 이름, 전화번호, 이메일 인증을 통해서 인증번호 받기를 클릭하여 인증번호를 발송하는것까지만 구현하기
+	 * @return
+	 */
+//	//아이디 찾기 페이지 이동
+//	@GetMapping("/findId") 
+//	public String findIdGet() {
+//		return "findId";
+//	}
+//		
+//	//아이디 찾기
+//	@PostMapping("/findId") 
+//	public String findId(String username, String userphone, String useremail, Model model) {
+//		MemberDto data = new MemberDto();
+//		data.setUsername(username);
+//		data.setUseremail(useremail);
+//		data.setUserphone(userphone);
+//		
+//		MemberDto member = mservice.findUser(data);
+//		if(member == null) { //회원 찾기 실패
+//			model.addAttribute("findResult", "fail");
+//		}
+//		model.addAttribute("user", member);
+//		model.addAttribute("findResult", "success");
+//		return "findId";
+//	}
+	
 	//비밀번호 찾기 페이지 이동
 	@GetMapping("/findpw") 
 	public String findPwGet() {
@@ -89,7 +116,7 @@ public class MemberController {
 	}
 	
 	//비밀번호 수정
-	@PostMapping("/modifyPw.do") 
+	@PostMapping("/modifyPw") 
 	public String modifyPw(MemberDto dto) {
 		mservice.updateById(dto);
 		return "index";
