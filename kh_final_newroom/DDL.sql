@@ -77,7 +77,7 @@ CREATE TABLE HOUSEINFO(
   , jibun VARCHAR2(30)
   , lat VARCHAR2(50)
   , lng VARCHAR2(50)
-  , img VARCHAR2(4000)
+  , img VARCHAR2(500)
 );
 
 INSERT INTO HOUSEINFO VALUES(1, '논현동', '논현아파트', '001', '2000', '100-01', null, null, null);
@@ -124,9 +124,18 @@ CREATE TABLE INTEREST(
 
 DROP TABLE USERINFO;
 CREATE TABLE USERINFO(
-
+    userId VARCHAR2(20) 
+  , userPw VARCHAR2(20)
+  , userName VARCHAR2(15)
+  , userEmail VARCHAR2(30)
+  , userPhone VARCHAR2(30)
+  , mRole NUMBER DEFAULT 0 CHECK (mRole IN(0,1))
+  , img VARCHAR2(500)
 );
 
+INSERT INTO USERINFO VALUES('abcd', 'abcd666', '아무개', 'abcd666@naver.com', '010-123-4567', 0, null);
+
+SELECT * FROM USERINFO;
 -------------------------------------------------------------------------------
 
 DROP TABLE NOTICE;
@@ -141,4 +150,3 @@ CREATE TABLE COMMENT_T(
 
 
 ------------------------------------------------------------------------------
-

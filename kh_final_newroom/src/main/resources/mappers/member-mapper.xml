@@ -43,7 +43,7 @@
 </select>
 
 <update id="modifyRole" parameterType="MemberDto">
-	UPDATE userinfo SET role = #{role}
+	UPDATE userinfo SET mrole = #{mrole}
 	WHERE userid = #{userid}
 </update>
 </mapper>

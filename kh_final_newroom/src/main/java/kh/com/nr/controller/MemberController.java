@@ -155,7 +155,7 @@ public class MemberController {
 		if(loginInfo != null) {
 			user.put("userId", loginInfo.getUserid());
 			user.put("name", loginInfo.getUsername());
-			if(loginInfo.getRole() == 1) user.put("admin", "true");
+			if(loginInfo.getMRole() == 1) user.put("admin", "true");
 		}
 		return user;
 	}

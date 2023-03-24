@@ -15,7 +15,7 @@ public class MemberDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public String idCheck(String userid) {
+	public MemberDto idCheck(String userid) {
 		return sqlSession.selectOne("member.idCheck", userid);
 	}
 

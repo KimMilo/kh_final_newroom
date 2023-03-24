@@ -21,6 +21,6 @@ public class MemberDto {
 	private String username;
 	private String useremail;
 	private String userphone;
-	private int role; //회원0 관리자1
+	private int mRole; //회원0 관리자1
 	private String img; //프로필이미지
 }

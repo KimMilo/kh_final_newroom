@@ -5,14 +5,14 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
-<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 <title>header</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script> -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 </head>
 
 <body>
@@ -107,7 +107,7 @@
 								style="color: red;">*</span></label>
 							<div class="col-9">
 								<input type="email" class="form-control" id="email"
-									name="useremail" placeholder="ssafy@naver.com">
+									name="useremail" placeholder="newroom@naver.com">
 							</div>
 						</div>
 
