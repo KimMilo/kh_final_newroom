@@ -2,19 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<c:set var="root" value="${pageContext.request.contextPath}"></c:set>
+<c:set var="rUrl" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="${root}/resources/css/style.css" />
-<script src="https://kit.fontawesome.com/5d2954c3f8.js" crossorigin="anonymous"></script> <!-- fontawesome -->
 <style type="text/css">
     #map {
         width: 45%;
@@ -25,9 +16,17 @@
     	cursor: pointer;
     }
 </style>
+<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <title>Document</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
-
 <body>
 	<!-- Navbar -->
 	<jsp:include page="header.jsp" />
@@ -39,7 +38,7 @@
 			$(function(){
 				// 시도 옵션 리스트 목록
 				$.ajax({
-					url:'${root}/map/sido',
+					url:'${rUrl}/map/sido',
 					type : 'GET',
 					contextType : 'application/json;charset=utf-8',
 					dataType : 'json',
@@ -61,7 +60,7 @@
 				// 시도에 따른 구군 옵션 리스트 목록
 				$("#sido").change(function(){
 					$.ajax({
-						url:'${root}/map/gugun/'+$("#sido").val(),
+						url:'${rUrl}/map/gugun/'+$("#sido").val(),
 						type : 'GET',
 						contextType : 'application/json;charset=utf-8',
 						dataType : 'json',
@@ -86,7 +85,7 @@
 				// 구군에 따른 동 옵션 리스트 목록
 				$("#gugun").change(function(){
 					$.ajax({
-						url:'${root}/map/dong/'+$("#gugun").val(),
+						url:'${rUrl}/map/dong/'+$("#gugun").val(),
 						type : 'GET',
 						contextType : 'application/json;charset=utf-8',
 						dataType : 'json',
@@ -110,7 +109,7 @@
 			});		        	 	
 		</script>
 		<!-- 매물 전체 검색화면 navbar -->
-		<form action="${root}/search" method="post"
+		<form action="${rUrl}/search" method="post"
 			class="form-inline justify-content-between mt-md-2">
 			<div class="form-group">
 				<input name="aptName" type="text" class="form-control mx-md-1"
@@ -247,7 +246,7 @@
         				// 병원 조회 버튼 눌렀을 때 : type hospital
         				$("#btn__safetyHospital").click(function(){
         					$.ajax({
-        						url : '${root}/hospital/safety/${dealList[0].no}',
+        						url : '${rUrl}/hospital/safety/${dealList[0].no}',
         						method : 'get',
         						success : function(hospitalList){
         							for(var i = 0; i < hospitalList.length; i++){
@@ -263,7 +262,7 @@
         				// 코로나 진료소 조회버튼 눌렀을 때 : type corona
         				$("#btn__covidTestCenter").click(function(){
         					$.ajax({
-        						url : '${root}/hospital/covid/${dealList[0].no}',
+        						url : '${rUrl}/hospital/covid/${dealList[0].no}',
         						method : 'get',
         						success : function(CoronaTestList){
         							for(var i = 0; i < CoronaTestList.length; i++){
@@ -279,7 +278,7 @@
         				//치안안전등급 버튼 눌렀을 때
         				$("#btn__crime").click(function(){
         					$.ajax({
-        						url : '${root}/crime',
+        						url : '${rUrl}/crime',
         						method : 'get',
         						success : function(crimeList){
         							for(var i=0; i<crimeList.length; i++){
@@ -313,7 +312,7 @@
 							}
         						
         					$.ajax({
-        						url : '${root}/land',
+        						url : '${rUrl}/land',
         						method: 'post',
         						dataType: 'JSON',
         						contextType: 'application/json; charset:UTF-8;',
@@ -335,7 +334,7 @@
         				$("#btn__busstop").click(function(){
         					<c:forEach items="${dealList}" var="deal">
         						$.ajax({
-		       						url : '${root}/busstop/${deal.lat}/${deal.lng}',
+		       						url : '${rUrl}/busstop/${deal.lat}/${deal.lng}',
 		       						method: 'get',
 		       						dataType: 'XML',
 		       						contextType: 'application/xml; charset:UTF-8;',
@@ -375,7 +374,7 @@
 									<script>
 										$(function(){
 											$.ajax({
-												url:'${root}/interest/chk/${dto.no}',
+												url:'${rUrl}/interest/chk/${dto.no}',
 												method:'get',
 												success:function(result){
 													if(result == 'true'){
@@ -390,11 +389,11 @@
 								</c:if>	
     							
     							<c:if test= "${dto.img eq null}">
-									<img src="${root}/resources/img/room_sample.PNG" alt=""
+									<img src="${rUrl}/resources/img/room_sample.PNG" alt=""
 										style="width: 140px; height: 100px;">
     							</c:if>
 								<c:if test= "${dto.img ne null}">
-									<img src="${root}/resources/img/houseimg/${dto.img}" alt=""
+									<img src="${rUrl}/resources/img/houseimg/${dto.img}" alt=""
 										style="width: 140px; height: 100px;">
     							</c:if>
     							
@@ -429,7 +428,7 @@
 									if(className == 'heartIcon'){
 										if($("#"+idName).attr('src') == './resources/img/heart_fill.png'){
 	                    	    			$.ajax({
-												url:'${root}/interest/${dto.no}',
+												url:'${rUrl}/interest/${dto.no}',
 												method:'delete',
 												success:function(){
 													$("#"+idName).attr('src', './resources/img/heart_empty.png');
@@ -438,7 +437,7 @@
 											});
 	                    	    		}else if($("#"+idName).attr('src') == './resources/img/heart_empty.png'){
 											$.ajax({
-												url:'${root}/interest/${dto.no}',
+												url:'${rUrl}/interest/${dto.no}',
 												method:'get',
 												success:function(){
 													$("#"+idName).attr('src', './resources/img/heart_fill.png');
@@ -453,7 +452,7 @@
 											$('#item-list').empty();
 											let str = '<header><h3><button id="back" class="btn"><i class="fas fa-arrow-left"></i></button>'
 												+ "${dto.aptName}" + '</h3>'
-												+ '<hr> </header><div class="item container w-100"><img src="${root}/resources/img/result_detail_sample.jpg" alt="" width="100%">'
+												+ '<hr> </header><div class="item container w-100"><img src="${rUrl}/resources/img/result_detail_sample.jpg" alt="" width="100%">'
 												+ '<div class="item__content container px-md-5"><h1 class="font-weight-bold">'
 						                    	+ "매매" + "${dto.dealAmount}만원" + '</h1>'
 						                    	+ '<p>' + '확인 날짜 : ${dto.dealYear}-${dto.dealMonth}-${dto.dealDay}' + '<br>'
@@ -476,7 +475,7 @@
 												+ '</div></div>';
 											$('#item-list').append(str);
 											$('#back').click(function(){
-												location.href = "${root}/search";
+												location.href = "${rUrl}/search";
 											});
 											setCenterSelectedItem("${dto.lat}", "${dto.lng}");
 										} else {
