@@ -1,9 +1,12 @@
 # Compiled class file
 *.class
+.metadata/
 build/
 target/
 test/
+
 .classpath
+.settings/
 
 # Log file
 *.log
@@ -23,8 +26,7 @@ test/
 *.tar.gz
 *.rar
 
-# JDT-specific (Eclipse Java Development Tools)
-.classpath
-
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+kh_final_newroom/.classpath
+kh_final_newroom/.settings/org.eclipse.wst.common.component
