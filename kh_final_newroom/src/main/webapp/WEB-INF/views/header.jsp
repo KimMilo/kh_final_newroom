@@ -240,7 +240,7 @@
     						$("#userpwLogin").val("");
     						
     						alert("로그인 성공!!!");
-<%--     						location.href="${rUrl}"; --%>
+    						location.href="${rUrl}";
     						
     					}
     				},
