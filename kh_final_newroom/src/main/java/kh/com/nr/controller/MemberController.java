@@ -109,9 +109,10 @@ public class MemberController {
 		MemberDto member = mservice.findUser(data);
 		if(member == null) { //회원 찾기 실패
 			model.addAttribute("findResult", "fail");
+		} else {
+			model.addAttribute("user", member);
+			model.addAttribute("findResult", "success");
 		}
-		model.addAttribute("user", member);
-		model.addAttribute("findResult", "success");
 		return "findPw";
 	}
 	
@@ -140,7 +141,7 @@ public class MemberController {
 	public List<MemberDto> memberNameSearchList(String name) {
 		return mservice.searchName(name);
 	}
-	// TODO 시간 가능하면 회원 이름 말고 전화번호나 이메일주소도 추가하기
+	// TODO 추 후  회원 이름 말고 전화번호나 이메일주소도 추가하기
 	
 	//회원가입
 	@ResponseBody

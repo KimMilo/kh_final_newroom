@@ -53,9 +53,6 @@
     	
         <!-- 비밀번호 찾기 내용 -->
         <c:if test="${empty user}">
-        	<c:if test="${findResult eq 'fail'}">
-        		<script type="text/javascript">alert("입력한 정보에 해당하는 사용자가 없습니다. 다시 입력해주세요");</script>
-        	</c:if>
 	        <div class="container bg-light rounded" style="width: 700px;">
 	            <h1 class="m-md-3">비밀번호 찾기</h1>
 	            <form action="${rUrl}/member/findpw" method="post" class="m-md-3 py-md-3">
@@ -86,9 +83,14 @@
     </div>
     <!-- Footer -->
     <jsp:include page="footer.jsp" />
-    
-<script type="text/javascript">
- 	$('form').submit(function(){ 
+<script>
+	var message = "${findResult}";
+	if(message == 'fail'){
+		alert('일치하는 회원정보가 없습니다. 다시 확인 해주세요!!');
+	}
+</script>
+<script>
+ 	$('form').eq(0).submit(function(){ 
  		if($('#userpwd').val() == $('#newPw_check').val()){
  			return true;
  		} else {
