@@ -7,7 +7,7 @@
 </insert>
 
 <delete id="deleteInterest" parameterType="InterestDto">
-	delete from interest where userid = #{userid} and inum = #{no}
+	delete from interest where userid = #{userid} and inum = 2
 </delete>
 
 <select id="getInterest" parameterType="String" resultType="InterestDto">
