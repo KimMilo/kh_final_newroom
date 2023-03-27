@@ -1,6 +1,6 @@
 --DDL
--- ÀÏ´Ü Å×½ºÆ®¿ëÀ¸·Î¸¸ »ý¼º ÇÏ´Â°Å°í »ý¼º ´ëÃæ ¸¶¹«¸® µÇ¸é ERD ±×·Á°¡¸é¼­ ±¸Á¶ Â¥¾ßµÇ°í
--- insert µî Â© ¶§µµ ¼­ºêÄõ¸® ¾î¶»°Ô ÁøÇàÇÒ °ÍÀÎÁö °°ÀÌ °í¹ÎÇØºÁ¾ß ÇÒ °Í °°´Ù.
+-- ì¼ë‹¨ í…ŒìŠ¤íŠ¸ìš©ìœ¼ë¡œë§Œ ìƒì„± í•˜ëŠ”ê±°ê³  ìƒì„± ëŒ€ì¶© ë§ˆë¬´ë¦¬ ë˜ë©´ ERD ê·¸ë ¤ê°€ë©´ì„œ êµ¬ì¡° ì§œì•¼ë˜ê³ 
+-- insert ë“± ì§¤ ë•Œë„ ì„œë¸Œì¿¼ë¦¬ ì–´ë–»ê²Œ ì§„í–‰í•  ê²ƒì¸ì§€ ê°™ì´ ê³ ë¯¼í•´ë´ì•¼ í•  ê²ƒ ê°™ë‹¤.
 
 DROP TABLE CHAT;
 CREATE TABLE CHAT(
@@ -11,9 +11,9 @@ CREATE TABLE CHAT(
   , chatTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ------------------------------------------------------------------------------
-INSERT INTO CHAT VALUES(1, 'aaa', 'bbb', '¾È³ç', DEFAULT);
-INSERT INTO CHAT VALUES(2, 'bbb', 'bbb', '¾È³ç', DEFAULT);
-INSERT INTO CHAT VALUES(3, 'aaa', 'bbb', '¾È³ç', DEFAULT);
+INSERT INTO CHAT VALUES(1, 'aaa', 'bbb', 'ì•ˆë…•', DEFAULT);
+INSERT INTO CHAT VALUES(2, 'bbb', 'bbb', 'ì•ˆë…•', DEFAULT);
+INSERT INTO CHAT VALUES(3, 'aaa', 'bbb', 'ì•ˆë…•', DEFAULT);
 
 
 SELECT * FROM CHAT;
@@ -45,10 +45,10 @@ CREATE TABLE HOSPITAL(
   , phone VARCHAR2(30)
 );
 
-INSERT INTO HOSPITAL VALUES(1, '¼­¿ï½Ã', '°­³²±¸', '°­³²³»°úÀÇ¿ø', '¼­¿ï½Ã °­³²±¸ ³íÇöµ¿ 111-1', '³»°ú', '02-1234-5678');
-INSERT INTO HOSPITAL VALUES(1, '¼­¿ï½Ã', '°­³²±¸', '°­³²¿Ü°úÀÇ¿ø', '¼­¿ï½Ã °­³²±¸ ³íÇöµ¿ 111-2', '¿Ü°ú', '02-1234-7777');
-INSERT INTO HOSPITAL VALUES(1, '¼­¿ï½Ã', '°­³²±¸', '°­³²¼Ò¾Æ°úÀÇ¿ø', '¼­¿ï½Ã °­³²±¸ ³íÇöµ¿ 111-3', '¼Ò¾Æ°ú', '02-1234-8888');
-INSERT INTO HOSPITAL VALUES(1, '¼­¿ï½Ã', '°­³²±¸', '°­³²¼Ò¾Æ°úÀÇ¿ø', '¼­¿ï½Ã °­³²±¸ ³íÇöµ¿ 111-3', '¼Ò¾Æ°ú', '02-1234-8888');
+INSERT INTO HOSPITAL VALUES(1, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ê°•ë‚¨ë‚´ê³¼ì˜ì›', 'ì„œìš¸ì‹œ ê°•ë‚¨êµ¬ ë…¼í˜„ë™ 111-1', 'ë‚´ê³¼', '02-1234-5678');
+INSERT INTO HOSPITAL VALUES(1, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ê°•ë‚¨ì™¸ê³¼ì˜ì›', 'ì„œìš¸ì‹œ ê°•ë‚¨êµ¬ ë…¼í˜„ë™ 111-2', 'ì™¸ê³¼', '02-1234-7777');
+INSERT INTO HOSPITAL VALUES(1, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ê°•ë‚¨ì†Œì•„ê³¼ì˜ì›', 'ì„œìš¸ì‹œ ê°•ë‚¨êµ¬ ë…¼í˜„ë™ 111-3', 'ì†Œì•„ê³¼', '02-1234-8888');
+INSERT INTO HOSPITAL VALUES(1, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ê°•ë‚¨ì†Œì•„ê³¼ì˜ì›', 'ì„œìš¸ì‹œ ê°•ë‚¨êµ¬ ë…¼í˜„ë™ 111-3', 'ì†Œì•„ê³¼', '02-1234-8888');
 -----------------------------------------------------------------------------------
 
 DROP TABLE BASEADDRESS;
@@ -61,9 +61,9 @@ CREATE TABLE BASEADDRESS(
   , dongcode VARCHAR2(10)
 );
 
-INSERT INTO BASEADDRESS VALUES(1, '¼­¿ï½Ã', '°­³²±¸', '³íÇöµ¿', '001-01', '001');
-INSERT INTO BASEADDRESS VALUES(2, '¼­¿ï½Ã', '°­³²±¸', '³íÇöµ¿', '001-02', '001');
-INSERT INTO BASEADDRESS VALUES(3, '¼­¿ï½Ã', '°­³²±¸', '³íÇöµ¿', '001-03', '002');
+INSERT INTO BASEADDRESS VALUES(1, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ë…¼í˜„ë™', '001-01', '001');
+INSERT INTO BASEADDRESS VALUES(2, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ë…¼í˜„ë™', '001-02', '001');
+INSERT INTO BASEADDRESS VALUES(3, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ë…¼í˜„ë™', '001-03', '002');
 
 SELECT * FROM BASEADDRESS;
 
@@ -80,9 +80,9 @@ CREATE TABLE HOUSEINFO(
   , img VARCHAR2(500)
 );
 
-INSERT INTO HOUSEINFO VALUES(1, '³íÇöµ¿', '³íÇö¾ÆÆÄÆ®', '001', '2000', '100-01', null, null, null);
-INSERT INTO HOUSEINFO VALUES(2, '³íÇöµ¿', 'Çö´ë¾ÆÆÄÆ®', '001', '2001', '200-01', null, null, null);
-INSERT INTO HOUSEINFO VALUES(3, '³íÇöµ¿', '¾ÆÀÌÆÄÅ©¾ÆÆÄÆ®', '001', '2010', '300-01', null, null, null);
+INSERT INTO HOUSEINFO VALUES(1, 'ë…¼í˜„ë™', 'ë…¼í˜„ì•„íŒŒíŠ¸', '001', '2000', '100-01', null, null, null);
+INSERT INTO HOUSEINFO VALUES(2, 'ë…¼í˜„ë™', 'í˜„ëŒ€ì•„íŒŒíŠ¸', '001', '2001', '200-01', null, null, null);
+INSERT INTO HOUSEINFO VALUES(3, 'ë…¼í˜„ë™', 'ì•„ì´íŒŒí¬ì•„íŒŒíŠ¸', '001', '2010', '300-01', null, null, null);
 
 SELECT * FROM HOUSEINFO;
 
@@ -95,7 +95,7 @@ SELECT hnum, city, gugun, hospitalName, address, diagnosisType, phone
                                                    FROM HOUSEINFO
                                                   WHERE housenum = 2)	
                             );
---TODO ÇÏ¿ì½º ³Ñ¹ö¿Í º´¿ø ³Ñ¹ö¸¦ ¾î¶»°Ô ¸ÂÃâ°ÍÀÎÁö »ý°¢ÇØ¾ßÇÔ.
+--TODO í•˜ìš°ìŠ¤ ë„˜ë²„ì™€ ë³‘ì› ë„˜ë²„ë¥¼ ì–´ë–»ê²Œ ë§žì¶œê²ƒì¸ì§€ ìƒê°í•´ì•¼í•¨.
  --------------------------------------------------------------------------------------------
 
 DROP TABLE SIDOCODE;
@@ -133,8 +133,8 @@ CREATE TABLE USERINFO(
   , img VARCHAR2(500)
 );
 
-INSERT INTO USERINFO VALUES('abcd', 'abcd666', '¾Æ¹«°³', 'abcd666@naver.com', '010-123-4567', 0, null);
-INSERT INTO USERINFO VALUES('admin', 'admin777', '°ü¸®ÀÚ', 'admin@naver.com', '010-777-7777', 1, null);
+INSERT INTO USERINFO VALUES('abcd', 'abcd666', 'ì•„ë¬´ê°œ', 'abcd666@naver.com', '010-123-4567', 0, null);
+INSERT INTO USERINFO VALUES('admin', 'admin777', 'ê´€ë¦¬ìž', 'admin@naver.com', '010-777-7777', 1, null);
 
 SELECT * FROM USERINFO;
 -------------------------------------------------------------------------------
