@@ -110,8 +110,25 @@ CREATE TABLE GUGUNCODE(
 
 DROP TABLE HOUSEDEAL;
 CREATE TABLE HOUSEDEAL(
-
+    dealId NUMBER
+  , hdnum NUMBER
+  , dong VARCHAR2(20)
+  , aptName VARCHAR2(50)
+  , jibun VARCHAR2(30)
+  , lat VARCHAR2(50)
+  , lng VARCHAR2(50)
+  , dealAmount VARCHAR2(50)
+  , dealYear VARCHAR2(10)
+  , dealMonth VARCHAR2(5)
+  , dealDay VARCHAR2(10)
+  , area VARCHAR2(100)
+  , floor VARCHAR2(50)
+  , dtype VARCHAR2(10)
+  , rentMoney VARCHAR2(50)
+  , img VARCHAR2(500)
 );
+
+INSERT INTO HOUSEDEAL VALUES(1, 1, '논현동', '롯데캐슬', '101-01', null, null, '11억', '2023', '03', '22', '59', '11', '매매', null, null);
 
 --------------------------------------------------------------------------------
 
@@ -121,18 +138,20 @@ CREATE TABLE INTEREST(
   , inum NUMBER
   , area VARCHAR2(100)
   , floor VARCHAR2(50)
+  , dealAmount VARCHAR2(50)
   , aptName VARCHAR2(30)
   , img VARCHAR2(100)
 );
 
-INSERT INTO INTEREST VALUES('abc', 1, '서울시', '고층', '롯데캐슬', null);
-INSERT INTO INTEREST VALUES('abc', 2, '서울시', '고층', '자이', null);
-INSERT INTO INTEREST VALUES('abc', 3, '서울시', '고층', '아이파크', null);
+INSERT INTO INTEREST VALUES('abc', 1, '서울시', '고층', '11억', '롯데캐슬', null);
+INSERT INTO INTEREST VALUES('abc', 2, '서울시', '고층', '9억', '자이', null);
+INSERT INTO INTEREST VALUES('abc', 3, '서울시', '고층', '10억5천' '아이파크', null);
 --------------------------------------------------------------------------------
 
 DROP TABLE USERINFO;
 CREATE TABLE USERINFO(
-    userId VARCHAR2(20) 
+    userId VARCHAR2(20)
+  , hsnum NUMBER
   , userPw VARCHAR2(20)
   , userName VARCHAR2(15)
   , userEmail VARCHAR2(30)
@@ -141,10 +160,15 @@ CREATE TABLE USERINFO(
   , img VARCHAR2(500)
 );
 
-INSERT INTO USERINFO VALUES('abcd', 'abcd666', '아무개', 'abcd666@naver.com', '010-123-4567', 0, null);
-INSERT INTO USERINFO VALUES('admin', 'admin777', '관리자', 'admin@naver.com', '010-777-7777', 1, null);
+INSERT INTO USERINFO VALUES('abc', 1, 'abc', '아무개', 'abcd666@naver.com', '010-123-4567', 0, null);
+INSERT INTO USERINFO VALUES('admin', 2, 'admin777', '관리자', 'admin@naver.com', '010-777-7777', 1, null);
 
 SELECT * FROM USERINFO;
+
+select i.userid, i.inum, d.area, d.floor, d.dealAmount, f.AptName, f.img
+	from housedeal d JOIN interest i on d.hdnum = i.inum JOIN houseinfo f on d.hdnum = f.hsnum
+	where i.userid = #{userid}
+
 -------------------------------------------------------------------------------
 
 DROP TABLE NOTICE;
