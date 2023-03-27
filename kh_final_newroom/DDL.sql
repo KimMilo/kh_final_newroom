@@ -117,9 +117,17 @@ CREATE TABLE HOUSEDEAL(
 
 DROP TABLE INTEREST;
 CREATE TABLE INTEREST(
-
+    userid VARCHAR2(20)
+  , inum NUMBER
+  , area VARCHAR2(100)
+  , floor VARCHAR2(50)
+  , aptName VARCHAR2(30)
+  , img VARCHAR2(100)
 );
 
+INSERT INTO INTEREST VALUES('abc', 1, '서울시', '고층', '롯데캐슬', null);
+INSERT INTO INTEREST VALUES('abc', 2, '서울시', '고층', '자이', null);
+INSERT INTO INTEREST VALUES('abc', 3, '서울시', '고층', '아이파크', null);
 --------------------------------------------------------------------------------
 
 DROP TABLE USERINFO;
