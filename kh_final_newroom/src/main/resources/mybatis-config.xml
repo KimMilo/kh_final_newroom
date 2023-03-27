@@ -11,8 +11,11 @@
 	<!-- typeAlias setting  -->
 	<typeAliases>
 		<typeAlias type="kh.com.nr.model.dto.MemberDto" alias="MemberDto"/>
+		<typeAlias type="kh.com.nr.model.dto.InterestDto" alias="InterestDto"/>
+		<typeAlias type="kh.com.nr.model.dto.HouseDealDto" alias="HouseDealDto"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
+		<mapper resource="mappers/interest-mapper.xml"/>
 	</mappers>
 </configuration>

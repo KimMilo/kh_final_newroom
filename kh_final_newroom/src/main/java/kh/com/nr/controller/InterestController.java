@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kh.com.nr.model.dto.HouseDealDto;
 import kh.com.nr.model.dto.InterestDto;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.service.InterestService;
@@ -85,17 +86,17 @@ public class InterestController {
 		return "false";
 	}
 	
-//	//매물 정보 디테일 가져오기
-//		@GetMapping("/detail/{no}")
-//		@ResponseBody
-//		private HouseDealDto detail(@PathVariable("no") int no) {
-//			HouseDealDto dto = null;
-//			try {
-//				dto = hservice.getDealInfo(no);
-//			}catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//			return dto;
-//		}
+	//매물 정보 디테일 가져오기
+		@GetMapping("/detail/{no}")
+		@ResponseBody
+		private HouseDealDto detail(@PathVariable("no") int no) {
+			HouseDealDto dto = null;
+			try {
+				dto = hservice.getDealInfo(no);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return dto;
+		}
 
 }
