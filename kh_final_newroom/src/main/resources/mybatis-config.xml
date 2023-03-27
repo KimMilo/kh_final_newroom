@@ -13,9 +13,12 @@
 		<typeAlias type="kh.com.nr.model.dto.MemberDto" alias="MemberDto"/>
 		<typeAlias type="kh.com.nr.model.dto.InterestDto" alias="InterestDto"/>
 		<typeAlias type="kh.com.nr.model.dto.HouseDealDto" alias="HouseDealDto"/>
+		<typeAlias type="kh.com.nr.model.dto.SidoGugunCodeDto" alias="SidoGugunCodeDto"/>
+		<typeAlias type="kh.com.nr.model.dto.HouseInfoDto" alias="HouseInfoDto"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/interest-mapper.xml"/>
+		<mapper resource="mappers/housemap-mapper.xml"/>
 	</mappers>
 </configuration>

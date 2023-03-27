@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kh.com.nr.model.dto.HouseDealDto;
 import kh.com.nr.model.dto.InterestDto;
 import kh.com.nr.model.dto.MemberDto;
+import kh.com.nr.model.service.HouseMapService;
 import kh.com.nr.model.service.InterestService;
 
 @RequestMapping("/interest")
@@ -26,6 +27,9 @@ public class InterestController {
 	
 	@Autowired
 	private InterestService iservice;
+	
+	@Autowired
+	private HouseMapService hservice;
 	
 	// 찜하기 페이지 이동
 	@GetMapping("")

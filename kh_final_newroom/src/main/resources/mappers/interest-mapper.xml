@@ -3,11 +3,11 @@
 <mapper namespace="interest">
 	
 <insert id="setInterest" parameterType="InterestDto">
-	insert into interest (userid, inum) values (#{userid}, #{inum})
+	insert into interest (userid, inum) values (#{userid}, #{no})
 </insert>
 
 <delete id="deleteInterest" parameterType="InterestDto">
-	delete from interest where userid = #{userid} and no = #{inum}
+	delete from interest where userid = #{userid} and inum = #{no}
 </delete>
 
 <select id="getInterest" parameterType="String" resultType="InterestDto">
@@ -17,7 +17,7 @@
 </select>
 
 <select id="chkInterest" parameterType="InterestDto" resultType="InterestDto">
-	select * from interest where userid = #{userid} and inum = #{inum}
+	select * from interest where userid = #{userid} and inum = #{no}
 </select>
 
 <!-- <resultMap type="InterestDto" id="rrr"> -->
