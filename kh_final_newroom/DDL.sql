@@ -129,8 +129,6 @@ CREATE TABLE HOUSEDEAL(
 );
 
 INSERT INTO HOUSEDEAL VALUES(1, 1, '논현동', '롯데캐슬', '101-01', null, null, '11억', '2023', '03', '22', '59', '11', '매매', null, null);
-INSERT INTO HOUSEDEAL VALUES(2, 1, '논현동', '롯데캐슬', '101-01', null, null, '10억', '2023', '03', '22', '59', '11', '매매', null, null);
-INSERT INTO HOUSEDEAL VALUES(2, 1, '논현동', '롯데캐슬', '101-01', null, null, '9억', '2023', '03', '22', '59', '11', '매매', null, '10.jpg');
 INSERT INTO HOUSEDEAL VALUES(2, 2, '논현동', '롯데캐슬', '101-01', null, null, '9억', '2023', '03', '22', '59', '11', '매매', null, '10.jpg');
 --------------------------------------------------------------------------------
 
