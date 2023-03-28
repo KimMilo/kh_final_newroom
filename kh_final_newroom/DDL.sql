@@ -111,7 +111,7 @@ CREATE TABLE GUGUNCODE(
 DROP TABLE HOUSEDEAL;
 CREATE TABLE HOUSEDEAL(
     dealId NUMBER
-  , hdnum NUMBER
+  , no NUMBER
   , dong VARCHAR2(20)
   , aptName VARCHAR2(50)
   , jibun VARCHAR2(30)
@@ -151,7 +151,7 @@ INSERT INTO INTEREST VALUES('abc', 3, '서울시', '고층', '10억5천', '아�
 DROP TABLE USERINFO;
 CREATE TABLE USERINFO(
     userId VARCHAR2(20)
-  , hsnum NUMBER
+  , no NUMBER
   , userPw VARCHAR2(20)
   , userName VARCHAR2(15)
   , userEmail VARCHAR2(30)
