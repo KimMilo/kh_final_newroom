@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="rUrl" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -10,9 +12,11 @@
     text-align:center;color:#2c3e50
     }
 </style>
+<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/comment.css" />
+<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
 <title>NewRoom-Q&A</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/comment.css" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/style.css" />
+<script src="${rUrl}/resources/static/js/chunk-vendors.b161de55.js"></script>
+<script src="${rUrl}/resources/static/js/app.e909676c.js"></script>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -55,8 +59,6 @@
 		</div>
 		</div>
 	</div>
-		<script src="${pageContext.request.contextPath}/resources/static/js/chunk-vendors.b161de55.js"></script>
-		<script src="${pageContext.request.contextPath}/resources/static/js/app.e909676c.js"></script>
 	<jsp:include page="footer.jsp" />
 </body>
 </html>
