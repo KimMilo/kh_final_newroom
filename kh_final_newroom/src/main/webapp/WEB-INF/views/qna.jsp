@@ -122,6 +122,9 @@ $("#btnWrite").click(function(){
 		}
 	});
 });
+
+//TODO 테이블 생성 및 등록완료 처리 예정
+//     추가적으로, 검색기능 확인해야함.
 </script>
 </body>
 </html>
