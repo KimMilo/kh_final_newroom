@@ -22,6 +22,6 @@ public class QnaDto {
 	private int breadcnt; //조회수
 	private String bwritedate; //작성날짜
 	private String bcontent; //글내용
-	private int questionnum;
-	private boolean isFAQ; //자주 묻는 질문(공지)인지
+	//private int questionnum;
+	//private boolean isFAQ; //자주 묻는 질문(공지)인지
 }
