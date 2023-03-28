@@ -15,20 +15,18 @@
 		<typeAlias type="kh.com.nr.model.dto.HouseDealDto" alias="HouseDealDto"/>
 		<typeAlias type="kh.com.nr.model.dto.SidoGugunCodeDto" alias="SidoGugunCodeDto"/>
 		<typeAlias type="kh.com.nr.model.dto.HouseInfoDto" alias="HouseInfoDto"/>
-		
-<!-- 		<typeAlias type="kh.com.nr.model.dto.ChatDto" alias="ChatDto"/> -->
-<!-- 		<typeAlias type="kh.com.nr.model.dto.RoomDto" alias="RoomDto"/> -->
-<!-- 		<typeAlias type="kh.com.nr.model.dto.HospitalDto" alias="HospitalDto"/> -->
-<!-- 		<typeAlias type="kh.com.nr.model.dto.NoticeDto" alias="NoticeDto"/> -->
-<!-- 		<typeAlias type="kh.com.nr.model.dto.CommentDto" alias="CommentDto"/> -->
-<!-- 		<typeAlias type="kh.com.nr.model.dto.QnaDto" alias="QnaDto"/> -->
+		<typeAlias type="kh.com.nr.model.dto.ChatDto" alias="ChatDto"/>
+		<typeAlias type="kh.com.nr.model.dto.RoomDto" alias="RoomDto"/>
+		<typeAlias type="kh.com.nr.model.dto.HospitalDto" alias="HospitalDto"/>
+		<typeAlias type="kh.com.nr.model.dto.NoticeDto" alias="NoticeDto"/>
+		<typeAlias type="kh.com.nr.model.dto.CommentDto" alias="CommentDto"/>
+		<typeAlias type="kh.com.nr.model.dto.QnaDto" alias="QnaDto"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappers/member-mapper.xml"/>
 		<mapper resource="mappers/interest-mapper.xml"/>
 		<mapper resource="mappers/housemap-mapper.xml"/>
-		
-<!-- 		<mapper resource="mappers/chat-mapper.xml"/> -->
-<!-- 		<mapper resource="mappers/hospital-mapper.xml"/> -->
+		<mapper resource="mappers/chat-mapper.xml"/>
+		<mapper resource="mappers/hospital-mapper.xml"/>
 	</mappers>
 </configuration>
