@@ -17,8 +17,8 @@ import lombok.ToString;
 @ToString
 public class HouseDealDto {
 	int dealId; // 거래 정보 아이디
-	//int hdnum; // 주택 정보 아이디
-	int no;
+	int hdnum; // 주택 정보 아이디
+	//int no;
 	String dong; // 동
 	String aptName; // 아파트 이름
 	String jibun; // 지번

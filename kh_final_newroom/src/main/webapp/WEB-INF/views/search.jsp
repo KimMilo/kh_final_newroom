@@ -275,9 +275,9 @@
 												method:'get',
 												success:function(result){
 													if(result == 'true'){
-														$("#interest${dto.no}").attr('src', './resources/img/heart_fill.png');
+														$("#interest${dto.no}").attr('src', '${rUrl}/resources/img/heart_fill.png');
 													}else {
-														$("#interest${dto.no}").attr('src', './resources/img/heart_empty.png');
+														$("#interest${dto.no}").attr('src', '${rUrl}/resources/img/heart_empty.png');
 													}
 												},
 											});
