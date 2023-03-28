@@ -3,21 +3,21 @@
 <mapper namespace="interest">
 	
 <insert id="setInterest" parameterType="InterestDto">
-	insert into interest (userid, inum) values (#{userid}, #{no})
+	insert into interest (userid, no) values (#{userid}, #{no})
 </insert>
 
 <delete id="deleteInterest" parameterType="InterestDto">
-	delete from interest where userid = #{userid} and inum = 2
+	delete from interest where userid = #{userid} and no = #{no}
 </delete>
 
 <select id="getInterest" parameterType="String" resultType="InterestDto">
-	select i.userid, i.inum, d.area, d.floor, d.dealAmount, f.AptName, f.img
-	from housedeal d JOIN interest i on d.hdnum = i.inum JOIN houseinfo f on d.hdnum = f.housenum
+	select i.userid, i.no, d.area, d.floor, d.dealAmount, f.AptName, f.img
+	from housedeal d JOIN interest i on d.no = i.no JOIN houseinfo f on d.no = f.no
 	where i.userid = #{userid}
 </select>
 
 <select id="chkInterest" parameterType="InterestDto" resultType="InterestDto">
-	select * from interest where userid = #{userid} and inum = #{no}
+	select * from interest where userid = #{userid} and no = #{no}
 </select>
 
 <!-- <resultMap type="InterestDto" id="rrr"> -->

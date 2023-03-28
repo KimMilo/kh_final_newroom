@@ -21,35 +21,35 @@
 </select>
 
 <select id="getDealInfo" resultType="HouseDealDto">
-	SELECT d.hdnum, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
+	SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
-	WHERE d.hdnum=i.housenum
+	WHERE d.no=i.no
 </select>
 
 <select id="getDealInfoOne" parameterType="int" resultType="HouseDealDto">
-	SELECT d.hdnum, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
+	SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
-	WHERE d.hdnum=i.housenum and d.hdnum = #{hdnum}
+	WHERE d.no=i.housenum and d.no = #{no}
 </select>
 
 <select id="getDealInfoByAptName" parameterType="String" resultType="HouseDealDto">
-	SELECT d.hdnum, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
+	SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
-	WHERE d.hdnum=i.housenum AND i.aptName like CONCAT('%',#{aptName},'%') LIMIT 20
+	WHERE d.no=i.no AND i.aptName like CONCAT('%',#{aptName},'%') LIMIT 20
 </select>
 
 <select id="getDealInfoByDong" parameterType="String" resultType="HouseDealDto">
-	SELECT d.hdnum, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
+	SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney, 
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
-	WHERE d.hdnum=i.housenum AND i.dong LIKE #{dong} LIMIT 20
+	WHERE d.no=i.no AND i.dong LIKE #{dong} LIMIT 20
 </select>
 
 </mapper>

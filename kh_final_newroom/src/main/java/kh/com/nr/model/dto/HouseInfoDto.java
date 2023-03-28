@@ -16,7 +16,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class HouseInfoDto {
-	private int housenum;
+	private int no;
 	private String dong;
 	private String aptName;
 	private String code;

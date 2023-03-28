@@ -36,7 +36,7 @@ SELECT * FROM CHAT_ROOM;
 -------------------------------------------------------------------------------
 DROP TABLE HOSPITAL;
 CREATE TABLE HOSPITAL(
-    hnum NUMBER REFERENCES HOUSEINFO(housenum)
+    no NUMBER --REFERENCES HOUSEINFO(no)
   , city VARCHAR2(20)
   , gugun VARCHAR2(20)
   , hospitalName VARCHAR2(30)
@@ -53,7 +53,7 @@ INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '강남소아과의원'
 
 DROP TABLE BASEADDRESS;
 CREATE TABLE BASEADDRESS(
-    bnum NUMBER PRIMARY KEY
+    no NUMBER PRIMARY KEY
   , city VARCHAR2(20)
   , gugun VARCHAR2(20)
   , dong VARCHAR2(20)
@@ -69,7 +69,7 @@ SELECT * FROM BASEADDRESS;
 
 DROP TABLE HOUSEINFO;
 CREATE TABLE HOUSEINFO(
-    housenum NUMBER PRIMARY KEY
+    no NUMBER PRIMARY KEY
   , dong VARCHAR2(20)
   , aptName VARCHAR2(50)
   , code VARCHAR2(10)
@@ -145,7 +145,7 @@ CREATE TABLE INTEREST(
 
 INSERT INTO INTEREST VALUES('abc', 1, '서울시', '고층', '11억', '롯데캐슬', null);
 INSERT INTO INTEREST VALUES('abc', 2, '서울시', '고층', '9억', '자이', null);
-INSERT INTO INTEREST VALUES('abc', 3, '서울시', '고층', '10억5천' '아이파크', null);
+INSERT INTO INTEREST VALUES('abc', 3, '서울시', '고층', '10억5천', '아이파크', null);
 --------------------------------------------------------------------------------
 
 DROP TABLE USERINFO;
@@ -179,4 +179,9 @@ CREATE TABLE NOTICE(
 DROP TABLE COMMENT_T;
 CREATE TABLE COMMENT_T(
 
-)
+);
+-----------------------------------------------------------------------------------
+DROP TABLE QNA;
+CREATE TABLE QNA(
+
+);
