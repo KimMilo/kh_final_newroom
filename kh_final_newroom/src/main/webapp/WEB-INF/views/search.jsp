@@ -320,21 +320,21 @@
 									
 									// 찜 등록 및 해제
 									if(className == 'heartIcon'){
-										if($("#"+idName).attr('src') == './resources/img/heart_fill.png'){
+										if($("#"+idName).attr('src') == '${rUrl}/resources/img/heart_fill.png'){
 	                    	    			$.ajax({
 												url:'${rUrl}/interest/${dto.no}',
 												method:'delete',
 												success:function(){
-													$("#"+idName).attr('src', './resources/img/heart_empty.png');
+													$("#"+idName).attr('src', '${rUrl}/resources/img/heart_empty.png');
 	                    	    					alert("찜 목록에서 해제 되었습니다.");
 												}
 											});
-	                    	    		}else if($("#"+idName).attr('src') == './resources/img/heart_empty.png'){
+	                    	    		}else if($("#"+idName).attr('src') == '${rUrl}/resources/img/heart_empty.png'){
 											$.ajax({
 												url:'${rUrl}/interest/${dto.no}',
 												method:'get',
 												success:function(){
-													$("#"+idName).attr('src', './resources/img/heart_fill.png');
+													$("#"+idName).attr('src', '${rUrl}/resources/img/heart_fill.png');
 	                    	    					alert("찜 목록에 등록이 되었습니다.");
 												}
 											});
