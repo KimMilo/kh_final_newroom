@@ -1,24 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="root" value="${pageContext.request.contextPath}" />
+<c:set var="rUrl" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
-    <meta charset="UTF-8">
-    <title>공지 검색결과</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/5d2954c3f8.js" crossorigin="anonymous"></script>
-    <!--CSS-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!--JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!--web font-->
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${root}/resources/css/style.css" />
+<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+<title>공지 검색결과</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
 </head>
 
 <body>
@@ -30,11 +24,11 @@
 
     <nav class="container navbar navbar-expand-sm navbar-light">
     	<c:if test="${loginInfo.role eq 1}"><!-- 관리자일때만 -->
-        	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${root}/noticeWritePage.do'">글쓰기</button>
+        	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/noticeWritePage.do'">글쓰기</button>
         </c:if>
-       <input type="button" class="btn btn-outline-secondary ml-2" value="목록" onclick="location.href='${root}/noticeList.do'">
+       <input type="button" class="btn btn-outline-secondary ml-2" value="목록" onclick="location.href='${rUrl}/noticeList.do'">
        
-        <form class="navbar-nav ml-auto" action="${root}/noticeSearch.do" method="post">
+        <form class="navbar-nav ml-auto" action="${rUrl}/noticeSearch.do" method="post">
             <div class="form-group mr-1">
                 <select class="form-control" name="search_type">
                     <option value="btitle">제목</option>

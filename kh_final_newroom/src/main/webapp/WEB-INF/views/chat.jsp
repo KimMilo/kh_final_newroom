@@ -1,42 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" import="java.text.SimpleDateFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="r" value="${pageContext.request.contextPath}" />
+<c:set var="rUrl" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
+<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/chat.css" />
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://sta.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css" href="${r}/resources/css/style.css" />
-<link rel="stylesheet" type="text/css" href="${r}/resources/css/chat.css" />
-<script src="https://kit.fontawesome.com/5d2954c3f8.js" crossorigin="anonymous"></script>
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 <title>사용자용 채팅창</title>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 </head>
-<% //메신저 현재 시간 구하기
+<%
 Date today = new Date();
-SimpleDateFormat df = new SimpleDateFormat("hh:mm aa"); // Just the year, with 2 digits
+SimpleDateFormat df = new SimpleDateFormat("hh:mm aa");
 String time = df.format(today);
 %>
 <body>
-	<!-- Messenger -->
-	<!--<div id="messenger" data-toggle="modal" data-target="#chat"></div>-->
 	<div id="chat_icon"></div>
 	<div id="chat_content">
-		<!-- 헤더 -->
 		<div class="chYXNL">
 			<div data-ch-testid="back-button" class="pTkUZ">
 				<div name="back3" size="18" class="kpjiFD"></div>
 			</div>
 			<div class="TmRQW">
 				<div class="ifoTHc">
-					<div class="jyCzTS">해피하우스</div>
+					<div class="jyCzTS">NewRoom</div>
 					<div name="offhours" size="22" width="22" height="22" class="fVdwuK"></div>
 				</div>
-				<div class="gLDehK">상담원과 1:1 연결됩니다.</div>
+				<div class="gLDehK">1:1 상담사와 연결 됩니다.</div>
 			</div>
 			<div
 				class="jOQCgr">
@@ -45,9 +39,6 @@ String time = df.format(today);
 				</div>
 			</div>
 		</div>
-		<!-- 헤더 -->
-
-		<!-- 채팅방 -->
 		<div class="UserChatsstyled__Content-j27mpg-0 cxfUhJB">
 			<div data-ch-testid="user-chat"
 				class="UserChatstyled__Wrapper-sc-1to4g9-0 jlSJnZ">
@@ -55,11 +46,6 @@ String time = df.format(today);
 					<div class="Messengerstyled__Wrapper-sc-1e1ufgm-2 gEPVqv">
 						<div class="MessageStreamstyled__Wrapper-sc-1hff8rl-7 eEnBHd">
 							<div id="chatList" class="iwuPmL kWDOaK">
-								<!-- 상대방 -->
-								<!-- 상대방 -->
-								
-								<!-- 나 -->
-								<!-- 나 -->
 							</div>
 						</div>
 						<div class="MessengerFooterstyled__Wrapper-i9sssu-0 hZzROU">
@@ -79,7 +65,6 @@ String time = df.format(today);
 				</div>
 			</div>
 		</div>
-		<!-- 채팅방 -->
 	</div>
 
 	<c:if test="${not empty loginInfo}">
@@ -109,7 +94,7 @@ String time = df.format(today);
 			function submitFunction(){ 
 				var chatContent = $('#chatContent').val();
 				$.ajax({
-					url: "${r}/chat",
+					url: "${rUrl}/chat",
 					type: "POST",
 					contentType: "application/json",
 					data: JSON.stringify({
@@ -131,7 +116,7 @@ String time = df.format(today);
 			//기존에 주고받은 채팅 목록
 			function chatListFunction(){ 
 				$.ajax({
-					url : '${r}/chat/${loginInfo.userid}/ssafy',
+					url : '${rUrl}/chat/${loginInfo.userid}/ssafy',
 					method : 'get',
 					success: function(result){
 						if(result != ""){
@@ -157,7 +142,7 @@ String time = df.format(today);
 			//새로운 작성한 메시지가 있는지
 			function chatLoadNewMessage(){
 				$.ajax({
-					url : '${r}/chat/'+lastID+'/${loginInfo.userid}/ssafy',
+					url : '${rUrl}/chat/'+lastID+'/${loginInfo.userid}/ssafy',
 					method : 'get',
 					success: function(result){
 						if(result == "") return;
@@ -215,7 +200,7 @@ String time = df.format(today);
 				var faqList = [];
 				//FAQ가져오기
 				$.ajax({
-					url : '${r}/qna/'+"faq",
+					url : '${rUrl}/qna/'+"faq",
 					method : 'get',
 					success: function(result){
 						if(result == "") return;

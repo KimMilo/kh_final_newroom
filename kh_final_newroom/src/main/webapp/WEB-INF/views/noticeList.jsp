@@ -1,27 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="root" value="${pageContext.request.contextPath}" />
+<c:set var="rUrl" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="kr">
 <head>
-    <meta charset="UTF-8">
-    <title>공지사항 글목록</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://kit.fontawesome.com/5d2954c3f8.js" crossorigin="anonymous"></script>
-    <!--CSS-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!--JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!--web font-->
-    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${root}/resources/css/style.css" />
+<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+<title>공지사항 글목록</title>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 </head>
-
 <body>
     <jsp:include page="header.jsp" />
     
@@ -30,10 +21,10 @@
     </div>
 
     <nav class="container navbar navbar-expand-sm navbar-light">
-    	<c:if test="${loginInfo.role eq 1}"><!-- 관리자일때만 -->
-        	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${root}/noticeWrite.do'">글쓰기</button>
+    	<c:if test="${loginInfo.role eq 1}">
+        	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/noticeWrite.do'">글쓰기</button>
         </c:if>
-        <form class="navbar-nav ml-auto" action="${root}/noticeSearch.do" method="post">
+        <form class="navbar-nav ml-auto" action="${rUrl}/noticeSearch.do" method="post">
             <div class="form-group mr-1">
                 <select class="form-control" name="search_type">
                     <option value="btitle">제목</option>
@@ -49,8 +40,6 @@
             </div>
         </form>
     </nav>
-
-  <!--contents-->
   <div class="container my-3">
     <form role="form" method="get">
       <table class="table table-hover">
@@ -71,7 +60,7 @@
 				<c:forEach items="${pageDto.noticeList}" var="dto">
 					<tr>
 						<td>${dto.bnum}</td>
-						<td id="title"><a href="${root}/noticeRead.do?bnum=${dto.bnum}">${dto.btitle} 
+						<td id="title"><a href="${rUrl}/noticeRead.do?bnum=${dto.bnum}">${dto.btitle} 
 						<c:if test="${!empty dto.cmtCnt}">
 							[${dto.cmtCnt}]
 						</c:if>
@@ -86,8 +75,6 @@
       </table>
     </form>
   </div>
-
- 
   <div class="container" style="margin-bottom:0">
     <ul class="pagination justify-content-center">
     <c:if test="${pageDto.startPage>1}">
@@ -107,7 +94,6 @@
     </ul>
   </div>
 
-    <!-- Footer -->
 	<jsp:include page="footer.jsp" />
 </body>
 </html>
