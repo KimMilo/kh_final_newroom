@@ -35,15 +35,15 @@
 	        <form>
 	          <div class="mb-3">
 	            <label for="recipient-name" class="col-form-label">작성자 : </label>
-	            <input type="text" class="form-control" id="recipient-name" disabled value="${loginInfo.userid }">
+	            <input type="text" class="form-control" id="useridQna" name="userid" value="${loginInfo.userid }" disabled>
 	          </div>
 	          <div class="mb-3">
 	            <label for="recipient-name" class="col-form-label">제목 : </label>
-	            <input type="text" class="form-control" id="recipient-name">
+	            <input type="text" class="form-control" id="title" name="title">
 	          </div>
 	          <div class="mb-3">
 	            <label for="message-text" class="col-form-label">내용 : </label>
-	            <textarea rows="15" class="form-control" id="message-text"></textarea>
+	            <textarea rows="15" class="form-control" id="context" name="context"></textarea>
 	          </div>
 	        </form>
 	      </div>
@@ -96,29 +96,25 @@
 	<jsp:include page="footer.jsp" />
 	
 <script>
-$("#submitJoin").click(function(){
+$("#btnWrite").click(function(){
 	$.ajax({
-		url:'${rUrl}/member/join',
+		url:'${rUrl}/qna',
 		method : 'post',
 		data:{
-			'userid' : $("#useridJoin").val(),
-			'userpw' : $("#userpwJoin").val(),
-			'username' : $("#name").val(),
-			'useremail' : $("#email").val(),
-			'userphone' : $("#phone").val(),
+			'userid' : $("#useridQna").val(),
+			'title' : $("#title").val(),
+			'context' : $("#context").val(),
 		},
 		success: function(result){
 			if(result.length > 0){
 				alert(result);
 			}else{
-				$("#useridJoin").val("");
-				$("#userpwJoin").val("");
-				$("#name").val("");
-				$("#email").val("");
-				$("#phone").val("");
+				$("#useridQna").val("");
+				$("#title").val("");
+				$("#context").val("");
 				
-				alert("회원가입 성공!!!");
-				location.href="${rUrl}";
+				alert("질문등록 완료");
+				location.href="${rUrl}/qna";
 			}
 		},
 		error : function(){
