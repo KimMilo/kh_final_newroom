@@ -135,7 +135,7 @@ INSERT INTO HOUSEDEAL VALUES(2, 2, '논현동', '롯데캐슬', '101-01', null, 
 DROP TABLE INTEREST;
 CREATE TABLE INTEREST(
     userid VARCHAR2(20)
-  , inum NUMBER
+  , no NUMBER
   , area VARCHAR2(100)
   , floor VARCHAR2(50)
   , dealAmount VARCHAR2(50)
