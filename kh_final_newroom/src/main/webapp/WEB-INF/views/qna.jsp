@@ -32,7 +32,7 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-	        <form>
+	        <form action="${rUrl }/qna" method="post">
 	          <div class="mb-3">
 	            <label for="recipient-name" class="col-form-label">작성자 : </label>
 	            <input type="text" class="form-control" id="useridQna" name="userid" value="${loginInfo.userid }" disabled>
@@ -214,14 +214,32 @@ $(".updateGo").click(function(){
 });
 
 $("#updateQna").click(function(){
-	$.ajax({
-		url:'${rUrl}/qna/'+detailNo,
-		method:'update',
-		success:function(){
-			location.href="${rUrl}/qna/" +detailNo;
-		}
-	})
-});
+ 	var dto = {
+ 		'bnum' : detailNo,
+		'userid' : $("#useridQna1").val(),
+		'btitle' : $("#btitle1").val(),
+		'bcontent' : $("#bcontent1").val(),
+ 	}
+ 	$.ajax({
+ 		url : '${rUrl}/qna',
+ 		method: 'put',
+ 		contentType: 'application/json; charset=utf-8',
+ 		data: JSON.stringify(dto),
+ 	    success:function(result){
+ 	    	if(result > 0){
+  	    	alert("수정 하였습니다.");
+ 	    	}else{
+ 	    		alert("수정에 실패하였습니다.");
+ 	    	}
+ 	    	
+	    	location.href="${rUrl}/qna/";
+ 	    },
+ 	    error : function(xhr, status, msg){
+				console.log(status + " " + msg);
+			}
+ 	    
+ 	});
+ });  
 
 $("#deleteQna").click(function(){
 	$.ajax({

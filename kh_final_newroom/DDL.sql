@@ -202,4 +202,4 @@ INSERT INTO QNA VALUES(5, '질문테스트5', 'abc', default, default, '테스�
 SELECT * FROM QNA;
 SELECT bnum, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ FROM qna WHERE questionnum is null ORDER BY bnum DESC;
 SELECT * FROM qna WHERE BNUM=5;
-UPDATE qna SET BREADCNT = BREADCNT+1 WHERE BNUM=5;
+UPDATE qna SET BREADCNT = BREADCNT+1 WHERE BNUM=5 AND userid != 'abc';
