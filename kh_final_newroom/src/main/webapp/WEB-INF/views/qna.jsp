@@ -104,7 +104,7 @@
 		<div>
 			<nav class="container navbar navbar-expand-sm navbar-light">
 				<button id="btnWrite" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">질문하기</button>
-				<form action="${rUrl }/qna" class="navbar-nav ml-auto" method="get">
+				<form class="navbar-nav ml-auto" method="get">
 					<div class="form-group mr-1">
 						<select name="search_type" class="form-control">
 							<option value="btitle">제목</option>
@@ -113,7 +113,7 @@
 						</select>
 					</div>
 					<div class="form-group mr-1">
-						<input id="keyword" type="text" placeholder="검색어 입력." class="form-control">
+						<input id="searchKeyword" type="text" placeholder="검색어 입력" class="form-control">
 					</div>
 					<div class="form-group">
 						<button id="btnSearch" class="btn btn-outline-primary">검색</button>
@@ -267,6 +267,29 @@ $("#deleteQna").click(function(){
 // 		}
 // 	});
 // });
+
+// 		$("#btnSearch").click(function(){
+// 			memberSearch();
+// 		});
+// 	});
+	
+// 	memberSearch = function(){
+// 		var searchType = $("select[name=search_type]").val();
+// 		var keyword = '%' + $("#searchKeyword").val() + '%';
+		
+// 		$.ajax({
+// 			url : '${rUrl}/member/search',
+// 			method : 'post',
+// 			data:{'name' : userName},
+// 			success:function(result){
+// 				updateMemberList(result);
+// 			},
+// 			error : function(xhr, status, msg){
+// 				console.log(status + " " + msg);
+// 			}
+// 		});
+// 	}
+
 </script>
 </body>
 </html>
