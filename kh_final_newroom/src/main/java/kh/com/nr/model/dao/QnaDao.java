@@ -39,7 +39,8 @@ public class QnaDao {
 	}
 
 	public QnaDto getBoard(int bnum) {
-		return sqlSession.selectOne("qna.getBoard", bnum);
+		return  sqlSession.selectOne("qna.getBoard", bnum);
+		
 	}
 
 	public int update(QnaDto dto) {

@@ -150,8 +150,8 @@
      				url : '${rUrl}/member/logout',
      				method:'get',
      				success:function(result){
-     					if(document.location.href.split("7777")[1] != '/nr/#' && 
-     							document.location.href.split("7777")[1] != '/nr/search#'){
+     					if(document.location.href.split("8090")[1] != '/nr/#' && 
+     							document.location.href.split("8090")[1] != '/nr/search#'){
 							location.href='/nr';
      					}else{
      						updateNavMenu();

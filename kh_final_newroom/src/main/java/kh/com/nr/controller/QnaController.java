@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.com.nr.model.dto.HouseDealDto;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.dto.QnaDto;
 import kh.com.nr.model.service.QnaService;
@@ -37,19 +38,18 @@ public class QnaController {
 		mv.setViewName("qna");
 		return mv;
 	}
-
-//	// 전체 질문 목록
-//	@GetMapping("/list")
-//	@ResponseBody
-//	private List<QnaDto> qnaList() {
-//		return qService.getBoardList();
-//	}
 	
 	// 질문 상세보기
 	@GetMapping("/{bnum}")
 	@ResponseBody
-	private QnaDto read(@PathVariable("bnum") int bnum) {
-		return qService.getBoard(bnum);
+	public QnaDto read(@PathVariable("bnum") int bnum) {
+		QnaDto dto = null;
+		try {
+			dto = qService.getBoard(bnum);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return dto;
 	}
 	
 	// 질문 작성
@@ -64,7 +64,7 @@ public class QnaController {
 	// 질문 수정
 	@PutMapping("")
 	@ResponseBody
-	private int qnaUpdate(@RequestBody QnaDto dto)
+	public int qnaUpdate(@RequestBody QnaDto dto)
 			throws IOException {
 		return qService.update(dto);
 	}
@@ -72,14 +72,14 @@ public class QnaController {
 	// 질문 삭제
 	@DeleteMapping("/{bnum}")
 	@ResponseBody
-	private int delete(@PathVariable("bnum") int bnum) {
+	public int delete(@PathVariable("bnum") int bnum) {
 		return qService.delete(bnum);
 	}
 	
 	// 질문 검색
 	@GetMapping("/{type}/{word}")
 	@ResponseBody
-	private List<QnaDto> search(@PathVariable("type") String type,
+	public List<QnaDto> search(@PathVariable("type") String type,
 			@PathVariable("word") String keyword) {	
 		List<QnaDto> resultList = null;
 		if (type.equals("btitle")) { // 이름으로 검색
@@ -105,7 +105,7 @@ public class QnaController {
 	//답변 수정
 	@PutMapping("/ans")
 	@ResponseBody
-	private int ansUpdate(@RequestBody QnaDto dto)
+	public int ansUpdate(@RequestBody QnaDto dto)
 			throws IOException {
 		return qService.ansUpdate(dto);
 	}
@@ -113,21 +113,21 @@ public class QnaController {
 	//답변 삭제
 	@DeleteMapping("/ans/{bnum}")
 	@ResponseBody
-	private int ansDelete(@PathVariable("bnum") int bnum) {
+	public int ansDelete(@PathVariable("bnum") int bnum) {
 		return qService.ansDelete(bnum);
 	}
 	
 	//답변 목록
 	@GetMapping("/ans/{qnum}")
 	@ResponseBody
-	private List<QnaDto> ansList(@PathVariable("qnum") int questionnum) {
+	public List<QnaDto> ansList(@PathVariable("qnum") int questionnum) {
 		return qService.getAnsList(questionnum);
 	}
 	
 	// 질문 목록
 	@GetMapping("/faq")
 	@ResponseBody
-	private List<QnaDto> getFAQList() {
+	public List<QnaDto> getFAQList() {
 		return qService.getFAQList();
 	}
 }

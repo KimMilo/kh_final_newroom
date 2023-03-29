@@ -54,6 +54,49 @@
 	    </div>
 	  </div>
 	</div>
+	<div id="detailModal" class="modal fade" role="dialog">
+	  	<div class="modal-dialog">
+	
+	    <div class="modal-content">
+	      <div class="modal-body container bg-light" id="detailContent" style="width: 700px; height: 700px; font-size: 20px;">
+	      </div>
+	      <div class="modal-footer container bg-light" style="width: 700px;">
+	      <button type="button" class="btn btn-outline-secondary updateGo" data-dismiss="modal"
+	      data-toggle="modal" data-target="#updateModal">수정</button>
+	        <button type="button" class="btn btn-outline-danger" id="deleteQna" data-dismiss="modal">삭제</button>
+	        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">닫기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<div id="updateModal" class="modal fade" role="dialog">
+	  	<div class="modal-dialog">
+			
+	    <div class="modal-content">
+	      <div class="modal-body container bg-light" id="detailContent" style="width: 700px; height: 700px; font-size: 20px;">
+	       	<form>
+		          <div class="mb-3">
+		            <label for="recipient-name" class="col-form-label">작성자 : </label>
+		            <input type="text" class="form-control" id="useridQna1" name="userid" placeholder="" disabled>
+		          </div>
+		          <div class="mb-3">
+		            <label for="recipient-name" class="col-form-label">제목 : </label>
+		            <input type="text" class="form-control" id="btitle1" name="btitle" placeholder="">
+		          </div>
+		          <div class="mb-3">
+		            <label for="message-text" class="col-form-label">내용 : </label>
+		            <textarea rows="15" class="form-control" id="bcontent1" name="bcontent" placeholder=""></textarea>
+		          </div>
+	        </form>
+	      </div>
+	      <div class="modal-footer container bg-light" style="width: 700px;">
+	      <button type="button" class="btn btn-outline-secondary" id="updateQna" data-dismiss="modal">수정완료</button>
+	        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">닫기</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 	<div id="app">
 		<br>
 		<br>
@@ -86,15 +129,20 @@
 							<th width="40%" class="text-center">제목</th>
 							<th width="15%">조회수</th>
 							<th width="15%">작성일</th>
+							<th width="15%">자세히</th>
 						</tr>
 					</thead>
 					<tbody>
 					<c:forEach var="d" items="${dto }">
 						<tr>
 							<th width="15%">${d.bnum }</th>
-							<th width="40%" class="text-center"><a href="<%=request.getContextPath()%>/qna?bnum=${d.bnum}" style="color:black;">${d.btitle }</a></th>
+							<th width="40%" class="text-center">${d.btitle }</th>
 							<th width="15%">${d.breadcnt }</th>
 							<th width="15%">${d.bwritedate }</th>
+							<th>
+							<button type="button" class="btn btn-outline-secondary btn-sm qnaDetail" id="${d.bnum }"
+							data-toggle="modal" data-target="#detailModal">Go</button>
+							</th>
 						</tr>
 					</c:forEach>
 					</tbody>
@@ -132,6 +180,58 @@ $("#btnInsert").click(function(){
 			console.log('ajax error');
 		}
 	});
+});
+
+var detailNo = '';
+$(".qnaDetail").click(function(){
+	$.ajax({
+		url:'${rUrl}/qna/'+this.id,
+		method: 'get',
+		success: function(result){
+			var html = '';
+			html += '<style="padding: 15px 0px; font-size: 36px;"><b>제목 : ' + result.btitle + '</b><br><br>';
+			html += '<style="padding: 15px 0px; font-size: 36px;"><b>작성자 : ' + result.userid + '</b> |';
+            html += '<style="padding: 15px 0px; font-size: 36px;"><b>조회수 : ' + result.breadcnt + '</b><br><br>';
+			html += '<class="card-text" style="white-space: pre-wrap"><b>내용 : <br><br>' + result.bcontent + '</b>';
+            $("#detailContent").html(html);
+            
+           	detailNo = result.bnum;
+		}
+	});
+});
+
+$(".updateGo").click(function(){
+	$.ajax({
+		url:'${rUrl}/qna/'+detailNo,
+		method: 'get',
+		success: function(result){
+			$('#useridQna1').attr("placeholder", result.userid);
+			$('#btitle1').attr("placeholder", result.btitle);
+			$('#bcontent1').attr("placeholder", result.bcontent);
+		
+		}
+	});
+});
+
+$("#updateQna").click(function(){
+	$.ajax({
+		url:'${rUrl}/qna/'+detailNo,
+		method:'update',
+		success:function(){
+			location.href="${rUrl}/qna/" +detailNo;
+		}
+	})
+});
+
+$("#deleteQna").click(function(){
+	$.ajax({
+		url:'${rUrl}/qna/'+detailNo,
+		method:'delete',
+		success:function(){
+			alert("게시글이 삭제되었습니다.");
+			location.href="${rUrl}/qna";
+		}
+	})
 });
 
 //TODO 테이블 생성 및 등록완료 처리 예정

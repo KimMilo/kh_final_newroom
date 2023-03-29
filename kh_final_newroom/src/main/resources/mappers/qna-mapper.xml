@@ -14,7 +14,7 @@
 	UPDATE qna SET BREADCNT = BREADCNT+1 WHERE BNUM=#{bnum}
 </update>
 
-<select id="getBoard" parameterType="int" resultType="QnaDto"> <!-- 질문 상세 -->
+<select id="getBoard" parameterType="_int" resultType="QnaDto"> <!-- 질문 상세 -->
 	SELECT * FROM qna WHERE BNUM=#{bnum}
 </select>
 
