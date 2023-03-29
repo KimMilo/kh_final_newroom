@@ -39,17 +39,17 @@
 	          </div>
 	          <div class="mb-3">
 	            <label for="recipient-name" class="col-form-label">제목 : </label>
-	            <input type="text" class="form-control" id="title" name="title">
+	            <input type="text" class="form-control" id="btitle" name="btitle">
 	          </div>
 	          <div class="mb-3">
 	            <label for="message-text" class="col-form-label">내용 : </label>
-	            <textarea rows="15" class="form-control" id="context" name="context"></textarea>
+	            <textarea rows="15" class="form-control" id="bcontent" name="bcontent"></textarea>
 	          </div>
 	        </form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
-	        <button type="button" class="btn btn-primary">등록</button>
+	        <button  id="btnInsert" type="button" class="btn btn-primary">등록</button>
 	      </div>
 	    </div>
 	  </div>
@@ -88,6 +88,16 @@
 							<th width="15%">작성일</th>
 						</tr>
 					</thead>
+					<tbody>
+					<c:forEach var="d" items="${dto }">
+						<tr>
+							<th width="15%">${d.bnum }</th>
+							<th width="40%" class="text-center"><a href="<%=request.getContextPath()%>/qna?bnum=${d.bnum}" style="color:black;">${d.btitle }</a></th>
+							<th width="15%">${d.breadcnt }</th>
+							<th width="15%">${d.bwritedate }</th>
+						</tr>
+					</c:forEach>
+					</tbody>
 				</table>
 			</form>
 		</div>
@@ -96,15 +106,16 @@
 	<jsp:include page="footer.jsp" />
 	
 <script>
-$("#btnWrite").click(function(){
+$("#btnInsert").click(function(){
 	$.ajax({
 		url:'${rUrl}/qna',
-		method : 'post',
-		data:{
+		method: 'post',
+		contentType: 'application/json', 
+		data:JSON.stringify({
 			'userid' : $("#useridQna").val(),
-			'title' : $("#title").val(),
-			'context' : $("#context").val(),
-		},
+			'btitle' : $("#btitle").val(),
+			'bcontent' : $("#bcontent").val(),
+		}),
 		success: function(result){
 			if(result.length > 0){
 				alert(result);

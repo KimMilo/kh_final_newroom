@@ -2,7 +2,6 @@ package kh.com.nr.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.dto.QnaDto;
@@ -31,16 +31,19 @@ public class QnaController {
 
 	//뷰 페이지 보여주기
 	@GetMapping("")
-	public String qnaView() {
-		return "qna";
+	public ModelAndView qnaView(ModelAndView mv) {
+		List<QnaDto> dto = qService.getBoardList();
+		mv.addObject("dto", dto);
+		mv.setViewName("qna");
+		return mv;
 	}
 
-	// 전체 질문 목록
-	@GetMapping("/list")
-	@ResponseBody
-	private List<QnaDto> qnaList() {
-		return qService.getBoardList();
-	}
+//	// 전체 질문 목록
+//	@GetMapping("/list")
+//	@ResponseBody
+//	private List<QnaDto> qnaList() {
+//		return qService.getBoardList();
+//	}
 	
 	// 질문 상세보기
 	@GetMapping("/{bnum}")

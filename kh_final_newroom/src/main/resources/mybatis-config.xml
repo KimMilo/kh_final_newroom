@@ -28,5 +28,6 @@
 		<mapper resource="mappers/housemap-mapper.xml"/>
 		<mapper resource="mappers/chat-mapper.xml"/>
 		<mapper resource="mappers/hospital-mapper.xml"/>
+		<mapper resource="mappers/qna-mapper.xml"/>
 	</mappers>
 </configuration>

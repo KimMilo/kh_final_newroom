@@ -183,5 +183,21 @@ CREATE TABLE COMMENT_T(
 -----------------------------------------------------------------------------------
 DROP TABLE QNA;
 CREATE TABLE QNA(
-
+    bnum NUMBER
+  , btitle VARCHAR2(100)
+  , userid VARCHAR2(20)
+  , breadcnt NUMBER DEFAULT 0
+  , bwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  , bcontent VARCHAR2(2000)
+  , questionnum NUMBER
+  , isFAQ CHAR(1) DEFAULT 'F' CHECK(isFAQ IN('T','F'))
 );
+
+INSERT INTO QNA VALUES(1, '질문테스트1', 'abc', default, default, '테스트입니다.', null, default);
+INSERT INTO QNA VALUES(2, '질문테스트2', 'abc', default, default, '테스트입니다.2', null, default);
+INSERT INTO QNA VALUES(3, '질문테스트3', 'abc', default, default, '테스트입니다.3', null, default);
+INSERT INTO QNA VALUES(4, '질문테스트4', 'abc', default, default, '테스트입니다.4', null, default);
+INSERT INTO QNA VALUES(5, '질문테스트5', 'abc', default, default, '테스트입니다.5', null, default);
+
+SELECT * FROM QNA;
+

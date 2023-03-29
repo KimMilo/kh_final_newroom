@@ -4,8 +4,10 @@
 
 <insert id="write" parameterType="QnaDto"> <!-- 질문 작성 -->
 	INSERT INTO qna 
-	(BTITLE, USERID, BREADCNT, BWRITEDATE, BCONTENT)
-	VALUES(#{btitle},#{userid},#{breadcnt},NOW(),#{bcontent})
+	(BNUM, BTITLE, USERID, BREADCNT, BWRITEDATE, BCONTENT)
+	VALUES(
+		 (SELECT NVL(MAX(BNUM), 0) + 1 FROM QNA)
+		 ,#{btitle},#{userid},default,default,#{bcontent})
 </insert>
 
 <update id="updateReadcnt" parameterType="int"> <!-- 조회수 증가 -->
@@ -17,11 +19,11 @@
 </select>
 
 <select id="getBoardList" resultType="QnaDto"> <!-- 질문 전체 목록 -->
-	SELECT * FROM qna WHERE questionnum is null
+	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ FROM qna WHERE questionnum is null ORDER BY bnum DESC
 </select>
 
 <update id="update" parameterType="QnaDto"><!-- 질문 수정 -->
-	update qna set btitle=#{btitle}, bcontent=#{bcontent}, bwritedate=NOW() where bnum=#{bnum}
+	update qna set btitle=#{btitle}, bcontent=#{bcontent}, bwritedate=default where bnum=#{bnum}
 </update>
 
 <delete id="delete" parameterType="int"> <!--  질문 삭제 -->
@@ -45,11 +47,11 @@
 <insert id="ansWrite" parameterType="QnaDto">
 	INSERT INTO qna 
 	(BTITLE, USERID, BWRITEDATE, BCONTENT, QUESTIONNUM)
-	VALUES(#{btitle},#{userid}, NOW(),#{bcontent},#{questionnum})
+	VALUES(#{btitle},#{userid}, default,#{bcontent},#{questionnum})
 </insert>
 
 <update id="ansUpdate" parameterType="QnaDto">
-	update qna set btitle=#{btitle}, bcontent=#{bcontent}, bwritedate=NOW() where bnum=#{bnum}
+	update qna set btitle=#{btitle}, bcontent=#{bcontent}, bwritedate=default where bnum=#{bnum}
 </update>
 
 <delete id="ansDelete" parameterType="int">
@@ -61,7 +63,7 @@
 </select>
 
 <select id="getFAQList" resultType="QnaDto"> 
-	SELECT * FROM qna WHERE isFAQ is true
+	SELECT * FROM qna WHERE isFAQ = 'T'
 </select>
 
 </mapper>
