@@ -81,6 +81,8 @@ public class QnaController {
 	@ResponseBody
 	public List<QnaDto> search(@PathVariable("type") String type,
 			@PathVariable("word") String keyword) {	
+		System.out.println(type);
+		System.out.println(keyword);
 		List<QnaDto> resultList = null;
 		if (type.equals("btitle")) { // 이름으로 검색
 			resultList = qService.searchTitle("%" + keyword + "%");

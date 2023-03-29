@@ -104,7 +104,7 @@
 		<div>
 			<nav class="container navbar navbar-expand-sm navbar-light">
 				<button id="btnWrite" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">질문하기</button>
-				<form class="navbar-nav ml-auto">
+				<form action="${rUrl }/qna" class="navbar-nav ml-auto" method="get">
 					<div class="form-group mr-1">
 						<select name="search_type" class="form-control">
 							<option value="btitle">제목</option>
@@ -113,7 +113,7 @@
 						</select>
 					</div>
 					<div class="form-group mr-1">
-						<input type="text" placeholder="검색어 입력." class="form-control">
+						<input id="keyword" type="text" placeholder="검색어 입력." class="form-control">
 					</div>
 					<div class="form-group">
 						<button id="btnSearch" class="btn btn-outline-primary">검색</button>
@@ -205,8 +205,8 @@ $(".updateGo").click(function(){
 		url:'${rUrl}/qna/'+detailNo,
 		method: 'get',
 		success: function(result){
-			$('#useridQna1').attr("placeholder", result.userid);
-			$('#btitle1').attr("placeholder", result.btitle);
+			$('#useridQna1').attr("value", result.userid);
+			$('#btitle1').attr("value", result.btitle);
 			$('#bcontent1').attr("placeholder", result.bcontent);
 		
 		}
@@ -252,8 +252,21 @@ $("#deleteQna").click(function(){
 	})
 });
 
-//TODO 테이블 생성 및 등록완료 처리 예정
-//     추가적으로, 검색기능 확인해야함.
+// var type = $("select[name=search_type]").val();
+// var word = $("#keyword").val();
+// $("#btnSearch").click(function(){
+// 	$.ajax({
+// 		url: '${rUrl}/qna/'+type+'/'+word,
+// 		dataType: 'JSON',
+// 		contentType: 'application/json; charset=utf-8',
+// 		method: 'get',
+// 		sucess:function(){
+// 			var type = $("select[name=search_type]").val();
+// 			var word = $("#keyword").val();
+// 			location.href="${rUrl}/qna"
+// 		}
+// 	});
+// });
 </script>
 </body>
 </html>
