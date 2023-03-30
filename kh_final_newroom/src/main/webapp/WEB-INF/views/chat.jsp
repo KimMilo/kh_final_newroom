@@ -12,6 +12,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <%
 Date today = new Date();
@@ -99,7 +100,7 @@ String time = df.format(today);
 					contentType: "application/json",
 					data: JSON.stringify({
 						fromID: "${loginInfo.userid}",
-						toID: "ssafy",
+						toID: "admin",
 						chatContent: chatContent,
 					}),
 					success: function(result){
@@ -116,7 +117,7 @@ String time = df.format(today);
 			//기존에 주고받은 채팅 목록
 			function chatListFunction(){ 
 				$.ajax({
-					url : '${rUrl}/chat/${loginInfo.userid}/ssafy',
+					url : '${rUrl}/chat/${loginInfo.userid}/admin',
 					method : 'get',
 					success: function(result){
 						if(result != ""){
@@ -142,7 +143,7 @@ String time = df.format(today);
 			//새로운 작성한 메시지가 있는지
 			function chatLoadNewMessage(){
 				$.ajax({
-					url : '${rUrl}/chat/'+lastID+'/${loginInfo.userid}/ssafy',
+					url : '${rUrl}/chat/'+lastID+'/${loginInfo.userid}/admin',
 					method : 'get',
 					success: function(result){
 						if(result == "") return;

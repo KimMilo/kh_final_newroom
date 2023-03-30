@@ -163,7 +163,7 @@ String time = df.format(today);
 				userID = this.id;
 				//기존 채팅목록 가져오기
 				$.ajax({
-					url:'${rUrl}/chat/ssafy/' + userID,
+					url:'${rUrl}/chat/admin/' + userID,
 					method: 'GET',
 					success : function(result){
 						if(result == "") return;

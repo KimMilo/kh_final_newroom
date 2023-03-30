@@ -9,15 +9,17 @@
 	</select>
 	
 	<select id="chatLoadNewMessage" parameterType="ChatDto" resultType="ChatDto"> 
-		SELECT chatID, fromID, toID, chatContent, chatTime as chatTime FROM CHAT WHERE ((fromID = #{fromID} AND toID = #{toID})
+		SELECT chatID, fromID, toID, chatContext, chatTime as chatTime FROM CHAT WHERE ((fromID = #{fromID} AND toID = #{toID})
 		OR (fromID = #{toID} AND toID = #{fromID} ))
 		AND chatID > #{chatID} ORDER BY chatTime
 	</select>
 	
 	<insert id="submit" parameterType="ChatDto">
 		INSERT INTO CHAT 
-		(fromID, toID, chatContent, chatTime)
-		VALUES(#{fromID},#{toID},#{chatContent},NOW())
+		(chatID, fromID, toID, chatContext, chatTime)
+		VALUES(
+			(SELECT NVL(MAX(chatID),0) + 1 FROM CHAT)
+			, #{fromID},#{toID},#{chatContent}, default)
 	</insert>
 	
 	
@@ -30,8 +32,10 @@
 	</select>
 	
 	<insert id="makeRoom" parameterType="String">
-		INSERT INTO CHAT_ROOM
-		(userID) VALUES (#{userID})
+		INSERT INTO CHAT_ROOM (roomID, userID) 
+		VALUES (
+			(SELECT NVL(MAX(roomId), 0) + 1 FROM CHAT_ROOM)
+			, #{userID})
 	</insert>
 	
 	<select id="chatLoadNewRoom" parameterType="int" resultType="RoomDto">

@@ -34,7 +34,7 @@
     <div class="col-3">
         <h3>Features</h3>
         	<ul class="list-unstyled">
-          		<li><a href="${rUrl}/noticeList.do" class="text-muted">공지사항</a></li>
+          		<li><a href="${rUrl}/noticeList" class="text-muted">공지사항</a></li>
          		<li><a href="${rUrl}/qna" class="text-muted">Q&A</a></li>
         	</ul>
       	</div>
@@ -45,6 +45,16 @@
         		</ul>
       		</div>
     	</div>
+    	
+    	<div>
+    		<c:if test="${loginInfo.mrole eq 1">
+				<a href="${rUrl }/chatManager" class="text-muted">채팅</a>
+    		</c:if>
+    		<c:if test="${loginInfo.mrole eq 0">
+    			<a href="${rUrl }/chat" class="text-muted">채팅</a>
+    		</c:if>
+    	</div>
+    	
 	<!-- CopyRight -->
     <div class="container">
      	 <span class="text-muted float-right">Copyright 2023. 김태룡. ALL RIGHTS RESERVED</span>

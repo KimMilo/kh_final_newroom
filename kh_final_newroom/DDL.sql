@@ -14,7 +14,7 @@ CREATE TABLE CHAT(
 INSERT INTO CHAT VALUES(1, 'aaa', 'bbb', '안녕', DEFAULT);
 INSERT INTO CHAT VALUES(2, 'bbb', 'bbb', '안녕', DEFAULT);
 INSERT INTO CHAT VALUES(3, 'aaa', 'bbb', '안녕', DEFAULT);
-
+INSERT INTO CHAT VALUES(4, 'abc', 'admin', '안녕', DEFAULT);
 
 SELECT * FROM CHAT;
 SELECT chatID, fromID, toID, chatContext, chatTime 

@@ -24,6 +24,14 @@ public class ChatController {
 	@Autowired
 	private ChatService chatService;
 	
+	@GetMapping("")
+	@ResponseBody
+	public ModelAndView getStartChat(ModelAndView mv) {
+		
+		mv.setViewName("chat");
+		return mv;
+	}
+	
 	// 채팅 목록 조회
 	@GetMapping("/{fromID}/{toID}")
 	@ResponseBody
@@ -58,21 +66,22 @@ public class ChatController {
 		int result = chatService.submit(dto);
 		
 		//관리자 채팅방 생성
-		if(!(dto.getFromID().equals("ssafy"))) { //관리자(ssafy)가 보내는 메시지는 채팅방 생성x
+		if(!(dto.getFromID().equals("admin"))) { //관리자(admin)가 보내는 메시지는 채팅방 생성x
 			chatService.makeRoom(dto.getFromID());
 		}
 		return result;
 	}
 	
 	// <------------------------------------관리자용-------------------------------------->
-	// 전체 채팅방 리스트 조회
-	@GetMapping("")
-	@ResponseBody
-	public List<RoomDto> getRoomList() throws Exception {
-		System.out.println("=============전체 채팅방 조회");
-		List<RoomDto> rList = chatService.getRoomList();
-		return rList;
-	}
+	//전체 채팅방 리스트 조회
+//	@GetMapping("")
+//	@ResponseBody
+//	public List<RoomDto> getRoomList() throws Exception {
+//		System.out.println("=============전체 채팅방 조회");
+//		List<RoomDto> rList = chatService.getRoomList();
+//		return rList;
+//	}
+	
 	
 	// 새로운 채팅방 조회
 	@GetMapping("/{lastRoomID}")

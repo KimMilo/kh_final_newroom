@@ -60,7 +60,7 @@
 				<c:forEach items="${pageDto.noticeList}" var="dto">
 					<tr>
 						<td>${dto.bnum}</td>
-						<td id="title"><a href="${rUrl}/noticeRead?bnum=${dto.bnum}">${dto.btitle} 
+						<td id="title"><a href="${rUrl}/noticeRead?bnum=${dto.bnum}" style="color:black;">${dto.btitle} 
 						<c:if test="${!empty dto.cmtCnt}">
 							[${dto.cmtCnt}]
 						</c:if>
