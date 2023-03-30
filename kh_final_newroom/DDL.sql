@@ -173,13 +173,36 @@ select i.userid, i.inum, d.area, d.floor, d.dealAmount, f.AptName, f.img
 
 DROP TABLE NOTICE;
 CREATE TABLE NOTICE(
-
+    bnum NUMBER
+  , btitle VARCHAR2(100)
+  , userid VARCHAR2(20)
+  , breadcnt NUMBER DEFAULT 0
+  , bwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  , bcontent VARCHAR2(2000)
+  , cmtcnt NUMBER DEFAULT 0
 );
+
+INSERT INTO NOTICE VALUES(1, '공지테스트1', 'admin', default, default, '테스트입니다1.', default);
+INSERT INTO NOTICE VALUES(2, '공지테스트2', 'admin', default, default, '테스트입니다2.', default);
+INSERT INTO NOTICE VALUES(3, '공지테스트3', 'admin', default, default, '테스트입니다3.', default);
+INSERT INTO NOTICE VALUES(4, '공지테스트4', 'admin', default, default, '테스트입니다4.', default);
 
 DROP TABLE COMMENT_T;
 CREATE TABLE COMMENT_T(
-
+    cnum NUMBER
+  , bnum NUMBER
+  , cwriter VARCHAR2(20)
+  , ccontent VARCHAR2(2000)
+  , cwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO COMMENT_T VALUES(1, 1, 'admin', 'comment테스트입니다1.', default);
+INSERT INTO COMMENT_T VALUES(2, 1, 'admin', 'comment테스트입니다2.', default);
+INSERT INTO COMMENT_T VALUES(3, 1, 'admin', 'comment테스트입니다3.', default);
+
+
+
+
 -----------------------------------------------------------------------------------
 DROP TABLE QNA;
 CREATE TABLE QNA(

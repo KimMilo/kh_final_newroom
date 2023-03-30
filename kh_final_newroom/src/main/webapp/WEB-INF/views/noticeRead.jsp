@@ -55,13 +55,13 @@
 					<c:if test="${loginInfo.userid eq dto.userid}">
 						<input type="button" class="btn btn-outline-primary mr-1"
 							value="수정하기"
-							onclick="location.href='${rUrl}/noticeUpdate.do?bnum=${dto.bnum}'">
+							onclick="location.href='${rUrl}/noticeUpdate?bnum=${dto.bnum}'">
 						<input type="button" class="btn btn-outline-danger mr-1"
 							value="삭제하기"
-							onclick="location.href='${rUrl}/noticeDelete.do?bnum=${dto.bnum}'">
+							onclick="location.href='${rUrl}/noticeDelete?bnum=${dto.bnum}'">
 					</c:if>
 					<input type="button" class="btn btn-outline-secondary" value="목록"
-						onclick="location.href='${rUrl}/noticeList.do'">
+						onclick="location.href='${rUrl}/noticeList'">
 				</div>
 			</form>
 		</div>
@@ -96,7 +96,7 @@
 <script type="text/javascript">
 	function getCommentList(){
 		$.ajax({
-			url : '${rUrl}/comment.do',
+			url : '${rUrl}/comment',
 			data : {'bnum':'${dto.bnum}'},
 			method : 'get',
 			contentType : "application/json; charset:UTF-8",
@@ -139,7 +139,7 @@
 		getCommentList();
 		$('#cmtBtn').click(function(){
 			$.ajax({
-				url:"${rUrl}/comment.do",
+				url:"${rUrl}/comment",
 				data:{'bnum':'${dto.bnum}', 'content':$('#cmt').val()},
 				method:'post',
 				success:function(result){

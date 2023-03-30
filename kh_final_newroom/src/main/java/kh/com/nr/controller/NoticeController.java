@@ -24,7 +24,7 @@ public class NoticeController{
 	private NoticeService nservice;
 
 	//글 검색하기
-	@PostMapping("noticeSearch.do") 
+	@PostMapping("noticeSearch") 
 	private String search(String search_type, String keyword, Model model) {
 		List<NoticeDto> resultList = null;
 		String typeName = null;
@@ -45,7 +45,7 @@ public class NoticeController{
 	}
 
 	// 글삭제하기
-	@GetMapping("noticeDelete.do") 
+	@GetMapping("noticeDelete") 
 	private String delete(int bnum, Model model) {
 		System.out.println(bnum);
 		nservice.delete(bnum);
@@ -53,7 +53,7 @@ public class NoticeController{
 	}
 	
 	//글 수정페이지 이동
-	@GetMapping("noticeUpdate.do") 
+	@GetMapping("noticeUpdate") 
 	private String noticeUpdate(int bnum, Model model) throws IOException {
 		NoticeDto dto = nservice.getBoard(bnum);
 		model.addAttribute("dto", dto);	
@@ -61,14 +61,14 @@ public class NoticeController{
 	}
 
 	//글 수정하기
-	@PostMapping("noticeUpdate.do") 
+	@PostMapping("noticeUpdate") 
 	private String noticeUpdate(NoticeDto dto, HttpSession session, HttpServletResponse resp, Model model) throws IOException {
 		nservice.update(dto);
 		return read(dto.getBnum(), model);
 	}
 
 	//글 상세보기
-	@GetMapping("noticeRead.do") 
+	@GetMapping("noticeRead") 
 	private String read(int bnum, Model model) {
 		NoticeDto dto = nservice.getBoard(bnum);
 		model.addAttribute("dto", dto);	
@@ -76,13 +76,13 @@ public class NoticeController{
 	}
 
 	//글작성 페이지 이동
-	@GetMapping("noticeWrite.do") 
+	@GetMapping("noticeWrite") 
 	private String noticeWritePage() {
 		return "noticeWrite";
 	}
 		
 	//글작성하기
-	@PostMapping("noticeWrite.do") 
+	@PostMapping("noticeWrite") 
 	private String write(NoticeDto dto, HttpSession session, Model model) {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
 		dto.setUserid(loginInfo.getUserid());
@@ -91,7 +91,7 @@ public class NoticeController{
 	}
 
 	//전체 목록 보기
-	@GetMapping("noticeList.do") 
+	@GetMapping("noticeList") 
 	private String noticeList(String pageStr, Model model) {
 		// 모든 도서 목록 보기 기능
 		int page = 1; // 기본 1페이지

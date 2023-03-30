@@ -24,11 +24,11 @@
 
     <nav class="container navbar navbar-expand-sm navbar-light">
     	<c:if test="${loginInfo.role eq 1}"><!-- 관리자일때만 -->
-        	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/noticeWritePage.do'">글쓰기</button>
+        	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/noticeWritePage'">글쓰기</button>
         </c:if>
-       <input type="button" class="btn btn-outline-secondary ml-2" value="목록" onclick="location.href='${rUrl}/noticeList.do'">
+       <input type="button" class="btn btn-outline-secondary ml-2" value="목록" onclick="location.href='${rUrl}/noticeList'">
        
-        <form class="navbar-nav ml-auto" action="${rUrl}/noticeSearch.do" method="post">
+        <form class="navbar-nav ml-auto" action="${rUrl}/noticeSearch" method="post">
             <div class="form-group mr-1">
                 <select class="form-control" name="search_type">
                     <option value="btitle">제목</option>
@@ -66,7 +66,7 @@
 				<c:forEach items="${resultList}" var="dto">
 					<tr>
 						<td>${dto.bnum}</td>
-						<td id="title"><a href="noticeRead.do?bnum=${dto.bnum}">${dto.btitle}</a></td>
+						<td id="title"><a href="noticeRead?bnum=${dto.bnum}">${dto.btitle}</a></td>
 						<td>${dto.userid}</td>
 						<td>${dto.breadcnt}</td>
 						<td>${dto.bwritedate}</td>

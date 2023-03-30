@@ -21,10 +21,10 @@
     </div>
 
     <nav class="container navbar navbar-expand-sm navbar-light">
-    	<c:if test="${loginInfo.role eq 1}">
-        	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/noticeWrite.do'">글쓰기</button>
+    	<c:if test="${loginInfo.mrole eq 1}">
+        	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/noticeWrite'">글쓰기</button>
         </c:if>
-        <form class="navbar-nav ml-auto" action="${rUrl}/noticeSearch.do" method="post">
+        <form class="navbar-nav ml-auto" action="${rUrl}/noticeSearch" method="post">
             <div class="form-group mr-1">
                 <select class="form-control" name="search_type">
                     <option value="btitle">제목</option>
@@ -33,7 +33,7 @@
                 </select>
             </div>
             <div class="form-group mr-1">
-                <input type="text" id="userId" class="form-control" name="keyword" placeholder="검색어 입력.">
+                <input type="text" id="userId" class="form-control" name="keyword" placeholder="검색어 입력">
             </div>
             <div class="form-group">
                 <button id="btnWrite" class="btn btn-outline-primary">검색</button>
@@ -60,7 +60,7 @@
 				<c:forEach items="${pageDto.noticeList}" var="dto">
 					<tr>
 						<td>${dto.bnum}</td>
-						<td id="title"><a href="${rUrl}/noticeRead.do?bnum=${dto.bnum}">${dto.btitle} 
+						<td id="title"><a href="${rUrl}/noticeRead?bnum=${dto.bnum}">${dto.btitle} 
 						<c:if test="${!empty dto.cmtCnt}">
 							[${dto.cmtCnt}]
 						</c:if>
@@ -78,18 +78,18 @@
   <div class="container" style="margin-bottom:0">
     <ul class="pagination justify-content-center">
     <c:if test="${pageDto.startPage>1}">
-		<a href="notice.do?action=listAll&page=${pageDto.startPage-1}">이전</a>
+		<a href="notice?action=listAll&page=${pageDto.startPage-1}">이전</a>
     </c:if>
     <c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}" var="i">
     	<li class="page-item">
-			<a class="page-link" href="noticeList.do?pageStr=${i}">
+			<a class="page-link" href="noticeList?pageStr=${i}">
 				<c:if test="${i eq pageDto.curPage}">${i}</c:if>
 				<c:if test="${i ne pageDto.curPage}">${i}</c:if>
 			</a>
 		</li>
 	</c:forEach>
 	<c:if test="${pageDto.endPage < pageDto.totalPage}">
-		<a href="notice.do?action=listAll&page=${pageDto.endPage+1}">다음</a>
+		<a href="notice?action=listAll&page=${pageDto.endPage+1}">다음</a>
 	</c:if>
     </ul>
   </div>
