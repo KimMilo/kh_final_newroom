@@ -46,14 +46,14 @@
       		</div>
     	</div>
     	
-    	<div>
-    		<c:if test="${loginInfo.mrole eq 1">
-				<a href="${rUrl }/chatManager" class="text-muted">채팅</a>
-    		</c:if>
-    		<c:if test="${loginInfo.mrole eq 0">
-    			<a href="${rUrl }/chat" class="text-muted">채팅</a>
-    		</c:if>
-    	</div>
+<!--     	<div> -->
+<%--     		<c:if test="${loginInfo.mrole eq 1"> --%>
+<%-- 				<a href="${rUrl }/chatManager" class="text-muted">채팅</a> --%>
+<%--     		</c:if> --%>
+<%--     		<c:if test="${loginInfo.mrole eq 0"> --%>
+<%--     			<a href="${rUrl }/chat" class="text-muted">채팅</a> --%>
+<%--     		</c:if> --%>
+<!--     	</div> -->
     	
 	<!-- CopyRight -->
     <div class="container">
