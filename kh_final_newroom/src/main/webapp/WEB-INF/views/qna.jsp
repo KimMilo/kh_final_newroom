@@ -14,13 +14,10 @@
 <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/comment.css" />
 <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <title>NewRoom-Q&A</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
@@ -104,7 +101,7 @@
 		<div>
 			<nav class="container navbar navbar-expand-sm navbar-light">
 				<button id="btnWrite" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">질문하기</button>
-				<form class="navbar-nav ml-auto" method="get">
+				<form class="navbar-nav ml-auto">
 					<div class="form-group mr-1">
 						<select name="search_type" class="form-control">
 							<option value="btitle">제목</option>
@@ -112,13 +109,13 @@
 							<option value="userid">작성자</option>
 						</select>
 					</div>
+				</form>
 					<div class="form-group mr-1">
 						<input id="searchKeyword" type="text" placeholder="검색어 입력" class="form-control">
 					</div>
 					<div class="form-group">
 						<button id="btnSearch" class="btn btn-outline-primary">검색</button>
 					</div>
-				</form>
 			</nav>
 		<div class="container my-3">
 			<form role="form" method="get">
@@ -132,17 +129,17 @@
 							<th width="15%">자세히</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="qnaListTable">
 					<c:forEach var="d" items="${dto }">
 						<tr>
-							<th width="15%">${d.bnum }</th>
-							<th width="40%" class="text-center">${d.btitle }</th>
-							<th width="15%">${d.breadcnt }</th>
-							<th width="15%">${d.bwritedate }</th>
-							<th>
+							<td width="15%">${d.bnum }</td>
+							<td width="40%" class="text-center">${d.btitle }</td>
+							<td width="15%">${d.breadcnt }</td>
+							<td width="15%">${d.bwritedate }</td>
+							<td>
 							<button type="button" class="btn btn-outline-secondary btn-sm qnaDetail" id="${d.bnum }"
 							data-toggle="modal" data-target="#detailModal">Go</button>
-							</th>
+							</td>
 						</tr>
 					</c:forEach>
 					</tbody>
@@ -185,7 +182,7 @@ $("#btnInsert").click(function(){
 var detailNo = '';
 $(".qnaDetail").click(function(){
 	$.ajax({
-		url:'${rUrl}/qna/'+this.id,
+		url:'${rUrl}/qna/'+ this.id,
 		method: 'get',
 		success: function(result){
 			var html = '';
@@ -199,6 +196,7 @@ $(".qnaDetail").click(function(){
 		}
 	});
 });
+
 
 $(".updateGo").click(function(){
 	$.ajax({
@@ -226,12 +224,7 @@ $("#updateQna").click(function(){
  		contentType: 'application/json; charset=utf-8',
  		data: JSON.stringify(dto),
  	    success:function(result){
- 	    	if(result > 0){
   	    	alert("수정 하였습니다.");
- 	    	}else{
- 	    		alert("수정에 실패하였습니다.");
- 	    	}
- 	    	
 	    	location.href="${rUrl}/qna/";
  	    },
  	    error : function(xhr, status, msg){
@@ -252,44 +245,108 @@ $("#deleteQna").click(function(){
 	})
 });
 
-// var type = $("select[name=search_type]").val();
-// var word = $("#keyword").val();
-// $("#btnSearch").click(function(){
-// 	$.ajax({
-// 		url: '${rUrl}/qna/'+type+'/'+word,
-// 		dataType: 'JSON',
-// 		contentType: 'application/json; charset=utf-8',
-// 		method: 'get',
-// 		sucess:function(){
-// 			var type = $("select[name=search_type]").val();
-// 			var word = $("#keyword").val();
-// 			location.href="${rUrl}/qna"
-// 		}
-// 	});
-// });
 
-// 		$("#btnSearch").click(function(){
-// 			memberSearch();
-// 		});
-// 	});
+$("#btnSearch").click(function(){
+	qnaSearch();
+});
 	
-// 	memberSearch = function(){
-// 		var searchType = $("select[name=search_type]").val();
-// 		var keyword = '%' + $("#searchKeyword").val() + '%';
-		
-// 		$.ajax({
-// 			url : '${rUrl}/member/search',
-// 			method : 'post',
-// 			data:{'name' : userName},
-// 			success:function(result){
-// 				updateMemberList(result);
-// 			},
-// 			error : function(xhr, status, msg){
-// 				console.log(status + " " + msg);
-// 			}
-// 		});
-// 	}
+qnaSearch = function(){
+	var searchType = $("select[name=search_type]").val();
+	var word = $("#searchKeyword").val();
+	$.ajax({
+		url : '${rUrl}/qna/'+searchType+'/'+word,
+		method : 'get',
+		data:{
+			'type' : searchType,
+			'word' : word
+		},
+		success:function(result){
+			updateQnaList(result);
+		},
+		error : function(xhr, status, msg){
+			console.log(status + " " + msg);
+		}
+	});
+}
+	
+updateQnaList = function(resultList){
+	
+	var content = '';
+	if(resultList.length == 0){
+		content += '<tr><td colspan="6">검색 결과가 없습니다.</td></tr>';
+	}else{
+		for(var i = 0, qna; qna=resultList[i]; i++){
+			content += '<tr>'
+				+ '<td>' + qna.bnum + '</td>'
+				+ '<td>' + qna.btitle + '</td>'
+				+ '<td>' + qna.breadcnt + '</td>'
+				+ '<td>' + qna.bwritedate + '</td>'
+				+ '<td><button type="button" class="btn btn-outline-secondary btn-sm qnaDetail" id="'+qna.bnum+'" data-toggle="modal" data-target="#detailModal">Go</button></td></tr>';
+		}
+	}
+	$("#qnaListTable").html(content);
+	var detailNo = '';
+	$(".qnaDetail").click(function(){
+		$.ajax({
+			url:'${rUrl}/qna/'+ this.id,
+			method: 'get',
+			success: function(result){
+				var html = '';
+				html += '<style="padding: 15px 0px; font-size: 36px;"><b>제목 : ' + result.btitle + '</b><br><br>';
+				html += '<style="padding: 15px 0px; font-size: 36px;"><b>작성자 : ' + result.userid + '</b> |';
+	            html += '<style="padding: 15px 0px; font-size: 36px;"><b>조회수 : ' + result.breadcnt + '</b><br><br>';
+				html += '<class="card-text" style="white-space: pre-wrap"><b>내용 : <br><br>' + result.bcontent + '</b>';
+	            $("#detailContent").html(html);
+	            
+	           	detailNo = result.bnum;
+			}
+		});
+	});
+	$(".updateGo").click(function(){
+		$.ajax({
+			url:'${rUrl}/qna/'+detailNo,
+			method: 'get',
+			success: function(result){
+				$('#useridQna1').attr("value", result.userid);
+				$('#btitle1').attr("value", result.btitle);
+				$('#bcontent1').attr("placeholder", result.bcontent);
+			
+			}
+		});
+	});
 
+	$("#updateQna").click(function(){
+	 	var dto = {
+	 		'bnum' : detailNo,
+			'userid' : $("#useridQna1").val(),
+			'btitle' : $("#btitle1").val(),
+			'bcontent' : $("#bcontent1").val(),
+	 	}
+	 	$.ajax({
+	 		url : '${rUrl}/qna',
+	 		method: 'put',
+	 		contentType: 'application/json; charset=utf-8',
+	 		data: JSON.stringify(dto),
+	 	    success:function(result){
+	  	    	location.href="${rUrl}/qna";
+	 	    },
+	 	    error : function(xhr, status, msg){
+					console.log(status + " " + msg);
+				}
+	 	});
+	 });  
+
+	$("#deleteQna").click(function(){
+		$.ajax({
+			url:'${rUrl}/qna/'+detailNo,
+			method:'delete',
+			success:function(){
+				alert("게시글이 삭제되었습니다.");
+				location.href="${rUrl}/qna";
+			}
+		})
+	});
+}
 </script>
 </body>
 </html>

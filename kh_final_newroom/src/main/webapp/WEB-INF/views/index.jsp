@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" import="java.util.*" import="java.text.SimpleDateFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="r" value="${pageContext.request.contextPath}" />
+<c:set var="rUrl" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -20,7 +20,7 @@
 	}
 
 </style>
-<link rel="stylesheet" type="text/css" href="${r}/resources/css/style.css" />
+<link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <title>메인페이지</title>
@@ -40,7 +40,7 @@
 			</h6>
 			<hr class="my-4">
 			<div class="btn-group">
-				<form action="${r}/search" method="post" class="form-inline">
+				<form action="${rUrl}/search" method="post" class="form-inline">
 					<div class="form-group mx-md-1">
 						<select name="sido" id="sido" class="form-control">
 							<option selected disabled>시/도</option>

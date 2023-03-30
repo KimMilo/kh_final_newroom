@@ -43,6 +43,7 @@ public class QnaController {
 	@GetMapping("/{bnum}")
 	@ResponseBody
 	public QnaDto read(@PathVariable("bnum") int bnum) {
+		System.out.println(bnum);
 		QnaDto dto = null;
 		try {
 			dto = qService.getBoard(bnum);
@@ -77,12 +78,10 @@ public class QnaController {
 	}
 	
 	// 질문 검색
-	@GetMapping("/{type}/{word}")
+	@GetMapping("{type}/{word}")
 	@ResponseBody
 	public List<QnaDto> search(@PathVariable("type") String type,
 			@PathVariable("word") String keyword) {	
-		System.out.println(type);
-		System.out.println(keyword);
 		List<QnaDto> resultList = null;
 		if (type.equals("btitle")) { // 이름으로 검색
 			resultList = qService.searchTitle("%" + keyword + "%");
@@ -91,6 +90,7 @@ public class QnaController {
 		} else if (type.equals("userid")) {// 작성자로 검색
 			resultList = qService.searchWriter("%" + keyword + "%");
 		}
+	
 		return resultList;
 	}
 
