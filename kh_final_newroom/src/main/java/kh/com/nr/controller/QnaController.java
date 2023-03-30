@@ -93,6 +93,7 @@ public class QnaController {
 		return resultList;
 	}
 
+	//TODO 답변 COMMENT 테이블 새로 시작
 //	//답변 작성
 //	@PostMapping("/ans")
 //	@ResponseBody
