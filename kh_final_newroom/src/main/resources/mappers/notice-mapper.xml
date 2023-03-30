@@ -7,7 +7,7 @@
 </select>
 
 <select id="selectPage" parameterType="hashMap" resultType="NoticeDto">
-	SELECT * FROM notice ORDER BY bnum DESC 
+	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM'),bcontent,cmtcnt FROM notice ORDER BY bnum DESC 
 	<!-- LIMIT #{startRow}, #{COUNT_PER_PAGE}-->
 </select>
 

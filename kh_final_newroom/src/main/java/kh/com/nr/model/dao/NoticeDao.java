@@ -41,7 +41,7 @@ public class NoticeDao {
 	}
 
 	public void updateReadcnt(int bnum) {
-		sqlSession.update("notice.updateRedcnt", bnum);
+		sqlSession.update("notice.updateReadcnt", bnum);
 	}
 
 	public NoticeDto selectBoard(int bnum) {
