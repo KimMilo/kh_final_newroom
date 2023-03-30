@@ -43,7 +43,6 @@ public class QnaController {
 	@GetMapping("/{bnum}")
 	@ResponseBody
 	public QnaDto read(@PathVariable("bnum") int bnum) {
-		System.out.println(bnum);
 		QnaDto dto = null;
 		try {
 			dto = qService.getBoard(bnum);
@@ -94,42 +93,42 @@ public class QnaController {
 		return resultList;
 	}
 
-	//답변 작성
-	@PostMapping("/ans")
-	@ResponseBody
-   	public int addAnswer(@RequestBody QnaDto dto, HttpSession session) throws Exception {
-		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
-		dto.setBtitle("reply");
-		dto.setUserid(loginInfo.getUserid());
-		return qService.ansWrite(dto);
-	}
-	
-	//답변 수정
-	@PutMapping("/ans")
-	@ResponseBody
-	public int ansUpdate(@RequestBody QnaDto dto)
-			throws IOException {
-		return qService.ansUpdate(dto);
-	}
-	
-	//답변 삭제
-	@DeleteMapping("/ans/{bnum}")
-	@ResponseBody
-	public int ansDelete(@PathVariable("bnum") int bnum) {
-		return qService.ansDelete(bnum);
-	}
-	
-	//답변 목록
-	@GetMapping("/ans/{qnum}")
-	@ResponseBody
-	public List<QnaDto> ansList(@PathVariable("qnum") int questionnum) {
-		return qService.getAnsList(questionnum);
-	}
-	
-	// 질문 목록
-	@GetMapping("/faq")
-	@ResponseBody
-	public List<QnaDto> getFAQList() {
-		return qService.getFAQList();
-	}
+//	//답변 작성
+//	@PostMapping("/ans")
+//	@ResponseBody
+//   	public int addAnswer(@RequestBody QnaDto dto, HttpSession session) throws Exception {
+//		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
+//		dto.setBtitle("reply");
+//		dto.setUserid(loginInfo.getUserid());
+//		return qService.ansWrite(dto);
+//	}
+//	
+//	//답변 수정
+//	@PutMapping("/ans")
+//	@ResponseBody
+//	public int ansUpdate(@RequestBody QnaDto dto)
+//			throws IOException {
+//		return qService.ansUpdate(dto);
+//	}
+//	
+//	//답변 삭제
+//	@DeleteMapping("/ans/{bnum}")
+//	@ResponseBody
+//	public int ansDelete(@PathVariable("bnum") int bnum) {
+//		return qService.ansDelete(bnum);
+//	}
+//	
+//	//답변 목록
+//	@GetMapping("/ans/{qnum}")
+//	@ResponseBody
+//	public List<QnaDto> ansList(@PathVariable("qnum") int questionnum) {
+//		return qService.getAnsList(questionnum);
+//	}
+//	
+//	// 질문 목록
+//	@GetMapping("/faq")
+//	@ResponseBody
+//	public List<QnaDto> getFAQList() {
+//		return qService.getFAQList();
+//	}
 }

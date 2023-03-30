@@ -53,20 +53,27 @@
 	</div>
 	<div id="detailModal" class="modal fade" role="dialog">
 	  	<div class="modal-dialog">
-	
-	    <div class="modal-content">
-	      <div class="modal-body container bg-light" id="detailContent" style="width: 700px; height: 700px; font-size: 20px;">
-	      </div>
-	      <div class="modal-footer container bg-light" style="width: 700px;">
-	      <button type="button" class="btn btn-outline-secondary updateGo" data-dismiss="modal"
-	      data-toggle="modal" data-target="#updateModal">수정</button>
-	        <button type="button" class="btn btn-outline-danger" id="deleteQna" data-dismiss="modal">삭제</button>
-	        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">닫기</button>
-	      </div>
-	    </div>
-	  </div>
+	    	<div class="modal-content">
+	      		<div class="modal-body container bg-light" id="detailContent" style="width: 700px; height: 700px; font-size: 20px;">
+	      		</div>
+	      		<div class="modal-body container bg-light" style="width: 700px;">
+	      	  		<div class="form-floating">
+						  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+						  <label for="floatingTextarea2"><img src="${rUrl }/resources/img/profile.5405d77c.png"  class="pe-1" width="25px" height="25px" alt="">Comment</label>
+					</div>
+		      		<button type="button" class="btn btn-outline-success addComment" data-dismiss="modal" 
+	     			 data-toggle="modal" data-target="#addModal" style="float:right;">답변 등록</button>
+		     	</div>
+	     		<div class="modal-footer container bg-light" style="width: 700px;">
+		      		<button type="button" class="btn btn-outline-secondary updateGo" data-dismiss="modal"
+		      		data-toggle="modal" data-target="#updateModal">수정</button>
+		       		<button type="button" class="btn btn-outline-danger" id="deleteQna" data-dismiss="modal">삭제</button>
+		       		<button type="button" class="btn btn-outline-primary" data-dismiss="modal">닫기</button>
+	     		</div>
+	    	</div>
+	  	</div>
 	</div>
-	
+		
 	<div id="updateModal" class="modal fade" role="dialog">
 	  	<div class="modal-dialog">
 			

@@ -9,7 +9,7 @@
 	</select>
 	<insert id="insertComment" parameterType="CommentDto">
 		INSERT INTO comment_t(BNUM, CWRITER, CCONTENT, CWRITEDATE)
-		VALUES(#{bnum},#{cwriter},#{ccontent},NOW())
+		VALUES(#{bnum},#{cwriter},#{ccontent},default)
 	</insert>
 	<delete id="deleteComment" parameterType="CommentDto">
 		DELETE FROM comment_t WHERE cnum = #{cnum} and cwriter=#{cwriter}

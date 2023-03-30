@@ -29,5 +29,7 @@
 		<mapper resource="mappers/chat-mapper.xml"/>
 		<mapper resource="mappers/hospital-mapper.xml"/>
 		<mapper resource="mappers/qna-mapper.xml"/>
+		<mapper resource="mappers/comment-mapper.xml"/>
+		<mapper resource="mappers/notice-mapper.xml"/>
 	</mappers>
 </configuration>
