@@ -23,7 +23,7 @@
     </div>
 
     <nav class="container navbar navbar-expand-sm navbar-light">
-    	<c:if test="${loginInfo.role eq 1}"><!-- 관리자일때만 -->
+    	<c:if test="${loginInfo.mrole eq 1}"><!-- 관리자일때만 -->
         	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/noticeWritePage'">글쓰기</button>
         </c:if>
        <input type="button" class="btn btn-outline-secondary ml-2" value="목록" onclick="location.href='${rUrl}/noticeList'">

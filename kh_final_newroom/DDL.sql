@@ -187,6 +187,9 @@ INSERT INTO NOTICE VALUES(2, '공지테스트2', 'admin', default, default, '테
 INSERT INTO NOTICE VALUES(3, '공지테스트3', 'admin', default, default, '테스트입니다3.', default);
 INSERT INTO NOTICE VALUES(4, '공지테스트4', 'admin', default, default, '테스트입니다4.', default);
 
+SELECT * FROM NOTICE;
+SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM'),bcontent,cmtcnt FROM notice ORDER BY bnum DESC;
+-----------------------------------------------------------------------------------------------
 DROP TABLE COMMENT_T;
 CREATE TABLE COMMENT_T(
     cnum NUMBER
