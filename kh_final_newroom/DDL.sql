@@ -10,11 +10,6 @@ CREATE TABLE CHAT(
   , chatContent VARCHAR2(2000)
   , chatTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-------------------------------------------------------------------------------
-INSERT INTO CHAT VALUES(1, 'aaa', 'bbb', '안녕', DEFAULT);
-INSERT INTO CHAT VALUES(2, 'bbb', 'bbb', '안녕', DEFAULT);
-INSERT INTO CHAT VALUES(3, 'aaa', 'bbb', '안녕', DEFAULT);
-INSERT INTO CHAT VALUES(4, 'abc', 'admin', '안녕', DEFAULT);
 
 SELECT * FROM CHAT;
 SELECT chatID, fromID, toID, chatContent, chatTime 
@@ -34,9 +29,7 @@ CREATE TABLE CHAT_ROOM(
     roomID NUMBER PRIMARY KEY
   , userID VARCHAR2(20)
 );
-INSERT INTO CHAT_ROOM VALUES(1, 'abc');
-INSERT INTO CHAT_ROOM VALUES(2, 'abc');
-INSERT INTO CHAT_ROOM VALUES(3, 'abc');
+
 
 SELECT * FROM CHAT_ROOM;
 
