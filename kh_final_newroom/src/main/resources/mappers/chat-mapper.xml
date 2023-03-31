@@ -4,7 +4,7 @@
 	<select id="getChatListByID" parameterType="ChatDto" resultType="ChatDto"> 
 		SELECT chatID, fromID, toID, chatContent, chatTime
           FROM CHAT 
-         WHERE (fromID = #{fromID} AND toID = #{toID})
+         WHERE (fromID = #{fromID} AND toID = #{toID}) 
 		    OR (fromID = #{toID} AND toID = #{fromID}) 
 		 ORDER BY chatTime
 	</select>
