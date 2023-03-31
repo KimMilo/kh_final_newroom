@@ -1,6 +1,6 @@
 --DDL
--- ì¼ë‹¨ í…ŒìŠ¤íŠ¸ìš©ìœ¼ë¡œë§Œ ìƒì„± í•˜ëŠ”ê±°ê³  ìƒì„± ëŒ€ì¶© ë§ˆë¬´ë¦¬ ë˜ë©´ ERD ê·¸ë ¤ê°€ë©´ì„œ êµ¬ì¡° ì§œì•¼ë˜ê³ 
--- insert ë“± ì§¤ ë•Œë„ ì„œë¸Œì¿¼ë¦¬ ì–´ë–»ê²Œ ì§„í–‰í•  ê²ƒì¸ì§€ ê°™ì´ ê³ ë¯¼í•´ë´ì•¼ í•  ê²ƒ ê°™ë‹¤.
+-- ÀÏ´Ü Å×½ºÆ®¿ëÀ¸·Î¸¸ »ý¼º ÇÏ´Â°Å°í »ý¼º ´ëÃæ ¸¶¹«¸® µÇ¸é ERD ±×·Á°¡¸é¼­ ±¸Á¶ Â¥¾ßµÇ°í
+-- insert µî Â© ¶§µµ ¼­ºêÄõ¸® ¾î¶»°Ô ÁøÇàÇÒ °ÍÀÎÁö °°ÀÌ °í¹ÎÇØºÁ¾ß ÇÒ °Í °°´Ù.
 
 DROP TABLE CHAT;
 CREATE TABLE CHAT(
@@ -45,10 +45,10 @@ CREATE TABLE HOSPITAL(
   , phone VARCHAR2(30)
 );
 
-INSERT INTO HOSPITAL VALUES(1, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ê°•ë‚¨ë‚´ê³¼ì˜ì›', 'ì„œìš¸ì‹œ ê°•ë‚¨êµ¬ ë…¼í˜„ë™ 111-1', 'ë‚´ê³¼', '02-1234-5678');
-INSERT INTO HOSPITAL VALUES(1, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ê°•ë‚¨ì™¸ê³¼ì˜ì›', 'ì„œìš¸ì‹œ ê°•ë‚¨êµ¬ ë…¼í˜„ë™ 111-2', 'ì™¸ê³¼', '02-1234-7777');
-INSERT INTO HOSPITAL VALUES(1, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ê°•ë‚¨ì†Œì•„ê³¼ì˜ì›', 'ì„œìš¸ì‹œ ê°•ë‚¨êµ¬ ë…¼í˜„ë™ 111-3', 'ì†Œì•„ê³¼', '02-1234-8888');
-INSERT INTO HOSPITAL VALUES(1, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ê°•ë‚¨ì†Œì•„ê³¼ì˜ì›', 'ì„œìš¸ì‹œ ê°•ë‚¨êµ¬ ë…¼í˜„ë™ 111-3', 'ì†Œì•„ê³¼', '02-1234-8888');
+INSERT INTO HOSPITAL VALUES(1, '¼­¿ï½Ã', '°­³²±¸', '°­³²³»°úÀÇ¿ø', '¼­¿ï½Ã °­³²±¸ ³íÇöµ¿ 111-1', '³»°ú', '02-1234-5678');
+INSERT INTO HOSPITAL VALUES(1, '¼­¿ï½Ã', '°­³²±¸', '°­³²¿Ü°úÀÇ¿ø', '¼­¿ï½Ã °­³²±¸ ³íÇöµ¿ 111-2', '¿Ü°ú', '02-1234-7777');
+INSERT INTO HOSPITAL VALUES(1, '¼­¿ï½Ã', '°­³²±¸', '°­³²¼Ò¾Æ°úÀÇ¿ø', '¼­¿ï½Ã °­³²±¸ ³íÇöµ¿ 111-3', '¼Ò¾Æ°ú', '02-1234-8888');
+INSERT INTO HOSPITAL VALUES(1, '¼­¿ï½Ã', '°­³²±¸', '°­³²¼Ò¾Æ°úÀÇ¿ø', '¼­¿ï½Ã °­³²±¸ ³íÇöµ¿ 111-3', '¼Ò¾Æ°ú', '02-1234-8888');
 -----------------------------------------------------------------------------------
 
 DROP TABLE BASEADDRESS;
@@ -61,9 +61,9 @@ CREATE TABLE BASEADDRESS(
   , dongcode VARCHAR2(10)
 );
 
-INSERT INTO BASEADDRESS VALUES(1, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ë…¼í˜„ë™', '001-01', '001');
-INSERT INTO BASEADDRESS VALUES(2, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ë…¼í˜„ë™', '001-02', '001');
-INSERT INTO BASEADDRESS VALUES(3, 'ì„œìš¸ì‹œ', 'ê°•ë‚¨êµ¬', 'ë…¼í˜„ë™', '001-03', '002');
+INSERT INTO BASEADDRESS VALUES(1, '¼­¿ï½Ã', '°­³²±¸', '³íÇöµ¿', '001-01', '001');
+INSERT INTO BASEADDRESS VALUES(2, '¼­¿ï½Ã', '°­³²±¸', '³íÇöµ¿', '001-02', '001');
+INSERT INTO BASEADDRESS VALUES(3, '¼­¿ï½Ã', '°­³²±¸', '³íÇöµ¿', '001-03', '002');
 
 SELECT * FROM BASEADDRESS;
 
@@ -80,9 +80,9 @@ CREATE TABLE HOUSEINFO(
   , img VARCHAR2(500)
 );
 
-INSERT INTO HOUSEINFO VALUES(1, 'ë…¼í˜„ë™', 'ë…¼í˜„ì•„íŒŒíŠ¸', '001', '2000', '100-01', null, null, null);
-INSERT INTO HOUSEINFO VALUES(2, 'ë…¼í˜„ë™', 'í˜„ëŒ€ì•„íŒŒíŠ¸', '001', '2001', '200-01', null, null, null);
-INSERT INTO HOUSEINFO VALUES(3, 'ë…¼í˜„ë™', 'ì•„ì´íŒŒí¬ì•„íŒŒíŠ¸', '001', '2010', '300-01', null, null, null);
+INSERT INTO HOUSEINFO VALUES(1, '³íÇöµ¿', '³íÇö¾ÆÆÄÆ®', '001', '2000', '100-01', null, null, null);
+INSERT INTO HOUSEINFO VALUES(2, '³íÇöµ¿', 'Çö´ë¾ÆÆÄÆ®', '001', '2001', '200-01', null, null, null);
+INSERT INTO HOUSEINFO VALUES(3, '³íÇöµ¿', '¾ÆÀÌÆÄÅ©¾ÆÆÄÆ®', '001', '2010', '300-01', null, null, null);
 
 SELECT * FROM HOUSEINFO;
 
@@ -95,7 +95,7 @@ SELECT hnum, city, gugun, hospitalName, address, diagnosisType, phone
                                                    FROM HOUSEINFO
                                                   WHERE housenum = 2)	
                             );
---TODO í•˜ìš°ìŠ¤ ë„˜ë²„ì™€ ë³‘ì› ë„˜ë²„ë¥¼ ì–´ë–»ê²Œ ë§žì¶œê²ƒì¸ì§€ ìƒê°í•´ì•¼í•¨.
+--TODO ÇÏ¿ì½º ³Ñ¹ö¿Í º´¿ø ³Ñ¹ö¸¦ ¾î¶»°Ô ¸ÂÃâ°ÍÀÎÁö »ý°¢ÇØ¾ßÇÔ.
  --------------------------------------------------------------------------------------------
 
 DROP TABLE SIDOCODE;
@@ -128,8 +128,8 @@ CREATE TABLE HOUSEDEAL(
   , img VARCHAR2(500)
 );
 
-INSERT INTO HOUSEDEAL VALUES(1, 1, 'ë…¼í˜„ë™', 'ë¡¯ë°ìºìŠ¬', '101-01', null, null, '11ì–µ', '2023', '03', '22', '59', '11', 'ë§¤ë§¤', null, null);
-INSERT INTO HOUSEDEAL VALUES(2, 2, 'ë…¼í˜„ë™', 'ë¡¯ë°ìºìŠ¬', '101-01', null, null, '9ì–µ', '2023', '03', '22', '59', '11', 'ë§¤ë§¤', null, '10.jpg');
+INSERT INTO HOUSEDEAL VALUES(1, 1, '³íÇöµ¿', '·Ôµ¥Ä³½½', '101-01', null, null, '11¾ï', '2023', '03', '22', '59', '11', '¸Å¸Å', null, null);
+INSERT INTO HOUSEDEAL VALUES(2, 2, '³íÇöµ¿', '·Ôµ¥Ä³½½', '101-01', null, null, '9¾ï', '2023', '03', '22', '59', '11', '¸Å¸Å', null, '10.jpg');
 --------------------------------------------------------------------------------
 
 DROP TABLE INTEREST;
@@ -143,9 +143,9 @@ CREATE TABLE INTEREST(
   , img VARCHAR2(100)
 );
 
-INSERT INTO INTEREST VALUES('abc', 1, 'ì„œìš¸ì‹œ', 'ê³ ì¸µ', '11ì–µ', 'ë¡¯ë°ìºìŠ¬', null);
-INSERT INTO INTEREST VALUES('abc', 2, 'ì„œìš¸ì‹œ', 'ê³ ì¸µ', '9ì–µ', 'ìžì´', null);
-INSERT INTO INTEREST VALUES('abc', 3, 'ì„œìš¸ì‹œ', 'ê³ ì¸µ', '10ì–µ5ì²œ', 'ì•„ì´íŒŒí¬', null);
+INSERT INTO INTEREST VALUES('abc', 1, '¼­¿ï½Ã', '°íÃþ', '11¾ï', '·Ôµ¥Ä³½½', null);
+INSERT INTO INTEREST VALUES('abc', 2, '¼­¿ï½Ã', '°íÃþ', '9¾ï', 'ÀÚÀÌ', null);
+INSERT INTO INTEREST VALUES('abc', 3, '¼­¿ï½Ã', '°íÃþ', '10¾ï5Ãµ', '¾ÆÀÌÆÄÅ©', null);
 --------------------------------------------------------------------------------
 
 DROP TABLE USERINFO;
@@ -160,8 +160,8 @@ CREATE TABLE USERINFO(
   , img VARCHAR2(500)
 );
 
-INSERT INTO USERINFO VALUES('abc', 1, 'abc', 'ì•„ë¬´ê°œ', 'abcd666@naver.com', '010-123-4567', 0, null);
-INSERT INTO USERINFO VALUES('admin', 2, 'admin777', 'ê´€ë¦¬ìž', 'admin@naver.com', '010-777-7777', 1, null);
+INSERT INTO USERINFO VALUES('abc', 1, 'abc', '¾Æ¹«°³', 'abcd666@naver.com', '010-123-4567', 0, null);
+INSERT INTO USERINFO VALUES('admin', 2, 'admin777', '°ü¸®ÀÚ', 'admin@naver.com', '010-777-7777', 1, null);
 INSERT INTO USERINFO VALUES('111', 3, '111', '111', '111', '111', 0, null);
 
 SELECT * FROM USERINFO;
@@ -183,10 +183,10 @@ CREATE TABLE NOTICE(
   , cmtcnt NUMBER DEFAULT 0
 );
 
-INSERT INTO NOTICE VALUES(1, 'ê³µì§€í…ŒìŠ¤íŠ¸1', 'admin', default, default, 'í…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤1.', default);
-INSERT INTO NOTICE VALUES(2, 'ê³µì§€í…ŒìŠ¤íŠ¸2', 'admin', default, default, 'í…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤2.', default);
-INSERT INTO NOTICE VALUES(3, 'ê³µì§€í…ŒìŠ¤íŠ¸3', 'admin', default, default, 'í…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤3.', default);
-INSERT INTO NOTICE VALUES(4, 'ê³µì§€í…ŒìŠ¤íŠ¸4', 'admin', default, default, 'í…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤4.', default);
+INSERT INTO NOTICE VALUES(1, '°øÁöÅ×½ºÆ®1', 'admin', default, default, 'Å×½ºÆ®ÀÔ´Ï´Ù1.', default);
+INSERT INTO NOTICE VALUES(2, '°øÁöÅ×½ºÆ®2', 'admin', default, default, 'Å×½ºÆ®ÀÔ´Ï´Ù2.', default);
+INSERT INTO NOTICE VALUES(3, '°øÁöÅ×½ºÆ®3', 'admin', default, default, 'Å×½ºÆ®ÀÔ´Ï´Ù3.', default);
+INSERT INTO NOTICE VALUES(4, '°øÁöÅ×½ºÆ®4', 'admin', default, default, 'Å×½ºÆ®ÀÔ´Ï´Ù4.', default);
 
 SELECT * FROM NOTICE;
 SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM'),bcontent,cmtcnt FROM notice ORDER BY bnum DESC;
@@ -200,9 +200,9 @@ CREATE TABLE COMMENT_T(
   , cwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO COMMENT_T VALUES(1, 1, 'admin', 'commentí…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤1.', default);
-INSERT INTO COMMENT_T VALUES(2, 1, 'admin', 'commentí…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤2.', default);
-INSERT INTO COMMENT_T VALUES(3, 1, 'admin', 'commentí…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤3.', default);
+INSERT INTO COMMENT_T VALUES(1, 1, 'admin', 'commentÅ×½ºÆ®ÀÔ´Ï´Ù1.', default);
+INSERT INTO COMMENT_T VALUES(2, 1, 'admin', 'commentÅ×½ºÆ®ÀÔ´Ï´Ù2.', default);
+INSERT INTO COMMENT_T VALUES(3, 1, 'admin', 'commentÅ×½ºÆ®ÀÔ´Ï´Ù3.', default);
 
 
 
@@ -220,11 +220,11 @@ CREATE TABLE QNA(
   , isFAQ CHAR(1) DEFAULT 'F' CHECK(isFAQ IN('T','F'))
 );
 
-INSERT INTO QNA VALUES(1, 'ì§ˆë¬¸í…ŒìŠ¤íŠ¸1', 'abc', default, default, 'í…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤.', null, default);
-INSERT INTO QNA VALUES(2, 'ì§ˆë¬¸í…ŒìŠ¤íŠ¸2', 'abc', default, default, 'í…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤.2', null, default);
-INSERT INTO QNA VALUES(3, 'ì§ˆë¬¸í…ŒìŠ¤íŠ¸3', 'abc', default, default, 'í…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤.3', null, default);
-INSERT INTO QNA VALUES(4, 'ì§ˆë¬¸í…ŒìŠ¤íŠ¸4', 'abc', default, default, 'í…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤.4', null, default);
-INSERT INTO QNA VALUES(5, 'ì§ˆë¬¸í…ŒìŠ¤íŠ¸5', 'abc', default, default, 'í…ŒìŠ¤íŠ¸ìž…ë‹ˆë‹¤.5', null, default);
+INSERT INTO QNA VALUES(1, 'Áú¹®Å×½ºÆ®1', 'abc', default, default, 'Å×½ºÆ®ÀÔ´Ï´Ù.', null, default);
+INSERT INTO QNA VALUES(2, 'Áú¹®Å×½ºÆ®2', 'abc', default, default, 'Å×½ºÆ®ÀÔ´Ï´Ù.2', null, default);
+INSERT INTO QNA VALUES(3, 'Áú¹®Å×½ºÆ®3', 'abc', default, default, 'Å×½ºÆ®ÀÔ´Ï´Ù.3', null, default);
+INSERT INTO QNA VALUES(4, 'Áú¹®Å×½ºÆ®4', 'abc', default, default, 'Å×½ºÆ®ÀÔ´Ï´Ù.4', null, default);
+INSERT INTO QNA VALUES(5, 'Áú¹®Å×½ºÆ®5', 'abc', default, default, 'Å×½ºÆ®ÀÔ´Ï´Ù.5', null, default);
 
 SELECT * FROM QNA;
 SELECT bnum, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ FROM qna WHERE questionnum is null ORDER BY bnum DESC;
