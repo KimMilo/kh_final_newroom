@@ -209,7 +209,7 @@ String time = df.format(today);
 				$('#chatList').append('<div class="me kZiNZK">' + 
 						'<div class="hzdYcJ">'+
 						'<div class="me_ttl">'+
-						'<div class="brWGXU">해피하우스</div>'+
+						'<div class="brWGXU">NewRoom</div>'+
 						'<div class="cQwzqb">'+chatTime+'</div>'+
 						'</div>'+
 						'<div class="me_content">'+

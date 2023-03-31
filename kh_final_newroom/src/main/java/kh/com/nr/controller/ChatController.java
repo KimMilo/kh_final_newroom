@@ -24,14 +24,6 @@ public class ChatController {
 	@Autowired
 	private ChatService chatService;
 	
-	@GetMapping("")
-	@ResponseBody
-	public ModelAndView getStartChat(ModelAndView mv) {
-		
-		mv.setViewName("chat");
-		return mv;
-	}
-	
 	// 채팅 목록 조회
 	@GetMapping("/{fromID}/{toID}")
 	@ResponseBody
@@ -74,13 +66,13 @@ public class ChatController {
 	
 	// <------------------------------------관리자용-------------------------------------->
 	//전체 채팅방 리스트 조회
-//	@GetMapping("")
-//	@ResponseBody
-//	public List<RoomDto> getRoomList() throws Exception {
-//		System.out.println("=============전체 채팅방 조회");
-//		List<RoomDto> rList = chatService.getRoomList();
-//		return rList;
-//	}
+	@GetMapping("")
+	@ResponseBody
+	public List<RoomDto> getRoomList() throws Exception {
+		System.out.println("=============전체 채팅방 조회");
+		List<RoomDto> rList = chatService.getRoomList();
+		return rList;
+	}
 	
 	
 	// 새로운 채팅방 조회

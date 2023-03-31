@@ -18,8 +18,7 @@
 
 <body>
     <!-- Navbar -->
-	<nav
-		class="navbar navbar-expand-sm navbar-default py-3 border-bottom justify-content-between">
+	<nav class="ms-2 navbar navbar-expand-sm navbar-default py-3 border-bottom justify-content-between">
 		<div class="navbar navbar__logo">
 			<span class="bg-opacity-0 logo material-symbols-outlined" style="color: orange; font-size: 24px;">Home</span>
 			<a class="navbar-brand happy-font title" style="color: orange;" href="${rUrl}/"><b>NewRoom</b></a>

@@ -7,7 +7,7 @@ CREATE TABLE CHAT(
     chatID NUMBER PRIMARY KEY
   , fromID VARCHAR2(20)
   , toID VARCHAR2(20)
-  , chatContext VARCHAR2(2000)
+  , chatContent VARCHAR2(2000)
   , chatTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 ------------------------------------------------------------------------------
@@ -17,19 +17,26 @@ INSERT INTO CHAT VALUES(3, 'aaa', 'bbb', '안녕', DEFAULT);
 INSERT INTO CHAT VALUES(4, 'abc', 'admin', '안녕', DEFAULT);
 
 SELECT * FROM CHAT;
-SELECT chatID, fromID, toID, chatContext, chatTime 
+SELECT chatID, fromID, toID, chatContent, chatTime 
   FROM CHAT 
- WHERE (fromID = 'aaa' AND toID = 'bbb')
-		OR (fromID = 'bbb' AND toID = 'aaa') ORDER BY chatTime;
+ WHERE (fromID = 'abc' AND toID = 'admin')
+		OR (fromID = 'admin' AND toID = 'abc') ORDER BY chatTime;
+        
+SELECT chatID, fromID, toID, chatContent, chatTime 
+  FROM CHAT 
+ WHERE (fromID = 'abc' AND toID = 'admin')
+    OR (fromID = 'admin' AND toID = 'abc')
+   AND chatID > 0 
+ ORDER BY chatTime;
 ------------------------------------------------------------------------------
 DROP TABLE CHAT_ROOM;
 CREATE TABLE CHAT_ROOM(
     roomID NUMBER PRIMARY KEY
   , userID VARCHAR2(20)
 );
-INSERT INTO CHAT_ROOM VALUES(1, 'aaa');
-INSERT INTO CHAT_ROOM VALUES(2, 'bbb');
-INSERT INTO CHAT_ROOM VALUES(3, 'ccc');
+INSERT INTO CHAT_ROOM VALUES(1, 'abc');
+INSERT INTO CHAT_ROOM VALUES(2, 'abc');
+INSERT INTO CHAT_ROOM VALUES(3, 'abc');
 
 SELECT * FROM CHAT_ROOM;
 
