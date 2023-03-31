@@ -44,8 +44,8 @@
 				</table>
 			</div>
 		</div>
-		<input type="button" class="btn-primary" id="setAdmin" value="관리자 설정">
-		<input type="button" class="btn-warning" id="delAdmin" value="관리자 해제">
+		<input type="button" class="btn-success" id="setAdmin" value="관리자 설정">
+		<input type="button" class="btn-danger" id="delAdmin" value="관리자 해제">
 	</div>
 	<!--content-->
 
