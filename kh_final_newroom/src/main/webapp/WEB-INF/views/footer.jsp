@@ -29,9 +29,9 @@ String time = df.format(today);
 %>
 <body>
 <!-- Footer -->
-<footer id="footer" class="ms-2 footer bg-light py-3 my-md-3">
+<footer id="footer" class="footer bg-light py-3 my-md-3">
     <!-- 사이트 맵 -->
-    <div class="row d-flex justify-content-between">
+    <div class="row d-flex justify-content-end">
       	<div class="col-3">
        		<i class="bg-opacity-0  logo material-symbols-outlined text-muted" style="font-size:55px;">Home_Work</i>
        		<small class="text-muted">© 2023</small>
@@ -49,7 +49,13 @@ String time = df.format(today);
       			<li><a href="${rUrl}/introduction" class="text-muted">소개</a></li>
      		</ul>
    		</div>
+	    	<!-- CopyRight -->
+	    <div class="container">
+	     	 <span class="me-2 text-muted" style="float:right;">Copyright 2023. 김태룡. ALL RIGHTS RESERVED</span>
+	    </div> 
     </div>
+    
+    
     <c:if test="${loginInfo.mrole eq 0}">
     <div id="chat_icon"></div>
 	<div id="chat_content">
@@ -599,11 +605,7 @@ String time = df.format(today);
 			}
 		</script>
 	</c:if>
-	
-	<!-- CopyRight -->
-    <div class="container">
-     	 <span class="text-muted float-right">Copyright 2023. 김태룡. ALL RIGHTS RESERVED</span>
-    </div>    
+	   
 </footer>
 </body>
 
