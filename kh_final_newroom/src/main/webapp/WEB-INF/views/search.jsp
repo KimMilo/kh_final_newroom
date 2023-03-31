@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <c:set var="rUrl" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="kr">
@@ -26,6 +27,7 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 </head>
 <body>
+<spring:eval expression="@property['key']" var="key"/>
 	<jsp:include page="header.jsp" />
 
 	<div class="container-fluid contents">
@@ -97,7 +99,7 @@
         				function markCoronaHospitalPlace(place, type){
         					$.get(
        							"https://maps.googleapis.com/maps/api/geocode/json"
-								,{	key:'AIzaSyANeOokozcE3_hMbOff4NAU9aCNOYeC-uM'
+								,{	key:'${key}'
 									, address: place.address
 								}
 								, function(data, status) {
@@ -113,7 +115,7 @@
         				function markSafetyLevel(place, type){
         					$.get(
           						"https://maps.googleapis.com/maps/api/geocode/json"
-   								,{	key:'AIzaSyANeOokozcE3_hMbOff4NAU9aCNOYeC-uM'
+   								,{	key:'${key}'
    									, address: "서울특별시 "+place.gu
    								}
    								, function(data, status) {
@@ -129,7 +131,7 @@
         				function markLand(place, type){
         					$.get(
           						"https://maps.googleapis.com/maps/api/geocode/json"
-   								,{	key:'AIzaSyANeOokozcE3_hMbOff4NAU9aCNOYeC-uM'
+   								,{	key:'${key}'
    									, address: place.address
    								}
    								, function(data, status) {
@@ -302,7 +304,7 @@
 							</div>
 							<script type="text/javascript">
 		                        $.get("https://maps.googleapis.com/maps/api/geocode/json"
-									,{	key:'AIzaSyANeOokozcE3_hMbOff4NAU9aCNOYeC-uM'
+									,{	key:'${key}'
 										, address: "${dto.dong}" + "+" + "${dto.aptName}" + "+" + "${dto.jibun}"
 									}
 									, function(data, status) {
@@ -392,7 +394,7 @@
 				<script
 					src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 				<script defer
-					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANeOokozcE3_hMbOff4NAU9aCNOYeC-uM&callback=initMap"></script>
+					src="https://maps.googleapis.com/maps/api/js?key=${key}&callback=initMap"></script>
 				<script type="text/javascript">
                     const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                     let labelIndex = 0;
@@ -699,7 +701,7 @@
 		
 		<c:forEach items="${dealList}" var="dto">
 			$.get("https://maps.googleapis.com/maps/api/geocode/json"
-				,{	key:'AIzaSyANeOokozcE3_hMbOff4NAU9aCNOYeC-uM'
+				,{	key:'${key}'
 					, address: "${dto.dong}" + "+" + "${dto.aptName}" + "+" + "${dto.jibun}"
 				}
 				, function(data, status) {
