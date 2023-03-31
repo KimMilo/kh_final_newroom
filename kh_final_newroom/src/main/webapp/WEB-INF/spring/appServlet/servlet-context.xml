@@ -43,5 +43,4 @@
 	<!-- Globals Properties -->
 	<util:properties id="property" location="classpath:properties/newroom-info.properties"/>
 	
-	
 </beans:beans>

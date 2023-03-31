@@ -12,7 +12,10 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.crypto.Cipher;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
@@ -20,26 +23,59 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Component
-@PropertySource("classpath:properties/newroom-info.properties")
+
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
+@Component
+@PropertySource("classpath:properties/newroom-info.properties")
 public class NaverAPIController {
 	
-	@Autowired
-	private static Environment env;
-
+	@Value("${na.id}")
+	static String staticId;
+	
+	@Value("${na.id}")
+	private void setValueId(String na_id) {
+		staticId = na_id; 
+	}
+	
+	public String getStaticId() {
+		return staticId;
+	}
+	
+	@Value("${na.key}")
+	static String staticKey;
+	
+	@Value("${na.key}")
+	private void setValueKey(String na_key) {
+		staticKey = na_key; 
+	}
+	
+	public String getStaticKey() {
+		return staticKey;
+	}
+	
+	@Value("${na.url}")
+	static String staticUrl;
+	
+	@Value("${na.url}")
+	private void setValueUrl(String na_url) {
+		staticUrl = na_url; 
+	}
+	
+	public String getStaticUrl() {
+		return staticUrl;
+	}
+	
 	@PostMapping("/land")
 	public String naverSearch(String keyword) {
 		System.out.println(keyword);
 		return NaverTask.go(keyword);
 	}
-	
+		
 	public static class NaverTask{
 		public static String go(String keyword) {
-						
-			String clientId = env.getProperty("id"); //애플리케이션 클라이언트 아이디값"
-			String clientSecret = env.getProperty("key"); //애플리케이션 클라이언트 시크릿값"
+			String clientId = staticId; //애플리케이션 클라이언트 아이디값"
+			String clientSecret = staticKey; //애플리케이션 클라이언트 시크릿값"
 			
 			String text = null;
 			try {
@@ -48,7 +84,7 @@ public class NaverAPIController {
 				throw new RuntimeException("검색어 인코딩 실패",e);
 			}
 			
-			String apiURL = env.getProperty("url") + text;    // json 결과
+			String apiURL = staticUrl + text;    // json 결과
 			//String apiURL = "https://openapi.naver.com/v1/search/local.xml?query="+ text; // xml 결과
 			
 			Map<String, String> requestHeaders = new HashMap<>();
@@ -59,7 +95,7 @@ public class NaverAPIController {
 			return responseBody;
 		}
 		
-		private static String get(String apiUrl, Map<String, String> requestHeaders){
+		private static  String get(String apiUrl, Map<String, String> requestHeaders){
 			HttpURLConnection con = connect(apiUrl);
 			try {
 				con.setRequestMethod("GET");
@@ -80,7 +116,7 @@ public class NaverAPIController {
 			}
 		}
 		
-		private static HttpURLConnection connect(String apiUrl){
+		private static  HttpURLConnection connect(String apiUrl){
 			try {
 				URL url = new URL(apiUrl);
 				return (HttpURLConnection)url.openConnection();
@@ -91,7 +127,7 @@ public class NaverAPIController {
 			}
 		}
 		
-		private static String readBody(InputStream body){
+		private static  String readBody(InputStream body){
 			InputStreamReader streamReader = new InputStreamReader(body);
 			
 			try (BufferedReader lineReader = new BufferedReader(streamReader)) {
