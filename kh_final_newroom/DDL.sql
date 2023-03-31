@@ -162,6 +162,7 @@ CREATE TABLE USERINFO(
 
 INSERT INTO USERINFO VALUES('abc', 1, 'abc', '아무개', 'abcd666@naver.com', '010-123-4567', 0, null);
 INSERT INTO USERINFO VALUES('admin', 2, 'admin777', '관리자', 'admin@naver.com', '010-777-7777', 1, null);
+INSERT INTO USERINFO VALUES('111', 3, '111', '111', '111', '111', 0, null);
 
 SELECT * FROM USERINFO;
 
