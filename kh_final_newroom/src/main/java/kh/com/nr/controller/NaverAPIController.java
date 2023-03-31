@@ -12,26 +12,34 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Component
+@PropertySource("classpath:properties/newroom-info.properties")
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class NaverAPIController {
-	 
+	
+	@Autowired
+	private static Environment env;
+
 	@PostMapping("/land")
 	public String naverSearch(String keyword) {
 		System.out.println(keyword);
 		return NaverTask.go(keyword);
 	}
 	
-	private static class NaverTask{
+	public static class NaverTask{
 		public static String go(String keyword) {
-			String clientId = "bEi4kTALsajBGBFVRbGD"; //애플리케이션 클라이언트 아이디값"
-			String clientSecret = "woapoMjoyE"; //애플리케이션 클라이언트 시크릿값"
+						
+			String clientId = env.getProperty("id"); //애플리케이션 클라이언트 아이디값"
+			String clientSecret = env.getProperty("key"); //애플리케이션 클라이언트 시크릿값"
 			
 			String text = null;
 			try {
@@ -40,7 +48,7 @@ public class NaverAPIController {
 				throw new RuntimeException("검색어 인코딩 실패",e);
 			}
 			
-			String apiURL = "https://openapi.naver.com/v1/search/local?display=5&query=" + text;    // json 결과
+			String apiURL = env.getProperty("url") + text;    // json 결과
 			//String apiURL = "https://openapi.naver.com/v1/search/local.xml?query="+ text; // xml 결과
 			
 			Map<String, String> requestHeaders = new HashMap<>();
