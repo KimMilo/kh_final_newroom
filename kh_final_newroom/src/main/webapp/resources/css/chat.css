@@ -8,7 +8,7 @@
 	bottom: 120px !important;
 	z-index: 10000000 !important;
 	right: 20px !important;
-	background-image: url(../img/messenger_img.png);
+	background-image: url(../img/messenger_img2.png);
 	background-size: cover;
 	width: 62px !important;
 	height: 62px !important;
@@ -380,7 +380,7 @@
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background-image: url(../img/chat_profile_mgr1.png);
+    background-image: url(../img/chat_profile_mgr2.png);
     background-size: cover;
     background-position: center center;
     background-color: rgb(255, 255, 255);
@@ -490,7 +490,7 @@
     width: 34px;
     height: 34px;
     border-radius: 50%;
-    background-image: url(../img/chat_profile_mgr1.png);
+    background-image: url(../img/chat_profile_mgr2.png);
     background-size: cover;
     background-position: center center;
     background-color: rgb(255, 255, 255);
