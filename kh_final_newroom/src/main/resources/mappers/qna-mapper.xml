@@ -4,10 +4,17 @@
 
 <insert id="write" parameterType="QnaDto"> <!-- 질문 작성 -->
 	INSERT INTO qna 
-	(BNUM, BTITLE, USERID, BREADCNT, BWRITEDATE, BCONTENT)
-	VALUES(
+	(BNUM, BTITLE, USERID, BREADCNT, BWRITEDATE, BCONTENT, BLEVEL, QUESTIONNUM)
+	VALUES((SELECT NVL(MAX(BNUM), 0) + 1 FROM QNA)
+		 ,#{btitle},#{userid},default,default,#{bcontent},
+		 <if test="bnum == null">
 		 (SELECT NVL(MAX(BNUM), 0) + 1 FROM QNA)
-		 ,#{btitle},#{userid},default,default,#{bcontent})
+		</if>
+		<if test="bnum != null">
+			#{bnum}	
+		</if>
+		 ,(SELECT NVL(MAX(QUESTIONNUM), 0) + 1 FROM QNA)
+		 )
 </insert>
 
 <update id="updateReadcnt" parameterType="int"> <!-- 조회수 증가 -->
@@ -19,7 +26,7 @@
 </select>
 
 <select id="getBoardList" resultType="QnaDto"> <!-- 질문 전체 목록 -->
-	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ FROM qna WHERE questionnum is null ORDER BY bnum DESC
+	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ FROM qna ORDER BY blevel DESC, bnum, questionnum DESC
 </select>
 
 <update id="update" parameterType="QnaDto"><!-- 질문 수정 -->

@@ -56,13 +56,7 @@
 	    	<div class="modal-content">
 	      		<div class="modal-body container bg-light" id="detailContent" style="width: 700px; height: 700px; font-size: 20px;">
 	      		</div>
-	      		<div class="modal-body container bg-light" style="width: 700px;">
-	      	  		<div class="form-floating">
-						  <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-						  <label for="floatingTextarea2"><img src="${rUrl }/resources/img/profile.5405d77c.png"  class="pe-1" width="25px" height="25px" alt="">Comment</label>
-					</div>
-		      		<button type="button" class="btn btn-outline-success addComment" data-dismiss="modal" 
-	     			 data-toggle="modal" data-target="#addModal" style="float:right;">답변 등록</button>
+	      		<div class="modal-body container bg-light" id="detailComment" style="width: 700px;">
 		     	</div>
 	     		<div class="modal-footer container bg-light" style="width: 700px;">
 		      		<button type="button" class="btn btn-outline-secondary updateGo" data-dismiss="modal"
@@ -186,20 +180,64 @@ $("#btnInsert").click(function(){
 	});
 });
 
+$("#btnInsertReply").click(function(){
+	$.ajax({
+		url:'${rUrl}/qna',
+		method: 'post',
+		contentType: 'application/json', 
+		data:JSON.stringify({
+			'bnum' : detailNo,
+			'userid' : $('#replyUserid').val(),
+			'btitle' : '└답변 : ' + detailBtitle,
+			'bcontent' : 'Q)<br>' + detailBcontent + '<br><br><hr><br><br>' + 'A)<br>' + $(".qnaReply").val(),
+		}),
+		success: function(result){
+			if(result.length > 0){
+				alert(result);
+			}else{
+				alert("답변 등록 완료");
+				location.href="${rUrl}/qna";
+			}
+		},
+		error : function(){
+			console.log('ajax error');
+		}
+	});
+});
+
 var detailNo = '';
+var detailBtitle = '';
+var detailBcontent = '';
+
 $(".qnaDetail").click(function(){
 	$.ajax({
 		url:'${rUrl}/qna/'+ this.id,
 		method: 'get',
 		success: function(result){
 			var html = '';
+			var htmlBtn = '';
 			html += '<style="padding: 15px 0px; font-size: 36px;"><b>제목 : ' + result.btitle + '</b><br><br>';
 			html += '<style="padding: 15px 0px; font-size: 36px;"><b>작성자 : ' + result.userid + '</b> |';
             html += '<style="padding: 15px 0px; font-size: 36px;"><b>조회수 : ' + result.breadcnt + '</b><br><br>';
 			html += '<class="card-text" style="white-space: pre-wrap"><b>내용 : <br><br>' + result.bcontent + '</b>';
+			
             $("#detailContent").html(html);
             
            	detailNo = result.bnum;
+           	detailBtitle = result.btitle;
+           	detailBcontent = result.bcontent;
+           	
+           	if(result.questionnum == 0){
+           		htmlBtn += '<div class="form-floating">';
+           		htmlBtn += '<textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>';
+           		htmlBtn += '<label for="floatingTextarea2"><img src="${rUrl }/resources/img/profile.5405d77c.png"  class="pe-1" width="25px" height="25px" alt="">Comment</label></div>';
+           		htmlBtn += '<button type="button" id="btnInsertReply" class="btn btn-outline-success addComment" data-dismiss="modal" data-toggle="modal" data-target="#addModal" style="float:right;">답변 등록</button>';
+           	}
+			
+           	$("#detailComment").html(htmlBtn);
+           	
+           	//TODO 버튼 클릭 활성화 할 것
+
 		}
 	});
 });

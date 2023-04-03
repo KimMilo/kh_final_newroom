@@ -204,27 +204,28 @@ INSERT INTO COMMENT_T VALUES(1, 1, 'admin', 'comment테스트입니다1.', default);
 INSERT INTO COMMENT_T VALUES(2, 1, 'admin', 'comment테스트입니다2.', default);
 INSERT INTO COMMENT_T VALUES(3, 1, 'admin', 'comment테스트입니다3.', default);
 
-
+SELECT * FROM COMMENT_T;
 
 
 -----------------------------------------------------------------------------------
 DROP TABLE QNA;
 CREATE TABLE QNA(
-    bnum NUMBER
+    bnum NUMBER PRIMARY KEY
   , btitle VARCHAR2(100)
   , userid VARCHAR2(20)
   , breadcnt NUMBER DEFAULT 0
   , bwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   , bcontent VARCHAR2(2000)
-  , questionnum NUMBER
+  , blevel NUMBER REFERENCES qna(bnum)
+  , questionnum NUMBER DEFAULT 0
   , isFAQ CHAR(1) DEFAULT 'F' CHECK(isFAQ IN('T','F'))
 );
 
-INSERT INTO QNA VALUES(1, '질문테스트1', 'abc', default, default, '테스트입니다.', null, default);
-INSERT INTO QNA VALUES(2, '질문테스트2', 'abc', default, default, '테스트입니다.2', null, default);
-INSERT INTO QNA VALUES(3, '질문테스트3', 'abc', default, default, '테스트입니다.3', null, default);
-INSERT INTO QNA VALUES(4, '질문테스트4', 'abc', default, default, '테스트입니다.4', null, default);
-INSERT INTO QNA VALUES(5, '질문테스트5', 'abc', default, default, '테스트입니다.5', null, default);
+INSERT INTO QNA VALUES(1, '질문테스트1', 'abc', default, default, '테스트입니다.', 1, default, default);
+INSERT INTO QNA VALUES(2, '질문테스트2', 'abc', default, default, '테스트입니다.2', 2, default, default);
+INSERT INTO QNA VALUES(3, '질문테스트3', 'abc', default, default, '테스트입니다.3', 3, default, default);
+INSERT INTO QNA VALUES(4, '질문테스트4', 'abc', default, default, '테스트입니다.4', 4, default, default);
+INSERT INTO QNA VALUES(5, '질문테스트5', 'abc', default, default, '테스트입니다.5', 5, default, default);
 
 SELECT * FROM QNA;
 SELECT bnum, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ FROM qna WHERE questionnum is null ORDER BY bnum DESC;
