@@ -181,7 +181,8 @@ SELECT *
 	   			 , mrole
 	   			 , img
 	   		  FROM (SELECT * FROM USERINFO ORDER BY no ASC))
-	 WHERE N BETWEEN 1 AND 5;
+	 WHERE N BETWEEN 1 AND 5
+       AND username LIKE '%1%';
 
 SELECT COUNT(*) FROM USERINFO;
 SELECT COUNT(*) FROM USERINFO WHERE username LIKE '%1%';
