@@ -133,7 +133,14 @@
 					<tbody id="qnaListTable">
 					<c:forEach var="d" items="${dto }">
 						<tr>
-							<td width="15%">${d.bnum }</td>
+							<c:choose>
+								<c:when test="${d.questionnum ne 0 }">
+									<td width="15%" class="text-center">Re</td>
+								</c:when>
+								<c:otherwise>
+									<td width="15%">${d.bnum }</td>
+								</c:otherwise>
+							</c:choose>
 							<td width="40%" class="text-center">${d.btitle }</td>
 							<td width="15%">${d.breadcnt }</td>
 							<td width="15%">${d.bwritedate }</td>
@@ -320,12 +327,16 @@ updateQnaList = function(resultList){
 		content += '<tr><td colspan="6">검색 결과가 없습니다.</td></tr>';
 	}else{
 		for(var i = 0, qna; qna=resultList[i]; i++){
-			content += '<tr>'
-				+ '<td>' + qna.bnum + '</td>'
-				+ '<td>' + qna.btitle + '</td>'
-				+ '<td>' + qna.breadcnt + '</td>'
-				+ '<td>' + qna.bwritedate + '</td>'
-				+ '<td><button type="button" class="btn btn-outline-secondary btn-sm qnaDetail" id="'+qna.bnum+'" data-toggle="modal" data-target="#detailModal">Go</button></td></tr>';
+			content += '<tr>';
+				if(qna.questionnum != 0){
+					content += '<td>Re</td>';
+				} else{
+					content += '<td>' + qna.bnum + '</td>';
+				}
+			content += '<td>' + qna.btitle + '</td>';
+			content += '<td>' + qna.breadcnt + '</td>';
+			content += '<td>' + qna.bwritedate + '</td>';
+			content += '<td><button type="button" class="btn btn-outline-secondary btn-sm qnaDetail" id="'+qna.bnum+'" data-toggle="modal" data-target="#detailModal">Go</button></td></tr>';
 		}
 	}
 	$("#qnaListTable").html(content);

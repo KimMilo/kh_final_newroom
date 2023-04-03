@@ -40,17 +40,17 @@
 <!-- 질문 검색 -->
 <select id="searchTitle" parameterType="String" resultType="QnaDto">
 	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ
-	  FROM qna WHERE btitle like #{keyword} and questionnum is null ORDER BY bnum DESC
+	  FROM qna WHERE btitle like #{keyword} ORDER BY bnum DESC
 </select>
 
 <select id="searchContent" parameterType="String" resultType="QnaDto">
 	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ
-	  FROM qna WHERE bcontent like #{keyword} and questionnum is null ORDER BY bnum DESC
+	  FROM qna WHERE bcontent like #{keyword} ORDER BY bnum DESC
 </select>
 
 <select id="searchWriter" parameterType="String" resultType="QnaDto">
 	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ
-	  FROM qna WHERE userid like #{keyword} and questionnum is null ORDER BY bnum DESC
+	  FROM qna WHERE userid like #{keyword} ORDER BY bnum DESC
 </select>
 
 <!-- 답변 기능 -->
