@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import kh.com.nr.common.Paging;
 import kh.com.nr.model.dto.MemberDto;
 
 @Service
@@ -18,4 +19,6 @@ public interface MemberService {
 	public int delete(String userid); //회원정보 삭제
 	public MemberDto findUser(MemberDto data); //비밀번호 찾기
 	public int modifyRole(MemberDto dto); //회원 관리자 정보 수정
+
+	public Paging getPage(int pageNumber, int pageListLimit);
 }

@@ -1,7 +1,9 @@
 package kh.com.nr.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -54,5 +56,23 @@ public class MemberDao {
 	public int modifyRole(MemberDto dto) {
 		return sqlSession.update("member.modifyRole", dto);
 	}
+
+
+	public List<MemberDto> selectPage(Map<String, Object> page) {
+		return sqlSession.selectList("member.selectPage", page);
+	}
+
+	public int selectTotalRowCount() {
+		return sqlSession.selectOne("member.selectTotalRowCount");
+	}
+
+	public int selectTotalRowCountName(String username) {
+		return sqlSession.selectOne("member.selectTotalRowCountName", username);
+	}
+
+	
+	
+
+
 	
 }

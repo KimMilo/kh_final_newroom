@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,11 +22,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.com.nr.common.Paging;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.service.MemberService;
+import lombok.AllArgsConstructor;
 
 @RequestMapping("/member")
 @Controller
@@ -32,6 +37,7 @@ import kh.com.nr.model.service.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService mservice;
+
 	
 	//id 중복체크
 	@ResponseBody
@@ -131,8 +137,23 @@ public class MemberController {
 	
 	//회원 리스트 이동
 	@GetMapping("/list") 
-	public String gotoMemberList() {
-		return "memberList";
+	public ModelAndView gotoMemberList(ModelAndView mv
+			,HttpServletRequest req, HttpServletResponse resp) {
+		
+		String p = req.getParameter("p");
+		int pageNumber = 1;
+		if(p != null) {
+			if(!p.isEmpty()) {
+				pageNumber = Integer.parseInt(p);
+			}
+		}
+		int pageListLimit = 10;
+
+		Paging paging = mservice.getPage(pageNumber, pageListLimit); 		
+		
+		mv.addObject("paging", paging);
+		mv.setViewName("memberList");
+		return mv;
 	}
 	
 	//회원 이름 검색
