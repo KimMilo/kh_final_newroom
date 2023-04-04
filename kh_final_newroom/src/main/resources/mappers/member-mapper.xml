@@ -36,13 +36,13 @@
 <!-- 	   AND username like '%' || #{username} || '%' -->
 <!-- </select> -->
 
-<select id="searchName" parameterType="String" resultType="MemberDto">
-	SELECT * FROM userinfo where username like #{username}
-</select>
+<!-- <select id="searchName" parameterType="String" resultType="MemberDto"> -->
+<!-- 	SELECT * FROM userinfo where username like #{username} -->
+<!-- </select> -->
 
-<select id="selectTotalRowCountName" parameterType="String" resultType="_int">
-	SELECT COUNT(*) FROM USERINFO WHERE username like '%' || #{username} || '%'
-</select>
+<!-- <select id="selectTotalRowCountName" parameterType="String" resultType="_int"> -->
+<!-- 	SELECT COUNT(*) FROM USERINFO WHERE username like '%' || #{username} || '%' -->
+<!-- </select> -->
 
 <update id="update" parameterType="MemberDto">
 	UPDATE userinfo SET userpw = #{userpw}, username = #{username}, useremail = #{useremail}, 
@@ -81,9 +81,17 @@
 	   			 , img
 	   		  FROM (SELECT * FROM USERINFO ORDER BY no ASC))
 	 WHERE N BETWEEN #{start} AND #{end}
+		<if test="username != null and username neq ''">
+			AND username like '%'||#{username}||'%'
+		</if>
 </select>
 
 <select id="selectTotalRowCount" resultType="_int">
 	SELECT COUNT(*) FROM USERINFO
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="username != null and username neq ''">
+			AND username like '%'||#{username}||'%'
+		</if>
+	</trim>
 </select>
 </mapper>

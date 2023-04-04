@@ -23,8 +23,8 @@
 		<h2 class="pt-5 py-4">회원 검색</h2>
 		<!--contents-->
 		<div class="form-group col-mr-5">
-           	<input type="text" id="searchKeyword" class="form-control" placeholder="회원 이름 검색">
-           	<button id="nameSearch" class="btn btn-outline-primary">검색</button>
+           	<input type="text" id="searchKeyword" name="username" class="form-control" placeholder="회원 이름 검색">
+           	<button id="nameSearch" type="submit" class="btn btn-outline-primary">검색</button>
         </div>
 		<div class="container my-3">
 			<div>
@@ -99,8 +99,6 @@
 	<jsp:include page="footer.jsp" />
 	
 <script>
-	$(function(){
-		memberSearch();
 		
 		$("#setAdmin").click(function(){
 			$(".chkMember:checked").each(function(){
@@ -139,51 +137,23 @@
 				})
 			})
 		});
-		
+
 		$("#nameSearch").click(function(){
-			memberSearch();
+	 		var userName = $("#searchKeyword").val();
+	 		$.ajax({
+	 			url : '${rUrl}/member/list',
+	 			method : 'get',
+	 			data:{'name' : userName},
+	 			success:function(result){
+					if(result == null){
+						alert('일치하는 회원이름이 없습니다.');
+					}
+	 			},
+	 			error : function(xhr, status, msg){
+	 				console.log(status + " " + msg);
+	 			}
+	 		});
 		});
-	});
-	
-	memberSearch = function(){
-		var userName = '%' + $("#searchKeyword").val() + '%';
-		
-		$.ajax({
-			url : '${rUrl}/member/search',
-			method : 'post',
-			data:{'name' : userName},
-			success:function(result){
-				$("#memberListTable").empty();
-				updateMemberList(result);
-			},
-			error : function(xhr, status, msg){
-				console.log(status + " " + msg);
-			}
-		});
-	}
-	
-	updateMemberList = function(memberList){
-		var content = '';
-		if(memberList.length == 0){
-			content += '<tr><td colspan="6">가입된 회원이 없습니다.</td></tr>';
-		}else{
-			for(var i = 0, member; member=memberList[i]; i++){
-				content += '<tr>'
-					+ '<td>' + (i+1) + '</td>'
-					+ '<td>' + member.userid + '</td>'
-					+ '<td>' + member.username + '</td>'
-					+ '<td>' + member.useremail + '</td>'
-					+ '<td>' + member.userphone + '</td>'
-				if(member.mrole == '1'){
-					content += '<td>관리자</td>'
-				}else{
-					content += '<td>일반회원</td>'
-				}
-				content += '<td><input type="checkbox" class="chkMember "' 
-				+ 'id=' + member.userid+ '></td></tr>';
-			}
-		}
-		$("#memberListTable").html(content);
-	}
+
 </script>
 </body>

@@ -35,14 +35,27 @@ public class MemberServiceImpl implements MemberService{
 		return dao.join(member);
 	}
 
-	@Override
-	public List<MemberDto> search() {
-		return dao.search();
-	}
+//	@Override
+//	public List<MemberDto> search() {
+//		return dao.search();
+//	}
 	
 	@Override
-	public List<MemberDto> searchName(String username) {
-		return dao.searchName(username);
+	public Paging getPage(int pageNumber, int pageListLimit, String username) {
+		Map<String, Object> page = new HashMap<String, Object>();
+		page.put("start", (pageNumber - 1) * pageListLimit + 1);
+		page.put("end", pageNumber * pageListLimit);
+		page.put("username", username);
+		
+		List<MemberDto> data = dao.selectPage(page);
+		
+		int totalRowCount = dao.selectTotalRowCount(username); 
+		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / pageListLimit) + mod;
+		
+		Paging paging = new Paging(data, pageNumber, pageCount, pageListLimit, 5);
+				
+		return paging;
 	}
 
 	@Override
@@ -69,25 +82,5 @@ public class MemberServiceImpl implements MemberService{
 	public int modifyRole(MemberDto dto) {
 		return dao.modifyRole(dto);
 	}
-
-	@Override
-	public Paging getPage(int pageNumber, int pageListLimit) {
-		Map<String, Object> page = new HashMap<String, Object>();
-		page.put("start", (pageNumber - 1) * pageListLimit + 1);
-		page.put("end", pageNumber * pageListLimit);
-		
-		List<MemberDto> data = dao.selectPage(page);
-		
-		int totalRowCount = dao.selectTotalRowCount(); 
-		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
-		int pageCount = (totalRowCount / pageListLimit) + mod;
-		
-		Paging paging = new Paging(data, pageNumber, pageCount, pageListLimit, 5);
-		
-		return paging;
-	}
-
-
-
 
 }

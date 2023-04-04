@@ -1,12 +1,10 @@
 package kh.com.nr.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,14 +20,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.nr.common.Paging;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.service.MemberService;
-import lombok.AllArgsConstructor;
 
 @RequestMapping("/member")
 @Controller
@@ -139,8 +135,17 @@ public class MemberController {
 	@GetMapping("/list") 
 	public ModelAndView gotoMemberList(ModelAndView mv
 			,HttpServletRequest req, HttpServletResponse resp) {
-		
 		String p = req.getParameter("p");
+		String username = req.getParameter("name");
+		
+		try {
+			req.setCharacterEncoding("UTF-8");
+			username = req.getParameter("name");
+			System.out.println("한글 확인: "+ username);
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		
 		int pageNumber = 1;
 		if(p != null) {
 			if(!p.isEmpty()) {
@@ -149,20 +154,36 @@ public class MemberController {
 		}
 		int pageListLimit = 10;
 
-		Paging paging = mservice.getPage(pageNumber, pageListLimit); 		
+		Paging paging = mservice.getPage(pageNumber, pageListLimit, username); 		
 		
 		mv.addObject("paging", paging);
+		System.out.println(paging.getName());
 		mv.setViewName("memberList");
 		return mv;
 	}
 	
 	//회원 이름 검색
-	@PostMapping("/search") 
-	@ResponseBody
-	public List<MemberDto> memberNameSearchList(String name) {
-		return mservice.searchName(name);
-	}
-	// TODO 추 후  회원 이름 말고 전화번호나 이메일주소도 추가하기
+//	@PostMapping("/search") 
+//	@ResponseBody
+//	public ModelAndView memberNameSearchList(ModelAndView mv, HttpServletRequest req, HttpServletResponse resp, String name) {
+//		
+//		String p = req.getParameter("p");
+//		String username = req.getParameter("name");
+//		int pageNumber = 1;
+//		if(p != null) {
+//			if(!p.isEmpty()) {
+//				pageNumber = Integer.parseInt(p);
+//			}
+//		}
+//		int pageListLimit = 10;
+//
+//		Paging paging = mservice.getPage(pageNumber, pageListLimit, username); 		
+//		
+//		mv.addObject("paging", paging);
+//		mv.setViewName("memberList");
+//		return mv;
+//	}
+//	// TODO 추 후  회원 이름 말고 전화번호나 이메일주소도 추가하기
 	
 	//회원가입
 	@ResponseBody

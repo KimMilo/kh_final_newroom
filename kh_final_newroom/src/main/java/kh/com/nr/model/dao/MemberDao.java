@@ -29,13 +29,13 @@ public class MemberDao {
 		return sqlSession.insert("member.join", member);
 	}
 
-	public List<MemberDto> search() {
-		return sqlSession.selectList("member.search");
-	}
+//	public List<MemberDto> search() {
+//		return sqlSession.selectList("member.search");
+//	}
 
-	public List<MemberDto> searchName(String username) {
-		return sqlSession.selectList("member.searchName", username);
-	}
+//	public List<MemberDto> searchName(String username) {
+//		return sqlSession.selectList("member.searchName", username);
+//	}
 
 	public int update(MemberDto member) {
 		return sqlSession.update("member.update", member);
@@ -62,13 +62,13 @@ public class MemberDao {
 		return sqlSession.selectList("member.selectPage", page);
 	}
 
-	public int selectTotalRowCount() {
-		return sqlSession.selectOne("member.selectTotalRowCount");
+	public int selectTotalRowCount(String username) {
+		return sqlSession.selectOne("member.selectTotalRowCount", username);
 	}
 
-	public int selectTotalRowCountName(String username) {
-		return sqlSession.selectOne("member.selectTotalRowCountName", username);
-	}
+//	public int selectTotalRowCountName(String username) {
+//		return sqlSession.selectOne("member.selectTotalRowCountName", username);
+//	}
 
 	
 	
