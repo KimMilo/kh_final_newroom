@@ -6,11 +6,6 @@
 	SELECT COUNT(*) FROM notice
 </select>
 
-<select id="selectPage" parameterType="hashMap" resultType="NoticeDto">
-	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') bwritedate,bcontent,cmtcnt FROM notice ORDER BY bwritedate DESC 
-	<!-- LIMIT #{startRow}, #{COUNT_PER_PAGE}-->
-</select>
-
 <insert id="write" parameterType="NoticeDto">
 	INSERT INTO notice 
 	(bnum, BTITLE, USERID, BREADCNT, BWRITEDATE, BCONTENT)
@@ -49,4 +44,24 @@
 	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') bwritedate,bcontent,cmtcnt
 	  FROM notice WHERE userid like #{keyword}
 </select>
+
+<select id="selectPage" parameterType="map" resultType="NoticeDto">
+	SELECT *
+	  FROM (SELECT ROWNUM AS N
+	   			 , bnum
+	   			 , btitle
+	   			 , userid
+	   			 , breadcnt
+	   			 , bwritedate
+	   			 , bcontent
+	   			 , cmtcnt
+	   		  FROM (SELECT * FROM NOTICE ORDER BY bnum ASC))
+	 WHERE N BETWEEN #{start} AND #{end}
+		
+</select>
+
+<select id="selectTotalRowCount" resultType="_int">
+	SELECT COUNT(*) FROM NOTICE
+</select>
+
 </mapper>

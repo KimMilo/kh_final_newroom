@@ -1,7 +1,7 @@
 package kh.com.nr.model.dao;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +30,6 @@ public class NoticeDao {
 
 	public int selectTotalCount() {
 		return sqlSession.selectOne("notice.selectTotalCount");
-	}
-
-	public List<NoticeDto> selectPage(HashMap<String, Integer> map) {
-		return sqlSession.selectList("notice.selectPage", map);
 	}
 
 	public int selectCommentCount(int bnum) {
@@ -70,6 +66,14 @@ public class NoticeDao {
 
 	public void deleteComment(CommentDto dto) {
 		sqlSession.delete("comment.deleteComment", dto);
+	}
+
+	public List<NoticeDto> selectPage(Map<String, Integer> page) {
+		return sqlSession.selectList("notice.selectPage", page);
+	}
+
+	public int selectTotalRowCount() {
+		return sqlSession.selectOne("notice.selectTotalRowCount");
 	}
 	
 }

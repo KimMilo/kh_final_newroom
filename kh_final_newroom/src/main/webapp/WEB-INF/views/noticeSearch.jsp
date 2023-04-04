@@ -23,21 +23,19 @@
     </div>
 
     <nav class="container navbar navbar-expand-sm navbar-light">
-    	<c:if test="${loginInfo.mrole eq 1}"><!-- 관리자일때만 -->
-        	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/noticeWritePage'">글쓰기</button>
+    	<c:if test="${loginInfo.mrole eq 1}">
+        	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/noticeWrite'">글쓰기</button>
         </c:if>
-       <input type="button" class="btn btn-outline-secondary ml-2" value="목록" onclick="location.href='${rUrl}/noticeList'">
-       
         <form class="navbar-nav ml-auto" action="${rUrl}/noticeSearch" method="post">
             <div class="form-group mr-1">
                 <select class="form-control" name="search_type">
                     <option value="btitle">제목</option>
                     <option value="bcontent">내용</option>
-                    <option value="userid">글쓴이</option>
+                    <option value="userid">작성자</option>
                 </select>
             </div>
             <div class="form-group mr-1">
-                <input type="text" id="userId" class="form-control" name="userId" placeholder="검색어 입력.">
+                <input type="text" id="userId" class="form-control" name="keyword" placeholder="검색어 입력">
             </div>
             <div class="form-group">
                 <button id="btnWrite" class="btn btn-outline-primary">검색</button>

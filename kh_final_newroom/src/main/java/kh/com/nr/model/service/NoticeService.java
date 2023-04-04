@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import kh.com.nr.common.Paging;
 import kh.com.nr.model.dto.CommentDto;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.dto.NoticeDto;
@@ -16,10 +17,10 @@ public interface NoticeService {
 	public List<NoticeDto> searchTitle(String title); //이름으로 검색
 	public List<NoticeDto> searchContent(String keyword); //내용으로 검색
 	public List<NoticeDto> searchWriter(String keyword); //글쓴이로 검색
-	public NoticePageDto makePage(int curPage); //한페이지 만들기
 	public NoticeDto getBoard(int bnum);//상세페이지 가져오기
 	public int write(NoticeDto dto); //글쓰기
 	public List<CommentDto> getCommentList(int bnum); //댓글 전체 목록
 	boolean writeComment(int bnum, String content, MemberDto loginInfo); //댓글 작성
 	void deleteComment(CommentDto dto);
+	public Paging getPage(int pageNumber, int pageListLimit);//페이징처리 및 목록 조회
 }

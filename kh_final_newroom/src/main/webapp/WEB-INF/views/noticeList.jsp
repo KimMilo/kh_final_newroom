@@ -53,21 +53,21 @@
           </tr>
         </thead>
         <c:choose>
-			<c:when test="${empty pageDto or empty pageDto.noticeList}">
+			<c:when test="${empty paging.page}">
 				<tr><td colspan="5">작성된 게시글이 없습니다.</td></tr>
 			</c:when>
 			<c:otherwise>
-				<c:forEach items="${pageDto.noticeList}" var="dto">
+				<c:forEach var="data" items="${paging.page}">
 					<tr>
-						<td>${dto.bnum}</td>
-						<td id="title"><a href="${rUrl}/noticeRead?bnum=${dto.bnum}" style="color:black;">${dto.btitle} 
-						<c:if test="${!empty dto.cmtCnt}">
-							[${dto.cmtCnt}]
+						<td>${data.bnum}</td>
+						<td id="title"><a href="${rUrl}/noticeRead?bnum=${data.bnum}" style="color:black;">${data.btitle} 
+						<c:if test="${!empty data.cmtCnt}">
+							[${data.cmtCnt}]
 						</c:if>
 						</a></td>
-						<td>${dto.userid}</td>
-						<td>${dto.breadcnt}</td>
-						<td>${dto.bwritedate}</td>
+						<td>${data.userid}</td>
+						<td>${data.breadcnt}</td>
+						<td>${data.bwritedate}</td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
@@ -76,22 +76,30 @@
     </form>
   </div>
   <div class="container" style="margin-bottom:0">
-    <ul class="pagination justify-content-center">
-    <c:if test="${pageDto.startPage>1}">
-		<a href="notice?action=listAll&page=${pageDto.startPage-1}">이전</a>
-    </c:if>
-    <c:forEach begin="${pageDto.startPage}" end="${pageDto.endPage}" var="i">
-    	<li class="page-item">
-			<a class="page-link" href="noticeList?pageStr=${i}">
-				<c:if test="${i eq pageDto.curPage}">${i}</c:if>
-				<c:if test="${i ne pageDto.curPage}">${i}</c:if>
-			</a>
-		</li>
-	</c:forEach>
-	<c:if test="${pageDto.endPage < pageDto.totalPage}">
-		<a href="notice?action=listAll&page=${pageDto.endPage+1}">다음</a>
-	</c:if>
-    </ul>
+    <div>
+		<ul class="mt-2 pagination justify-content-center">
+			<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+			<c:choose>
+				<c:when test="${paging.prevPage eq - 1 or empty paging.page}">
+					<li class="page-item disabled"><a class="page-link">prev</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link" href="${rUrl }/noticeListp=${paging.prevPage }">prev</a></li>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="pNum" items="${paging.pageList }">
+				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/noticeList?p=${pNum }">${pNum }</a></li>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${paging.nextPage eq - 1 or empty paging.page}">
+					<li class="page-item disabled"><a class="page-link">next</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link" href="${rUrl }/noticeList?p=${paging.nextPage}">next</a></li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
+	</div>
   </div>
 
 	<jsp:include page="footer.jsp" />

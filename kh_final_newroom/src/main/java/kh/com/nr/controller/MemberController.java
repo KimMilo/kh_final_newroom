@@ -141,7 +141,7 @@ public class MemberController {
 		try {
 			pageNumber = Integer.parseInt(p);
 		} catch (Exception e) {
-			mv.addObject("msg","요청하신 URL 오류가 발생하였습니다. 회원목록페이지로 이동합니다.");
+			mv.addObject("msg","요청하신 URL 오류가 발생하였습니다. 메인페이지로 이동합니다.");
 			mv.setViewName("error");
 			return mv;
 		}
@@ -153,7 +153,7 @@ public class MemberController {
 		
 		mv.addObject("keyword", keyword);
 		mv.addObject("paging", paging);
-		System.out.println(paging.getName());
+		
 		mv.setViewName("memberList");
 		return mv;
 	}

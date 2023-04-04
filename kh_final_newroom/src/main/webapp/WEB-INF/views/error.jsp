@@ -10,7 +10,7 @@
 <script>
 	var msg = '${msg }';
 	alert(msg);
-	location.href="<%=request.getContextPath()%>/member/list";
+	location.href="<%=request.getContextPath()%>";
 </script>
 	
 </body>

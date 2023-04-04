@@ -30,7 +30,7 @@
             </div>
             <div class="form-group">
                 <label for="bcontent">내용: </label>
-                <textarea rows="20" stype="height:100%;" id="bcontent" class="form-control" name="bcontent"
+                <textarea rows="20" style="height:100%;" id="bcontent" class="form-control" name="bcontent"
                     placeholder="내용을 입력하세요"></textarea>
             </div>
             <div class="form-group container row justify-content-center" style="margin-bottom:0">

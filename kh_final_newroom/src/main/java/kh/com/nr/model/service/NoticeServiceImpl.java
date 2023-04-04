@@ -2,10 +2,12 @@ package kh.com.nr.model.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.com.nr.common.Paging;
 import kh.com.nr.model.dao.NoticeDao;
 import kh.com.nr.model.dto.CommentDto;
 import kh.com.nr.model.dto.MemberDto;
@@ -32,35 +34,6 @@ public class NoticeServiceImpl implements NoticeService{
 		return dao.searchTitle(title);
 	}
 
-	public static final int COUNT_PER_PAGE = 10; //한 페이지에 10개 글
-	
-	@Override
-	public NoticePageDto makePage(int curPage) {
-		int totalCnt = dao.selectTotalCount(); // 총 게시글 갯수 조회해서
-		int totalPageCnt = totalCnt/COUNT_PER_PAGE; // 총 필요한 페이지수 계산(다음, 이전 링크 관련)
-		if(totalCnt%COUNT_PER_PAGE>0) 
-			totalPageCnt++;
-		
-		int startPage = (curPage-1)/10*10+1; // ex) 11
-		int endPage = startPage+9; //ex) 20
-		
-		if(totalPageCnt<endPage) // 마지막 페이지가 15이니까 20으로 계산하면 안댐.
-			endPage = totalPageCnt;
-		
-		HashMap<String, Integer> map = new HashMap<>();
-		map.put("startRow", (curPage-1)*10); // 현재 페이지에 보여질 글 조회
-		map.put("COUNT_PER_PAGE",COUNT_PER_PAGE);
-		
-		List<NoticeDto> noticeList = dao.selectPage(map);
-		
-		// 해당 게시글 dto에 댓글 갯수 첨부
-		for(NoticeDto dto: noticeList) {
-			int cmtCnt = dao.selectCommentCount(dto.getBnum()); // 해당 게시글에 댓글이 몇개 달렸나 조회
-			dto.setCmtCnt(cmtCnt); 
-		}
-		
-		return new NoticePageDto(noticeList, curPage, startPage, endPage, totalPageCnt);
-	}
 
 	@Override
 	public NoticeDto getBoard(int bnum) {
@@ -101,5 +74,26 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public void deleteComment(CommentDto dto) {
 		dao.deleteComment(dto);
+	}
+
+	@Override
+	public Paging getPage(int pageNumber, int pageListLimit) {
+		Map<String, Integer> page = new HashMap<String, Integer>();
+		page.put("start", (pageNumber - 1) * pageListLimit + 1);
+		page.put("end", pageNumber * pageListLimit);
+		
+		List<NoticeDto> data = dao.selectPage(page);
+		for(NoticeDto dto: data) {
+			int cmtCnt = dao.selectCommentCount(dto.getBnum()); // 해당 게시글에 댓글이 몇개 달렸나 조회
+			dto.setCmtCnt(cmtCnt); 
+		}
+		
+		int totalRowCount = dao.selectTotalRowCount(); 
+		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / pageListLimit) + mod;
+		
+		Paging paging = new Paging(data, pageNumber, pageCount, pageListLimit, 5);
+
+		return paging;
 	}
 }

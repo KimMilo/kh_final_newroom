@@ -11,10 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import kh.com.nr.common.Paging;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.dto.NoticeDto;
-import kh.com.nr.model.dto.NoticePageDto;
 import kh.com.nr.model.service.NoticeService;
 
 
@@ -46,10 +48,10 @@ public class NoticeController{
 
 	// 글삭제하기
 	@GetMapping("noticeDelete") 
-	private String delete(int bnum, Model model) {
-		System.out.println(bnum);
+	private ModelAndView delete(ModelAndView mv, int bnum) {
 		nservice.delete(bnum);
-		return noticeList("1", model);
+		mv.setViewName("redirect:noticeList");
+		return mv;
 	}
 	
 	//글 수정페이지 이동
@@ -83,24 +85,35 @@ public class NoticeController{
 		
 	//글작성하기
 	@PostMapping("noticeWrite") 
-	private String write(NoticeDto dto, HttpSession session, Model model) {
+	private ModelAndView write(
+			ModelAndView mv
+			, NoticeDto dto, HttpSession session) {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
 		dto.setUserid(loginInfo.getUserid());
 		nservice.write(dto);
-		return noticeList("1", model);
+		mv.setViewName("redirect:noticeList");
+		return mv;
 	}
 
 	//전체 목록 보기
 	@GetMapping("noticeList") 
-	private String noticeList(String pageStr, Model model) {
-		// 모든 도서 목록 보기 기능
-		int page = 1; // 기본 1페이지
-		if (pageStr != null && pageStr.length() > 0) { //다음 페이지 클릭시
-			page = Integer.parseInt(pageStr);
+	private ModelAndView noticeList(
+			  ModelAndView mv
+			, @RequestParam(name = "p", required = false, defaultValue = "1") String p
+			, Model model) {
+		int pageNumber = 1;
+		try {
+			pageNumber = Integer.parseInt(p);
+		} catch (Exception e) {
+			mv.addObject("msg","요청하신 URL 오류가 발생하였습니다. 메인페이지로 이동합니다.");
+			mv.setViewName("error");
+			return mv;
 		}
-
-		NoticePageDto pageDto = nservice.makePage(page); //현재 페이지 정보
-		model.addAttribute("pageDto", pageDto);
-		return "noticeList";
+		int pageListLimit = 10;
+		Paging paging = nservice.getPage(pageNumber, pageListLimit); 		
+				
+		mv.addObject("paging", paging);
+		mv.setViewName("noticeList");
+		return mv;
 	}
 }
