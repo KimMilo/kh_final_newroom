@@ -147,6 +147,10 @@ public class MemberController {
 		
 		Paging paging = mservice.getPage(pageNumber, pageListLimit, username); 		
 		
+		String typeName = "회원이름";
+		String keyword = username;
+		
+		mv.addObject("keyword", keyword);
 		mv.addObject("paging", paging);
 		System.out.println(paging.getName());
 		mv.setViewName("memberList");

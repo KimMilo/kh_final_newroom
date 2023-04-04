@@ -28,6 +28,11 @@
            	<button id="nameSearch" type="submit" class="btn btn-outline-primary">검색</button>
 			</form>
         </div>
+        <c:if test="${not empty keyword }">
+	     <div class="container text-center mt-5" style="margin-bottom:0">
+	       	<h3><span style="color: orange;">회원 이름</span>으로 <span style="color: orange;">'${keyword }'</span>을 검색한 결과입니다.</h3>
+	   	</div>
+	   	</c:if>
 		<div class="container my-3">
 			<div>
 				<table class="table table-hover">
@@ -108,7 +113,6 @@
 	<jsp:include page="footer.jsp" />
 	
 <script>
-		
 		$("#setAdmin").click(function(){
 			$(".chkMember:checked").each(function(){
 				var userInfo = {'userid' : this.id, 'mrole': 1,};
@@ -146,6 +150,5 @@
 				})
 			})
 		});
-
 </script>
 </body>

@@ -19,7 +19,7 @@
     <jsp:include page="header.jsp" />
     
     <div class="container text-center mt-5" style="margin-bottom:0">
-        <h3><span style="color: #1abc9c;">'${typeName}'</span>(으)로 <span style="color: #1abc9c;">'${keyword}'</span>을 검색한 결과입니다.</h3>
+        <h3><span style="color: orange;">'${typeName}'</span>(으)로 <span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.</h3>
     </div>
 
     <nav class="container navbar navbar-expand-sm navbar-light">
