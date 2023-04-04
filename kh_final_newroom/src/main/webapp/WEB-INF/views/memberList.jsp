@@ -43,26 +43,33 @@
 						</tr>
 					</thead>
 					<tbody id="memberListTable">
-						<c:forEach var="data" items="${requestScope.paging.page }">
-							<tr>
-								<td>${data.no }</td>
-								<td>${data.userid }</td>
-								<td>${data.username }</td>
-								<td>${data.useremail }</td>
-								<td>${data.userphone }</td>
-								<c:choose>
-									<c:when test="${data.mrole eq 1 }">
-										<td>관리자</td>
-									</c:when>
-									<c:otherwise>
-										<td>일반회원</td>
-									</c:otherwise>
-								</c:choose>
-								<td>
-									<input type="checkbox" class="chkMember" id="${data.userid }">
-								</td>
-							</tr>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${empty paging.page }">
+								<tr><td colspan="6">검색한 가입된 회원이 없습니다.</td></tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach var="data" items="${paging.page }">
+									<tr>
+										<td>${data.no }</td>
+										<td>${data.userid }</td>
+										<td>${data.username }</td>
+										<td>${data.useremail }</td>
+										<td>${data.userphone }</td>
+										<c:choose>
+											<c:when test="${data.mrole eq 1 }">
+												<td>관리자</td>
+											</c:when>
+											<c:otherwise>
+												<td>일반회원</td>
+											</c:otherwise>
+										</c:choose>
+										<td>
+											<input type="checkbox" class="chkMember" id="${data.userid }">
+										</td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</tbody>
 				</table>
 			</div>
@@ -75,22 +82,22 @@
 		<ul class="mt-2 pagination justify-content-center">
 			<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 			<c:choose>
-				<c:when test="${requestScope.paging.prevPage eq - 1 }">
+				<c:when test="${paging.prevPage eq - 1 }">
 					<li class="page-item disabled"><a class="page-link">prev</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${rUrl }/member/list?p=${requestScope.paging.prevPage }">prev</a></li>
+					<li class="page-item"><a class="page-link" href="${rUrl }/member/list?p=${paging.prevPage }">prev</a></li>
 				</c:otherwise>
 			</c:choose>
-			<c:forEach var="pNum" items="${requestScope.paging.pageList }">
+			<c:forEach var="pNum" items="${paging.pageList }">
 				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/member/list?p=${pNum }">${pNum }</a></li>
 			</c:forEach>
 			<c:choose>
-				<c:when test="${requestScope.paging.nextPage eq - 1 }">
+				<c:when test="${paging.nextPage eq - 1 }">
 					<li class="page-item disabled"><a class="page-link">next</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${rUrl }/member/list?p=${requestScope.paging.nextPage}">next</a></li>
+					<li class="page-item"><a class="page-link" href="${rUrl }/member/list?p=${paging.nextPage}">next</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>

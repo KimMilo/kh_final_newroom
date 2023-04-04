@@ -1,7 +1,6 @@
 package kh.com.nr.controller;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -134,18 +134,17 @@ public class MemberController {
 	//회원 리스트 이동
 	@GetMapping("/list") 
 	public ModelAndView gotoMemberList(ModelAndView mv
-			,HttpServletRequest req, HttpServletResponse resp) {
-		String p = req.getParameter("p");
-		
+			, @RequestParam(name = "p", required = false, defaultValue = "1") String p
+			, @RequestParam(name = "name", required = false) String username
+			) {
 		int pageNumber = 1;
-		if(p != null) {
-			if(!p.isEmpty()) {
-				pageNumber = Integer.parseInt(p);
-			}
+		try {
+			pageNumber = Integer.parseInt(p);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		int pageListLimit = 10;
 		
-		String username = req.getParameter("name");
 		Paging paging = mservice.getPage(pageNumber, pageListLimit, username); 		
 		
 		mv.addObject("paging", paging);
