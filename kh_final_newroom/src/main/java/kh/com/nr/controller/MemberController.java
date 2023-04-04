@@ -136,15 +136,6 @@ public class MemberController {
 	public ModelAndView gotoMemberList(ModelAndView mv
 			,HttpServletRequest req, HttpServletResponse resp) {
 		String p = req.getParameter("p");
-		String username = req.getParameter("name");
-		
-		try {
-			req.setCharacterEncoding("UTF-8");
-			username = req.getParameter("name");
-			System.out.println("한글 확인: "+ username);
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
 		
 		int pageNumber = 1;
 		if(p != null) {
@@ -153,7 +144,8 @@ public class MemberController {
 			}
 		}
 		int pageListLimit = 10;
-
+		
+		String username = req.getParameter("name");
 		Paging paging = mservice.getPage(pageNumber, pageListLimit, username); 		
 		
 		mv.addObject("paging", paging);

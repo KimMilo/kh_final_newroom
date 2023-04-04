@@ -261,3 +261,5 @@ FROM (SELECT ROWNUM AS N
  	   		  FROM (SELECT * FROM USERINFO ORDER BY no ASC)) 
  	 WHERE N BETWEEN 1 AND 10 
  	   AND username like '%1%'; 
+       
+SELECT * FROM USERINFO WHERE username like '%1%';

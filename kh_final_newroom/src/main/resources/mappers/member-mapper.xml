@@ -79,11 +79,15 @@
 	   			 , userPhone
 	   			 , mRole
 	   			 , img
-	   		  FROM (SELECT * FROM USERINFO ORDER BY no ASC))
+	   		  FROM (SELECT * FROM USERINFO
+	   		  <trim prefix="where" prefixOverrides="AND|OR">
+	   		  <if test="username != null and username neq ''">
+				AND username like '%'||#{username}||'%'
+			  </if>
+	   		  </trim>
+	   		   ORDER BY no ASC))
 	 WHERE N BETWEEN #{start} AND #{end}
-		<if test="username != null and username neq ''">
-			AND username like '%'||#{username}||'%'
-		</if>
+		
 </select>
 
 <select id="selectTotalRowCount" resultType="_int">

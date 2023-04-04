@@ -23,8 +23,10 @@
 		<h2 class="pt-5 py-4">회원 검색</h2>
 		<!--contents-->
 		<div class="form-group col-mr-5">
-           	<input type="text" id="searchKeyword" name="username" class="form-control" placeholder="회원 이름 검색">
+			<form action="${rUrl }/member/list" method="get">
+           	<input type="text" id="searchKeyword" name="name" class="form-control" placeholder="회원 이름 검색">
            	<button id="nameSearch" type="submit" class="btn btn-outline-primary">검색</button>
+			</form>
         </div>
 		<div class="container my-3">
 			<div>
@@ -41,26 +43,26 @@
 						</tr>
 					</thead>
 					<tbody id="memberListTable">
-					<c:forEach var="data" items="${requestScope.paging.page }">
-						<tr>
-							<td>${data.no }</td>
-							<td>${data.userid }</td>
-							<td>${data.username }</td>
-							<td>${data.useremail }</td>
-							<td>${data.userphone }</td>
-							<c:choose>
-								<c:when test="${data.mrole eq 1 }">
-									<td>관리자</td>
-								</c:when>
-								<c:otherwise>
-									<td>일반회원</td>
-								</c:otherwise>
-							</c:choose>
-							<td>
-								<input type="checkbox" class="chkMember" id="${data.userid }">
-							</td>
-						</tr>
-					</c:forEach>
+						<c:forEach var="data" items="${requestScope.paging.page }">
+							<tr>
+								<td>${data.no }</td>
+								<td>${data.userid }</td>
+								<td>${data.username }</td>
+								<td>${data.useremail }</td>
+								<td>${data.userphone }</td>
+								<c:choose>
+									<c:when test="${data.mrole eq 1 }">
+										<td>관리자</td>
+									</c:when>
+									<c:otherwise>
+										<td>일반회원</td>
+									</c:otherwise>
+								</c:choose>
+								<td>
+									<input type="checkbox" class="chkMember" id="${data.userid }">
+								</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -136,23 +138,6 @@
 					}
 				})
 			})
-		});
-
-		$("#nameSearch").click(function(){
-	 		var userName = $("#searchKeyword").val();
-	 		$.ajax({
-	 			url : '${rUrl}/member/list',
-	 			method : 'get',
-	 			data:{'name' : userName},
-	 			success:function(result){
-					if(result == null){
-						alert('일치하는 회원이름이 없습니다.');
-					}
-	 			},
-	 			error : function(xhr, status, msg){
-	 				console.log(status + " " + msg);
-	 			}
-	 		});
 		});
 
 </script>
