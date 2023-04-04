@@ -34,11 +34,6 @@ public class MemberServiceImpl implements MemberService{
 	public int join(MemberDto member) {
 		return dao.join(member);
 	}
-
-//	@Override
-//	public List<MemberDto> search() {
-//		return dao.search();
-//	}
 	
 	@Override
 	public Paging getPage(int pageNumber, int pageListLimit, String username) {

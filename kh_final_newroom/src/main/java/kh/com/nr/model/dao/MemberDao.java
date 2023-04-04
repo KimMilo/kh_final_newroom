@@ -29,14 +29,6 @@ public class MemberDao {
 		return sqlSession.insert("member.join", member);
 	}
 
-//	public List<MemberDto> search() {
-//		return sqlSession.selectList("member.search");
-//	}
-
-//	public List<MemberDto> searchName(String username) {
-//		return sqlSession.selectList("member.searchName", username);
-//	}
-
 	public int update(MemberDto member) {
 		return sqlSession.update("member.update", member);
 	}
@@ -65,14 +57,6 @@ public class MemberDao {
 	public int selectTotalRowCount(String username) {
 		return sqlSession.selectOne("member.selectTotalRowCount", username);
 	}
-
-//	public int selectTotalRowCountName(String username) {
-//		return sqlSession.selectOne("member.selectTotalRowCountName", username);
-//	}
-
-	
-	
-
 
 	
 }

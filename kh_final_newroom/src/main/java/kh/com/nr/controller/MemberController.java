@@ -153,29 +153,6 @@ public class MemberController {
 		return mv;
 	}
 	
-	//회원 이름 검색
-//	@PostMapping("/search") 
-//	@ResponseBody
-//	public ModelAndView memberNameSearchList(ModelAndView mv, HttpServletRequest req, HttpServletResponse resp, String name) {
-//		
-//		String p = req.getParameter("p");
-//		String username = req.getParameter("name");
-//		int pageNumber = 1;
-//		if(p != null) {
-//			if(!p.isEmpty()) {
-//				pageNumber = Integer.parseInt(p);
-//			}
-//		}
-//		int pageListLimit = 10;
-//
-//		Paging paging = mservice.getPage(pageNumber, pageListLimit, username); 		
-//		
-//		mv.addObject("paging", paging);
-//		mv.setViewName("memberList");
-//		return mv;
-//	}
-//	// TODO 추 후  회원 이름 말고 전화번호나 이메일주소도 추가하기
-	
 	//회원가입
 	@ResponseBody
 	@PostMapping("/join") 

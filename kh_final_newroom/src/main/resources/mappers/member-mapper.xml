@@ -16,34 +16,6 @@
 		(SELECT NVL(MAX(no),0)+1 FROM USERINFO),#{userid}, #{userpw}, #{username}, #{useremail}, #{userphone})
 </insert>
 
-<!-- <select id="search" resultType="MemberDto"> -->
-<!-- 	SELECT * FROM userinfo -->
-<!-- </select> -->
-
-<!-- <select id="searchName" parameterType="map" resultType="MemberDto"> -->
-<!-- 	SELECT * -->
-<!-- 	  FROM (SELECT ROWNUM AS N -->
-<!-- 	   			 , no -->
-<!-- 	   			 , userid -->
-<!-- 	   			 , userpw -->
-<!-- 	   			 , username -->
-<!-- 	   			 , useremail -->
-<!-- 	   			 , userphone -->
-<!-- 	   			 , mrole -->
-<!-- 	   			 , img -->
-<!-- 	   		  FROM (SELECT * FROM USERINFO ORDER BY no ASC)) -->
-<!-- 	 WHERE N BETWEEN #{start} AND #{end} -->
-<!-- 	   AND username like '%' || #{username} || '%' -->
-<!-- </select> -->
-
-<!-- <select id="searchName" parameterType="String" resultType="MemberDto"> -->
-<!-- 	SELECT * FROM userinfo where username like #{username} -->
-<!-- </select> -->
-
-<!-- <select id="selectTotalRowCountName" parameterType="String" resultType="_int"> -->
-<!-- 	SELECT COUNT(*) FROM USERINFO WHERE username like '%' || #{username} || '%' -->
-<!-- </select> -->
-
 <update id="update" parameterType="MemberDto">
 	UPDATE userinfo SET userpw = #{userpw}, username = #{username}, useremail = #{useremail}, 
 		userphone = #{userphone}

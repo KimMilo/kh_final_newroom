@@ -93,7 +93,7 @@
 				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/member/list?p=${pNum }">${pNum }</a></li>
 			</c:forEach>
 			<c:choose>
-				<c:when test="${paging.nextPage eq - 1 }">
+				<c:when test="${paging.nextPage eq - 1 or empty paging.page}">
 					<li class="page-item disabled"><a class="page-link">next</a></li>
 				</c:when>
 				<c:otherwise>
