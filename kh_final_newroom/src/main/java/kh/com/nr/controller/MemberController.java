@@ -141,13 +141,14 @@ public class MemberController {
 		try {
 			pageNumber = Integer.parseInt(p);
 		} catch (Exception e) {
-			e.printStackTrace();
+			mv.addObject("msg","요청하신 URL 오류가 발생하였습니다. 회원목록페이지로 이동합니다.");
+			mv.setViewName("error");
+			return mv;
 		}
-		int pageListLimit = 10;
 		
+		int pageListLimit = 10;
 		Paging paging = mservice.getPage(pageNumber, pageListLimit, username); 		
 		
-		String typeName = "회원이름";
 		String keyword = username;
 		
 		mv.addObject("keyword", keyword);

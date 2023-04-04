@@ -87,7 +87,7 @@
 		<ul class="mt-2 pagination justify-content-center">
 			<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
 			<c:choose>
-				<c:when test="${paging.prevPage eq - 1 }">
+				<c:when test="${paging.prevPage eq - 1 or empty paging.page}">
 					<li class="page-item disabled"><a class="page-link">prev</a></li>
 				</c:when>
 				<c:otherwise>
