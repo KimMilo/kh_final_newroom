@@ -17,7 +17,7 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
-
+ 
 	<!--content-->
 	<div class="container text-center col-lg-12">
 		<h2 class="pt-5 py-4">회원 검색</h2>
