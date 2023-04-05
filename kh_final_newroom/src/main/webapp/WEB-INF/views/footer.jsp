@@ -5,14 +5,6 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-<style>
-  .footer_style{
-  	width: 100%;
-    position: absolute;
-    bottom: 0;
-    background: #5eaeff;
-   }
- </style>
 <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/chat-style.css" />
 <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
@@ -29,7 +21,7 @@ String time = df.format(today);
 %>
 <body>
 <!-- Footer -->
-<footer id="footer" class="footer bg-light py-3 my-md-3">
+<footer id="footer" class="footer py-3 my-md-3" style="background-color: rgb(238, 221, 130);">
     <!-- 사이트 맵 -->
     <div class="row d-flex justify-content-end">
       	<div class="col-3">

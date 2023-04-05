@@ -101,7 +101,7 @@
 					<p>
 						집에서도 쉽고 간편하게<br>집 구할 때 꼭 필요한 정보 확인하세요!!
 					</p>
-					<button class="btn btn-outline-primary btn-sm" onclick="location.href='${rUrl}/'">NewRoom 서비스 이용하기</button>
+					<button class="btn btn-outline-primary btn-sm" onclick="location.href='${rUrl}/'" style="color: white; background-color: rgb(184, 134, 11);"><b>NewRoom 서비스 이용하기</b></button>
 				</div>
 			</div>
 		</div>

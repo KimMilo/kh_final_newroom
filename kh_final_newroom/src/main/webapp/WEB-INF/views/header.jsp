@@ -18,10 +18,10 @@
 
 <body>
     <!-- Navbar -->
-	<nav class="navbar navbar-expand-sm navbar-default py-3 border-bottom justify-content-between">
+	<nav class="navbar navbar-expand-sm navbar-default py-3 border-bottom justify-content-between" style="background-color: rgb(238, 221, 130);">
 		<div class="navbar navbar__logo">
-			<span class="bg-opacity-0 logo material-symbols-outlined" style="color: orange; font-size: 24px;">Home</span>
-			<a class="navbar-brand happy-font title" style="color: orange;" href="${rUrl}/"><b>NewRoom</b></a>
+			<span class="bg-opacity-0 logo material-symbols-outlined" style="color: rgb(255, 140, 0); font-size: 48px;">Home</span>
+			<a class="navbar-brand happy-font title" style="color: rgb(255, 140, 0); font-size: 48px;" href="${rUrl}/"><b>NewRoom</b></a>
 		</div>
 		<div class="navbar navbar__menu">
 			<ul class="navbar-nav menu mx-md-3" id="navMenu">
@@ -264,15 +264,15 @@
 		    			content += 'class="nav-link font-weight-bold text-dark">QnA </a></li>';
 		    			content += '<li class="nav-item">';
 		    			content += '<a href="${rUrl}/search" ';
-		    			content += 'class="nav-link font-weight-bold text-dark">실거래가 검색 </a></li>';
+		    			content += 'class="nav-link font-weight-bold text-dark">매물 검색 </a></li>';
 		    			content += '<li class="nav-item">';
 		    			content += '<a href="${rUrl}/interest" ';
-		    			content += 'class="nav-link font-weight-bold text-dark">찜한 매물 </a></li>';
+		    			content += 'class="nav-link font-weight-bold text-dark">찜<b style="color:red;">♥</b> 매물 </a></li>';
 		    			
 		    			if(user.admin == "true"){
 		    				content += '<li class="nav-item">';
 		    				content += '<a href="${rUrl}/member/list" ';
-		    				content += 'class="nav-link text-dark"><b>회원 목록</b></a></li>';
+		    				content += 'class="nav-link text-dark"><b>회원 리스트</b></a></li>';
 		    			}    				
 		    				
 		    			content += '<li class="nav-item">';
