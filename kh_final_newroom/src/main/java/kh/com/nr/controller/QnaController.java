@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.com.nr.common.Paging;
 import kh.com.nr.model.dto.HouseDealDto;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.dto.QnaDto;
@@ -32,9 +34,22 @@ public class QnaController {
 
 	//뷰 페이지 보여주기
 	@GetMapping("")
-	public ModelAndView qnaView(ModelAndView mv) {
-		List<QnaDto> dto = qService.getBoardList();
-		mv.addObject("dto", dto);
+	public ModelAndView qnaView(
+			ModelAndView mv
+		  , String keyword
+		  , @RequestParam(name = "p", required = false, defaultValue = "1") String p) {
+		int pageNumber = 1;
+		try {
+			pageNumber = Integer.parseInt(p);
+		} catch (Exception e) {
+			mv.addObject("msg","요청하신 URL 오류가 발생하였습니다. 메인페이지로 이동합니다.");
+			mv.setViewName("error");
+			return mv;
+		}
+		int pageListLimit = 10;
+		
+		Paging paging = qService.getPage(pageNumber, pageListLimit, keyword);
+		mv.addObject("paging", paging);		
 		mv.setViewName("qna");
 		return mv;
 	}

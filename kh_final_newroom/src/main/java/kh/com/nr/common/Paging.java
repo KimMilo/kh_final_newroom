@@ -89,7 +89,7 @@ public class Paging {
 	public void setBnum(int bnum) {
 		this.bnum = bnum;
 	}
-
+	
 	public int getCurrentPage() {
 		return currentPage;
 	}

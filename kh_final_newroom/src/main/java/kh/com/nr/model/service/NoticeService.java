@@ -22,5 +22,5 @@ public interface NoticeService {
 	public List<CommentDto> getCommentList(int bnum); //댓글 전체 목록
 	boolean writeComment(int bnum, String content, MemberDto loginInfo); //댓글 작성
 	void deleteComment(CommentDto dto);
-	public Paging getPage(int pageNumber, int pageListLimit, String keyword);//페이징처리 및 목록 조회
+	public Paging getPage(int pageNumber, int pageListLimit);//페이징처리 및 목록 조회
 }

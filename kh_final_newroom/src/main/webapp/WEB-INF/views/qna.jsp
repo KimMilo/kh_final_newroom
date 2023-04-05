@@ -21,6 +21,11 @@
 </head>
 <body>
 	<jsp:include page="header.jsp" />
+	
+	 <div class="container text-center mt-5" style="margin-bottom:0">
+        <h3><span style="color: orange;">'${typeName}'</span>(으)로 <span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.</h3>
+    </div>
+	
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -98,10 +103,12 @@
 	<div id="app">
 		<br>
 		<br>
-		<h3><a href="<%=request.getContextPath() %>/qna" class="router-link-exact-active router-link-active" aria-current="page">QnA</a></h3>
+		<h3>QnA</h3>
 		<div>
 			<nav class="container navbar navbar-expand-sm navbar-light">
 				<button id="btnWrite" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">질문하기</button>
+				<div id="btnQnL">
+				</div>
 				<form class="navbar-nav ml-auto">
 					<div class="form-group mr-1">
 						<select name="search_type" class="form-control">
@@ -111,12 +118,13 @@
 						</select>
 					</div>
 				</form>
-					<div class="form-group mr-1">
-						<input id="searchKeyword" type="text" placeholder="검색어 입력" class="form-control">
-					</div>
-					<div class="form-group">
-						<button id="btnSearch" class="btn btn-outline-primary">검색</button>
-					</div>
+				<div class="form-group mr-1">
+					<input id="searchKeyword" type="text" placeholder="검색어 입력" class="form-control">
+				</div>
+				<div class="form-group">
+					<button id="btnSearch" class="btn btn-outline-primary">검색</button>
+				</div>
+				
 			</nav>
 		<div class="container my-3">
 			<form role="form" method="get">
@@ -131,21 +139,21 @@
 						</tr>
 					</thead>
 					<tbody id="qnaListTable">
-					<c:forEach var="d" items="${dto }">
+					<c:forEach var="data" items="${paging.page }">
 						<tr>
 							<c:choose>
-								<c:when test="${d.questionnum ne 0 }">
+								<c:when test="${data.questionnum ne 0 }">
 									<td width="15%" class="text-center">Re</td>
 								</c:when>
 								<c:otherwise>
-									<td width="15%">${d.bnum }</td>
+									<td width="15%">${data.bnum }</td>
 								</c:otherwise>
 							</c:choose>
-							<td width="40%" class="text-center">${d.btitle }</td>
-							<td width="15%">${d.breadcnt }</td>
-							<td width="15%">${d.bwritedate }</td>
+							<td width="40%" class="text-center">${data.btitle }</td>
+							<td width="15%">${data.breadcnt }</td>
+							<td width="15%">${data.bwritedate }</td>
 							<td>
-							<button type="button" class="btn btn-outline-secondary btn-sm qnaDetail" id="${d.bnum }"
+							<button type="button" class="btn btn-outline-secondary btn-sm qnaDetail" id="${data.bnum }"
 							data-toggle="modal" data-target="#detailModal">Go</button>
 							</td>
 						</tr>
@@ -156,6 +164,34 @@
 		</div>
 		</div>
 	</div>
+	
+	<div class="container" style="margin-bottom:0">
+    <div>
+		<ul class="mt-2 pagination justify-content-center">
+			<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+			<c:choose>
+				<c:when test="${paging.prevPage eq - 1 or empty paging.page}">
+					<li class="page-item disabled"><a class="page-link">prev</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link" href="${rUrl }/qna?p=${paging.prevPage }">prev</a></li>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="pNum" items="${paging.pageList }">
+				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/qna?p=${pNum }">${pNum }</a></li>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${paging.nextPage eq - 1 or empty paging.page}">
+					<li class="page-item disabled"><a class="page-link">next</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link" href="${rUrl }/qna?p=${paging.nextPage}">next</a></li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
+	</div>
+  </div>
+	
 	<jsp:include page="footer.jsp" />
 	
 <script>
@@ -293,7 +329,7 @@ $("#deleteQna").click(function(){
 			alert("게시글이 삭제되었습니다.");
 			location.href="${rUrl}/qna";
 		}
-	})
+	});
 });
 
 
@@ -323,6 +359,8 @@ qnaSearch = function(){
 updateQnaList = function(resultList){
 	
 	var content = '';
+	var buttonList = '';
+	buttonList += '<button class="ms-3 btn btn-outline-secondary"><a href="${rUrl}/qna" style="text-decoration: none; color:gray;">목록<a></button>';
 	if(resultList.length == 0){
 		content += '<tr><td colspan="6">검색 결과가 없습니다.</td></tr>';
 	}else{
@@ -339,7 +377,9 @@ updateQnaList = function(resultList){
 			content += '<td><button type="button" class="btn btn-outline-secondary btn-sm qnaDetail" id="'+qna.bnum+'" data-toggle="modal" data-target="#detailModal">Go</button></td></tr>';
 		}
 	}
+	$("#btnQnL").html(buttonList);
 	$("#qnaListTable").html(content);
+	
 	var detailNo = '';
 	$(".qnaDetail").click(function(){
 		$.ajax({
@@ -357,6 +397,7 @@ updateQnaList = function(resultList){
 			}
 		});
 	});
+	
 	$(".updateGo").click(function(){
 		$.ajax({
 			url:'${rUrl}/qna/'+detailNo,

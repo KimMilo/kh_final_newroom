@@ -20,8 +20,8 @@
     <!-- Navbar -->
 	<nav class="navbar navbar-expand-sm navbar-default py-3 border-bottom justify-content-between" style="background-color: rgb(238, 221, 130);">
 		<div class="navbar navbar__logo">
-			<span class="bg-opacity-0 logo material-symbols-outlined" style="color: rgb(255, 140, 0); font-size: 48px;">Home</span>
-			<a class="navbar-brand happy-font title" style="color: rgb(255, 140, 0); font-size: 48px;" href="${rUrl}/"><b>NewRoom</b></a>
+			<span class="bg-opacity-0 logo material-symbols-outlined" style="color: rgb(255, 140, 0); font-size: 30px;">Home</span>
+			<a class="navbar-brand happy-font title" style="color: rgb(255, 140, 0); font-size: 30px;" href="${rUrl}/"><b>NewRoom</b></a>
 		</div>
 		<div class="navbar navbar__menu">
 			<ul class="navbar-nav menu mx-md-3" id="navMenu">

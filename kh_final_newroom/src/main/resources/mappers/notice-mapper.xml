@@ -37,7 +37,7 @@
 	   			 , bcontent
 	   			 , cmtcnt
 	   		  FROM (SELECT * FROM NOTICE 
-	   		  		 WHERE btitle like '%' || #{keyword} || '%' ORDER BY bnum ASC)) 
+	   		  		 WHERE btitle like '%' || #{keyword} || '%' ORDER BY bnum DESC)) 
 	 WHERE N BETWEEN #{start} AND #{end}
 </select>
 
@@ -52,7 +52,7 @@
 	   			 , bcontent
 	   			 , cmtcnt
 	   		  FROM (SELECT * FROM NOTICE 
-	   		  		 WHERE bcontent like '%' || #{keyword} || '%' ORDER BY bnum ASC))
+	   		  		 WHERE bcontent like '%' || #{keyword} || '%' ORDER BY bnum DESC))
 	WHERE N BETWEEN #{start} AND #{end}
 </select>
 
@@ -67,7 +67,7 @@
 	   			 , bcontent
 	   			 , cmtcnt
 	   		  FROM (SELECT * FROM NOTICE 
-	   		  		 WHERE userid like '%' || #{keyword} || '%' ORDER BY bnum ASC))
+	   		  		 WHERE userid like '%' || #{keyword} || '%' ORDER BY bnum DESC))
 	WHERE N BETWEEN #{start} AND #{end}
 </select>
 
@@ -81,18 +81,38 @@
 	   			 , bwritedate
 	   			 , bcontent
 	   			 , cmtcnt
-	   		  FROM (SELECT * FROM NOTICE ORDER BY bnum ASC))
+	   		  FROM (SELECT * FROM NOTICE ORDER BY bnum DESC))
 	 WHERE N BETWEEN #{start} AND #{end}
 		
 </select>
 
 <select id="selectTotalRowCount" resultType="_int">
 	SELECT COUNT(*) FROM NOTICE
+</select>
+
+<select id="selectTotalRowCountT" resultType="_int">
+	SELECT COUNT(*) FROM NOTICE
 	<trim prefix="where" prefixOverrides="AND|OR">
 		<if test="keyword != null and keyword neq ''">
 			AND btitle like '%'||#{keyword}||'%'
-			 OR userid like '%'||#{keyword}||'%'
-			 OR bcontent like '%'||#{keyword}||'%'
+		</if>
+	</trim>
+</select>
+
+<select id="selectTotalRowCountU" resultType="_int">
+	SELECT COUNT(*) FROM NOTICE
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="keyword != null and keyword neq ''">
+			AND userid like '%'||#{keyword}||'%'
+		</if>
+	</trim>
+</select>
+
+<select id="selectTotalRowCountC" resultType="_int">
+	SELECT COUNT(*) FROM NOTICE
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="keyword != null and keyword neq ''">
+			AND bcontent like '%'||#{keyword}||'%'
 		</if>
 	</trim>
 </select>

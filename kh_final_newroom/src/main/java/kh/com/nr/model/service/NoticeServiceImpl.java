@@ -43,7 +43,7 @@ public class NoticeServiceImpl implements NoticeService{
 			dto.setCmtCnt(cmtCnt); 
 		}
 		
-		int totalRowCount = dao.selectTotalRowCount(keyword); 
+		int totalRowCount = dao.selectTotalRowCountT(keyword); 
 		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
 		int pageCount = (totalRowCount / pageListLimit) + mod;
 		
@@ -65,7 +65,7 @@ public class NoticeServiceImpl implements NoticeService{
 			dto.setCmtCnt(cmtCnt); 
 		}
 		
-		int totalRowCount = dao.selectTotalRowCount(keyword); 
+		int totalRowCount = dao.selectTotalRowCountC(keyword); 
 		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
 		int pageCount = (totalRowCount / pageListLimit) + mod;
 		
@@ -87,7 +87,7 @@ public class NoticeServiceImpl implements NoticeService{
 			dto.setCmtCnt(cmtCnt); 
 		}
 		
-		int totalRowCount = dao.selectTotalRowCount(keyword); 
+		int totalRowCount = dao.selectTotalRowCountU(keyword); 
 		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
 		int pageCount = (totalRowCount / pageListLimit) + mod;
 		
@@ -127,7 +127,7 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public Paging getPage(int pageNumber, int pageListLimit, String keyword) {
+	public Paging getPage(int pageNumber, int pageListLimit) {
 		Map<String, Integer> page = new HashMap<String, Integer>();
 		page.put("start", (pageNumber - 1) * pageListLimit + 1);
 		page.put("end", pageNumber * pageListLimit);
@@ -138,7 +138,7 @@ public class NoticeServiceImpl implements NoticeService{
 			dto.setCmtCnt(cmtCnt); 
 		}
 		
-		int totalRowCount = dao.selectTotalRowCount(keyword); 
+		int totalRowCount = dao.selectTotalRowCount(); 
 		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
 		int pageCount = (totalRowCount / pageListLimit) + mod;
 		

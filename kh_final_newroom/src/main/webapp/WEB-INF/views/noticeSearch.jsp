@@ -19,7 +19,19 @@
     <jsp:include page="header.jsp" />
     
     <div class="container text-center mt-5" style="margin-bottom:0">
-        <h3><span style="color: orange;">'${typeName}'</span>(으)로 <span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.</h3>
+        <h3>
+        	<c:choose>
+        		<c:when test="${typeName eq 'btitle' }">
+		        	<span style="color: orange;">제목</span>(으)로 
+        		</c:when>
+        		<c:when test="${typeName eq 'bcontent' }">
+        			<span style="color: orange;">내용</span>(으)로 
+        		</c:when>
+        		<c:otherwise>
+        			<span style="color: orange;">작성자</span>(으)로 
+        		</c:otherwise>
+        	</c:choose>
+        	<span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.</h3>
     </div>
 
     <nav class="container navbar navbar-expand-sm navbar-light">
@@ -27,7 +39,7 @@
         	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/noticeWrite'">글쓰기</button>
         </c:if>
         	<button class="ms-3 btn btn-outline-secondary" onclick="location.href='${rUrl}/noticeList'">목록</button>
-        <form class="navbar-nav ml-auto" action="${rUrl}/noticeSearch" method="post">
+        <form class="navbar-nav ml-auto" action="${rUrl}/noticeSearch" method="get">
             <div class="form-group mr-1">
                 <select class="form-control" name="search_type">
                     <option value="btitle">제목</option>
@@ -90,18 +102,18 @@
 					<li class="page-item disabled"><a class="page-link">prev</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${rUrl }/noticeSearch?p=${paging.prevPage }">prev</a></li>
+					<li class="page-item"><a class="page-link" href="${rUrl }/noticeSearch?search_type=${typeName }&keyword=${keyword }&p=${paging.prevPage }">prev</a></li>
 				</c:otherwise>
 			</c:choose>
 			<c:forEach var="pNum" items="${paging.pageList }">
-				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/noticeSearch?p=${pNum }">${pNum }</a></li>
+				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/noticeSearch?search_type=${typeName }&keyword=${keyword }&p=${pNum }">${pNum }</a></li>
 			</c:forEach>
 			<c:choose>
 				<c:when test="${paging.nextPage eq - 1 or empty paging.page}">
 					<li class="page-item disabled"><a class="page-link">next</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${rUrl }/noticeSearch?p=${paging.nextPage}">next</a></li>
+					<li class="page-item"><a class="page-link" href="${rUrl }/noticeSearch?search_type=${typeName }&keyword=${keyword }&p=${paging.nextPage}">next</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>

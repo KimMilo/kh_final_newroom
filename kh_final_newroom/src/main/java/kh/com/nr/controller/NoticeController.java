@@ -26,7 +26,7 @@ public class NoticeController{
 	private NoticeService nservice;
 
 	//글 검색하기
-	@PostMapping("noticeSearch") 
+	@GetMapping("noticeSearch") 
 	private ModelAndView search(
 			  ModelAndView mv
 			, String search_type
@@ -47,13 +47,13 @@ public class NoticeController{
 		String typeName = null;
 		Paging paging = null;
 		if(search_type.equals("btitle")){ //이름으로 검색
-			typeName = "제목";
+			typeName = "btitle";
 			paging = nservice.searchTitle(pageNumber, pageListLimit, keyword);
 		}else if(search_type.equals("bcontent")){ //내용으로 검색
-			typeName = "내용";
+			typeName = "bcontent";
 			paging = nservice.searchContent(pageNumber, pageListLimit, keyword);
 		}else if(search_type.equals("userid")){//작성자로 검색
-			typeName = "작성자";
+			typeName = "userid";
 			paging = nservice.searchWriter(pageNumber, pageListLimit, keyword);
 		}
 				
@@ -128,7 +128,7 @@ public class NoticeController{
 			return mv;
 		}
 		int pageListLimit = 10;
-		Paging paging = nservice.getPage(pageNumber, pageListLimit, keyword); 		
+		Paging paging = nservice.getPage(pageNumber, pageListLimit); 		
 				
 		mv.addObject("paging", paging);
 		mv.setViewName("noticeList");

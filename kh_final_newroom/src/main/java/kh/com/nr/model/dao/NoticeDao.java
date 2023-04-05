@@ -67,8 +67,21 @@ public class NoticeDao {
 		return sqlSession.selectList("notice.selectPage", page);
 	}
 
-	public int selectTotalRowCount(String keyword) {
-		return sqlSession.selectOne("notice.selectTotalRowCount", keyword);
+	public int selectTotalRowCount() {
+		return sqlSession.selectOne("notice.selectTotalRowCount");
 	}
+	
+	public int selectTotalRowCountT(String keyword) {
+		return sqlSession.selectOne("notice.selectTotalRowCountT", keyword);
+	}
+	
+	public int selectTotalRowCountC(String keyword) {
+		return sqlSession.selectOne("notice.selectTotalRowCountC", keyword);
+	}
+	
+	public int selectTotalRowCountU(String keyword) {
+		return sqlSession.selectOne("notice.selectTotalRowCountU", keyword);
+	}
+	
 	
 }
