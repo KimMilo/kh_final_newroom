@@ -47,22 +47,6 @@ public class QnaDao {
 		return sqlSession.insert("qna.write", dto);
 	}
 
-	public int ansWrite(QnaDto dto) {
-		return sqlSession.insert("qna.ansWrite", dto);
-	}
-
-	public int ansUpdate(QnaDto dto) {
-		return sqlSession.update("qna.ansUpdate", dto);
-	}
-
-	public int ansDelete(int bnum) {
-		return sqlSession.delete("qna.ansDelete", bnum);
-	}
-
-	public List<QnaDto> getAnsList(int questionnum) {
-		return sqlSession.selectList("qna.getAnsList", questionnum);
-	}
-
 	public List<QnaDto> getFAQList() {
 		return sqlSession.selectList("qna.getFAQList");
 	}

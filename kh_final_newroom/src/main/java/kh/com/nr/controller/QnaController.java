@@ -69,7 +69,7 @@ public class QnaController {
 	// 질문 작성
 	@PostMapping("")
 	@ResponseBody
-   	public int addEmployee(@RequestBody QnaDto dto, HttpSession session) throws Exception {
+   	public int qnaAdd(@RequestBody QnaDto dto, HttpSession session) throws Exception {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
 		dto.setUserid(loginInfo.getUserid());
 		return qService.write(dto);
