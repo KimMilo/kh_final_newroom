@@ -26,6 +26,7 @@
     	<c:if test="${loginInfo.mrole eq 1}">
         	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/noticeWrite'">글쓰기</button>
         </c:if>
+        	<button class="ms-3 btn btn-outline-secondary" onclick="location.href='${rUrl}/noticeList'">목록</button>
         <form class="navbar-nav ml-auto" action="${rUrl}/noticeSearch" method="post">
             <div class="form-group mr-1">
                 <select class="form-control" name="search_type">
