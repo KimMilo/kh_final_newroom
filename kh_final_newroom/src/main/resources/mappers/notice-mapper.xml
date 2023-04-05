@@ -72,7 +72,7 @@
 </select>
 
 <select id="selectPage" parameterType="map" resultType="NoticeDto">
-	SELECT *
+	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') bwritedate,bcontent,cmtcnt
 	  FROM (SELECT ROWNUM AS N
 	   			 , bnum
 	   			 , btitle
@@ -83,7 +83,6 @@
 	   			 , cmtcnt
 	   		  FROM (SELECT * FROM NOTICE ORDER BY bnum DESC))
 	 WHERE N BETWEEN #{start} AND #{end}
-		
 </select>
 
 <select id="selectTotalRowCount" resultType="_int">

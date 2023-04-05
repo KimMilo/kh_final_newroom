@@ -26,14 +26,13 @@ import kh.com.nr.model.dto.QnaDto;
 import kh.com.nr.model.service.QnaService;
 
 @Controller
-@RequestMapping("/qna")
 @CrossOrigin(origins = "*")
 public class QnaController {
 	@Autowired
 	QnaService qService;
 
 	//뷰 페이지 보여주기
-	@GetMapping("")
+	@GetMapping("/qna")
 	public ModelAndView qnaView(
 			ModelAndView mv
 		  , @RequestParam(name = "p", required = false, defaultValue = "1") String p) {
@@ -54,7 +53,7 @@ public class QnaController {
 	}
 	
 	// 질문 상세보기
-	@GetMapping("/{bnum}")
+	@GetMapping("/qna/{bnum}")
 	@ResponseBody
 	public QnaDto read(@PathVariable("bnum") int bnum) {
 		QnaDto dto = null;
@@ -67,7 +66,7 @@ public class QnaController {
 	}
 	
 	// 질문 작성
-	@PostMapping("")
+	@PostMapping("/qna")
 	@ResponseBody
    	public int qnaAdd(@RequestBody QnaDto dto, HttpSession session) throws Exception {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
@@ -76,7 +75,7 @@ public class QnaController {
 	}
 	
 	// 질문 수정
-	@PutMapping("")
+	@PutMapping("/qna")
 	@ResponseBody
 	public int qnaUpdate(@RequestBody QnaDto dto)
 			throws IOException {
@@ -84,27 +83,49 @@ public class QnaController {
 	}
 	
 	// 질문 삭제
-	@DeleteMapping("/{bnum}")
+	@DeleteMapping("/qna/{bnum}")
 	@ResponseBody
 	public int delete(@PathVariable("bnum") int bnum) {
 		return qService.delete(bnum);
 	}
 	
 	// 질문 검색
-	@GetMapping("{type}/{word}")
-	@ResponseBody
-	public List<QnaDto> search(@PathVariable("type") String type,
-			@PathVariable("word") String keyword) {	
-		List<QnaDto> resultList = null;
-		if (type.equals("btitle")) { // 이름으로 검색
-			resultList = qService.searchTitle("%" + keyword + "%");
-		} else if (type.equals("bcontent")) { // 내용으로 검색
-			resultList = qService.searchContent("%" + keyword + "%");
-		} else if (type.equals("userid")) {// 작성자로 검색
-			resultList = qService.searchWriter("%" + keyword + "%");
+	@GetMapping("qnaSearch")
+	public ModelAndView search(
+			  ModelAndView mv
+			, String search_type
+			, String keyword
+			, @RequestParam(name = "p", required = false, defaultValue = "1") String p
+			) {	
+		
+		int pageNumber = 1;
+		try {
+			pageNumber = Integer.parseInt(p);
+		} catch (Exception e) {
+			mv.addObject("msg","요청하신 URL 오류가 발생하였습니다. 메인페이지로 이동합니다.");
+			mv.setViewName("error");
+			return mv;
 		}
-	
-		return resultList;
+		int pageListLimit = 10;
+		
+		String typeName = null;
+		Paging paging = null;
+		if (search_type.equals("btitle")) { // 이름으로 검색
+			typeName = "btitle";
+			paging = qService.searchTitle(pageNumber, pageListLimit, keyword);
+		} else if (search_type.equals("bcontent")) { // 내용으로 검색
+			typeName = "bcontent";
+			paging = qService.searchContent(pageNumber, pageListLimit, keyword);
+		} else if (search_type.equals("userid")) {// 작성자로 검색
+			typeName = "userid";
+			paging = qService.searchWriter(pageNumber, pageListLimit, keyword);
+		}
+	 
+		mv.addObject("paging", paging);
+		mv.addObject("typeName", typeName);
+		mv.addObject("keyword", keyword);
+		mv.setViewName("qnaSearch");
+		return mv;
 	}
 
 //	// 질문 목록

@@ -34,23 +34,106 @@
 </delete>
 
 <!-- 질문 검색 -->
-<select id="searchTitle" parameterType="String" resultType="QnaDto">
-	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ
-	  FROM qna WHERE btitle like #{keyword} ORDER BY bnum DESC
+<select id="searchTitle" parameterType="map" resultType="QnaDto">
+	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, blevel, questionnum, isFAQ
+	  FROM (SELECT ROWNUM AS N
+	   			 , bnum
+	   			 , btitle
+	   			 , userid
+	   			 , breadcnt
+	   			 , bwritedate
+	   			 , bcontent
+	   			 , blevel
+	   			 , questionnum
+	   			 , isFAQ
+	   		  FROM (SELECT * FROM QNA 
+	   		  		 WHERE btitle like '%' || #{keyword} || '%' ORDER BY blevel DESC, questionnum ASC))
+	  WHERE N BETWEEN #{start} AND #{end}
 </select>
 
-<select id="searchContent" parameterType="String" resultType="QnaDto">
-	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ
-	  FROM qna WHERE bcontent like #{keyword} ORDER BY bnum DESC
+<select id="searchContent" parameterType="map" resultType="QnaDto">
+	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, blevel, questionnum, isFAQ
+	  FROM (SELECT ROWNUM AS N
+	   			 , bnum
+	   			 , btitle
+	   			 , userid
+	   			 , breadcnt
+	   			 , bwritedate
+	   			 , bcontent
+	   			 , blevel
+	   			 , questionnum
+	   			 , isFAQ
+	   		  FROM (SELECT * FROM QNA 
+	   		  		 WHERE bcontent like '%' || #{keyword} || '%' ORDER BY blevel DESC, questionnum ASC))
+	  WHERE N BETWEEN #{start} AND #{end}
 </select>
 
-<select id="searchWriter" parameterType="String" resultType="QnaDto">
-	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ
-	  FROM qna WHERE userid like #{keyword} ORDER BY bnum DESC
+<select id="searchWriter" parameterType="map" resultType="QnaDto">
+	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, blevel, questionnum, isFAQ
+	  FROM (SELECT ROWNUM AS N
+	   			 , bnum
+	   			 , btitle
+	   			 , userid
+	   			 , breadcnt
+	   			 , bwritedate
+	   			 , bcontent
+	   			 , blevel
+	   			 , questionnum
+	   			 , isFAQ
+	   		  FROM (SELECT * FROM QNA 
+	   		  		 WHERE userid like '%' || #{keyword} || '%' ORDER BY blevel DESC, questionnum ASC))
+	  WHERE N BETWEEN #{start} AND #{end}
 </select>
 
 <select id="getFAQList" resultType="QnaDto"> 
 	SELECT * FROM qna WHERE isFAQ = 'T'
+</select>
+
+<select id="selectPage" parameterType="map" resultType="QnaDto">
+	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') bwritedate, bcontent, blevel, questionnum,isFAQ
+	  FROM (SELECT ROWNUM AS N
+	   			 , bnum
+	   			 , btitle
+	   			 , userid
+	   			 , breadcnt
+	   			 , bwritedate
+	   			 , bcontent
+	   			 , blevel
+	   			 , questionnum
+	   			 , isFAQ
+	   		  FROM (SELECT * FROM QNA ORDER BY blevel DESC, questionnum ASC))
+	 WHERE N BETWEEN #{start} AND #{end}
+</select>
+
+<select id="selectTotalRowCount" resultType="_int">
+	SELECT COUNT(*) FROM QNA
+</select>
+
+<select id="selectTotalRowCountT" resultType="_int">
+	SELECT COUNT(*) FROM QNA
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="keyword != null and keyword neq ''">
+			AND btitle like '%'||#{keyword}||'%'
+		</if>
+	</trim>
+</select>
+
+<select id="selectTotalRowCountU" resultType="_int">
+	SELECT COUNT(*) FROM QNA
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="keyword != null and keyword neq ''">
+			AND userid like '%'||#{keyword}||'%'
+		</if>
+	</trim>
+</select>
+
+<select id="selectTotalRowCountC" resultType="_int">
+	SELECT COUNT(*) FROM QNA
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="keyword != null and keyword neq ''">
+			AND bcontent like '%'||#{keyword}||'%'
+		</if>
+	</trim>
 </select>
 
 </mapper>

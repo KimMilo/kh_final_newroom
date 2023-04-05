@@ -185,7 +185,21 @@ SELECT *
 
 SELECT COUNT(*) FROM USERINFO;
 SELECT COUNT(*) FROM USERINFO WHERE username LIKE '%1%';
-
+SELECT * 
+FROM (SELECT ROWNUM AS N
+	   			 , no
+ 	   			 , userid 
+ 	   			 , userpw
+ 	   			 , username 
+ 	   			 , useremail 
+ 	   			 , userphone 
+ 	   			 , mrole 
+ 	   			 , img 
+ 	   		  FROM (SELECT * FROM USERINFO ORDER BY no ASC)) 
+ 	 WHERE N BETWEEN 1 AND 10 
+ 	   AND username like '%1%'; 
+       
+SELECT * FROM USERINFO WHERE username like '%1%';
 -------------------------------------------------------------------------------
 
 DROP TABLE NOTICE;
@@ -263,18 +277,3 @@ SELECT bnum, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwrited
 SELECT * FROM qna WHERE BNUM=5;
 UPDATE qna SET BREADCNT = BREADCNT+1 WHERE BNUM=5 AND userid != 'abc';
 
-SELECT * 
-FROM (SELECT ROWNUM AS N
-	   			 , no
- 	   			 , userid 
- 	   			 , userpw
- 	   			 , username 
- 	   			 , useremail 
- 	   			 , userphone 
- 	   			 , mrole 
- 	   			 , img 
- 	   		  FROM (SELECT * FROM USERINFO ORDER BY no ASC)) 
- 	 WHERE N BETWEEN 1 AND 10 
- 	   AND username like '%1%'; 
-       
-SELECT * FROM USERINFO WHERE username like '%1%';

@@ -18,18 +18,56 @@ public class QnaServiceImpl implements QnaService{
 	private QnaDao dao;
 
 	@Override
-	public List<QnaDto> searchTitle(String keyword) {
-		return dao.searchTitle(keyword);
+	public Paging searchTitle(int pageNumber, int pageListLimit, String keyword) {
+		Map<String, Object> page = new HashMap<String, Object>();
+		page.put("start", (pageNumber - 1) * pageListLimit + 1);
+		page.put("end", pageNumber * pageListLimit);
+		page.put("keyword", keyword);
+		
+		List<QnaDto> data = dao.searchTitle(page);
+		
+		int totalRowCount = dao.selectTotalRowCountT(keyword); 
+		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / pageListLimit) + mod;
+		
+		Paging paging = new Paging(data, pageNumber, pageCount, pageListLimit, 5);
+
+		return paging;
 	}
 
 	@Override
-	public List<QnaDto> searchContent(String keyword) {
-		return dao.searchContent(keyword);
+	public Paging searchContent(int pageNumber, int pageListLimit, String keyword) {
+		Map<String, Object> page = new HashMap<String, Object>();
+		page.put("start", (pageNumber - 1) * pageListLimit + 1);
+		page.put("end", pageNumber * pageListLimit);
+		page.put("keyword", keyword);
+		
+		List<QnaDto> data = dao.searchContent(page);
+		
+		int totalRowCount = dao.selectTotalRowCountT(keyword); 
+		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / pageListLimit) + mod;
+		
+		Paging paging = new Paging(data, pageNumber, pageCount, pageListLimit, 5);
+
+		return paging;
 	}
 
 	@Override
-	public List<QnaDto> searchWriter(String keyword) {
-		return dao.searchWriter(keyword);
+	public Paging searchWriter(int pageNumber, int pageListLimit, String keyword) {
+		Map<String, Object> page = new HashMap<String, Object>();
+		page.put("start", (pageNumber - 1) * pageListLimit + 1);
+		page.put("end", pageNumber * pageListLimit);
+		page.put("keyword", keyword);
+		
+		List<QnaDto> data = dao.searchWriter(page);
+		
+		int totalRowCount = dao.selectTotalRowCountT(keyword); 
+		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / pageListLimit) + mod;
+		
+		Paging paging = new Paging(data, pageNumber, pageCount, pageListLimit, 5);
+		return paging;
 	}
 
 	@Override

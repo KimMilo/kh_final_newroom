@@ -8,9 +8,9 @@ import kh.com.nr.model.dto.QnaDto;
 public interface QnaService {
 
 	//질문 검색
-	public List<QnaDto> searchTitle(String keyword);
-	public List<QnaDto> searchContent(String keyword);
-	public List<QnaDto> searchWriter(String keyword);
+	public Paging searchTitle(int pageNumber, int pageListLimit, String keyword);
+	public Paging searchContent(int pageNumber, int pageListLimit, String keyword);
+	public Paging searchWriter(int pageNumber, int pageListLimit, String keyword);
 	public int delete(int bnum); //질문 삭제
 	public QnaDto getBoard(int bnum); //질문 상세
 	public int update(QnaDto dto); //질문 수정

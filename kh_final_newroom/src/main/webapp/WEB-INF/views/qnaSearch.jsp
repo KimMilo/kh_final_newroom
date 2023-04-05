@@ -25,7 +25,24 @@
 	 <div class="container text-center mt-5" style="margin-bottom:0">
         <h3>QnA</h3>
     </div>
-	
+    
+    <div class="container text-center mt-5" style="margin-bottom:0">
+        <h3>
+        	<c:choose>
+        		<c:when test="${typeName eq 'btitle' }">
+		        	<span style="color: orange;">제목</span>(으)로 
+        		</c:when>
+        		<c:when test="${typeName eq 'bcontent' }">
+        			<span style="color: orange;">내용</span>(으)로 
+        		</c:when>
+        		<c:otherwise>
+        			<span style="color: orange;">작성자</span>(으)로 
+        		</c:otherwise>
+        	</c:choose>
+        	<span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.
+        </h3>
+    </div>
+    	
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
@@ -104,6 +121,7 @@
 		<div>
 			<nav class="container navbar navbar-expand-sm navbar-light">
 				<button id="btnWrite" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">질문하기</button>
+				<button class="ms-3 btn btn-outline-secondary" onclick="location.href='${rUrl}/noticeList'">목록</button>
 				<div id="btnQnL">
 				</div>
 				<form class="navbar-nav ml-auto" action="${rUrl}/qnaSearch" method="get">
@@ -135,26 +153,33 @@
 							<th width="15%">자세히</th>
 						</tr>
 					</thead>
-					<tbody id="qnaListTable">
-					<c:forEach var="data" items="${paging.page }">
-						<tr>
-							<c:choose>
-								<c:when test="${data.questionnum ne 0 }">
-									<td width="15%" class="text-center">Re</td>
-								</c:when>
-								<c:otherwise>
-									<td width="15%">${data.bnum }</td>
-								</c:otherwise>
-							</c:choose>
-							<td width="40%" class="text-center">${data.btitle }</td>
-							<td width="15%">${data.breadcnt }</td>
-							<td width="15%">${data.bwritedate }</td>
-							<td>
-							<button type="button" class="btn btn-outline-secondary btn-sm qnaDetail" id="${data.bnum }"
-							data-toggle="modal" data-target="#detailModal">Go</button>
-							</td>
-						</tr>
-					</c:forEach>
+					<tbody>
+					<c:choose>
+						<c:when test="${empty paging.page }">
+							<tr><td colspan="5">검색된 결과가 없습니다.</td></tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach var="data" items="${paging.page }">
+								<tr>
+									<c:choose>
+										<c:when test="${data.questionnum ne 0 }">
+											<td width="15%" class="text-center">Re</td>
+										</c:when>
+										<c:otherwise>
+											<td width="15%">${data.bnum }</td>
+										</c:otherwise>
+									</c:choose>
+									<td width="40%" class="text-center">${data.btitle }</td>
+									<td width="15%">${data.breadcnt }</td>
+									<td width="15%">${data.bwritedate }</td>
+									<td>
+									<button type="button" class="btn btn-outline-secondary btn-sm qnaDetail" id="${data.bnum }"
+									data-toggle="modal" data-target="#detailModal">Go</button>
+									</td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
 					</tbody>
 				</table>
 			</form>
@@ -171,18 +196,18 @@
 					<li class="page-item disabled"><a class="page-link">prev</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${rUrl }/qna?p=${paging.prevPage }">prev</a></li>
+					<li class="page-item"><a class="page-link" href="${rUrl }/qna?search_type=${typeName }&keyword=${keyword }&p=${paging.prevPage }">prev</a></li>
 				</c:otherwise>
 			</c:choose>
 			<c:forEach var="pNum" items="${paging.pageList }">
-				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/qna?p=${pNum }">${pNum }</a></li>
+				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/qna?search_type=${typeName }&keyword=${keyword }&p=${pNum }">${pNum }</a></li>
 			</c:forEach>
 			<c:choose>
 				<c:when test="${paging.nextPage eq - 1 or empty paging.page}">
 					<li class="page-item disabled"><a class="page-link">next</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${rUrl }/qna?p=${paging.nextPage}">next</a></li>
+					<li class="page-item"><a class="page-link" href="${rUrl }/qna?search_type=${typeName }&keyword=${keyword }&p=${paging.nextPage}">next</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
@@ -333,101 +358,51 @@ $("#deleteQna").click(function(){
 $("#btnSearch").click(function(){
 	qnaSearch();
 });
-	
-// qnaSearch = function(){
-// 	var searchType = $("select[name=search_type]").val();
-// 	var word = $("#searchKeyword").val();
-// 	$.ajax({
-// 		url : '${rUrl}/qna/'+searchType+'/'+word,
-// 		method : 'get',
-// 		data:{
-// 			'type' : searchType,
-// 			'word' : word
-// 		},
-// 		success:function(result){
-// 			updateQnaList(result);
-// 		},
-// 		error : function(xhr, status, msg){
-// 			console.log(status + " " + msg);
-// 		}
-// 	});
-// }
-	
-// var paging = '${paging.page}';
-// updateQnaList = function(paging){
-	
-// 	var content = '';
-// 	var buttonList = '';
-// 	buttonList += '<button class="ms-3 btn btn-outline-secondary"><a href="${rUrl}/qna" style="text-decoration: none; color:gray;">목록<a></button>';
-// 		if(paging.length = 0){
-// 			content += '<tr><td colspan="6">검색 결과가 없습니다.</td></tr>';
-// 		}
-// 	$("#btnQnL").html(buttonList);
-// 	$("#qnaListTable").html(content);
-	
-// 	var detailNo = '';
-// 	$(".qnaDetail").click(function(){
-// 		$.ajax({
-// 			url:'${rUrl}/qna/'+ this.id,
-// 			method: 'get',
-// 			success: function(result){
-// 				var html = '';
-// 				html += '<style="padding: 15px 0px; font-size: 36px;"><b>제목 : ' + result.btitle + '</b><br><br>';
-// 				html += '<style="padding: 15px 0px; font-size: 36px;"><b>작성자 : ' + result.userid + '</b> |';
-// 	            html += '<style="padding: 15px 0px; font-size: 36px;"><b>조회수 : ' + result.breadcnt + '</b><br><br>';
-// 				html += '<class="card-text" style="white-space: pre-wrap"><b>내용 : <br><br>' + result.bcontent + '</b>';
-// 	            $("#detailContent").html(html);
-	            
-// 	           	detailNo = result.bnum;
-// 			}
-// 		});
-// 	});
-	
-	$(".updateGo").click(function(){
-		$.ajax({
-			url:'${rUrl}/qna/'+detailNo,
-			method: 'get',
-			success: function(result){
-				$('#useridQna1').attr("value", result.userid);
-				$('#btitle1').attr("value", result.btitle);
-				$('#bcontent1').attr("placeholder", result.bcontent);
-			
-			}
-		});
+		
+$(".updateGo").click(function(){
+	$.ajax({
+		url:'${rUrl}/qna/'+detailNo,
+		method: 'get',
+		success: function(result){
+			$('#useridQna1').attr("value", result.userid);
+			$('#btitle1').attr("value", result.btitle);
+			$('#bcontent1').attr("placeholder", result.bcontent);
+		
+		}
 	});
+});
 
-	$("#updateQna").click(function(){
-	 	var dto = {
-	 		'bnum' : detailNo,
-			'userid' : $("#useridQna1").val(),
-			'btitle' : $("#btitle1").val(),
-			'bcontent' : $("#bcontent1").val(),
-	 	}
-	 	$.ajax({
-	 		url : '${rUrl}/qna',
-	 		method: 'put',
-	 		contentType: 'application/json; charset=utf-8',
-	 		data: JSON.stringify(dto),
-	 	    success:function(result){
-	  	    	location.href="${rUrl}/qna";
-	 	    },
-	 	    error : function(xhr, status, msg){
-					console.log(status + " " + msg);
-				}
-	 	});
-	 });  
-
-	$("#deleteQna").click(function(){
-		$.ajax({
-			url:'${rUrl}/qna/'+detailNo,
-			method:'delete',
-			success:function(){
-				alert("게시글이 삭제되었습니다.");
-				location.href="${rUrl}/qna";
+$("#updateQna").click(function(){
+ 	var dto = {
+ 		'bnum' : detailNo,
+		'userid' : $("#useridQna1").val(),
+		'btitle' : $("#btitle1").val(),
+		'bcontent' : $("#bcontent1").val(),
+ 	}
+ 	$.ajax({
+ 		url : '${rUrl}/qna',
+ 		method: 'put',
+ 		contentType: 'application/json; charset=utf-8',
+ 		data: JSON.stringify(dto),
+ 	    success:function(result){
+  	    	location.href="${rUrl}/qna";
+ 	    },
+ 	    error : function(xhr, status, msg){
+				console.log(status + " " + msg);
 			}
-		})
-	});
+ 	});
+ });  
 
+$("#deleteQna").click(function(){
+	$.ajax({
+		url:'${rUrl}/qna/'+detailNo,
+		method:'delete',
+		success:function(){
+			alert("게시글이 삭제되었습니다.");
+			location.href="${rUrl}/qna";
+		}
+	})
+});
 </script>
 </body>
 </html>

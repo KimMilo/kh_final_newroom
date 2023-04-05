@@ -19,6 +19,9 @@
     <jsp:include page="header.jsp" />
     
     <div class="container text-center mt-5" style="margin-bottom:0">
+        <h3>공지사항</h3>
+    </div>
+    <div class="container text-center mt-5" style="margin-bottom:0">
         <h3>
         	<c:choose>
         		<c:when test="${typeName eq 'btitle' }">
@@ -70,6 +73,7 @@
             <th width="15%">작성일</th>
           </tr>
         </thead>
+        <tbody>
         <c:choose>
 			<c:when test="${empty paging.page}">
 				<tr><td colspan="5">검색된 결과가 없습니다.</td></tr>
@@ -90,6 +94,7 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
+		</tbody>
       </table>
     </form>
   </div>

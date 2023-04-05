@@ -1,11 +1,13 @@
 package kh.com.nr.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kh.com.nr.model.dto.NoticeDto;
 import kh.com.nr.model.dto.QnaDto;
 
 @Repository
@@ -14,16 +16,16 @@ public class QnaDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public List<QnaDto> searchTitle(String keyword) {
-		return sqlSession.selectList("qna.searchTitle", keyword);
+	public List<QnaDto> searchTitle(Map<String, Object> page) {
+		return sqlSession.selectList("qna.searchTitle", page);
 	}
 
-	public List<QnaDto> searchContent(String keyword) {
-		return sqlSession.selectList("qna.searchContent", keyword);
+	public List<QnaDto> searchContent(Map<String, Object> page) {
+		return sqlSession.selectList("qna.searchContent", page);
 	}
 
-	public List<QnaDto> searchWriter(String keyword) {
-		return sqlSession.selectList("qna.searchWriter", keyword);
+	public List<QnaDto> searchWriter(Map<String, Object> page) {
+		return sqlSession.selectList("qna.searchWriter", page);
 	}
 
 	public int delete(int bnum) {
@@ -49,6 +51,26 @@ public class QnaDao {
 
 	public List<QnaDto> getFAQList() {
 		return sqlSession.selectList("qna.getFAQList");
+	}
+
+	public List<NoticeDto> selectPage(Map<String, Object> page) {
+		return sqlSession.selectList("qna.selectPage", page);
+	}
+
+	public int selectTotalRowCount() {
+		return sqlSession.selectOne("qna.selectTotalRowCount");
+	}
+	
+	public int selectTotalRowCountT(String keyword) {
+		return sqlSession.selectOne("qna.selectTotalRowCountT", keyword);
+	}
+	
+	public int selectTotalRowCountC(String keyword) {
+		return sqlSession.selectOne("qna.selectTotalRowCountC", keyword);
+	}
+	
+	public int selectTotalRowCountU(String keyword) {
+		return sqlSession.selectOne("qna.selectTotalRowCountU", keyword);
 	}
 	
 	
