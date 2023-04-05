@@ -57,17 +57,21 @@
           </tr>
         </thead>
         <c:choose>
-			<c:when test="${empty resultList}">
+			<c:when test="${empty paging.page}">
 				<tr><td colspan="5">검색된 결과가 없습니다.</td></tr>
 			</c:when>
 			<c:otherwise>
-				<c:forEach items="${resultList}" var="dto">
+				<c:forEach var="data" items="${paging.page}" >
 					<tr>
-						<td>${dto.bnum}</td>
-						<td id="title"><a href="noticeRead?bnum=${dto.bnum}">${dto.btitle}</a></td>
-						<td>${dto.userid}</td>
-						<td>${dto.breadcnt}</td>
-						<td>${dto.bwritedate}</td>
+						<td>${data.bnum}</td>
+						<td id="title"><a href="noticeRead?bnum=${data.bnum}" style="color:black;">${data.btitle}
+						<c:if test="${!empty data.cmtCnt}">
+							[${data.cmtCnt}]
+						</c:if>
+						</a></td>
+						<td>${data.userid}</td>
+						<td>${data.breadcnt}</td>
+						<td>${data.bwritedate}</td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
@@ -75,7 +79,33 @@
       </table>
     </form>
   </div>
-
+	
+  <div class="container" style="margin-bottom:0">
+    <div>
+		<ul class="mt-2 pagination justify-content-center">
+			<c:set var="pageNumber" value="${empty param.p ? 1 : param.p }" />
+			<c:choose>
+				<c:when test="${paging.prevPage eq - 1 or empty paging.page}">
+					<li class="page-item disabled"><a class="page-link">prev</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link" href="${rUrl }/noticeSearch?p=${paging.prevPage }">prev</a></li>
+				</c:otherwise>
+			</c:choose>
+			<c:forEach var="pNum" items="${paging.pageList }">
+				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/noticeSearch?p=${pNum }">${pNum }</a></li>
+			</c:forEach>
+			<c:choose>
+				<c:when test="${paging.nextPage eq - 1 or empty paging.page}">
+					<li class="page-item disabled"><a class="page-link">next</a></li>
+				</c:when>
+				<c:otherwise>
+					<li class="page-item"><a class="page-link" href="${rUrl }/noticeSearch?p=${paging.nextPage}">next</a></li>
+				</c:otherwise>
+			</c:choose>
+		</ul>
+	</div>
+  </div>
     <!-- Footer -->
 	<jsp:include page="footer.jsp" />
 </body>

@@ -27,23 +27,41 @@ public class NoticeController{
 
 	//글 검색하기
 	@PostMapping("noticeSearch") 
-	private String search(String search_type, String keyword, Model model) {
-		List<NoticeDto> resultList = null;
+	private ModelAndView search(
+			  ModelAndView mv
+			, String search_type
+			, String keyword
+			, @RequestParam(name = "p", required = false, defaultValue = "1") String p
+			) {
+		
+		int pageNumber = 1;
+		try {
+			pageNumber = Integer.parseInt(p);
+		} catch (Exception e) {
+			mv.addObject("msg","요청하신 URL 오류가 발생하였습니다. 메인페이지로 이동합니다.");
+			mv.setViewName("error");
+			return mv;
+		}
+		int pageListLimit = 10;
+		
 		String typeName = null;
+		Paging paging = null;
 		if(search_type.equals("btitle")){ //이름으로 검색
 			typeName = "제목";
-			resultList = nservice.searchTitle("%"+keyword+"%");
+			paging = nservice.searchTitle(pageNumber, pageListLimit, keyword);
 		}else if(search_type.equals("bcontent")){ //내용으로 검색
 			typeName = "내용";
-			resultList = nservice.searchContent("%"+keyword+"%");
+			paging = nservice.searchContent(pageNumber, pageListLimit, keyword);
 		}else if(search_type.equals("userid")){//작성자로 검색
 			typeName = "작성자";
-			resultList = nservice.searchWriter("%"+keyword+"%");
+			paging = nservice.searchWriter(pageNumber, pageListLimit, keyword);
 		}
-		model.addAttribute("typeName", typeName);
-		model.addAttribute("keyword", keyword);
-		model.addAttribute("resultList", resultList);
-		return "noticeSearch";
+				
+		mv.addObject("paging", paging);		
+		mv.addObject("typeName", typeName);
+		mv.addObject("keyword", keyword);
+		mv.setViewName("noticeSearch");
+		return mv;
 	}
 
 	// 글삭제하기
@@ -100,7 +118,7 @@ public class NoticeController{
 	private ModelAndView noticeList(
 			  ModelAndView mv
 			, @RequestParam(name = "p", required = false, defaultValue = "1") String p
-			, Model model) {
+			, String keyword) {
 		int pageNumber = 1;
 		try {
 			pageNumber = Integer.parseInt(p);
@@ -110,7 +128,7 @@ public class NoticeController{
 			return mv;
 		}
 		int pageListLimit = 10;
-		Paging paging = nservice.getPage(pageNumber, pageListLimit); 		
+		Paging paging = nservice.getPage(pageNumber, pageListLimit, keyword); 		
 				
 		mv.addObject("paging", paging);
 		mv.setViewName("noticeList");

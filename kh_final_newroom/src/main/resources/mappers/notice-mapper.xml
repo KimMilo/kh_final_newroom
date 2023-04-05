@@ -2,10 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="notice">
 
-<select id="selectTotalCount" resultType="int">
-	SELECT COUNT(*) FROM notice
-</select>
-
 <insert id="write" parameterType="NoticeDto">
 	INSERT INTO notice 
 	(bnum, BTITLE, USERID, BREADCNT, BWRITEDATE, BCONTENT)
@@ -30,19 +26,49 @@
 	delete from notice where bnum = #{bnum}
 </delete>
 
-<select id="searchTitle" parameterType="String" resultType="NoticeDto">
+<select id="searchTitle" parameterType="map" resultType="NoticeDto">
 	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') bwritedate,bcontent,cmtcnt
-	  FROM notice WHERE btitle like #{title}
+	  FROM (SELECT ROWNUM AS N
+	   			 , bnum
+	   			 , btitle
+	   			 , userid
+	   			 , breadcnt
+	   			 , bwritedate
+	   			 , bcontent
+	   			 , cmtcnt
+	   		  FROM (SELECT * FROM NOTICE 
+	   		  		 WHERE btitle like '%' || #{keyword} || '%' ORDER BY bnum ASC)) 
+	 WHERE N BETWEEN #{start} AND #{end}
 </select>
 
-<select id="searchContent" parameterType="String" resultType="NoticeDto">
+<select id="searchContent" parameterType="map" resultType="NoticeDto">
 	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') bwritedate,bcontent,cmtcnt
-	  FROM notice WHERE bcontent like #{keyword}
+	  FROM (SELECT ROWNUM AS N
+	   			 , bnum
+	   			 , btitle
+	   			 , userid
+	   			 , breadcnt
+	   			 , bwritedate
+	   			 , bcontent
+	   			 , cmtcnt
+	   		  FROM (SELECT * FROM NOTICE 
+	   		  		 WHERE bcontent like '%' || #{keyword} || '%' ORDER BY bnum ASC))
+	WHERE N BETWEEN #{start} AND #{end}
 </select>
 
-<select id="searchWriter" parameterType="String" resultType="NoticeDto">
+<select id="searchWriter" parameterType="map" resultType="NoticeDto">
 	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') bwritedate,bcontent,cmtcnt
-	  FROM notice WHERE userid like #{keyword}
+	  FROM (SELECT ROWNUM AS N
+	   			 , bnum
+	   			 , btitle
+	   			 , userid
+	   			 , breadcnt
+	   			 , bwritedate
+	   			 , bcontent
+	   			 , cmtcnt
+	   		  FROM (SELECT * FROM NOTICE 
+	   		  		 WHERE userid like '%' || #{keyword} || '%' ORDER BY bnum ASC))
+	WHERE N BETWEEN #{start} AND #{end}
 </select>
 
 <select id="selectPage" parameterType="map" resultType="NoticeDto">
@@ -62,6 +88,13 @@
 
 <select id="selectTotalRowCount" resultType="_int">
 	SELECT COUNT(*) FROM NOTICE
+	<trim prefix="where" prefixOverrides="AND|OR">
+		<if test="keyword != null and keyword neq ''">
+			AND btitle like '%'||#{keyword}||'%'
+			 OR userid like '%'||#{keyword}||'%'
+			 OR bcontent like '%'||#{keyword}||'%'
+		</if>
+	</trim>
 </select>
 
 </mapper>

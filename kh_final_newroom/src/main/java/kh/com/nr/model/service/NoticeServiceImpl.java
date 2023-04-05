@@ -30,10 +30,71 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public List<NoticeDto> searchTitle(String title) {
-		return dao.searchTitle(title);
+	public Paging searchTitle(int pageNumber, int pageListLimit, String keyword) {
+		Map<String, Object> page = new HashMap<String, Object>();
+		page.put("start", (pageNumber - 1) * pageListLimit + 1);
+		page.put("end", pageNumber * pageListLimit);
+		page.put("keyword", keyword);
+		
+		List<NoticeDto> data = dao.searchTitle(page);
+		System.out.println(data);
+		for(NoticeDto dto: data) {
+			int cmtCnt = dao.selectCommentCount(dto.getBnum()); // 해당 게시글에 댓글이 몇개 달렸나 조회
+			dto.setCmtCnt(cmtCnt); 
+		}
+		
+		int totalRowCount = dao.selectTotalRowCount(keyword); 
+		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / pageListLimit) + mod;
+		
+		Paging paging = new Paging(data, pageNumber, pageCount, pageListLimit, 5);
+
+		return paging;
 	}
 
+	@Override
+	public Paging searchContent(int pageNumber, int pageListLimit, String keyword) {
+		Map<String, Object> page = new HashMap<String, Object>();
+		page.put("start", (pageNumber - 1) * pageListLimit + 1);
+		page.put("end", pageNumber * pageListLimit);
+		page.put("keyword", keyword);
+		
+		List<NoticeDto> data = dao.searchContent(page);
+		for(NoticeDto dto: data) {
+			int cmtCnt = dao.selectCommentCount(dto.getBnum()); // 해당 게시글에 댓글이 몇개 달렸나 조회
+			dto.setCmtCnt(cmtCnt); 
+		}
+		
+		int totalRowCount = dao.selectTotalRowCount(keyword); 
+		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / pageListLimit) + mod;
+		
+		Paging paging = new Paging(data, pageNumber, pageCount, pageListLimit, 5);
+
+		return paging;
+	}
+
+	@Override
+	public Paging searchWriter(int pageNumber, int pageListLimit, String keyword) {
+		Map<String, Object> page = new HashMap<String, Object>();
+		page.put("start", (pageNumber - 1) * pageListLimit + 1);
+		page.put("end", pageNumber * pageListLimit);
+		page.put("keyword", keyword);
+		
+		List<NoticeDto> data = dao.searchWriter(page);
+		for(NoticeDto dto: data) {
+			int cmtCnt = dao.selectCommentCount(dto.getBnum()); // 해당 게시글에 댓글이 몇개 달렸나 조회
+			dto.setCmtCnt(cmtCnt); 
+		}
+		
+		int totalRowCount = dao.selectTotalRowCount(keyword); 
+		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / pageListLimit) + mod;
+		
+		Paging paging = new Paging(data, pageNumber, pageCount, pageListLimit, 5);
+
+		return paging;
+	}
 
 	@Override
 	public NoticeDto getBoard(int bnum) {
@@ -44,17 +105,6 @@ public class NoticeServiceImpl implements NoticeService{
 	@Override
 	public int write(NoticeDto dto) {
 		return dao.write(dto);
-	}
-
-
-	@Override
-	public List<NoticeDto> searchContent(String keyword) {
-		return dao.searchContent(keyword);
-	}
-
-	@Override
-	public List<NoticeDto> searchWriter(String keyword) {
-		return dao.searchWriter(keyword);
 	}
 
 	@Override
@@ -77,7 +127,7 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public Paging getPage(int pageNumber, int pageListLimit) {
+	public Paging getPage(int pageNumber, int pageListLimit, String keyword) {
 		Map<String, Integer> page = new HashMap<String, Integer>();
 		page.put("start", (pageNumber - 1) * pageListLimit + 1);
 		page.put("end", pageNumber * pageListLimit);
@@ -88,7 +138,7 @@ public class NoticeServiceImpl implements NoticeService{
 			dto.setCmtCnt(cmtCnt); 
 		}
 		
-		int totalRowCount = dao.selectTotalRowCount(); 
+		int totalRowCount = dao.selectTotalRowCount(keyword); 
 		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
 		int pageCount = (totalRowCount / pageListLimit) + mod;
 		

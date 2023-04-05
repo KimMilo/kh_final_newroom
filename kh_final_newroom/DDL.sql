@@ -206,6 +206,21 @@ INSERT INTO NOTICE VALUES(4, '공지테스트4', 'admin', default, default, '테
 
 SELECT * FROM NOTICE;
 SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM'),bcontent,cmtcnt FROM notice ORDER BY bnum DESC;
+
+SELECT * FROM NOTICE WHERE btitle LIKE '%1%' OR userid LIKE '%1%' OR bcontent LIKE '%1%';
+
+SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') bwritedate,bcontent,cmtcnt
+	  FROM (SELECT ROWNUM AS N
+	   			 , bnum
+	   			 , btitle
+	   			 , userid
+	   			 , breadcnt
+	   			 , bwritedate
+	   			 , bcontent
+	   			 , cmtcnt
+	   		  FROM (SELECT * FROM NOTICE 
+	   		  		 WHERE btitle like '%1%'))
+	WHERE N BETWEEN 1 AND 10;
 -----------------------------------------------------------------------------------------------
 DROP TABLE COMMENT_T;
 CREATE TABLE COMMENT_T(

@@ -24,12 +24,16 @@ public class NoticeDao {
 		return sqlSession.delete("notice.delete", bnum);
 	}
 
-	public List<NoticeDto> searchTitle(String title) {
-		return sqlSession.selectList("notice.searchTitle", title);
+	public List<NoticeDto> searchTitle(Map<String, Object> page) {
+		return sqlSession.selectList("notice.searchTitle", page);
 	}
 
-	public int selectTotalCount() {
-		return sqlSession.selectOne("notice.selectTotalCount");
+	public List<NoticeDto> searchContent(Map<String, Object> page) {
+		return sqlSession.selectList("notice.searchContent", page);
+	}
+
+	public List<NoticeDto> searchWriter(Map<String, Object> page) {
+		return sqlSession.selectList("notice.searchWriter", page);
 	}
 
 	public int selectCommentCount(int bnum) {
@@ -48,14 +52,6 @@ public class NoticeDao {
 		return sqlSession.insert("notice.write", dto);
 	}
 
-	public List<NoticeDto> searchContent(String keyword) {
-		return sqlSession.selectList("notice.searchContent", keyword);
-	}
-
-	public List<NoticeDto> searchWriter(String keyword) {
-		return sqlSession.selectList("notice.searchWriter", keyword);
-	}
-
 	public List<CommentDto> selectCommentList(int bnum) {
 		return sqlSession.selectList("comment.selectCommentList", bnum);
 	}
@@ -72,8 +68,8 @@ public class NoticeDao {
 		return sqlSession.selectList("notice.selectPage", page);
 	}
 
-	public int selectTotalRowCount() {
-		return sqlSession.selectOne("notice.selectTotalRowCount");
+	public int selectTotalRowCount(String keyword) {
+		return sqlSession.selectOne("notice.selectTotalRowCount", keyword);
 	}
 	
 }
