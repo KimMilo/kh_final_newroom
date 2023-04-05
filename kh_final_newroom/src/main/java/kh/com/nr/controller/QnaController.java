@@ -36,7 +36,6 @@ public class QnaController {
 	@GetMapping("")
 	public ModelAndView qnaView(
 			ModelAndView mv
-		  , String keyword
 		  , @RequestParam(name = "p", required = false, defaultValue = "1") String p) {
 		int pageNumber = 1;
 		try {
@@ -48,7 +47,7 @@ public class QnaController {
 		}
 		int pageListLimit = 10;
 		
-		Paging paging = qService.getPage(pageNumber, pageListLimit, keyword);
+		Paging paging = qService.getPage(pageNumber, pageListLimit);
 		mv.addObject("paging", paging);		
 		mv.setViewName("qna");
 		return mv;
@@ -108,39 +107,6 @@ public class QnaController {
 		return resultList;
 	}
 
-	//TODO 답변 COMMENT 테이블 새로 시작
-//	//답변 작성
-//	@PostMapping("/ans")
-//	@ResponseBody
-//   	public int addAnswer(@RequestBody QnaDto dto, HttpSession session) throws Exception {
-//		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
-//		dto.setBtitle("reply");
-//		dto.setUserid(loginInfo.getUserid());
-//		return qService.ansWrite(dto);
-//	}
-//	
-//	//답변 수정
-//	@PutMapping("/ans")
-//	@ResponseBody
-//	public int ansUpdate(@RequestBody QnaDto dto)
-//			throws IOException {
-//		return qService.ansUpdate(dto);
-//	}
-//	
-//	//답변 삭제
-//	@DeleteMapping("/ans/{bnum}")
-//	@ResponseBody
-//	public int ansDelete(@PathVariable("bnum") int bnum) {
-//		return qService.ansDelete(bnum);
-//	}
-//	
-//	//답변 목록
-//	@GetMapping("/ans/{qnum}")
-//	@ResponseBody
-//	public List<QnaDto> ansList(@PathVariable("qnum") int questionnum) {
-//		return qService.getAnsList(questionnum);
-//	}
-//	
 //	// 질문 목록
 //	@GetMapping("/faq")
 //	@ResponseBody

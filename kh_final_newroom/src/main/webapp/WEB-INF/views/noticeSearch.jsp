@@ -31,7 +31,8 @@
         			<span style="color: orange;">작성자</span>(으)로 
         		</c:otherwise>
         	</c:choose>
-        	<span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.</h3>
+        	<span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.
+        </h3>
     </div>
 
     <nav class="container navbar navbar-expand-sm navbar-light">

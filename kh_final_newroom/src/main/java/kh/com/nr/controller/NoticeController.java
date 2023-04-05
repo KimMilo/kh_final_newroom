@@ -118,7 +118,7 @@ public class NoticeController{
 	private ModelAndView noticeList(
 			  ModelAndView mv
 			, @RequestParam(name = "p", required = false, defaultValue = "1") String p
-			, String keyword) {
+			) {
 		int pageNumber = 1;
 		try {
 			pageNumber = Integer.parseInt(p);

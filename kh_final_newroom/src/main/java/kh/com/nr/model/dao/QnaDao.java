@@ -26,10 +26,6 @@ public class QnaDao {
 		return sqlSession.selectList("qna.searchWriter", keyword);
 	}
 
-	public List<QnaDto> getBoardList() {
-		return sqlSession.selectList("qna.getBoardList");
-	}
-
 	public int delete(int bnum) {
 		return sqlSession.delete("qna.delete", bnum);
 	}

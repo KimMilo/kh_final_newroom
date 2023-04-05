@@ -54,41 +54,19 @@ public class QnaServiceImpl implements QnaService{
 	}
 
 	@Override
-	public int ansWrite(QnaDto dto) { //답변 작성 
-		return dao.ansWrite(dto);
-	}
-
-	@Override
-	public int ansUpdate(QnaDto dto) { //답변 수정
-		return dao.ansUpdate(dto);
-	}
-
-	@Override
-	public int ansDelete(int bnum) { //답변 삭제
-		return dao.ansDelete(bnum);
-	}
-
-	@Override
-	public List<QnaDto> getAnsList(int questionnum) { //답변 목록
-		return dao.getAnsList(questionnum);
-	}
-
-	@Override
 	public List<QnaDto> getFAQList() { //FAQ 목록
 		return dao.getFAQList();
-
 	}
 
 	@Override
-	public Paging getPage(int pageNumber, int pageListLimit, String keyword) {
+	public Paging getPage(int pageNumber, int pageListLimit) {
 		Map<String, Object> page = new HashMap<String, Object>();
 		page.put("start", (pageNumber - 1) * pageListLimit + 1);
 		page.put("end", pageNumber * pageListLimit);
-		page.put("keyword", keyword)
 		
 		List<NoticeDto> data = dao.selectPage(page);
 		
-		int totalRowCount = dao.selectTotalRowCount(keyword); 
+		int totalRowCount = dao.selectTotalRowCount(); 
 		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
 		int pageCount = (totalRowCount / pageListLimit) + mod;
 		

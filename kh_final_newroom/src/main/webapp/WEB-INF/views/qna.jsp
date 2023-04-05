@@ -23,8 +23,22 @@
 	<jsp:include page="header.jsp" />
 	
 	 <div class="container text-center mt-5" style="margin-bottom:0">
-        <h3><span style="color: orange;">'${typeName}'</span>(으)로 <span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.</h3>
+        <h3>
+        	<c:choose>
+        		<c:when test="${typeName eq 'btitle' }">
+		        	<span style="color: orange;">제목</span>(으)로 
+        		</c:when>
+        		<c:when test="${typeName eq 'bcontent' }">
+        			<span style="color: orange;">내용</span>(으)로 
+        		</c:when>
+        		<c:otherwise>
+        			<span style="color: orange;">작성자</span>(으)로 
+        		</c:otherwise>
+        	</c:choose>
+        	<span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.
+        </h3>
     </div>
+
 	
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">

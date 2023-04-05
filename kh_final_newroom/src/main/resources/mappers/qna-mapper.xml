@@ -25,10 +25,6 @@
 	SELECT * FROM qna WHERE BNUM=#{bnum}
 </select>
 
-<select id="getBoardList" resultType="QnaDto"> <!-- 질문 전체 목록 -->
-	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ FROM qna ORDER BY blevel DESC, bnum, questionnum DESC
-</select>
-
 <update id="update" parameterType="QnaDto"><!-- 질문 수정 -->
 	update qna set btitle=#{btitle}, bcontent=#{bcontent}, bwritedate=default where bnum=#{bnum}
 </update>
@@ -51,25 +47,6 @@
 <select id="searchWriter" parameterType="String" resultType="QnaDto">
 	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ
 	  FROM qna WHERE userid like #{keyword} ORDER BY bnum DESC
-</select>
-
-<!-- 답변 기능 -->
-<insert id="ansWrite" parameterType="QnaDto">
-	INSERT INTO qna 
-	(BTITLE, USERID, BWRITEDATE, BCONTENT, QUESTIONNUM)
-	VALUES(#{btitle},#{userid}, default,#{bcontent},#{questionnum})
-</insert>
-
-<update id="ansUpdate" parameterType="QnaDto">
-	update qna set btitle=#{btitle}, bcontent=#{bcontent}, bwritedate=default where bnum=#{bnum}
-</update>
-
-<delete id="ansDelete" parameterType="int">
-	delete from qna where bnum = #{bnum}
-</delete>
-
-<select id="getAnsList" parameterType="int" resultType="QnaDto"> <!-- 질문 전체 목록 -->
-	SELECT * FROM qna WHERE questionnum = #{questionnum}
 </select>
 
 <select id="getFAQList" resultType="QnaDto"> 
