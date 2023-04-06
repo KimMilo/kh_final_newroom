@@ -3,16 +3,16 @@
 <mapper namespace="houseMap">
 
 <select id="getSido" resultType="SidoGugunCodeDto">
-	SELECT left(sido_code,2) sido_code, sido_name FROM sidocode
+	SELECT sido_code, sido_name FROM sidocode
 </select>
 
 <select id="getGugunInSido" parameterType="String" resultType="SidoGugunCodeDto">
-	SELECT left(gugun_code,5) gugun_code, gugun_name FROM guguncode
-	where left(gugun_code,2) = #{sido} ORDER BY gugun_code
+	SELECT gugun_code, gugun_name FROM guguncode
+	where gugun_code = #{sido} ORDER BY gugun_code
 </select>
 
 <select id="getDongInGugun" parameterType="String" resultType="HouseInfoDto">
-	SELECT distinct dong, code from baseaddress where dongcode = #{gugun}
+	SELECT distinct dong, dongcode from baseaddress where dongcode = #{gugun}
 </select>
 
 <select id="getAptInDong" parameterType="String" resultType="HouseInfoDto">
