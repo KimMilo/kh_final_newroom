@@ -206,6 +206,13 @@ CREATE TABLE HOUSEDEAL(
 
 INSERT INTO HOUSEDEAL VALUES(1, 1, '논현동', '롯데캐슬', '101-01', null, null, '11억', '2023', '03', '22', '59', '11', '매매', null, null);
 INSERT INTO HOUSEDEAL VALUES(2, 2, '논현동', '롯데캐슬', '101-01', null, null, '9억', '2023', '03', '22', '59', '11', '매매', null, '10.jpg');
+
+SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
+	d.area, d.floor, d.dtype, d.rentMoney,
+	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
+	FROM housedeal d, houseinfo i
+	WHERE d.no=i.no AND i.aptName like CONCAT('%',aptName,'%');
+
 --------------------------------------------------------------------------------
 
 DROP TABLE INTEREST;

@@ -78,6 +78,82 @@
 	<!-- Footer -->
 	<jsp:include page="footer.jsp" />
 	
+	<script>
+	$(function() {
+		// 시도 옵션 리스트 목록
+		$.ajax({
+			url : '${rUrl}/map/sido',
+			type : 'GET',
+			contextType : 'application/json;charset=utf-8',
+			dataType : 'json',
+			success : function(result) {
+				var optionList = '';
+				for (let i = 0; i < result.length; i++) {
+					optionList += '<option value="';
+			optionList += result[i]["sidoCode"] + '">';
+					optionList += result[i]["sidoName"]
+					optionList += '</option>';
+				}
+				$("#sido").append(optionList);
+			},
+			error : function(xhr, status, msg) {
+				console.log(status + " " + msg);
+			}
+		});
+
+		// 시도에 따른 구군 옵션 리스트 목록
+		$("#sido").change(
+			function() {
+				$.ajax({
+					url : '${rUrl}/map/gugun/'+ $("#sido").val(),
+					type : 'GET',
+					contextType : 'application/json;charset=utf-8',
+					dataType : 'json',
+					success : function(result) {
+						$("#gugun").empty();
+						$("#gugun").append("<option selected disabled>구/군</option>");
+						var optionList = '';
+						for (let i = 0; i < result.length; i++) {
+							optionList += '<option value="';
+							optionList += result[i]["gugunCode"] + '">';
+							optionList += result[i]["gugunName"]
+							optionList += '</option>';
+						}
+						$("#gugun").append(optionList);
+					},
+					error : function(xhr,status, msg) {
+						console.log(status+ " "+ msg);
+					}
+				});
+			});
+
+		// 구군에 따른 동 옵션 리스트 목록
+		$("#gugun").change(function() {
+			$.ajax({
+				url : '${rUrl}/map/dong/'+ $("#gugun").val(),
+				type : 'GET',
+				contextType : 'application/json;charset=utf-8',
+				dataType : 'json',
+				success : function(result) {
+					$("#dong").empty();
+					$("#dong").append("<option selected disabled>동</option>");
+					var optionList = '';
+					for (let i = 0; i < result.length; i++) {
+						optionList += '<option value="';
+						optionList += result[i]["dong"] + '">';
+						optionList += result[i]["dong"]
+						optionList += '</option>';
+					}
+					$("#dong").append(optionList);
+				},
+				error : function(xhr,status, msg) {
+					console.log(status+ " "+ msg);
+				}
+			});
+		});
+	});
+</script>
+	
 </body>
 
 </html>

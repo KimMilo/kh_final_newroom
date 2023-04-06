@@ -32,6 +32,7 @@ public class HouseMapController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(sidoList);
 		return sidoList;
 	}
 

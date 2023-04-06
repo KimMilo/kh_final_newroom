@@ -9,7 +9,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Component
-
 @Setter
 @Getter
 @NoArgsConstructor
@@ -17,8 +16,8 @@ import lombok.ToString;
 @ToString
 public class SidoGugunCodeDto {
 
-	private String sido_code;
-	private String sido_name;
-	private String gugun_code;
-	private String gugun_name;
+	private String sidoCode;
+	private String sidoName;
+	private String gugunCode;
+	private String gugunName;
 }

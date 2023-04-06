@@ -30,14 +30,91 @@
 <spring:eval expression="@property['key']" var="key"/>
 	<jsp:include page="header.jsp" />
 
+	<!-- Contents -->
 	<div class="container-fluid contents">
+		<%-- 시/도, 구/군, 동 데이터 읽어와 갱신 --%>
+		<script type="text/javascript">
+			$(function(){
+				// 시도 옵션 리스트 목록
+				$.ajax({
+					url:'${rUrl}/map/sido',
+					type : 'GET',
+					contextType : 'application/json;charset=utf-8',
+					dataType : 'json',
+					success : function(result){
+						var optionList = '';
+						for(let i = 0; i < result.length; i++){
+							optionList += '<option value="';
+							optionList += result[i]["sidoCode"] + '">';
+							optionList += result[i]["sidoName"]
+							optionList += '</option>';
+						}
+						$("#sido").append(optionList);
+					},
+					error : function(xhr, status, msg){
+						console.log(status + " " + msg);									
+					}
+				});
+				
+				// 시도에 따른 구군 옵션 리스트 목록
+				$("#sido").change(function(){
+					$.ajax({
+						url:'${rUrl}/map/gugun/'+$("#sido").val(),
+						type : 'GET',
+						contextType : 'application/json;charset=utf-8',
+						dataType : 'json',
+						success : function(result){
+							$("#gugun").empty();
+							$("#gugun").append("<option selected disabled>구/군</option>");
+							var optionList = '';
+							for(let i = 0; i < result.length; i++){
+								optionList += '<option value="';
+								optionList += result[i]["gugunCode"] + '">';
+								optionList += result[i]["gugunName"]
+								optionList += '</option>';
+							}
+							$("#gugun").append(optionList);
+						},
+						error : function(xhr, status, msg){
+							console.log(status + " " + msg);									
+						}
+					});
+				});
+				
+				// 구군에 따른 동 옵션 리스트 목록
+				$("#gugun").change(function(){
+					$.ajax({
+						url:'${rUrl}/map/dong/'+$("#gugun").val(),
+						type : 'GET',
+						contextType : 'application/json;charset=utf-8',
+						dataType : 'json',
+						success : function(result){
+							$("#dong").empty();
+							$("#dong").append("<option selected disabled>동</option>");
+							var optionList = '';
+							for(let i = 0; i < result.length; i++){
+								optionList += '<option value="';
+								optionList += result[i]["dong"] + '">';
+								optionList += result[i]["dong"]
+								optionList += '</option>';
+							}
+							$("#dong").append(optionList);
+						},
+						error : function(xhr, status, msg){
+							console.log(status + " " + msg);									
+						}
+					});
+				});
+			});		        	 	
+		</script>
+		<!-- 매물 전체 검색화면 navbar -->
 		<form action="${rUrl}/search" method="post"
 			class="form-inline justify-content-between mt-md-2">
 			<div class="form-group">
 				<input name="aptName" type="text" class="form-control mx-md-1"
 					placeholder="아파트 이름 입력" style="border: 0; font-size: 24px">
 				<button class="btn">
-					<i class="fas fa-search" style="font-size: 24px; color: orange"></i>
+					<i class="fas fa-search" style="font-size: 24px; color: #1abc9c"></i>
 				</button>
 			</div>
 			<div class="form-group">
@@ -84,11 +161,32 @@
 				<button type="button" id="btn__busstop" 
 					class="btn border btn-sm">주변 버스 정류소</button>
 				<button id="reset_btn" class="btn" type="reset">
-					<i class="fas fa-redo-alt" style="font-size: 24px; color: orange"></i>
+					<i class="fas fa-redo-alt" style="font-size: 24px; color: #1abc9c"></i>
 				</button>
+				<script>
+					$('#reset_btn').click(function(){
+						initMap(); //지도 초기화
+						
+						<c:forEach items="${dealList}" var="dto">
+							$.get("https://maps.googleapis.com/maps/api/geocode/json"
+								,{	key:'${key}'
+									, address: "${dto.dong}" + "+" + "${dto.aptName}" + "+" + "${dto.jibun}"
+								}
+								, function(data, status) {
+									tmpLat = data.results[0].geometry.location.lat;
+									tmpLng = data.results[0].geometry.location.lng;
+									addMarker({lat:tmpLat, lng:tmpLng, name:"${dto.aptName}", type:'house'}, null);
+								}
+								, "json"
+							);//매물get
+						</c:forEach>
+					})
+				</script>
 			</div>
 		</form>
 		<hr>
+
+
 		<!-- 검색화면 컨텐츠 -->
 		<div class="container-fluid search-results w-100 pl-0">
 			<!-- 주변 국민 안심병원, 코로나 선별 진료소 출력 -->
@@ -262,6 +360,8 @@
 				</header>
 				<c:choose>
 					<c:when test="${not empty dealList}">
+						
+					
 						<c:set var="itemIdx" value="0"></c:set>
 						<%--매물 반복문 도는곳 --%>
 						<c:forEach items="${dealList}" var="dto"> 
@@ -277,15 +377,16 @@
 												method:'get',
 												success:function(result){
 													if(result == 'true'){
-														$("#interest${dto.no}").attr('src', '${rUrl}/resources/img/heart_fill.png');
+														$("#interest${dto.no}").attr('src', './resources/img/heart_fill.png');
 													}else {
-														$("#interest${dto.no}").attr('src', '${rUrl}/resources/img/heart_empty.png');
+														$("#interest${dto.no}").attr('src', './resources/img/heart_empty.png');
 													}
 												},
 											});
 										})
 									</script>
 								</c:if>	
+    							
     							<c:if test= "${dto.img eq null}">
 									<img src="${rUrl}/resources/img/room_sample.PNG" alt=""
 										style="width: 140px; height: 100px;">
@@ -294,6 +395,7 @@
 									<img src="${rUrl}/resources/img/houseimg/${dto.img}" alt=""
 										style="width: 140px; height: 100px;">
     							</c:if>
+    							
     							<div class="card-body p-md-1">
 										<h5 style="overflow: hidden; width: 130px; height: 25px;" class="font-weight-bold">${dto.aptName}</h5>
 										<h5><button class="btn btn-sm btn-primary disabled">아파트</button></h5>
@@ -302,6 +404,7 @@
 									<p class="card-text">${dto.floor}층, ${dto.area}m</p><br>
 								</div>
 							</div>
+
 							<script type="text/javascript">
 		                        $.get("https://maps.googleapis.com/maps/api/geocode/json"
 									,{	key:'${key}'
@@ -322,21 +425,21 @@
 									
 									// 찜 등록 및 해제
 									if(className == 'heartIcon'){
-										if($("#"+idName).attr('src') == '${rUrl}/resources/img/heart_fill.png'){
+										if($("#"+idName).attr('src') == './resources/img/heart_fill.png'){
 	                    	    			$.ajax({
 												url:'${rUrl}/interest/${dto.no}',
 												method:'delete',
 												success:function(){
-													$("#"+idName).attr('src', '${rUrl}/resources/img/heart_empty.png');
+													$("#"+idName).attr('src', './resources/img/heart_empty.png');
 	                    	    					alert("찜 목록에서 해제 되었습니다.");
 												}
 											});
-	                    	    		}else if($("#"+idName).attr('src') == '${rUrl}/resources/img/heart_empty.png'){
+	                    	    		}else if($("#"+idName).attr('src') == './resources/img/heart_empty.png'){
 											$.ajax({
 												url:'${rUrl}/interest/${dto.no}',
 												method:'get',
 												success:function(){
-													$("#"+idName).attr('src', '${rUrl}/resources/img/heart_fill.png');
+													$("#"+idName).attr('src', './resources/img/heart_fill.png');
 	                    	    					alert("찜 목록에 등록이 되었습니다.");
 												}
 											});
@@ -394,7 +497,7 @@
 				<script
 					src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 				<script defer
-					src="https://maps.googleapis.com/maps/api/js?key=${key}&callback=initMap"></script>
+					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANeOokozcE3_hMbOff4NAU9aCNOYeC-uM&callback=initMap"></script>
 				<script type="text/javascript">
                     const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                     let labelIndex = 0;
@@ -591,6 +694,9 @@
                    		})
                    		
                    		var info = $(place).find('nodeno').text()+" 정류장<br>";
+//                    		+ "<span style='color:#999; font-size:13px;'> 정류장 번호 : "
+//                    		+ $(place).find('nodeno').text()
+//                    		+ "</span><br>";
                    		
                    		attachInfo(marker, info);
                    		
@@ -617,103 +723,8 @@
 			</div>
 		</div>
 	</div>
-	
+	<!-- Footer -->
 	<jsp:include page="footer.jsp" />
-	
-<%-- 시/도, 구/군, 동 데이터 읽어와 갱신 --%>
-<script type="text/javascript">
-	$(function(){
-		// 시도 옵션 리스트 목록
-		$.ajax({
-			url:'${rUrl}/map/sido',
-			type : 'GET',
-			contextType : 'application/json;charset=utf-8',
-			dataType : 'json',
-			success : function(result){
-				var optionList = '';
-				for(let i = 0; i < result.length; i++){
-					optionList += '<option value="';
-					optionList += result[i]["sidoCode"] + '">';
-					optionList += result[i]["sidoName"]
-					optionList += '</option>';
-				}
-				$("#sido").append(optionList);
-			},
-			error : function(xhr, status, msg){
-				console.log(status + " " + msg);									
-			}
-		});
-		
-		// 시도에 따른 구군 옵션 리스트 목록
-		$("#sido").change(function(){
-			$.ajax({
-				url:'${rUrl}/map/gugun/'+$("#sido").val(),
-				type : 'GET',
-				contextType : 'application/json;charset=utf-8',
-				dataType : 'json',
-				success : function(result){
-					$("#gugun").empty();
-					$("#gugun").append("<option selected disabled>구/군</option>");
-					var optionList = '';
-					for(let i = 0; i < result.length; i++){
-						optionList += '<option value="';
-						optionList += result[i]["gugunCode"] + '">';
-						optionList += result[i]["gugunName"]
-						optionList += '</option>';
-					}
-					$("#gugun").append(optionList);
-				},
-				error : function(xhr, status, msg){
-					console.log(status + " " + msg);									
-				}
-			});
-		});
-		
-		// 구군에 따른 동 옵션 리스트 목록
-		$("#gugun").change(function(){
-			$.ajax({
-				url:'${rUrl}/map/dong/'+$("#gugun").val(),
-				type : 'GET',
-				contextType : 'application/json;charset=utf-8',
-				dataType : 'json',
-				success : function(result){
-					$("#dong").empty();
-					$("#dong").append("<option selected disabled>동</option>");
-					var optionList = '';
-					for(let i = 0; i < result.length; i++){
-						optionList += '<option value="';
-						optionList += result[i]["dong"] + '">';
-						optionList += result[i]["dong"]
-						optionList += '</option>';
-					}
-					$("#dong").append(optionList);
-				},
-				error : function(xhr, status, msg){
-					console.log(status + " " + msg);									
-				}
-			});
-		});
-	});		        	 	
-</script>
-<script>
-	$('#reset_btn').click(function(){
-		initMap(); //지도 초기화
-		
-		<c:forEach items="${dealList}" var="dto">
-			$.get("https://maps.googleapis.com/maps/api/geocode/json"
-				,{	key:'${key}'
-					, address: "${dto.dong}" + "+" + "${dto.aptName}" + "+" + "${dto.jibun}"
-				}
-				, function(data, status) {
-					tmpLat = data.results[0].geometry.location.lat;
-					tmpLng = data.results[0].geometry.location.lng;
-					addMarker({lat:tmpLat, lng:tmpLng, name:"${dto.aptName}", type:'house'}, null);
-				}
-				, "json"
-			);//매물get
-		</c:forEach>
-	})
-</script>
 </body>
 
 </html>

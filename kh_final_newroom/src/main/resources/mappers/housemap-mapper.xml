@@ -3,11 +3,11 @@
 <mapper namespace="houseMap">
 
 <select id="getSido" resultType="SidoGugunCodeDto">
-	SELECT sido_code, sido_name FROM sidocode
+	SELECT sido_code, sido_name FROM SIDOCODE
 </select>
 
 <select id="getGugunInSido" parameterType="String" resultType="SidoGugunCodeDto">
-	SELECT gugun_code, gugun_name FROM guguncode
+	SELECT gugun_code, gugun_name FROM GUGUNCODE
 	where gugun_code = #{sido} ORDER BY gugun_code
 </select>
 
@@ -19,7 +19,7 @@
 	SELECT no,dong,AptName,code,jibun FROM houseinfo 
 	WHERE dong = #{dong} ORDER BY AptName
 </select>
-
+ 
 <select id="getDealInfo" resultType="HouseDealDto">
 	SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney,
@@ -41,7 +41,7 @@
 	d.area, d.floor, d.dtype, d.rentMoney,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
-	WHERE d.no=i.no AND i.aptName like CONCAT('%',#{aptName},'%') LIMIT 20
+	WHERE d.no=i.no AND i.aptName like '%' || #{aptName} || '%'
 </select>
 
 <select id="getDealInfoByDong" parameterType="String" resultType="HouseDealDto">
@@ -49,7 +49,7 @@
 	d.area, d.floor, d.dtype, d.rentMoney, 
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
-	WHERE d.no=i.no AND i.dong LIKE #{dong} LIMIT 20
+	WHERE d.no=i.no AND i.dong LIKE #{dong}
 </select>
 
 </mapper>
