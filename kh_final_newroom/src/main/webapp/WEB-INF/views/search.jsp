@@ -138,6 +138,7 @@
 						<option selected disabled>주거/매물형태</option>
 						<option value="apt">아파트</option>
 						<option value="houses">연립주택</option>
+						<option value="opist">오피스텔</option>
 					</select>
 				</div>
 				<div class="form-group mx-md-1">
