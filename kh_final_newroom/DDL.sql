@@ -51,22 +51,191 @@ INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '강남소아과의원'
 INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '강남소아과의원', '서울시 강남구 논현동 111-3', '소아과', '02-1234-8888');
 -----------------------------------------------------------------------------------
 
+SELECT hnum, city, gugun, hospitalName, address, diagnosisType, phone
+  FROM HOSPITAL
+ WHERE (city, gugun) IN (SELECT DISTINCT city, gugun
+                              FROM BASEADDRESS b
+                             WHERE b.dongcode = (SELECT DISTINCT code 
+                                                   FROM HOUSEINFO
+                                                  WHERE housenum = 2)	
+                            );
+--TODO 하우스 넘버와 병원 넘버를 어떻게 맞출것인지 생각해야함.
+ --------------------------------------------------------------------------------------------
+
 DROP TABLE BASEADDRESS;
 CREATE TABLE BASEADDRESS(
-    no NUMBER PRIMARY KEY
-  , city VARCHAR2(20)
+    city VARCHAR2(20)
   , gugun VARCHAR2(20)
   , dong VARCHAR2(20)
-  , jibun VARCHAR2(30)
   , dongcode VARCHAR2(10)
 );
 
-INSERT INTO BASEADDRESS VALUES(1, '서울시', '강남구', '논현동', '001-01', '001');
-INSERT INTO BASEADDRESS VALUES(2, '서울시', '강남구', '논현동', '001-02', '001');
-INSERT INTO BASEADDRESS VALUES(3, '서울시', '강남구', '논현동', '001-03', '001');
+INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '개포동', 'A011');
+INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '논현동', 'A012');
+--INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '대치동', 'A013');
+--INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '도곡동', 'A014');
+--INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '압구정동', 'A015');
+
+INSERT INTO BASEADDRESS VALUES('서울시', '구로구', '개봉동', 'A021');
+INSERT INTO BASEADDRESS VALUES('서울시', '구로구', '고척동', 'A022');
+--INSERT INTO BASEADDRESS VALUES('서울시', '구로구', '구로동', 'A023');
+--INSERT INTO BASEADDRESS VALUES('서울시', '구로구', '신도림동', 'A024');
+--INSERT INTO BASEADDRESS VALUES('서울시', '구로구', '오류동', 'A025');
+
+INSERT INTO BASEADDRESS VALUES('서울시', '동작구', '노량진동', 'A031');
+INSERT INTO BASEADDRESS VALUES('서울시', '동작구', '대방동', 'A032');
+--INSERT INTO BASEADDRESS VALUES('서울시', '동작구', '상도동', 'A033');
+--INSERT INTO BASEADDRESS VALUES('서울시', '동작구', '사당동', 'A034');
+--INSERT INTO BASEADDRESS VALUES('서울시', '동작구', '흑석동', 'A035');
+
+INSERT INTO BASEADDRESS VALUES('서울시', '마포구', '마포동', 'A041');
+INSERT INTO BASEADDRESS VALUES('서울시', '마포구', '망원동', 'A042');
+--INSERT INTO BASEADDRESS VALUES('서울시', '마포구', '서교동', 'A043');
+--INSERT INTO BASEADDRESS VALUES('서울시', '마포구', '연남동', 'A044');
+--INSERT INTO BASEADDRESS VALUES('서울시', '마포구', '합정동', 'A045');
+
+INSERT INTO BASEADDRESS VALUES('서울시', '서초구', '반포동', 'A051');
+INSERT INTO BASEADDRESS VALUES('서울시', '서초구', '방배동', 'A052');
+--INSERT INTO BASEADDRESS VALUES('서울시', '서초구', '서초동', 'A053');
+--INSERT INTO BASEADDRESS VALUES('서울시', '서초구', '양재동', 'A054');
+--INSERT INTO BASEADDRESS VALUES('서울시', '서초구', '잠원동', 'A055');
+
+--INSERT INTO BASEADDRESS VALUES('서울시', '성동구', '마장동', 'A061');
+--INSERT INTO BASEADDRESS VALUES('서울시', '성동구', '상왕십리동', 'A062');
+--INSERT INTO BASEADDRESS VALUES('서울시', '성동구', '성수동1가', 'A063');
+--INSERT INTO BASEADDRESS VALUES('서울시', '성동구', '성수동2가', 'A064');
+--INSERT INTO BASEADDRESS VALUES('서울시', '성동구', '옥수동', 'A065');
+
+--INSERT INTO BASEADDRESS VALUES('서울시', '송파구', '마천동', 'A071');
+--INSERT INTO BASEADDRESS VALUES('서울시', '송파구', '방이동', 'A072');
+--INSERT INTO BASEADDRESS VALUES('서울시', '송파구', '송파동', 'A073');
+--INSERT INTO BASEADDRESS VALUES('서울시', '송파구', '잠실동', 'A074');
+--INSERT INTO BASEADDRESS VALUES('서울시', '송파구', '장지동', 'A075');
+
+--INSERT INTO BASEADDRESS VALUES('서울시', '영등포구', '당산동', 'A081');
+--INSERT INTO BASEADDRESS VALUES('서울시', '영등포구', '대림동', 'A082');
+--INSERT INTO BASEADDRESS VALUES('서울시', '영등포구', '문래동', 'A083');
+--INSERT INTO BASEADDRESS VALUES('서울시', '영등포구', '신길동', 'A084');
+--INSERT INTO BASEADDRESS VALUES('서울시', '영등포구', '영등포동', 'A085');
+
+--INSERT INTO BASEADDRESS VALUES('서울시', '용산구', '남영동', 'A091');
+--INSERT INTO BASEADDRESS VALUES('서울시', '용산구', '이촌동', 'A092');
+--INSERT INTO BASEADDRESS VALUES('서울시', '용산구', '이태원동', 'A093');
+--INSERT INTO BASEADDRESS VALUES('서울시', '용산구', '한담동', 'A094');
+--INSERT INTO BASEADDRESS VALUES('서울시', '용산구', '후암동', 'A095');
+
+--INSERT INTO BASEADDRESS VALUES('서울시', '종로구', '남영동', 'A101');
+--INSERT INTO BASEADDRESS VALUES('서울시', '종로구', '이촌동', 'A102');
+--INSERT INTO BASEADDRESS VALUES('서울시', '종로구', '이태원동', 'A103');
+--INSERT INTO BASEADDRESS VALUES('서울시', '종로구', '한담동', 'A104');
+--INSERT INTO BASEADDRESS VALUES('서울시', '종로구', '후암동', 'A105');
+
+INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '가평읍', 'B011');
+INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '북면', 'B012');
+--INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '상면', 'B013');
+--INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '설악면', 'B014');
+--INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '청평면', 'B015');
+
+INSERT INTO BASEADDRESS VALUES('경기도', '고양시', '구산동', 'B021');
+INSERT INTO BASEADDRESS VALUES('경기도', '고양시', '대화동', 'B022');
+--INSERT INTO BASEADDRESS VALUES('경기도', '고양시', '백석동', 'B023');
+--INSERT INTO BASEADDRESS VALUES('경기도', '고양시', '일산동', 'B024');
+--INSERT INTO BASEADDRESS VALUES('경기도', '고양시', '풍동', 'B025');
+
+INSERT INTO BASEADDRESS VALUES('경기도', '김포시', '고촌읍', 'B031');
+INSERT INTO BASEADDRESS VALUES('경기도', '김포시', '구래동', 'B032');
+--INSERT INTO BASEADDRESS VALUES('경기도', '김포시', '마산동', 'B033');
+--INSERT INTO BASEADDRESS VALUES('경기도', '김포시', '월곶면', 'B034');
+--INSERT INTO BASEADDRESS VALUES('경기도', '김포시', '통진읍', 'B035');
+
+INSERT INTO BASEADDRESS VALUES('경기도', '남양주시', '금곡동', 'B041');
+INSERT INTO BASEADDRESS VALUES('경기도', '남양주시', '별내동', 'B042');
+--INSERT INTO BASEADDRESS VALUES('경기도', '남양주시', '와부읍', 'B043');
+--INSERT INTO BASEADDRESS VALUES('경기도', '남양주시', '진건읍', 'B044');
+--INSERT INTO BASEADDRESS VALUES('경기도', '남양주시', '화도읍', 'B045');
+
+INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '고강동', 'B051');
+INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '대장동', 'B052');
+--INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '소사본동', 'B053');
+--INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '역곡동', 'B054');
+--INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '중동', 'B055');
+
+--INSERT INTO BASEADDRESS VALUES('경기도', '성남시', '분당동', 'B061');
+--INSERT INTO BASEADDRESS VALUES('경기도', '성남시', '서현동', 'B062');
+--INSERT INTO BASEADDRESS VALUES('경기도', '성남시', '야탑동', 'B063');
+--INSERT INTO BASEADDRESS VALUES('경기도', '성남시', '저장동', 'B064');
+--INSERT INTO BASEADDRESS VALUES('경기도', '성남시', '판교동', 'B065');
+
+--INSERT INTO BASEADDRESS VALUES('경기도', '수원시', '구운동', 'B071');
+--INSERT INTO BASEADDRESS VALUES('경기도', '수원시', '권선동', 'B072');
+--INSERT INTO BASEADDRESS VALUES('경기도', '수원시', '매탄동', 'B073');
+--INSERT INTO BASEADDRESS VALUES('경기도', '수원시', '세류동', 'B074');
+--INSERT INTO BASEADDRESS VALUES('경기도', '수원시', '영통동', 'B075');
+
+--INSERT INTO BASEADDRESS VALUES('경기도', '안양시', '박달동', 'B081');
+--INSERT INTO BASEADDRESS VALUES('경기도', '안양시', '석수동', 'B082');
+--INSERT INTO BASEADDRESS VALUES('경기도', '안양시', '안양동', 'B083');
+--INSERT INTO BASEADDRESS VALUES('경기도', '안양시', '평촌동', 'B084');
+--INSERT INTO BASEADDRESS VALUES('경기도', '안양시', '호계동', 'B085');
+
+--INSERT INTO BASEADDRESS VALUES('경기도', '용인시', '고기동', 'B091');
+--INSERT INTO BASEADDRESS VALUES('경기도', '용인시', '상현동', 'B092');
+--INSERT INTO BASEADDRESS VALUES('경기도', '용인시', '죽전동', 'B093');
+--INSERT INTO BASEADDRESS VALUES('경기도', '용인시', '청덕동', 'B094');
+--INSERT INTO BASEADDRESS VALUES('경기도', '용인시', '하갈동', 'B095');
+
+--INSERT INTO BASEADDRESS VALUES('경기도', '평택시', '가재동', 'B101');
+--INSERT INTO BASEADDRESS VALUES('경기도', '평택시', '비전동', 'B102');
+--INSERT INTO BASEADDRESS VALUES('경기도', '평택시', '신대동', 'B103');
+--INSERT INTO BASEADDRESS VALUES('경기도', '평택시', '신장동', 'B104');
+--INSERT INTO BASEADDRESS VALUES('경기도', '평택시', '평택동', 'B105');
 
 SELECT * FROM BASEADDRESS;
 
+DROP TABLE SIDOCODE;
+CREATE TABLE SIDOCODE(
+    sido_code VARCHAR2(20)
+  , sido_name VARCHAR2(20)
+);
+
+INSERT INTO SIDOCODE VALUES('A', '서울특별시');
+INSERT INTO SIDOCODE VALUES('B', '경기도');
+
+SELECT sido_code, sido_name FROM sidocode;
+
+DROP TABLE GUGUNCODE;
+CREATE TABLE GUGUNCODE(
+    gugun_code VARCHAR2(20)
+  , gugun_name VARCHAR2(30)
+);
+
+INSERT INTO GUGUNCODE VALUES('A01', '강남구');
+INSERT INTO GUGUNCODE VALUES('A02', '구로구');
+INSERT INTO GUGUNCODE VALUES('A03', '동작구');
+INSERT INTO GUGUNCODE VALUES('A04', '마포구');
+INSERT INTO GUGUNCODE VALUES('A05', '서초구');
+--INSERT INTO GUGUNCODE VALUES('A06', '성동구');
+--INSERT INTO GUGUNCODE VALUES('A07', '송파구');
+--INSERT INTO GUGUNCODE VALUES('A08', '영등포구');
+--INSERT INTO GUGUNCODE VALUES('A09', '용산구');
+--INSERT INTO GUGUNCODE VALUES('A10', '종로구');
+
+INSERT INTO GUGUNCODE VALUES('B01', '가평군');
+INSERT INTO GUGUNCODE VALUES('B02', '고양시');
+INSERT INTO GUGUNCODE VALUES('B03', '김포시');
+INSERT INTO GUGUNCODE VALUES('B04', '남양주시');
+INSERT INTO GUGUNCODE VALUES('B05', '부천시');
+--INSERT INTO GUGUNCODE VALUES('B06', '성남시');
+--INSERT INTO GUGUNCODE VALUES('B07', '수원시');
+--INSERT INTO GUGUNCODE VALUES('B08', '안양시');
+--INSERT INTO GUGUNCODE VALUES('B09', '용인시');
+--INSERT INTO GUGUNCODE VALUES('B10', '평택시');
+
+SELECT * FROM GUGUNCODE;
+
+SELECT SUBSTR(gugun_code,3,1) gugun_code, gugun_name FROM guguncode
+	where gugun_code = '001' ORDER BY gugun_code;
+-----------------------------------------------------------------------------------------------
 DROP TABLE HOUSEINFO;
 CREATE TABLE HOUSEINFO(
     no NUMBER PRIMARY KEY
@@ -80,109 +249,9 @@ CREATE TABLE HOUSEINFO(
   , img VARCHAR2(500)
 );
 
-INSERT INTO HOUSEINFO VALUES(1, '논현동', '논현아파트', '001', '2000', '100-01', null, null, null);
-INSERT INTO HOUSEINFO VALUES(2, '논현동', '현대아파트', '001', '2001', '200-01', null, null, null);
-INSERT INTO HOUSEINFO VALUES(3, '논현동', '아이파크아파트', '001', '2010', '300-01', null, null, null);
+INSERT INTO HOUSEINFO VALUES(1, '논현동', '논현e-편한세상', 'A012', '2005', '195-1', null, null, '1.jpg');
 
 SELECT * FROM HOUSEINFO;
-
-
-SELECT hnum, city, gugun, hospitalName, address, diagnosisType, phone
-  FROM HOSPITAL
- WHERE (city, gugun) IN (SELECT DISTINCT city, gugun
-                              FROM BASEADDRESS b
-                             WHERE b.dongcode = (SELECT DISTINCT code 
-                                                   FROM HOUSEINFO
-                                                  WHERE housenum = 2)	
-                            );
---TODO 하우스 넘버와 병원 넘버를 어떻게 맞출것인지 생각해야함.
- --------------------------------------------------------------------------------------------
-
-DROP TABLE SIDOCODE;
-CREATE TABLE SIDOCODE(
-    sido_code VARCHAR2(20)
-  , sido_name VARCHAR2(20)
-);
-
-INSERT INTO SIDOCODE VALUES('001', '서울시');
-INSERT INTO SIDOCODE VALUES('002', '경기도');
-
-SELECT sido_code, sido_name FROM sidocode;
-
-DROP TABLE GUGUNCODE;
-CREATE TABLE GUGUNCODE(
-    gugun_code VARCHAR2(20)
-  , gugun_name VARCHAR2(30)
-);
-
-INSERT INTO GUGUNCODE VALUES('001', '강남구');
-INSERT INTO GUGUNCODE VALUES('001', '강동구');
-INSERT INTO GUGUNCODE VALUES('001', '강서구');
-INSERT INTO GUGUNCODE VALUES('001', '관악구');
-INSERT INTO GUGUNCODE VALUES('001', '구로구');
-INSERT INTO GUGUNCODE VALUES('001', '금천구');
-INSERT INTO GUGUNCODE VALUES('001', '도봉구');
-INSERT INTO GUGUNCODE VALUES('001', '동대문구');
-INSERT INTO GUGUNCODE VALUES('001', '마포구');
-INSERT INTO GUGUNCODE VALUES('001', '서대문구');
-INSERT INTO GUGUNCODE VALUES('001', '성동구');
-INSERT INTO GUGUNCODE VALUES('001', '성북구');
-INSERT INTO GUGUNCODE VALUES('001', '양천구');
-INSERT INTO GUGUNCODE VALUES('001', '영등포구');
-INSERT INTO GUGUNCODE VALUES('001', '은평구');
-INSERT INTO GUGUNCODE VALUES('001', '종로구');
-INSERT INTO GUGUNCODE VALUES('001', '중랑구');
-
-
-INSERT INTO GUGUNCODE VALUES('002', '가평군');
-INSERT INTO GUGUNCODE VALUES('002', '고양시 덕양구');
-INSERT INTO GUGUNCODE VALUES('002', '고양시 일산동구');
-INSERT INTO GUGUNCODE VALUES('002', '고양시 일산서구');
-INSERT INTO GUGUNCODE VALUES('002', '과천시');
-INSERT INTO GUGUNCODE VALUES('002', '광명시');
-INSERT INTO GUGUNCODE VALUES('002', '광주시');
-INSERT INTO GUGUNCODE VALUES('002', '구리시');
-INSERT INTO GUGUNCODE VALUES('002', '군포시');
-INSERT INTO GUGUNCODE VALUES('002', '김포시');
-INSERT INTO GUGUNCODE VALUES('002', '남양주시');
-INSERT INTO GUGUNCODE VALUES('002', '동두천시');
-INSERT INTO GUGUNCODE VALUES('002', '부천시');
-INSERT INTO GUGUNCODE VALUES('002', '성남시 분당구');
-INSERT INTO GUGUNCODE VALUES('002', '성남시 수정구');
-INSERT INTO GUGUNCODE VALUES('002', '성남시 중원구');
-INSERT INTO GUGUNCODE VALUES('002', '수원시 권선구');
-INSERT INTO GUGUNCODE VALUES('002', '수원시 영통구');
-INSERT INTO GUGUNCODE VALUES('002', '수원시 장안구');
-INSERT INTO GUGUNCODE VALUES('002', '수원시 팔달구');
-INSERT INTO GUGUNCODE VALUES('002', '시흥시');
-INSERT INTO GUGUNCODE VALUES('002', '안산시 단원구');
-INSERT INTO GUGUNCODE VALUES('002', '안산시 상록구');
-INSERT INTO GUGUNCODE VALUES('002', '안성시');
-INSERT INTO GUGUNCODE VALUES('002', '안양시 동안구');
-INSERT INTO GUGUNCODE VALUES('002', '안양시 만안구');
-INSERT INTO GUGUNCODE VALUES('002', '양주시');
-INSERT INTO GUGUNCODE VALUES('002', '양평군');
-INSERT INTO GUGUNCODE VALUES('002', '여주시');
-INSERT INTO GUGUNCODE VALUES('002', '연천군');
-INSERT INTO GUGUNCODE VALUES('002', '오산시');
-INSERT INTO GUGUNCODE VALUES('002', '용인시 기흥구');
-INSERT INTO GUGUNCODE VALUES('002', '용인시 수지구');
-INSERT INTO GUGUNCODE VALUES('002', '용인시 처인구');
-INSERT INTO GUGUNCODE VALUES('002', '의왕시');
-INSERT INTO GUGUNCODE VALUES('002', '의정부시');
-INSERT INTO GUGUNCODE VALUES('002', '이천시');
-INSERT INTO GUGUNCODE VALUES('002', '파주시');
-INSERT INTO GUGUNCODE VALUES('002', '평택시');
-INSERT INTO GUGUNCODE VALUES('002', '포천시');
-INSERT INTO GUGUNCODE VALUES('002', '하남시');
-INSERT INTO GUGUNCODE VALUES('002', '화성시');
-
-SELECT * FROM GUGUNCODE;
-
-SELECT SUBSTR(gugun_code,3,1) gugun_code, gugun_name FROM guguncode
-	where gugun_code = '001' ORDER BY gugun_code;
------------------------------------------------------------------------------------------------
-
 
 DROP TABLE HOUSEDEAL;
 CREATE TABLE HOUSEDEAL(
@@ -204,8 +273,7 @@ CREATE TABLE HOUSEDEAL(
   , img VARCHAR2(500)
 );
 
-INSERT INTO HOUSEDEAL VALUES(1, 1, '논현동', '롯데캐슬', '101-01', null, null, '11억', '2023', '03', '22', '59', '11', '매매', null, null);
-INSERT INTO HOUSEDEAL VALUES(2, 2, '논현동', '롯데캐슬', '101-01', null, null, '9억', '2023', '03', '22', '59', '11', '매매', null, '10.jpg');
+INSERT INTO HOUSEDEAL VALUES(1, 1, '논현동', '논현e-편한세상', '195-1', null, null, '11억', '2023', '03', '22', '109B', '11', '매매', null, '1.jpg');
 
 SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney,

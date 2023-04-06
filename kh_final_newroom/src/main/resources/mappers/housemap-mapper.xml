@@ -8,11 +8,11 @@
 
 <select id="getGugunInSido" parameterType="String" resultType="SidoGugunCodeDto">
 	SELECT gugun_code, gugun_name FROM GUGUNCODE
-	where gugun_code = #{sido} ORDER BY gugun_code
+	where SUBSTR(gugun_code,0,1) = #{sido} ORDER BY gugun_code
 </select>
 
 <select id="getDongInGugun" parameterType="String" resultType="HouseInfoDto">
-	SELECT distinct dong, dongcode from baseaddress where dongcode = #{gugun}
+	SELECT distinct dong, dongcode from baseaddress where SUBSTR(dongcode,0,3) = #{gugun}
 </select>
 
 <select id="getAptInDong" parameterType="String" resultType="HouseInfoDto">

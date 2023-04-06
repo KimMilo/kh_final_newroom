@@ -161,7 +161,7 @@
 				<button type="button" id="btn__busstop" 
 					class="btn border btn-sm">주변 버스 정류소</button>
 				<button id="reset_btn" class="btn" type="reset">
-					<i class="fas fa-redo-alt" style="font-size: 24px; color: #1abc9c"></i>
+					<i class="fas fa-redo-alt" style="font-size: 10px; color: #1abc9c">초기화</i>
 				</button>
 				<script>
 					$('#reset_btn').click(function(){
@@ -355,7 +355,7 @@
 			<!-- 매물 목록 -->
 			<div id="item-list" class="d-inline-block w-50 overflow-auto float-left">
 				<header >
-					<h3>전체 방 ${fn:length(dealList)} 개</h3>
+					<h3>전체 매물 :  ${fn:length(dealList)} 개</h3>
 					<hr>
 				</header>
 				<c:choose>
@@ -392,7 +392,7 @@
 										style="width: 140px; height: 100px;">
     							</c:if>
 								<c:if test= "${dto.img ne null}">
-									<img src="${rUrl}/resources/img/houseimg/${dto.img}" alt=""
+									<img src="${rUrl}/resources/img/houseinner/${dto.img}" alt=""
 										style="width: 140px; height: 100px;">
     							</c:if>
     							
@@ -451,7 +451,8 @@
 											$('#item-list').empty();
 											let str = '<header><h3><button id="back" class="btn"><i class="fas fa-arrow-left"></i></button>'
 												+ "${dto.aptName}" + '</h3>'
-												+ '<hr> </header><div class="item container w-100"><img src="${rUrl}/resources/img/result_detail_sample.jpg" alt="" width="100%">'
+												+ '<hr> </header><div class="item container w-100"><img src="${rUrl}/resources/img/housescatch/'
+												+ "${dto.img}" +'"alt="" width="100%">'
 												+ '<div class="item__content container px-md-5"><h1 class="font-weight-bold">'
 						                    	+ "매매" + "${dto.dealAmount}만원" + '</h1>'
 						                    	+ '<p>' + '확인 날짜 : ${dto.dealYear}-${dto.dealMonth}-${dto.dealDay}' + '<br>'

@@ -19,8 +19,8 @@
 		<!-- Navbar -->
 		<nav id="header" class="navbar navbar-expand-sm navbar-default py-3 border-bottom justify-content-between">
 			<div class="ms-2 navbar navbar_logo">
-				<span class="bg-opacity-0  logo material-symbols-outlined" style="color: gray;">Home</span>
-				<a class="navbar-brand happy-font title" href="${rUrl}/" style="color: gray;"><b>NewRoom</b></a>
+				<span class="bg-opacity-0  logo material-symbols-outlined" style="color: gray; font-size:30px;">Home</span>
+				<a class="navbar-brand happy-font title" href="${rUrl}/" style="color: gray; font-size:30px;"><b>NewRoom</b></a>
 			</div>
 		</nav>
 		<div id="con01_slide" class="">
