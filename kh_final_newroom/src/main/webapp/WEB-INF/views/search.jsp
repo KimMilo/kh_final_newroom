@@ -726,6 +726,7 @@
 		</div>
 	</div>
 	<!-- Footer -->
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<jsp:include page="footer.jsp" />
 </body>
 
