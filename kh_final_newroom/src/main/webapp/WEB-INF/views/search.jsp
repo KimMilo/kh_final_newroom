@@ -354,7 +354,7 @@
         		</script>
 			</c:if>
 			<!-- 매물 목록 -->
-			<div id="item-list" class="d-inline-block w-50 overflow-auto float-left">
+			<div id="item-list" class="d-inline-block w-50 sticky-top overflow-auto float-left" style="height: 90vh;">
 				<header >
 					<h3>전체 매물 :  ${fn:length(dealList)} 개</h3>
 					<hr>
@@ -450,7 +450,7 @@
 									else{
 										if("${loginInfo}" != null && "${loginInfo}" != "") {
 											$('#item-list').empty();
-											let str = '<header><h3><button id="back" class="btn"><i class="fas fa-arrow-left"></i></button>'
+											let str = '<header><h3><button id="back" class="btn btn-outline-secondary btn-sm"><b class="fas fa-arrow-left">전체목록</b></button>'
 												+ "${dto.aptName}" + '</h3>'
 												+ '<hr> </header><div class="item container w-100"><img src="${rUrl}/resources/img/housescatch/'
 												+ "${dto.img}" +'"alt="" width="100%">'
@@ -725,8 +725,8 @@
 			</div>
 		</div>
 	</div>
+	
 	<!-- Footer -->
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<jsp:include page="footer.jsp" />
 </body>
 
