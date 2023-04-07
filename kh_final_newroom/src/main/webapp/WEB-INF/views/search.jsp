@@ -401,20 +401,20 @@
 										<h5 style="overflow: hidden; width: 130px; height: 25px;" class="font-weight-bold">${dto.aptName}</h5>
 										<h5><button class="btn btn-sm btn-primary disabled">아파트</button></h5>
 									<p class="card-text font-weight-bold">${dto.dtype }
-										${dto.dealAmount}만원</p>
-									<p class="card-text">${dto.floor}층, ${dto.area}m</p><br>
+										${dto.dealAmount}</p>
+									<p class="card-text">${dto.floor}층, ${dto.area}㎡</p><br>
 								</div>
 							</div>
 
 							<script type="text/javascript">
 		                        $.get("https://maps.googleapis.com/maps/api/geocode/json"
 									,{	key:'${key}'
-										, address: "${dto.dong}" + "+" + "${dto.aptName}" + "+" + "${dto.jibun}"
+										, address: "개포동" + "+" + "더샵트리에" + "+" + "195-1"
 									}
 									, function(data, status) {
 										tmpLat = data.results[0].geometry.location.lat;
 										tmpLng = data.results[0].geometry.location.lng;
-										addHouseMarker({lat:tmpLat, lng:tmpLng, name:"${dto.aptName}", type:'house'}, null);
+										addHouseMarker({lat:tmpLat, lng:tmpLng, name:"더샵트리에", type:'house'}, null);
 									}
 									, "json"
 								);//get
@@ -455,7 +455,7 @@
 												+ '<hr> </header><div class="item container w-100"><img src="${rUrl}/resources/img/housescatch/'
 												+ "${dto.img}" +'"alt="" width="100%">'
 												+ '<div class="item__content container px-md-5"><h1 class="font-weight-bold">'
-						                    	+ "${dto.dtype}" + "${dto.dealAmount}만원" + '</h1>'
+						                    	+ "${dto.dtype}" + "${dto.dealAmount}" + '</h1>'
 						                    	+ '<p>' + '확인 날짜 : ${dto.dealYear}-${dto.dealMonth}-${dto.dealDay}' + '<br>'
 							                    + '<hr class="mb-md-3" style="border-color: orange;">'
 							                    + '</p>'

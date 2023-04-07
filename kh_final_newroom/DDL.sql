@@ -297,16 +297,16 @@ CREATE TABLE HOUSEDEAL(
   , img VARCHAR2(500)
 );
 
-INSERT INTO HOUSEDEAL VALUES(1, 1, '개포동', '더샵트리에', '651-1', null, null, '24억', '2023', '03', '01', '135C', '15', '매매', null, '1.jpg');
-INSERT INTO HOUSEDEAL VALUES(2, 2, '논현동', '논현e-편한세상', '195-1', null, null, '18억', '2023', '03', '22', '109B', '11', '매매', null, '2.jpg');
+INSERT INTO HOUSEDEAL VALUES(1, 1, '개포동', '더샵트리에', '651-1', '37.484836', '127.057225', '24억', '2023', '03', '01', '135C', '15', '매매', null, '1.jpg');
+INSERT INTO HOUSEDEAL VALUES(2, 2, '논현동', '논현e-편한세상', '195-1', '37.506677', '127.028837', '18억', '2023', '03', '22', '109B', '11', '매매', null, '2.jpg');
 
 INSERT INTO HOUSEDEAL VALUES(3, 3, '개봉동', '신개봉삼환', '170-30', null, null, '6억', '2023', '04', '30', '84', '1', '매매', null, '3.jpg');
 INSERT INTO HOUSEDEAL VALUES(4, 4, '고척동', '청솔우성', '329', null, null, '4억', '2023', '05', '15', '84', '6', '전세', null, '4.jpg');
 INSERT INTO HOUSEDEAL VALUES(5, 5, '노량진동', '쌍용예가', '332', null, null, '13.6억', '2023', '05', '30', '84', '11', '매매', null, '5.jpg');
 INSERT INTO HOUSEDEAL VALUES(6, 6, '대방동', '대방경남아너스빌', '512', null, null, '6.5억', '2023', '06', '01', '84', '3', '전세', null, '6.jpg');
-INSERT INTO HOUSEDEAL VALUES(7, 7, '마포동', '강변한신코아', '350', null, null, '1억/200', '2023', '06', '10', '83', '6', '월세', null, '7.jpg');
+INSERT INTO HOUSEDEAL VALUES(7, 7, '마포동', '강변한신코아', '350', null, null, '1억/200', '2023', '06', '10', '83', '6', '월세', 200, '7.jpg');
 INSERT INTO HOUSEDEAL VALUES(8, 8, '망원동', '마포영화블렌하임', '517', null, null, '10억', '2023', '06', '15', '103', '저', '매매', null, '8.jpg');
-INSERT INTO HOUSEDEAL VALUES(9, 9, '반포동', '반포푸르지오', '10', null, null, '8억/120', '2023', '06', '22', '84', '중', '월세', null, '9.jpg');
+INSERT INTO HOUSEDEAL VALUES(9, 9, '반포동', '반포푸르지오', '10', null, null, '8억/120', '2023', '06', '22', '84', '중', '월세', 120, '9.jpg');
 INSERT INTO HOUSEDEAL VALUES(10, 10, '방배동', '방배한진로즈힐', '3276', null, null, '11억', '2023', '07', '02', '97', '13', '전세', null, '10.jpg');
 INSERT INTO HOUSEDEAL VALUES(11, 11, '가평읍', '우림필유2단지', '대곡리 366-8', null, null, '4억', '2023', '07', '12', '122', '고층', '매매', null, '11.jpg');
 INSERT INTO HOUSEDEAL VALUES(12, 12, '가평읍', '가평센트럴파크더스카이', '읍내리 457-5', null, null, '2.2억', '2023', '07', '22', '59', '28', '전세', null, '12.jpg');
@@ -315,7 +315,7 @@ INSERT INTO HOUSEDEAL VALUES(14, 14, '대화동', '성저3단지풍림', '2215',
 INSERT INTO HOUSEDEAL VALUES(15, 15, '고촌읍', '김포고촌우방아이유쉘', '신곡리 1284', null, null, '6.7억', '2023', '09', '15', '84', '5', '매매', null, '15.jpg');
 INSERT INTO HOUSEDEAL VALUES(16, 16, '구래동', '한강신도시반도유보라5차', '6873-19', null, null, '5.1억', '2023', '09', '30', '96', '9', '매매', null, '16.jpg');
 INSERT INTO HOUSEDEAL VALUES(17, 17, '금곡동', '금곡역디에브스', '777', null, null, '2.7억', '2023', '10', '15', '84', '3', '전세', null, '17.jpg');
-INSERT INTO HOUSEDEAL VALUES(18, 18, '별내동', '남양주별내아이파크', '854', null, null, '1.7억/120', '2023', '10', '30', '124', '5', '월세', null, '18.jpg');
+INSERT INTO HOUSEDEAL VALUES(18, 18, '별내동', '남양주별내아이파크', '854', null, null, '1.7억/120', '2023', '10', '30', '124', '5', '월세', 120, '18.jpg');
 INSERT INTO HOUSEDEAL VALUES(19, 19, '고강동', '동문미도', '327-7', null, null, '2.5억', '2023', '11', '31', '59', '1', '매매', null, '19.jpg');
 INSERT INTO HOUSEDEAL VALUES(20, 20, '오정동', '오정휴먼시아3단지', '732', null, null, '4.5억', '2023', '12', '31', '59', '2', '매매', null, '20.jpg');
 
@@ -339,9 +339,6 @@ CREATE TABLE INTEREST(
   , img VARCHAR2(100)
 );
 
-INSERT INTO INTEREST VALUES('abc', 1, '서울시', '고층', '11억', '롯데캐슬', null);
-INSERT INTO INTEREST VALUES('abc', 2, '서울시', '고층', '9억', '자이', null);
-INSERT INTO INTEREST VALUES('abc', 3, '서울시', '고층', '10억5천', '아이파크', null);
 --------------------------------------------------------------------------------
 
 DROP TABLE USERINFO;
