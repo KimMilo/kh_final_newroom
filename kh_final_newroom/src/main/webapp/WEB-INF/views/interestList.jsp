@@ -28,7 +28,7 @@
 							<img src="${rUrl}/resources/img/room_sample.PNG" alt="" style="width: 100%; height: auto;">
     					</c:if>
 						<c:if test= "${inter.img ne null}">
-							<img src="${rUrl}/resources/img/houseimg/${inter.img}" alt="" style="width: 100%; height: auto;">
+							<img src="${rUrl}/resources/img/houseinner/${inter.img}" alt="" style="width: 100%; height: auto;">
     					</c:if>
 			          <div class="card-body">
 			          	<div style="overflow: hidden; height:30px; width:100%;"><h4>${inter.aptName}</h4></div>
@@ -86,11 +86,11 @@
 						if(result.img == null){
 							html += '<img src="${rUrl}/resources/img/room_sample.PNG" alt="" style="width: 140px; height: 100px;">';
 						}else{
-							html += '<img src="${rUrl}/resources/img/houseimg/' + result.img + '" alt="" style="width: 400px; height: 320px;">';
+							html += '<img src="${rUrl}/resources/img/houseinner/' + result.img + '" alt="" style="width: 400px; height: 320px;">';
 						}
 						html += '<p class="card-text" style="font-size:20px; margin-top: 10px;"><b>매매     ' + result.dealAmount + '만원</b></p>';
 			            html += '<p style="margin-bottom:0px;">' + result.floor + '층, ';
-			            html += '<p style="margin-bottom:5px;">' + result.area + 'm</p>';
+			            html += '<p style="margin-bottom:5px;">' + result.area + '㎡</p>';
 			            html += '<p>' + result.dealYear + '년 ' + result.dealMonth + '월 ' + result.dealDay + '일 </p>';
 			            $("#detailContent").html(html);
 			            

@@ -249,27 +249,26 @@ CREATE TABLE HOUSEINFO(
   , img VARCHAR2(500)
 );
 
-INSERT INTO HOUSEINFO VALUES(1, '개포동', '더샵트리에', 'A011', '2021', '651-1', null, null, '1.jpg');
-INSERT INTO HOUSEINFO VALUES(2, '논현동', '논현e-편한세상', 'A012', '2005', '195-1', null, null, '2.jpg');
-
-INSERT INTO HOUSEINFO VALUES(3, '개봉동', '신개봉삼환', 'A021', '2001', '170-30', null, null, '3.jpg');
-INSERT INTO HOUSEINFO VALUES(4, '고척동', '청솔우성', 'A022', '2000', '329', null, null, '4.jpg');
-INSERT INTO HOUSEINFO VALUES(5, '노량진동', '쌍용예가', 'A031', '2010', '332', null, null, '5.jpg');
-INSERT INTO HOUSEINFO VALUES(6, '대방동', '대방경남아너스빌', 'A032', '2006', '512', null, null, '6.jpg');
-INSERT INTO HOUSEINFO VALUES(7, '마포동', '경남한신코아', 'A041', '1992', '350', null, null, '7.jpg');
-INSERT INTO HOUSEINFO VALUES(8, '망원동', '마포영화블렌하임', 'A042', '2009', '517', null, null, '8.jpg');
-INSERT INTO HOUSEINFO VALUES(9, '반포동', '반포푸르지오', 'A051', '2000', '10', null, null, '9.jpg');
-INSERT INTO HOUSEINFO VALUES(10, '방배동', '방배한진로즈힐', 'A052', '2005', '3276', null, null, '10.jpg');
-INSERT INTO HOUSEINFO VALUES(11, '가평읍', '우림필유2단지', 'B011', '2006', '대곡리 366-8', null, null, '11.jpg');
-INSERT INTO HOUSEINFO VALUES(12, '가평읍', '가평센트럴파크더스카이', 'B012', '2022', '읍내리 457-5', null, null, '12.jpg');
-INSERT INTO HOUSEINFO VALUES(13, '대화동', '성저7단지건영', 'B021', '1996', '2081', null, null, '13.jpg');
-INSERT INTO HOUSEINFO VALUES(14, '대화동', '성저3단지풍림', 'B022', '1996', '2215', null, null, '14.jpg');
-INSERT INTO HOUSEINFO VALUES(15, '고촌읍', '김포고촌우방아이유쉘', 'B031', '2014', '신곡리 1284', null, null, '15.jpg');
-INSERT INTO HOUSEINFO VALUES(16, '구래동', '한강신도시반도유보라5차', 'B032', '2018', '6873-19', null, null, '16.jpg');
-INSERT INTO HOUSEINFO VALUES(17, '금곡동', '금곡역디에브스', 'B041', '2020', '777', null, null, '17.jpg');
-INSERT INTO HOUSEINFO VALUES(18, '별내동', '남양주별내아이파크', 'B042', '2012', '854', null, null, '18.jpg');
-INSERT INTO HOUSEINFO VALUES(19, '고강동', '동문미도', 'B051', '1989', '327-7', null, null, '19.jpg');
-INSERT INTO HOUSEINFO VALUES(20, '오정동', '오정휴먼시아3단지', 'B052', '2006', '732', null, null, '20.jpg');
+INSERT INTO HOUSEINFO VALUES(1, '개포동', '더샵트리에', 'A011', '2021', '651-1', '37.484836', '127.057225', '1.jpg');
+INSERT INTO HOUSEINFO VALUES(2, '논현동', '논현e-편한세상', 'A012', '2005', '195-1', '37.506677', '127.028837', '2.jpg');
+INSERT INTO HOUSEINFO VALUES(3, '개봉동', '신개봉삼환', 'A021', '2001', '170-30', '37.494657', '126.854609', '3.jpg');
+INSERT INTO HOUSEINFO VALUES(4, '고척동', '청솔우성', 'A022', '2000', '329', '37.506295', '126.859759', '4.jpg');
+INSERT INTO HOUSEINFO VALUES(5, '노량진동', '쌍용예가', 'A031', '2010', '332', '37.509926', '126.943578', '5.jpg');
+INSERT INTO HOUSEINFO VALUES(6, '대방동', '대방경남아너스빌', 'A032', '2006', '512', '37.511411', '126.925593', '6.jpg');
+INSERT INTO HOUSEINFO VALUES(7, '마포동', '경남한신코아', 'A041', '1992', '350', '37.536270', '126.943937', '7.jpg');
+INSERT INTO HOUSEINFO VALUES(8, '망원동', '마포영화블렌하임', 'A042', '2009', '517', '37.558483', '126.906273', '8.jpg');
+INSERT INTO HOUSEINFO VALUES(9, '반포동', '반포푸르지오', 'A051', '2000', '10', '37.503884', '126.996434', '9.jpg');
+INSERT INTO HOUSEINFO VALUES(10, '방배동', '방배한진로즈힐', 'A052', '2005', '3276', '37.486801', '126.983479', '10.jpg');
+INSERT INTO HOUSEINFO VALUES(11, '가평읍', '우림필유2단지', 'B011', '2006', '대곡리 366-8', '37.822611', '127.510036', '11.jpg');
+INSERT INTO HOUSEINFO VALUES(12, '가평읍', '가평센트럴파크더스카이', 'B012', '2022', '읍내리 457-5', '37.831323', '127.512106', '12.jpg');
+INSERT INTO HOUSEINFO VALUES(13, '대화동', '성저7단지건영', 'B021', '1996', '2081', '37.684164', '126.751997', '13.jpg');
+INSERT INTO HOUSEINFO VALUES(14, '대화동', '성저3단지풍림', 'B022', '1996', '2215', '37.678180', '126.747934', '14.jpg');
+INSERT INTO HOUSEINFO VALUES(15, '고촌읍', '김포고촌우방아이유쉘', 'B031', '2014', '신곡리 1284', '37.604503', '126.766739', '15.jpg');
+INSERT INTO HOUSEINFO VALUES(16, '구래동', '한강신도시반도유보라5차', 'B032', '2018', '117-3', '37.647286', '126.626571', '16.jpg');
+INSERT INTO HOUSEINFO VALUES(17, '금곡동', '금곡역디에브스', 'B041', '2020', '777', '37.636580', '127.207571', '17.jpg');
+INSERT INTO HOUSEINFO VALUES(18, '별내동', '남양주별내아이파크', 'B042', '2012', '854', '37.662043', '127.117898', '18.jpg');
+INSERT INTO HOUSEINFO VALUES(19, '고강동', '동문미도', 'B051', '1989', '327-7', '37.525164', '126.825966', '19.jpg');
+INSERT INTO HOUSEINFO VALUES(20, '오정동', '오정휴먼시아3단지', 'B052', '2006', '732', '37.532837', '126.787682', '20.jpg');
 
 
 
@@ -299,25 +298,24 @@ CREATE TABLE HOUSEDEAL(
 
 INSERT INTO HOUSEDEAL VALUES(1, 1, '개포동', '더샵트리에', '651-1', '37.484836', '127.057225', '24억', '2023', '03', '01', '135C', '15', '매매', null, '1.jpg');
 INSERT INTO HOUSEDEAL VALUES(2, 2, '논현동', '논현e-편한세상', '195-1', '37.506677', '127.028837', '18억', '2023', '03', '22', '109B', '11', '매매', null, '2.jpg');
-
-INSERT INTO HOUSEDEAL VALUES(3, 3, '개봉동', '신개봉삼환', '170-30', null, null, '6억', '2023', '04', '30', '84', '1', '매매', null, '3.jpg');
-INSERT INTO HOUSEDEAL VALUES(4, 4, '고척동', '청솔우성', '329', null, null, '4억', '2023', '05', '15', '84', '6', '전세', null, '4.jpg');
-INSERT INTO HOUSEDEAL VALUES(5, 5, '노량진동', '쌍용예가', '332', null, null, '13.6억', '2023', '05', '30', '84', '11', '매매', null, '5.jpg');
-INSERT INTO HOUSEDEAL VALUES(6, 6, '대방동', '대방경남아너스빌', '512', null, null, '6.5억', '2023', '06', '01', '84', '3', '전세', null, '6.jpg');
-INSERT INTO HOUSEDEAL VALUES(7, 7, '마포동', '강변한신코아', '350', null, null, '1억/200', '2023', '06', '10', '83', '6', '월세', 200, '7.jpg');
-INSERT INTO HOUSEDEAL VALUES(8, 8, '망원동', '마포영화블렌하임', '517', null, null, '10억', '2023', '06', '15', '103', '저', '매매', null, '8.jpg');
-INSERT INTO HOUSEDEAL VALUES(9, 9, '반포동', '반포푸르지오', '10', null, null, '8억/120', '2023', '06', '22', '84', '중', '월세', 120, '9.jpg');
-INSERT INTO HOUSEDEAL VALUES(10, 10, '방배동', '방배한진로즈힐', '3276', null, null, '11억', '2023', '07', '02', '97', '13', '전세', null, '10.jpg');
-INSERT INTO HOUSEDEAL VALUES(11, 11, '가평읍', '우림필유2단지', '대곡리 366-8', null, null, '4억', '2023', '07', '12', '122', '고층', '매매', null, '11.jpg');
-INSERT INTO HOUSEDEAL VALUES(12, 12, '가평읍', '가평센트럴파크더스카이', '읍내리 457-5', null, null, '2.2억', '2023', '07', '22', '59', '28', '전세', null, '12.jpg');
-INSERT INTO HOUSEDEAL VALUES(13, 13, '대화동', '성저7단지건영', '2081', null, null, '4.5억', '2023', '08', '01', '84', '3', '매매', null, '13.jpg');
-INSERT INTO HOUSEDEAL VALUES(14, 14, '대화동', '성저3단지풍림', '2215', null, null, '2억', '2023', '08', '22', '45', '14', '전세', null, '14.jpg');
-INSERT INTO HOUSEDEAL VALUES(15, 15, '고촌읍', '김포고촌우방아이유쉘', '신곡리 1284', null, null, '6.7억', '2023', '09', '15', '84', '5', '매매', null, '15.jpg');
-INSERT INTO HOUSEDEAL VALUES(16, 16, '구래동', '한강신도시반도유보라5차', '6873-19', null, null, '5.1억', '2023', '09', '30', '96', '9', '매매', null, '16.jpg');
-INSERT INTO HOUSEDEAL VALUES(17, 17, '금곡동', '금곡역디에브스', '777', null, null, '2.7억', '2023', '10', '15', '84', '3', '전세', null, '17.jpg');
-INSERT INTO HOUSEDEAL VALUES(18, 18, '별내동', '남양주별내아이파크', '854', null, null, '1.7억/120', '2023', '10', '30', '124', '5', '월세', 120, '18.jpg');
-INSERT INTO HOUSEDEAL VALUES(19, 19, '고강동', '동문미도', '327-7', null, null, '2.5억', '2023', '11', '31', '59', '1', '매매', null, '19.jpg');
-INSERT INTO HOUSEDEAL VALUES(20, 20, '오정동', '오정휴먼시아3단지', '732', null, null, '4.5억', '2023', '12', '31', '59', '2', '매매', null, '20.jpg');
+INSERT INTO HOUSEDEAL VALUES(3, 3, '개봉동', '신개봉삼환', '170-30', '37.494657', '126.854609', '6억', '2023', '04', '30', '84', '1', '매매', null, '3.jpg');
+INSERT INTO HOUSEDEAL VALUES(4, 4, '고척동', '청솔우성', '329', '37.506295', '126.859759', '4억', '2023', '05', '15', '84', '6', '전세', null, '4.jpg');
+INSERT INTO HOUSEDEAL VALUES(5, 5, '노량진동', '쌍용예가', '332', '37.509926', '126.943578', '13.6억', '2023', '05', '30', '84', '11', '매매', null, '5.jpg');
+INSERT INTO HOUSEDEAL VALUES(6, 6, '대방동', '대방경남아너스빌', '512', '37.511411', '126.925593', '6.5억', '2023', '06', '01', '84', '3', '전세', null, '6.jpg');
+INSERT INTO HOUSEDEAL VALUES(7, 7, '마포동', '강변한신코아', '350', '37.536270', '126.943937', '1억/200', '2023', '06', '10', '83', '6', '월세', 200, '7.jpg');
+INSERT INTO HOUSEDEAL VALUES(8, 8, '망원동', '마포영화블렌하임', '517', '37.558483', '126.906273', '10억', '2023', '06', '15', '103', '저', '매매', null, '8.jpg');
+INSERT INTO HOUSEDEAL VALUES(9, 9, '반포동', '반포푸르지오', '10', '37.503884', '126.996434', '8억/120', '2023', '06', '22', '84', '중', '월세', 120, '9.jpg');
+INSERT INTO HOUSEDEAL VALUES(10, 10, '방배동', '방배한진로즈힐', '3276', '37.486801', '126.983479', '11억', '2023', '07', '02', '97', '13', '전세', null, '10.jpg');
+INSERT INTO HOUSEDEAL VALUES(11, 11, '가평읍', '우림필유2단지', '대곡리 366-8', '37.822611', '127.510036', '4억', '2023', '07', '12', '122', '고층', '매매', null, '11.jpg');
+INSERT INTO HOUSEDEAL VALUES(12, 12, '가평읍', '가평센트럴파크더스카이', '읍내리 457-5', '37.831323', '127.512106', '2.2억', '2023', '07', '22', '59', '28', '전세', null, '12.jpg');
+INSERT INTO HOUSEDEAL VALUES(13, 13, '대화동', '성저7단지건영', '2081', '37.684164', '126.751997', '4.5억', '2023', '08', '01', '84', '3', '매매', null, '13.jpg');
+INSERT INTO HOUSEDEAL VALUES(14, 14, '대화동', '성저3단지풍림', '2215', '37.678180', '126.747934', '2억', '2023', '08', '22', '45', '14', '전세', null, '14.jpg');
+INSERT INTO HOUSEDEAL VALUES(15, 15, '고촌읍', '김포고촌우방아이유쉘', '신곡리 1284', '37.604503', '126.766739', '6.7억', '2023', '09', '15', '84', '5', '매매', null, '15.jpg');
+INSERT INTO HOUSEDEAL VALUES(16, 16, '구래동', '한강신도시반도유보라5차', '117-3', '37.647286', '126.626571', '5.1억', '2023', '09', '30', '96', '9', '매매', null, '16.jpg');
+INSERT INTO HOUSEDEAL VALUES(17, 17, '금곡동', '금곡역디에브스', '777', '37.636580', '127.207571', '2.7억', '2023', '10', '15', '84', '3', '전세', null, '17.jpg');
+INSERT INTO HOUSEDEAL VALUES(18, 18, '별내동', '남양주별내아이파크', '854', '37.662043', '127.117898', '1.7억/120', '2023', '10', '30', '124', '5', '월세', 120, '18.jpg');
+INSERT INTO HOUSEDEAL VALUES(19, 19, '고강동', '동문미도', '327-7', '37.525164', '126.825966', '2.5억', '2023', '11', '31', '59', '1', '매매', null, '19.jpg');
+INSERT INTO HOUSEDEAL VALUES(20, 20, '오정동', '오정휴먼시아3단지', '732', '37.532837', '126.787682', '4.5억', '2023', '12', '31', '59', '2', '매매', null, '20.jpg');
 
 SELECT * FROM HOUSEDEAL;
 SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 

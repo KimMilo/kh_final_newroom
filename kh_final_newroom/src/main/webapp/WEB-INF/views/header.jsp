@@ -329,7 +329,7 @@
     						if(result[i].img == null){
     							content += '<p class="card-text pt-1"><img src="${rUrl}/resources/img/room_sample.PNG" alt="" style="width: 280px; height: 186px;"></p>';
     						}else{
-    							content += '<p class="card-text pt-1"><img src="${rUrl}/resources/img/houseimg/' + result[i].img + '" alt="" style="width: 280px; height: 186px;"></p>';
+    							content += '<p class="card-text pt-1"><img src="${rUrl}/resources/img/houseinner/' + result[i].img + '" alt="" style="width: 280px; height: 186px;"></p>';
     						}
     						content += '<h5 class="card-text pt-2">' + result[i].aptName + '</h5>';
     						content += '<p class="card-text pt-1" style="font-size:20px;">';

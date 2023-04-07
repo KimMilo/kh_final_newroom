@@ -21,7 +21,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
 <link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
-<title>Document</title>
+<title>매물검색</title>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -407,18 +407,7 @@
 							</div>
 
 							<script type="text/javascript">
-		                        $.get("https://maps.googleapis.com/maps/api/geocode/json"
-									,{	key:'${key}'
-										, address: "개포동" + "+" + "더샵트리에" + "+" + "195-1"
-									}
-									, function(data, status) {
-										tmpLat = data.results[0].geometry.location.lat;
-										tmpLng = data.results[0].geometry.location.lng;
-										addHouseMarker({lat:tmpLat, lng:tmpLng, name:"더샵트리에", type:'house'}, null);
-									}
-									, "json"
-								);//get
-								
+		            						
 								
 								$('#item__${itemIdx}').click( function(event) {
 									var className = $(event.target).attr('class');
@@ -449,6 +438,18 @@
 									// 매물 상세 정보 
 									else{
 										if("${loginInfo}" != null && "${loginInfo}" != "") {
+										    $.get("https://maps.googleapis.com/maps/api/geocode/json"
+													,{	key:'${key}'
+														, address: "${dto.dong}" + "+" + "${dto.aptName}" + "+" + "${dto.jibun}"
+													}
+													, function(data, status) {
+														tmpLat = data.results[0].geometry.location.lat;
+														tmpLng = data.results[0].geometry.location.lng;
+														addHouseMarker({lat:tmpLat, lng:tmpLng, name:"${dto.aptName}", type:'house'}, null);
+													}
+													, "json"
+												);//get	
+												
 											$('#item-list').empty();
 											let str = '<header><h3><button id="back" class="btn btn-outline-secondary btn-sm me-2"><b class="fas fa-arrow-left">≪</b></button>'
 												+ "${dto.aptName}" + '</h3>'
@@ -489,7 +490,7 @@
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
-						<h1>매물이 없습니다 ㅠㅠ</h1>
+						<h1>해당 매물은 없습니다.</h1>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -623,36 +624,7 @@
 						map.setCenter(marker.getPosition());
                     }
                     
-                    //치안안전등급 마커 표시
-                    function addSafetyMarker(place, dto){   
-                   		const marker = new google.maps.Marker({
-                   			position: new google.maps.LatLng(parseFloat(place.lat),parseFloat(place.lng)),
-                   			label: {
-                   				color: 'black',
-                   				fontWeight: 'bold',
-                   				fontSize: '18px',
-                   				text: place.name,
-                   			},
-   							title: place.name,
-   							icon: {
-   								labelOrigin: new google.maps.Point(30, 80),
-   							    url: icons[place.type].icon,
-   							},
-   							map: map,
-                   		});
-                   		
-                   		var info = dto.gu+" 5대 범죄 발생현황<br>"
-                   		+ "<span style='color:#999; font-size:13px;'>(2019년 기준)</span><br><br>"
-                   		+ "살인: "+dto.murder+"건<br>"
-                   		+ "강도: "+dto.robbery+"건<br>"
-                   		+ "추행: "+dto.harassment+"건<br>"
-                   		+ "절도: "+dto.theft+"건<br>"
-                   		+ "폭력: "+dto.violence+"건<br>";
-
-                   		attachInfo(marker, info);
-                   		map.setZoom(13);
-						marker.setMap(map);
-                    }
+                    
                     
                  // 부동산 정보 마커 표시 하기
                     function addLandMarker(place, dto){   
