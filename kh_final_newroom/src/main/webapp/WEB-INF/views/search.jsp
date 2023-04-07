@@ -508,38 +508,20 @@
                     var map;
                     var start = {lat: 37.5665734, lng: 126.978179};
                     
-                    const iconBase = "./resources/img/";
+                    const iconBase = "./resources/img/marker_icon/";
                     const icons = {
                       house: {
-                        icon: iconBase + "marker_house.png",
+                        icon: iconBase + "home.jpg",
                       },
                       hospital: {
-                        icon: iconBase + "marker_hospital.png",
-                      },
-                      corona: {
-                        icon: iconBase + "marker_corona.png",
+                        icon: iconBase + "hospital.jpg",
                       },
                       bus: {
-                        icon: iconBase + "marker_busstop.png",
+                        icon: iconBase + "busstop.jpg",
                       },
                       land: {
-                      	icon: iconBase + "marker_land.png",
+                      	icon: iconBase + "land.png",
                       },
-                      1: {
-                        icon: iconBase + "marker_safety01.png",  
-                      },
-                      2: {
-                    	icon: iconBase + "marker_safety02.png",    
-                      },
-                      3: {
-                    	icon: iconBase + "marker_safety03.png",    
-                      },
-                      4: {
-                    	icon: iconBase + "marker_safety04.png",    
-                      },
-                      5: {
-                    	icon: iconBase + "marker_safety05.png",  
-                      }
                     };
 
                     // 맵 초기화
