@@ -450,7 +450,7 @@
 									else{
 										if("${loginInfo}" != null && "${loginInfo}" != "") {
 											$('#item-list').empty();
-											let str = '<header><h3><button id="back" class="btn btn-outline-secondary btn-sm"><b class="fas fa-arrow-left">전체목록</b></button>'
+											let str = '<header><h3><button id="back" class="btn btn-outline-secondary btn-sm me-2"><b class="fas fa-arrow-left">≪</b></button>'
 												+ "${dto.aptName}" + '</h3>'
 												+ '<hr> </header><div class="item container w-100"><img src="${rUrl}/resources/img/housescatch/'
 												+ "${dto.img}" +'"alt="" width="100%">'
@@ -462,7 +462,7 @@
 							                    + '<table class="table">'
 							                    + '<tr>'
 							                    + '<th>전용 면적</th>'
-							                    + '<td>' + '${dto.area}m' + '</td>'
+							                    + '<td>' + '${dto.area}㎡' + '</td>'
 												+ '</tr>'
 												+ '<tr>'
 												+ '<th>거래 구분</th>'

@@ -35,7 +35,7 @@
 			            <p class="card-text text-right" style="margin-bottom:0px;">
 			           	<p class="card-text" style="font-size:20px;"><b>매매     ${inter.dealAmount}만원</b></p>
 			            <p style="margin-bottom:0px;">${inter.floor}층</p>
-			            <p style="margin-bottom:5px;">면적 ${inter.area}m₂
+			            <p style="margin-bottom:5px;">면적 ${inter.area}㎡
 			            </p>
 			            <div class="d-flex justify-content-between align-items-center">
 			              <div class="btn-group">
