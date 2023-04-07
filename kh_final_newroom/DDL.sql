@@ -319,7 +319,7 @@ INSERT INTO HOUSEDEAL VALUES(18, 18, '별내동', '남양주별내아이파크',
 INSERT INTO HOUSEDEAL VALUES(19, 19, '고강동', '동문미도', '327-7', null, null, '2.5억', '2023', '11', '31', '59', '1', '매매', null, '19.jpg');
 INSERT INTO HOUSEDEAL VALUES(20, 20, '오정동', '오정휴먼시아3단지', '732', null, null, '4.5억', '2023', '12', '31', '59', '2', '매매', null, '20.jpg');
 
-
+SELECT * FROM HOUSEDEAL;
 SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
