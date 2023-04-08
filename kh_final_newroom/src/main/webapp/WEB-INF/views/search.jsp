@@ -153,16 +153,12 @@
 			<div class="form-group">
 				<button type="button" id="btn__safetyHospital"
 					class="btn border btn-sm">주변 국민안심병원</button>
-				<button type="button" id="btn__covidTestCenter"
-					class="btn border btn-sm">주변 코로나 선별 진료소</button>
-				<button type="button" id="btn__crime" 
-					class="btn border btn-sm">치안안전등급</button>
 				<button type="button" id="btn__land" 
 					class="btn border btn-sm">주변 부동산</button>
 				<button type="button" id="btn__busstop" 
 					class="btn border btn-sm">주변 버스 정류소</button>
 				<button id="reset_btn" class="btn" type="reset">
-					<i class="fas fa-redo-alt" style="font-size: 10px; color: #1abc9c">초기화</i>
+					<i class="fas fa-redo-alt" style="font-size: 10px; color: #1abc9c"></i>
 				</button>
 				<script>
 					$('#reset_btn').click(function(){
@@ -190,7 +186,7 @@
 
 		<!-- 검색화면 컨텐츠 -->
 		<div class="container-fluid search-results w-100 pl-0">
-			<!-- 주변 국민 안심병원, 코로나 선별 진료소 출력 -->
+			<!-- 주변 국민 안심병원 -->
 			<c:if test="${not empty dealList}">
 				<script type="text/javascript">
         			$(function(){        	
@@ -210,21 +206,6 @@
 							);        		  
         				};
         				
-        				//치안안전등급 지도에 표시
-        				function markSafetyLevel(place, type){
-        					$.get(
-          						"https://maps.googleapis.com/maps/api/geocode/json"
-   								,{	key:'${key}'
-   									, address: "서울특별시 "+place.gu
-   								}
-   								, function(data, status) {
-   									tmpLat = data.results[0].geometry.location.lat;
-   									tmpLng = data.results[0].geometry.location.lng;
-   									addSafetyMarker({lat:tmpLat, lng:tmpLng, name:place["gu"], type:type}, place);
-   								}
-   								, "json"
-   							);
-        				}
         				
         				//부동산 지도에 표시
         				function markLand(place, type){
@@ -258,39 +239,7 @@
 								}
         					});
         				});
-        				
-        				// 코로나 진료소 조회버튼 눌렀을 때 : type corona
-        				$("#btn__covidTestCenter").click(function(){
-        					$.ajax({
-        						url : '${rUrl}/hospital/covid/${dealList[0].no}',
-        						method : 'get',
-        						success : function(CoronaTestList){
-        							for(var i = 0; i < CoronaTestList.length; i++){
-        								markCoronaHospitalPlace(CoronaTestList[i], "corona");
-        							}
-        						},
-        						error : function(xhr, status, msg){
-									console.log(status + " " + msg);									
-								}
-        					});
-        				});
-        				
-        				//치안안전등급 버튼 눌렀을 때
-        				$("#btn__crime").click(function(){
-        					$.ajax({
-        						url : '${rUrl}/crime',
-        						method : 'get',
-        						success : function(crimeList){
-        							for(var i=0; i<crimeList.length; i++){
-        								markSafetyLevel(crimeList[i], crimeList[i]["safety_level"]);
-        							}
-        						},
-        						error : function(xhr, status, msg){
-									console.log(status + " " + msg);									
-								}
-        					});
-        				});
-        				
+
         				//주변 부동산 버튼 눌렀을 떄
         				$("#btn__land").click(function(){
         					var sidoName = $("#sido option:selected").html();
