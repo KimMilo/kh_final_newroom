@@ -49,6 +49,8 @@ INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '강남내과의원', '
 INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '강남외과의원', '서울시 강남구 논현동 111-2', '외과', '02-1234-7777');
 INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '강남소아과의원', '서울시 강남구 논현동 111-3', '소아과', '02-1234-8888');
 INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '강남소아과의원', '서울시 강남구 논현동 111-3', '소아과', '02-1234-8888');
+
+SELECT * FROM HOSPITAL;
 -----------------------------------------------------------------------------------
 
 SELECT hnum, city, gugun, hospitalName, address, diagnosisType, phone
