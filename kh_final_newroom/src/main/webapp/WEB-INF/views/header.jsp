@@ -313,7 +313,7 @@
     				var content = '<nav class="navbar navbar-expand-md navbar-light bg-transparent pl-0 pb-0">';
     				content += '<ul class="navbar-nav"><li class="nav-item">';
     				content += '<a href="" class="nav-link active font-weight-bold">';
-    				content += '<h3>'+userName+'님이 찜한 매물</h3></a></li></ul>';
+    				content += '<h3>'+userName+'님의 찜<b style="color:red;">♥</b> 매물</h3></a></li></ul>';
     				content += '<a href="${rUrl}/interest" id="gotoInterDetail">+ 자세히보기</a></nav>';
     				content += '<div class="container text-center">';
     				content += '<div class="card d-inline-block" style="position:relative 0 0; width: 1080px; border:none;">';
