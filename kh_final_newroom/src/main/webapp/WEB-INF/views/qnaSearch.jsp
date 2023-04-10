@@ -31,15 +31,21 @@
         	<c:choose>
         		<c:when test="${typeName eq 'btitle' }">
 		        	<span style="color: orange;">제목</span>(으)로 
+		        	<span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.
         		</c:when>
         		<c:when test="${typeName eq 'bcontent' }">
         			<span style="color: orange;">내용</span>(으)로 
+        			<span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.
+        		</c:when>
+        		<c:when test="${typeName eq 'userid' }">
+        			<span style="color: orange;">작성자</span>(으)로 
+        			<span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.
         		</c:when>
         		<c:otherwise>
-        			<span style="color: orange;">작성자</span>(으)로 
+        			<span style="color: orange;">자주묻는 질문</span>입니다. 
         		</c:otherwise>
         	</c:choose>
-        	<span style="color: orange;">'${keyword}'</span>을 검색한 결과입니다.
+        	
         </h3>
     </div>
     	
@@ -121,7 +127,10 @@
 		<div>
 			<nav class="container navbar navbar-expand-sm navbar-light">
 				<button id="btnWrite" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">질문하기</button>
-				<button class="ms-3 btn btn-outline-secondary" onclick="location.href='${rUrl}/noticeList'">목록</button>
+				<c:if test="${typeName ne 'FAQ' }">
+					<button id="btnFAQ" class="ms-3 btn" style="background-color: orange;"><b style="color:white;">FAQ가기</b></button>
+				</c:if>
+				<button class="ms-3 btn btn-outline-secondary" onclick="location.href='${rUrl}/qna'">목록</button>
 				<div id="btnQnL">
 				</div>
 				<form class="navbar-nav ml-auto" action="${rUrl}/qnaSearch" method="get">
@@ -196,18 +205,18 @@
 					<li class="page-item disabled"><a class="page-link">prev</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${rUrl }/qna?search_type=${typeName }&keyword=${keyword }&p=${paging.prevPage }">prev</a></li>
+					<li class="page-item"><a class="page-link" href="${rUrl }/qnaSearch?search_type=${typeName }&keyword=${keyword }&p=${paging.prevPage }">prev</a></li>
 				</c:otherwise>
 			</c:choose>
 			<c:forEach var="pNum" items="${paging.pageList }">
-				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/qna?search_type=${typeName }&keyword=${keyword }&p=${pNum }">${pNum }</a></li>
+				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/qnaSearch?search_type=${typeName }&keyword=${keyword }&p=${pNum }">${pNum }</a></li>
 			</c:forEach>
 			<c:choose>
 				<c:when test="${paging.nextPage eq - 1 or empty paging.page}">
 					<li class="page-item disabled"><a class="page-link">next</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${rUrl }/qna?search_type=${typeName }&keyword=${keyword }&p=${paging.nextPage}">next</a></li>
+					<li class="page-item"><a class="page-link" href="${rUrl }/qnaSearch?search_type=${typeName }&keyword=${keyword }&p=${paging.nextPage}">next</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
@@ -217,6 +226,10 @@
 	<jsp:include page="footer.jsp" />
 	
 <script>
+$('#btnFAQ').click(function(){
+	location.href="${rUrl}/qnaSearch?search_type=FAQ&keyword=T";
+});
+
 $("#btnInsert").click(function(){
 	$.ajax({
 		url:'${rUrl}/qna',
@@ -352,11 +365,6 @@ $("#deleteQna").click(function(){
 			location.href="${rUrl}/qna";
 		}
 	});
-});
-
-
-$("#btnSearch").click(function(){
-	qnaSearch();
 });
 		
 $(".updateGo").click(function(){

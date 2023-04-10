@@ -104,6 +104,7 @@
 		<div>
 			<nav class="container navbar navbar-expand-sm navbar-light">
 				<button id="btnWrite" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">질문하기</button>
+				<button id="btnFAQ" class="ms-3 btn" style="background-color: orange;"><b style="color:white;">FAQ가기</b></button>
 				<div id="btnQnL">
 				</div>
 				<form class="navbar-nav ml-auto" action="${rUrl}/qnaSearch" method="get">
@@ -192,6 +193,10 @@
 	<jsp:include page="footer.jsp" />
 	
 <script>
+$('#btnFAQ').click(function(){
+	location.href="${rUrl}/qnaSearch?search_type=FAQ&keyword=T";
+});
+
 $("#btnInsert").click(function(){
 	$.ajax({
 		url:'${rUrl}/qna',
@@ -281,6 +286,19 @@ $(".qnaDetail").click(function(){
 	});
 });
 
+$("#btnFAQ").click(function(){
+	$.ajax({
+		url:'${rUrl}/qna/',
+		method: 'get',
+		success: function(result){
+			$('#useridQna1').attr("value", result.userid);
+			$('#btitle1').attr("value", result.btitle);
+			$('#bcontent1').attr("placeholder", result.bcontent);
+		
+		}
+	});
+});
+
 
 $(".updateGo").click(function(){
 	$.ajax({
@@ -328,105 +346,6 @@ $("#deleteQna").click(function(){
 		}
 	});
 });
-
-
-$("#btnSearch").click(function(){
-	qnaSearch();
-});
-	
-// qnaSearch = function(){
-// 	var searchType = $("select[name=search_type]").val();
-// 	var word = $("#searchKeyword").val();
-// 	$.ajax({
-// 		url : '${rUrl}/qna/'+searchType+'/'+word,
-// 		method : 'get',
-// 		data:{
-// 			'type' : searchType,
-// 			'word' : word
-// 		},
-// 		success:function(result){
-// 			updateQnaList(result);
-// 		},
-// 		error : function(xhr, status, msg){
-// 			console.log(status + " " + msg);
-// 		}
-// 	});
-// }
-	
-// var paging = '${paging.page}';
-// updateQnaList = function(paging){
-	
-// 	var content = '';
-// 	var buttonList = '';
-// 	buttonList += '<button class="ms-3 btn btn-outline-secondary"><a href="${rUrl}/qna" style="text-decoration: none; color:gray;">목록<a></button>';
-// 		if(paging.length = 0){
-// 			content += '<tr><td colspan="6">검색 결과가 없습니다.</td></tr>';
-// 		}
-// 	$("#btnQnL").html(buttonList);
-// 	$("#qnaListTable").html(content);
-	
-// 	var detailNo = '';
-// 	$(".qnaDetail").click(function(){
-// 		$.ajax({
-// 			url:'${rUrl}/qna/'+ this.id,
-// 			method: 'get',
-// 			success: function(result){
-// 				var html = '';
-// 				html += '<style="padding: 15px 0px; font-size: 36px;"><b>제목 : ' + result.btitle + '</b><br><br>';
-// 				html += '<style="padding: 15px 0px; font-size: 36px;"><b>작성자 : ' + result.userid + '</b> |';
-// 	            html += '<style="padding: 15px 0px; font-size: 36px;"><b>조회수 : ' + result.breadcnt + '</b><br><br>';
-// 				html += '<class="card-text" style="white-space: pre-wrap"><b>내용 : <br><br>' + result.bcontent + '</b>';
-// 	            $("#detailContent").html(html);
-	            
-// 	           	detailNo = result.bnum;
-// 			}
-// 		});
-// 	});
-	
-	$(".updateGo").click(function(){
-		$.ajax({
-			url:'${rUrl}/qna/'+detailNo,
-			method: 'get',
-			success: function(result){
-				$('#useridQna1').attr("value", result.userid);
-				$('#btitle1').attr("value", result.btitle);
-				$('#bcontent1').attr("placeholder", result.bcontent);
-			
-			}
-		});
-	});
-
-	$("#updateQna").click(function(){
-	 	var dto = {
-	 		'bnum' : detailNo,
-			'userid' : $("#useridQna1").val(),
-			'btitle' : $("#btitle1").val(),
-			'bcontent' : $("#bcontent1").val(),
-	 	}
-	 	$.ajax({
-	 		url : '${rUrl}/qna',
-	 		method: 'put',
-	 		contentType: 'application/json; charset=utf-8',
-	 		data: JSON.stringify(dto),
-	 	    success:function(result){
-	  	    	location.href="${rUrl}/qna";
-	 	    },
-	 	    error : function(xhr, status, msg){
-					console.log(status + " " + msg);
-				}
-	 	});
-	 });  
-
-	$("#deleteQna").click(function(){
-		$.ajax({
-			url:'${rUrl}/qna/'+detailNo,
-			method:'delete',
-			success:function(){
-				alert("게시글이 삭제되었습니다.");
-				location.href="${rUrl}/qna";
-			}
-		})
-	});
 
 </script>
 </body>

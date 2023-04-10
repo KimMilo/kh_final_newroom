@@ -465,6 +465,11 @@ INSERT INTO QNA VALUES(3, '질문테스트3', 'abc', default, default, '테스�
 INSERT INTO QNA VALUES(4, '질문테스트4', 'abc', default, default, '테스트입니다.4', 4, default, default);
 INSERT INTO QNA VALUES(5, '질문테스트5', 'abc', default, default, '테스트입니다.5', 5, default, default);
 
+INSERT INTO QNA VALUES(100, '로그인이 되지 않아요.', 'abc', default, default, '로그인이 되지 않는 경우 비밀번호 찾기를 통해 신규 비밀번호를 등록하여 로그인 해주세요!', 100, default, 'T');
+INSERT INTO QNA VALUES(101, '매물을 찜하는건 어떻게 하나요?', 'abc', default, default, '매물검색 후 조회되는 리스트의 빈하트를 클릭하시면 빨간하트로 변경되며 찜한 매물에 추가됩니다. 로그인 시 메인페이지 하단에 찜한 매물이 보여집니다!', 101, default, 'T');
+INSERT INTO QNA VALUES(102, '공인중개사 상담은 못하나요?', 'abc', default, default, '저희 사이트는 아직 공인중개사 상담은 어렵고 매물검색 시 주변 부동산조회를 통해 연락을 취해보세요!!', 102, default, 'T');
+
+
 SELECT * FROM QNA;
 SELECT bnum, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ FROM qna WHERE questionnum is null ORDER BY bnum DESC;
 SELECT * FROM qna WHERE BNUM=5;

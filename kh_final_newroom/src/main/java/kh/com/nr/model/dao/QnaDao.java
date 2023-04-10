@@ -27,6 +27,10 @@ public class QnaDao {
 	public List<QnaDto> searchWriter(Map<String, Object> page) {
 		return sqlSession.selectList("qna.searchWriter", page);
 	}
+	
+	public List<QnaDto> searchFAQ(Map<String, Integer> page) {
+		return sqlSession.selectList("qna.searchFAQ", page);
+	}
 
 	public int delete(int bnum) {
 		return sqlSession.delete("qna.delete", bnum);
@@ -71,6 +75,10 @@ public class QnaDao {
 	
 	public int selectTotalRowCountU(String keyword) {
 		return sqlSession.selectOne("qna.selectTotalRowCountU", keyword);
+	}
+
+	public int selectTotalRowCountF() {
+		return sqlSession.selectOne("qna.selectTotalRowCountF");
 	}
 	
 	

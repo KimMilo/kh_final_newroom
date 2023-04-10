@@ -69,6 +69,23 @@ public class QnaServiceImpl implements QnaService{
 		Paging paging = new Paging(data, pageNumber, pageCount, pageListLimit, 5);
 		return paging;
 	}
+	
+	@Override
+	public Paging searchFAQ(int pageNumber, int pageListLimit) {
+		Map<String, Integer> page = new HashMap<String, Integer>();
+		page.put("start", (pageNumber - 1) * pageListLimit + 1);
+		page.put("end", pageNumber * pageListLimit);
+		
+		List<QnaDto> data = dao.searchFAQ(page);
+		
+		int totalRowCount = dao.selectTotalRowCountF(); 
+		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
+		int pageCount = (totalRowCount / pageListLimit) + mod;
+		
+		Paging paging = new Paging(data, pageNumber, pageCount, pageListLimit, 5);
+		return paging;
+	}
+	
 
 	@Override
 	public int delete(int bnum) {
@@ -92,11 +109,6 @@ public class QnaServiceImpl implements QnaService{
 	}
 
 	@Override
-	public List<QnaDto> getFAQList() { //FAQ 목록
-		return dao.getFAQList();
-	}
-
-	@Override
 	public Paging getPage(int pageNumber, int pageListLimit) {
 		Map<String, Object> page = new HashMap<String, Object>();
 		page.put("start", (pageNumber - 1) * pageListLimit + 1);
@@ -112,6 +124,7 @@ public class QnaServiceImpl implements QnaService{
 
 		return paging;
 	}
+
 	
 	
 }

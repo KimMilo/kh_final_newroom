@@ -4,7 +4,7 @@
 
 <insert id="write" parameterType="QnaDto"> <!-- 질문 작성 -->
 	INSERT INTO qna 
-	(BNUM, BTITLE, USERID, BREADCNT, BWRITEDATE, BCONTENT, BLEVEL, QUESTIONNUM)
+	(BNUM, BTITLE, USERID, BREADCNT, BWRITEDATE, BCONTENT, BLEVEL, QUESTIONNUM, isFAQ)
 	VALUES((SELECT NVL(MAX(BNUM), 0) + 1 FROM QNA)
 		 ,#{btitle},#{userid},default,default,#{bcontent},
 		 <if test="bnum == null">
@@ -14,6 +14,7 @@
 			#{bnum}	
 		</if>
 		 ,(SELECT NVL(MAX(QUESTIONNUM), 0) + 1 FROM QNA)
+		 ,(SELECT isFAQ FROM QNA WHERE bnum = #{bnum})
 		 )
 </insert>
 
@@ -85,8 +86,21 @@
 	  WHERE N BETWEEN #{start} AND #{end}
 </select>
 
-<select id="getFAQList" resultType="QnaDto"> 
-	SELECT * FROM qna WHERE isFAQ = 'T'
+<select id="searchFAQ" parameterType="map" resultType="QnaDto"> 
+	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, blevel, questionnum, isFAQ
+	  FROM (SELECT ROWNUM AS N
+	   			 , bnum
+	   			 , btitle
+	   			 , userid
+	   			 , breadcnt
+	   			 , bwritedate
+	   			 , bcontent
+	   			 , blevel
+	   			 , questionnum
+	   			 , isFAQ
+	   		  FROM (SELECT * FROM QNA 
+	   		  		 WHERE isFAQ = 'T' ORDER BY blevel DESC, questionnum ASC))
+	  WHERE N BETWEEN #{start} AND #{end}
 </select>
 
 <select id="selectPage" parameterType="map" resultType="QnaDto">
@@ -101,12 +115,12 @@
 	   			 , blevel
 	   			 , questionnum
 	   			 , isFAQ
-	   		  FROM (SELECT * FROM QNA ORDER BY blevel DESC, questionnum ASC))
+	   		  FROM (SELECT * FROM QNA WHERE isFAQ = 'F' ORDER BY blevel DESC, questionnum ASC))
 	 WHERE N BETWEEN #{start} AND #{end}
 </select>
 
 <select id="selectTotalRowCount" resultType="_int">
-	SELECT COUNT(*) FROM QNA
+	SELECT COUNT(*) FROM QNA WHERE isFAQ = 'F'
 </select>
 
 <select id="selectTotalRowCountT" resultType="_int">
@@ -134,6 +148,10 @@
 			AND bcontent like '%'||#{keyword}||'%'
 		</if>
 	</trim>
+</select>
+
+<select id="selectTotalRowCountF" resultType="_int">
+	SELECT COUNT(*) FROM QNA WHERE isFAQ = 'T'
 </select>
 
 </mapper>

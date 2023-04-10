@@ -119,6 +119,9 @@ public class QnaController {
 		} else if (search_type.equals("userid")) {// 작성자로 검색
 			typeName = "userid";
 			paging = qService.searchWriter(pageNumber, pageListLimit, keyword);
+		} else if (search_type.equals("FAQ")) {
+			typeName = "FAQ";
+			paging = qService.searchFAQ(pageNumber, pageListLimit);
 		}
 	 
 		mv.addObject("paging", paging);
@@ -127,11 +130,4 @@ public class QnaController {
 		mv.setViewName("qnaSearch");
 		return mv;
 	}
-
-//	// 질문 목록
-//	@GetMapping("/faq")
-//	@ResponseBody
-//	public List<QnaDto> getFAQList() {
-//		return qService.getFAQList();
-//	}
 }
