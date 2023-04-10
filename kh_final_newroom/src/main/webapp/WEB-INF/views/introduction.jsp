@@ -38,7 +38,7 @@
 			</div>
 			<!--마우스-->
 			<div class="mouse_icon">
-				<a href="#con02_intro"> <marquee align="top" height="100"
+				<a href="con03_end"> <marquee align="top" height="100"
 						direction="down" behavior="alternate" scrollamount="4">
 						<img src="${rUrl}/resources/img/con01_mouse.png" alt="이미지 없음">
 					</marquee>
