@@ -72,7 +72,7 @@ CREATE TABLE BASEADDRESS(
     city VARCHAR2(20)
   , gugun VARCHAR2(20)
   , dong VARCHAR2(20)
-  , dongcode VARCHAR2(10)
+  , dongcode VARCHAR2(4)
 );
 
 INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '개포동', 'A011');
@@ -101,8 +101,8 @@ SELECT * FROM BASEADDRESS;
 
 DROP TABLE SIDOCODE;
 CREATE TABLE SIDOCODE(
-    sido_code VARCHAR2(20)
-  , sido_name VARCHAR2(20)
+    sido_code VARCHAR2(1)
+  , sido_name VARCHAR2(10)
 );
 
 INSERT INTO SIDOCODE VALUES('A', '서울특별시');
@@ -112,8 +112,8 @@ SELECT sido_code, sido_name FROM sidocode;
 
 DROP TABLE GUGUNCODE;
 CREATE TABLE GUGUNCODE(
-    gugun_code VARCHAR2(20)
-  , gugun_name VARCHAR2(30)
+    gugun_code VARCHAR2(1)
+  , gugun_name VARCHAR2(10)
 );
 
 INSERT INTO GUGUNCODE VALUES('A01', '강남구');
@@ -136,14 +136,14 @@ SELECT SUBSTR(gugun_code,3,1) gugun_code, gugun_name FROM guguncode
 DROP TABLE HOUSEINFO;
 CREATE TABLE HOUSEINFO(
     no NUMBER PRIMARY KEY
-  , dong VARCHAR2(20)
-  , aptName VARCHAR2(50)
+  , dong VARCHAR2(10)
+  , aptName VARCHAR2(30)
   , code VARCHAR2(10)
   , buildYear VARCHAR2(20)
   , jibun VARCHAR2(30)
-  , lat VARCHAR2(50)
-  , lng VARCHAR2(50)
-  , img VARCHAR2(500)
+  , lat VARCHAR2(30)
+  , lng VARCHAR2(30)
+  , img VARCHAR2(100)
 );
 
 INSERT INTO HOUSEINFO VALUES(1, '개포동', '더샵트리에', 'A011', '2021', '651-1', '37.484836', '127.057225', '1.jpg');
