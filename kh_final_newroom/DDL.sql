@@ -177,20 +177,20 @@ DROP TABLE HOUSEDEAL;
 CREATE TABLE HOUSEDEAL(
     dealId NUMBER PRIMARY KEY
   , no NUMBER REFERENCES HOUSEINFO(no)
-  , dong VARCHAR2(20)
-  , aptName VARCHAR2(50)
+  , dong VARCHAR2(10)
+  , aptName VARCHAR2(30)
   , jibun VARCHAR2(30)
-  , lat VARCHAR2(50)
-  , lng VARCHAR2(50)
-  , dealAmount VARCHAR2(50)
+  , lat VARCHAR2(30)
+  , lng VARCHAR2(30)
+  , dealAmount VARCHAR2(20)
   , dealYear VARCHAR2(10)
   , dealMonth VARCHAR2(5)
   , dealDay VARCHAR2(10)
-  , area VARCHAR2(100)
-  , floor VARCHAR2(50)
+  , area VARCHAR2(20)
+  , floor VARCHAR2(5)
   , dtype VARCHAR2(10)
-  , rentMoney VARCHAR2(50)
-  , img VARCHAR2(500)
+  , rentMoney VARCHAR2(20)
+  , img VARCHAR2(100)
 );
 
 INSERT INTO HOUSEDEAL VALUES(1, 1, '개포동', '더샵트리에', '651-1', '37.484836', '127.057225', '24억', '2023', '03', '01', '135C', '15', '매매', null, '1.jpg');
@@ -228,14 +228,13 @@ SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay,
 DROP TABLE INTEREST;
 CREATE TABLE INTEREST(
     userid VARCHAR2(20)
-  , no NUMBER
-  , area VARCHAR2(100)
-  , floor VARCHAR2(50)
-  , dealAmount VARCHAR2(50)
-  , aptName VARCHAR2(30)
-  , img VARCHAR2(100)
+  , dealId NUMBER
 );
 
+SELECT * FROM INTEREST;
+select i.userid, i.dealId, d.area, d.floor, d.dealAmount, f.AptName, f.img
+	from housedeal d JOIN interest i on d.dealId = i.dealId JOIN houseinfo f on d.no = f.no
+	where i.userid = 'sample';
 --------------------------------------------------------------------------------
 
 DROP TABLE USERINFO;

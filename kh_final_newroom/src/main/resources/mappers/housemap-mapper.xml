@@ -21,7 +21,7 @@
 </select>
  
 <select id="getDealInfo" resultType="HouseDealDto">
-	SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
+	SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
@@ -29,15 +29,15 @@
 </select>
 
 <select id="getDealInfoOne" parameterType="int" resultType="HouseDealDto">
-	SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
+	SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
-	WHERE d.no=i.no and d.no = #{no}
+	WHERE d.no = i.no and d.dealId = #{no}
 </select>
 
 <select id="getDealInfoByAptName" parameterType="String" resultType="HouseDealDto">
-	SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
+	SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
@@ -45,7 +45,7 @@
 </select>
 
 <select id="getDealInfoByDong" parameterType="String" resultType="HouseDealDto">
-	SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
+	SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney, 
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i

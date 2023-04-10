@@ -33,13 +33,13 @@
 			          <div class="card-body">
 			          	<div style="overflow: hidden; height:30px; width:100%;"><h4>${inter.aptName}</h4></div>
 			            <p class="card-text text-right" style="margin-bottom:0px;">
-			           	<p class="card-text" style="font-size:20px;"><b>매매     ${inter.dealAmount}만원</b></p>
+			           	<p class="card-text" style="font-size:20px;"><b>매매     ${inter.dealAmount}</b></p>
 			            <p style="margin-bottom:0px;">${inter.floor}층</p>
 			            <p style="margin-bottom:5px;">면적 ${inter.area}㎡
 			            </p>
 			            <div class="d-flex justify-content-between align-items-center">
 			              <div class="btn-group">
-			            	<button type="button" class="btn btn-outline-primary detailBtn" id="${inter.no}"
+			            	<button type="button" class="btn btn-outline-primary detailBtn" id="${inter.dealId }"
 			            	 data-toggle="modal" data-target="#myModal">자세히 보기</button>
 			              </div>
 			            </div>
@@ -88,13 +88,13 @@
 						}else{
 							html += '<img src="${rUrl}/resources/img/houseinner/' + result.img + '" alt="" style="width: 400px; height: 320px;">';
 						}
-						html += '<p class="card-text" style="font-size:20px; margin-top: 10px;"><b>매매     ' + result.dealAmount + '만원</b></p>';
+						html += '<p class="card-text" style="font-size:20px; margin-top: 10px;"><b>매매     ' + result.dealAmount + '</b></p>';
 			            html += '<p style="margin-bottom:0px;">' + result.floor + '층, ';
 			            html += '<p style="margin-bottom:5px;">' + result.area + '㎡</p>';
 			            html += '<p>' + result.dealYear + '년 ' + result.dealMonth + '월 ' + result.dealDay + '일 </p>';
 			            $("#detailContent").html(html);
 			            
-			           	detailNo = result.no;
+			           	detailNo = result.dealId;
 					},
 				});
 			});

@@ -319,17 +319,17 @@
 								style="position: relative 0 0; border: none; width: 160px; height: 100px;">
 								<%--로그인 정보 있으면 찜한 매물은 꽉 찬 하트 --%>
 								<c:if test="${not empty loginInfo}">
-									<img class="heartIcon" id="interest${dto.no}" src="" width="20px" height="20px"/>
+									<img class="heartIcon" id="interest${dto.dealId}" src="" width="20px" height="20px"/>
 									<script>
 										$(function(){
 											$.ajax({
-												url:'${rUrl}/interest/chk/${dto.no}',
+												url:'${rUrl}/interest/chk/${dto.dealId}',
 												method:'get',
 												success:function(result){
 													if(result == 'true'){
-														$("#interest${dto.no}").attr('src', './resources/img/heart_fill.png');
+														$("#interest${dto.dealId}").attr('src', './resources/img/heart_fill.png');
 													}else {
-														$("#interest${dto.no}").attr('src', './resources/img/heart_empty.png');
+														$("#interest${dto.dealId}").attr('src', './resources/img/heart_empty.png');
 													}
 												},
 											});
@@ -366,7 +366,7 @@
 									if(className == 'heartIcon'){
 										if($("#"+idName).attr('src') == './resources/img/heart_fill.png'){
 	                    	    			$.ajax({
-												url:'${rUrl}/interest/${dto.no}',
+												url:'${rUrl}/interest/${dto.dealId}',
 												method:'delete',
 												success:function(){
 													$("#"+idName).attr('src', './resources/img/heart_empty.png');
@@ -375,7 +375,7 @@
 											});
 	                    	    		}else if($("#"+idName).attr('src') == './resources/img/heart_empty.png'){
 											$.ajax({
-												url:'${rUrl}/interest/${dto.no}',
+												url:'${rUrl}/interest/${dto.dealId}',
 												method:'get',
 												success:function(){
 													$("#"+idName).attr('src', './resources/img/heart_fill.png');
@@ -448,7 +448,7 @@
 						         				// 병원 조회 버튼 눌렀을 때 : type hospital
 						         				$("#btn__safetyHospital").click(function(){
 						         	  				$.ajax({
-						         						url : '${rUrl}/hospital/safety/${dto.no}',
+						         						url : '${rUrl}/hospital/safety/${dto.dealId}',
 						         						method : 'get',
 						         						success : function(hospitalList){
 						         							for(var i = 0; i < hospitalList.length; i++){

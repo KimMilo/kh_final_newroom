@@ -55,35 +55,35 @@ public class InterestController {
 	}
 
 	// 찜하기 등록
-	@GetMapping("/{no}")
+	@GetMapping("/{dealId}")
 	@ResponseBody
-	private void setInterest(@PathVariable("no") int no, HttpSession session) throws IOException {
+	private void setInterest(@PathVariable("dealId") int dealId, HttpSession session) throws IOException {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
 		String userid = loginInfo.getUserid();
 
-		iservice.setInterest(new InterestDto(userid, no));
+		iservice.setInterest(new InterestDto(userid, dealId));
 	}
 	
 	// 찜하기 취소
-	@DeleteMapping("/{no}")
+	@DeleteMapping("/{dealId}")
 	@ResponseBody
-	private void deleteInterest(@PathVariable("no") int no, HttpSession session) throws IOException {
+	private void deleteInterest(@PathVariable("dealId") int dealId, HttpSession session) throws IOException {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
 		String userid = loginInfo.getUserid();
 
-		iservice.deleteInterest(new InterestDto(userid, no));
+		iservice.deleteInterest(new InterestDto(userid, dealId));
 	}
 	
 	// 찜한 매물인지 확인
-	@GetMapping("/chk/{no}")
+	@GetMapping("/chk/{dealId}")
 	@ResponseBody
-	private String chkInterest(@PathVariable("no") int no, HttpSession session) {
+	private String chkInterest(@PathVariable("dealId") int dealId, HttpSession session) {
 		InterestDto dto = new InterestDto();
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
 		String userid = loginInfo.getUserid();
 		
 		dto.setUserid(userid);
-		dto.setNo(no);
+		dto.setDealId(dealId);
 		if(iservice.chkInterest(dto) != null) {
 			return "true";
 		}
@@ -91,12 +91,12 @@ public class InterestController {
 	}
 	
 	//매물 정보 디테일 가져오기
-		@GetMapping("/detail/{no}")
+		@GetMapping("/detail/{dealId}")
 		@ResponseBody
-		private HouseDealDto detail(@PathVariable("no") int no) {
+		private HouseDealDto detail(@PathVariable("dealId") int dealId) {
 			HouseDealDto dto = null;
 			try {
-				dto = hservice.getDealInfo(no);
+				dto = hservice.getDealInfo(dealId);
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
