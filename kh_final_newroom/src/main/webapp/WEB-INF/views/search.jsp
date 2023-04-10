@@ -190,22 +190,37 @@
 			<c:if test="${not empty dealList}">
 				<script type="text/javascript">
         			$(function(){        	
-        				//  지도에 표시
-        				function markCoronaHospitalPlace(place, type){
-        					$.get(
-       							"https://maps.googleapis.com/maps/api/geocode/json"
-								,{	key:'${key}'
-									, address: place.address
-								}
-								, function(data, status) {
-									tmpLat = data.results[0].geometry.location.lat;
-									tmpLng = data.results[0].geometry.location.lng;
-									addMarker({lat:tmpLat, lng:tmpLng, name:place["hospitalName"], type:type}, place);
-								}
-								, "json"
-							);        		  
-        				};
+        				//  병원 지도에 표시
+//         				function markCoronaHospitalPlace(place, type){
+//         					$.get(
+//        							"https://maps.googleapis.com/maps/api/geocode/json"
+// 								,{	key:'${key}'
+// 									, address: place.address
+// 								}
+// 								, function(data, status) {
+// 									tmpLat = data.results[0].geometry.location.lat;
+// 									tmpLng = data.results[0].geometry.location.lng;
+// 									addMarker({lat:tmpLat, lng:tmpLng, name:place["hospitalName"], type:type}, place);
+// 								}
+// 								, "json"
+// 							);        		  
+//         				};
         				
+						// 병원 조회 버튼 눌렀을 때 : type hospital
+//         				$("#btn__safetyHospital").click(function(){
+//         	  				$.ajax({
+//         						url : '${rUrl}/hospital/safety/${dealList[0].no}',
+//         						method : 'get',
+//         						success : function(hospitalList){
+//         							for(var i = 0; i < hospitalList.length; i++){
+//         								markCoronaHospitalPlace(hospitalList[i], "hospital");
+//         							}
+//         						},
+//         						error : function(xhr, status, msg){
+// 									console.log(status + " " + msg);									
+// 								}
+//         					});
+//         				});
         				
         				//부동산 지도에 표시
         				function markLand(place, type){
@@ -224,21 +239,6 @@
    							);
         				}
 			
-        				// 병원 조회 버튼 눌렀을 때 : type hospital
-        				$("#btn__safetyHospital").click(function(){
-        					$.ajax({
-        						url : '${rUrl}/hospital/safety/${dealList[0].no}',
-        						method : 'get',
-        						success : function(hospitalList){
-        							for(var i = 0; i < hospitalList.length; i++){
-        								markCoronaHospitalPlace(hospitalList[i], "hospital");
-        							}
-        						},
-        						error : function(xhr, status, msg){
-									console.log(status + " " + msg);									
-								}
-        					});
-        				});
 
         				//주변 부동산 버튼 눌렀을 떄
         				$("#btn__land").click(function(){
@@ -428,6 +428,40 @@
 											$('#back').click(function(){
 												location.href = "${rUrl}/search";
 											});
+											$(function(){        	
+						        				//  지도에 표시
+						         				function markCoronaHospitalPlace(place, type){
+						         					$.get(
+						        							"https://maps.googleapis.com/maps/api/geocode/json"
+						 								,{	key:'${key}'
+						 									, address: place.address
+						 								}
+						 								, function(data, status) {
+						 									tmpLat = data.results[0].geometry.location.lat;
+						 									tmpLng = data.results[0].geometry.location.lng;
+						 									addMarker({lat:tmpLat, lng:tmpLng, name:place["hospitalName"], type:type}, place);
+						 								}
+						 								, "json"
+						 							);        		  
+						         				};
+									
+						         				// 병원 조회 버튼 눌렀을 때 : type hospital
+						         				$("#btn__safetyHospital").click(function(){
+						         	  				$.ajax({
+						         						url : '${rUrl}/hospital/safety/${dto.no}',
+						         						method : 'get',
+						         						success : function(hospitalList){
+						         							for(var i = 0; i < hospitalList.length; i++){
+						         								markCoronaHospitalPlace(hospitalList[i], "hospital");
+						         							}
+						         						},
+						         						error : function(xhr, status, msg){
+						 									console.log(status + " " + msg);									
+						 								}
+						         					});
+						         				});
+						        			});
+
 											setCenterSelectedItem("${dto.lat}", "${dto.lng}");
 										} else {
 											alert("상세보기는 로그인 후 사용 가능합니다");
