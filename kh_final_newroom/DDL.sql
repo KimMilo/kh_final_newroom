@@ -5,8 +5,8 @@
 DROP TABLE CHAT;
 CREATE TABLE CHAT(
     chatID NUMBER PRIMARY KEY
-  , fromID VARCHAR2(20)
-  , toID VARCHAR2(20)
+  , fromID VARCHAR2(20) REFERENCES USERINFO(userid)
+  , toID VARCHAR2(20) REFERENCES USERINFO(userid)
   , chatContent VARCHAR2(2000)
   , chatTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -177,44 +177,38 @@ DROP TABLE HOUSEDEAL;
 CREATE TABLE HOUSEDEAL(
     dealId NUMBER PRIMARY KEY
   , no NUMBER REFERENCES HOUSEINFO(no)
-  , dong VARCHAR2(10)
-  , aptName VARCHAR2(30)
-  , jibun VARCHAR2(30)
-  , lat VARCHAR2(30)
-  , lng VARCHAR2(30)
   , dealAmount VARCHAR2(20)
   , dealYear VARCHAR2(10)
   , dealMonth VARCHAR2(5)
   , dealDay VARCHAR2(10)
   , area VARCHAR2(20)
-  , floor VARCHAR2(5)
+  , floor VARCHAR2(10)
   , dtype VARCHAR2(10)
   , rentMoney VARCHAR2(20)
-  , img VARCHAR2(100)
 );
 
-INSERT INTO HOUSEDEAL VALUES(1, 1, '개포동', '더샵트리에', '651-1', '37.484836', '127.057225', '24억', '2023', '03', '01', '135C', '15', '매매', null, '1.jpg');
-INSERT INTO HOUSEDEAL VALUES(2, 1, '개포동', '더샵트리에2', '651-1', '37.484836', '127.057225', '24.5억', '2023', '03', '02', '135C', '17', '매매', null, '1.jpg');
-INSERT INTO HOUSEDEAL VALUES(3, 1, '개포동', '더샵트리에3', '651-1', '37.484836', '127.057225', '22억', '2023', '03', '03', '135C', '1', '매매', null, '1.jpg');
-INSERT INTO HOUSEDEAL VALUES(4, 2, '논현동', '논현e-편한세상', '195-1', '37.506677', '127.028837', '18억', '2023', '03', '22', '109B', '11', '매매', null, '2.jpg');
-INSERT INTO HOUSEDEAL VALUES(5, 3, '개봉동', '신개봉삼환', '170-30', '37.494657', '126.854609', '6억', '2023', '04', '30', '84', '1', '매매', null, '3.jpg');
-INSERT INTO HOUSEDEAL VALUES(6, 4, '고척동', '청솔우성', '329', '37.506295', '126.859759', '4억', '2023', '05', '15', '84', '6', '전세', null, '4.jpg');
-INSERT INTO HOUSEDEAL VALUES(7, 5, '노량진동', '쌍용예가', '332', '37.509926', '126.943578', '13.6억', '2023', '05', '30', '84', '11', '매매', null, '5.jpg');
-INSERT INTO HOUSEDEAL VALUES(8, 6, '대방동', '대방경남아너스빌', '512', '37.511411', '126.925593', '6.5억', '2023', '06', '01', '84', '3', '전세', null, '6.jpg');
-INSERT INTO HOUSEDEAL VALUES(9, 7, '마포동', '강변한신코아', '350', '37.536270', '126.943937', '1억/200', '2023', '06', '10', '83', '6', '월세', 200, '7.jpg');
-INSERT INTO HOUSEDEAL VALUES(10, 8, '망원동', '마포영화블렌하임', '517', '37.558483', '126.906273', '10억', '2023', '06', '15', '103', '저', '매매', null, '8.jpg');
-INSERT INTO HOUSEDEAL VALUES(11, 9, '반포동', '반포푸르지오', '10', '37.503884', '126.996434', '8억/120', '2023', '06', '22', '84', '중', '월세', 120, '9.jpg');
-INSERT INTO HOUSEDEAL VALUES(12, 10, '방배동', '방배한진로즈힐', '3276', '37.486801', '126.983479', '11억', '2023', '07', '02', '97', '13', '전세', null, '10.jpg');
-INSERT INTO HOUSEDEAL VALUES(13, 11, '가평읍', '우림필유2단지', '대곡리 366-8', '37.822611', '127.510036', '4억', '2023', '07', '12', '122', '고층', '매매', null, '11.jpg');
-INSERT INTO HOUSEDEAL VALUES(14, 12, '가평읍', '가평센트럴파크더스카이', '읍내리 457-5', '37.831323', '127.512106', '2.2억', '2023', '07', '22', '59', '28', '전세', null, '12.jpg');
-INSERT INTO HOUSEDEAL VALUES(15, 13, '대화동', '성저7단지건영', '2081', '37.684164', '126.751997', '4.5억', '2023', '08', '01', '84', '3', '매매', null, '13.jpg');
-INSERT INTO HOUSEDEAL VALUES(16, 14, '대화동', '성저3단지풍림', '2215', '37.678180', '126.747934', '2억', '2023', '08', '22', '45', '14', '전세', null, '14.jpg');
-INSERT INTO HOUSEDEAL VALUES(17, 15, '고촌읍', '김포고촌우방아이유쉘', '신곡리 1284', '37.604503', '126.766739', '6.7억', '2023', '09', '15', '84', '5', '매매', null, '15.jpg');
-INSERT INTO HOUSEDEAL VALUES(18, 16, '구래동', '한강신도시반도유보라5차', '117-3', '37.647286', '126.626571', '5.1억', '2023', '09', '30', '96', '9', '매매', null, '16.jpg');
-INSERT INTO HOUSEDEAL VALUES(19, 17, '금곡동', '금곡역디에브스', '777', '37.636580', '127.207571', '2.7억', '2023', '10', '15', '84', '3', '전세', null, '17.jpg');
-INSERT INTO HOUSEDEAL VALUES(20, 18, '별내동', '남양주별내아이파크', '854', '37.662043', '127.117898', '1.7억/120', '2023', '10', '30', '124', '5', '월세', 120, '18.jpg');
-INSERT INTO HOUSEDEAL VALUES(21, 19, '고강동', '동문미도', '327-7', '37.525164', '126.825966', '2.5억', '2023', '11', '31', '59', '1', '매매', null, '19.jpg');
-INSERT INTO HOUSEDEAL VALUES(22, 20, '오정동', '오정휴먼시아3단지', '732', '37.532837', '126.787682', '4.5억', '2023', '12', '31', '59', '2', '매매', null, '20.jpg');
+INSERT INTO HOUSEDEAL VALUES(1, 1, '24억', '2023', '03', '01', '135C', '15', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(2, 1, '24.5억', '2023', '03', '02', '135C', '17', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(3, 1, '22억', '2023', '03', '03', '135C', '1', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(4, 2, '18억', '2023', '03', '22', '109B', '11', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(5, 3, '6억', '2023', '04', '30', '84', '1', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(6, 4, '4억', '2023', '05', '15', '84', '6', '전세', null);
+INSERT INTO HOUSEDEAL VALUES(7, 5, '13.6억', '2023', '05', '30', '84', '11', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(8, 6, '6.5억', '2023', '06', '01', '84', '3', '전세', null);
+INSERT INTO HOUSEDEAL VALUES(9, 7, '1억/200', '2023', '06', '10', '83', '6', '월세', 200);
+INSERT INTO HOUSEDEAL VALUES(10, 8, '10억', '2023', '06', '15', '103', '저', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(11, 9, '8억/120', '2023', '06', '22', '84', '중', '월세', 120);
+INSERT INTO HOUSEDEAL VALUES(12, 10, '11억', '2023', '07', '02', '97', '13', '전세', null);
+INSERT INTO HOUSEDEAL VALUES(13, 11, '4억', '2023', '07', '12', '122', '고층', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(14, 12, '2.2억', '2023', '07', '22', '59', '28', '전세', null);
+INSERT INTO HOUSEDEAL VALUES(15, 13, '4.5억', '2023', '08', '01', '84', '3', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(16, 14, '2억', '2023', '08', '22', '45', '14', '전세', null);
+INSERT INTO HOUSEDEAL VALUES(17, 15, '6.7억', '2023', '09', '15', '84', '5', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(18, 16, '5.1억', '2023', '09', '30', '96', '9', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(19, 17, '2.7억', '2023', '10', '15', '84', '3', '전세', null);
+INSERT INTO HOUSEDEAL VALUES(20, 18, '1.7억/120', '2023', '10', '30', '124', '5', '월세', 120);
+INSERT INTO HOUSEDEAL VALUES(21, 19, '2.5억', '2023', '11', '31', '59', '1', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(22, 20, '4.5억', '2023', '12', '31', '59', '2', '매매', null);
 
 SELECT * FROM HOUSEDEAL;
 SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
@@ -228,7 +222,7 @@ SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay,
 DROP TABLE INTEREST;
 CREATE TABLE INTEREST(
     userid VARCHAR2(20)
-  , dealId NUMBER
+  , dealId NUMBER REFERENCES HOUSEDEAL(dealId)
 );
 
 SELECT * FROM INTEREST;
@@ -239,19 +233,19 @@ select i.userid, i.dealId, d.area, d.floor, d.dealAmount, f.AptName, f.img
 
 DROP TABLE USERINFO;
 CREATE TABLE USERINFO(
-    userId VARCHAR2(20)
-  , no NUMBER
+    no NUMBER PRIMARY KEY
+  , userId VARCHAR2(20)
   , userPw VARCHAR2(20)
   , userName VARCHAR2(15)
   , userEmail VARCHAR2(30)
   , userPhone VARCHAR2(30)
   , mRole NUMBER DEFAULT 0 CHECK (mRole IN(0,1))
-  , img VARCHAR2(500)
+  , img VARCHAR2(100)
 );
 
-INSERT INTO USERINFO VALUES('abc', 1, 'abc', '아무개', 'abcd666@naver.com', '010-123-4567', 0, null);
-INSERT INTO USERINFO VALUES('admin', 2, 'admin777', '관리자', 'admin@naver.com', '010-777-7777', 1, null);
-INSERT INTO USERINFO VALUES('111', 3, '111', '111', '111', '111', 0, null);
+INSERT INTO USERINFO VALUES(1, 'abc', 'abc', '아무개', 'abcd666@naver.com', '010-123-4567', 0, null);
+INSERT INTO USERINFO VALUES(2, 'admin', 'admin777', '관리자', 'admin@naver.com', '010-777-7777', 1, null);
+INSERT INTO USERINFO VALUES(3, '111', '111', '111', '111', '111', 0, null);
 
 SELECT * FROM USERINFO;
 
@@ -293,9 +287,9 @@ SELECT * FROM USERINFO WHERE username like '%1%';
 
 DROP TABLE NOTICE;
 CREATE TABLE NOTICE(
-    bnum NUMBER
+    bnum NUMBER PRIMARY KEY
   , btitle VARCHAR2(100)
-  , userid VARCHAR2(20)
+  , userid VARCHAR2(20) REFERENCES USERINFO(userid)
   , breadcnt NUMBER DEFAULT 0
   , bwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   , bcontent VARCHAR2(2000)
@@ -327,7 +321,7 @@ SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') 
 -----------------------------------------------------------------------------------------------
 DROP TABLE COMMENT_T;
 CREATE TABLE COMMENT_T(
-    cnum NUMBER
+    cnum NUMBER PRIMARY KEY
   , bnum NUMBER
   , cwriter VARCHAR2(20)
   , ccontent VARCHAR2(2000)
