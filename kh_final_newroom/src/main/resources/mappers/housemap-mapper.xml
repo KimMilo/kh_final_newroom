@@ -25,7 +25,7 @@
 	d.area, d.floor, d.dtype, d.rentMoney,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
-	WHERE d.no=i.no
+	WHERE d.no = i.no
 </select>
 
 <select id="getDealInfoOne" parameterType="int" resultType="HouseDealDto">
