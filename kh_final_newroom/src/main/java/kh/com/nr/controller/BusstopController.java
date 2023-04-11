@@ -7,6 +7,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,14 +17,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequestMapping("/busstop")
+@Component
+@PropertySource("classpath:properties/newroom-info.properties")
 @RestController
 public class BusstopController  {
+	
+	@Value("${tago.url}")
+	private String url;
+	
+	@Value("${tago.key}")
+	private String key;
 	
 	@ResponseBody
 	@GetMapping("/{lati}/{long}")
 	public String busstopList(@PathVariable("lati") String lat, @PathVariable("long") String lng) throws IOException {
-		StringBuilder urlBuilder = new StringBuilder("http://openapi.tago.go.kr/openapi/service/BusSttnInfoInqireService/getCrdntPrxmtSttnList"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=pcuMxm95sDkbgZl%2BOIZgUXgJqTDYRUgnnju9lcO1FOk3PaQQj31vkE8ay0qiJQ3OY5uIn9otu4voC0hTR279ag%3D%3D"); /*Service Key*/
+		StringBuilder urlBuilder = new StringBuilder(url); /*URL*/
+        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + key); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("gpsLati","UTF-8") + "=" + URLEncoder.encode(lat, "UTF-8")); /*WGS84 위도 좌표*/
         urlBuilder.append("&" + URLEncoder.encode("gpsLong","UTF-8") + "=" + URLEncoder.encode(lng, "UTF-8")); /*WGS84 경도 좌표*/
         
