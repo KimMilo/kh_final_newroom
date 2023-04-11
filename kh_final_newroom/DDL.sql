@@ -64,7 +64,16 @@ SELECT no, city, gugun, dong, hospitalName, address, diagnosisType, phone
                                                    FROM HOUSEINFO
                                                   WHERE no = 2)	
                             );
---TODO 하우스 넘버와 병원 넘버를 어떻게 맞출것인지 생각해야함.
+
+SELECT no, city, gugun, dong, hospitalName, address, diagnosisType, phone
+  FROM HOSPITAL
+ WHERE (city, gugun, dong) IN (SELECT DISTINCT city, gugun, dong
+                              FROM BASEADDRESS b
+                             WHERE b.dongcode = (SELECT DISTINCT code 
+                                                   FROM HOUSEINFO
+                                                  WHERE no = (SELECT DISTINCT no FROM HOUSEDEAL WHERE dealId = 7))	
+                            )
+
  --------------------------------------------------------------------------------------------
 
 DROP TABLE BASEADDRESS;
@@ -216,7 +225,18 @@ SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
 	WHERE d.no=i.no AND i.aptName like CONCAT('%',aptName,'%');
-
+    
+SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
+	d.area, d.floor, d.dtype, d.rentMoney, b.city, b.gugun, b.dong,
+	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
+	FROM housedeal d, houseinfo i, baseaddress b
+	WHERE d.no = i.no and d.dealId = 1 and i.code = b.dongcode;
+    
+SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
+	d.area, d.floor, d.dtype, d.rentMoney, b.city, b.gugun,
+	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
+	FROM housedeal d, houseinfo i, baseaddress b
+	WHERE d.no = i.no and i.code = b.dongcode;
 --------------------------------------------------------------------------------
 
 DROP TABLE INTEREST;

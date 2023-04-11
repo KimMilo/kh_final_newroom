@@ -32,5 +32,7 @@ public class HouseDealDto {
 	String dtype; // 매매, 전월세
 	String rentMoney; // 전월세
 	String img; // 이미지 경로
+	String city;
+	String gugun;
 
 }

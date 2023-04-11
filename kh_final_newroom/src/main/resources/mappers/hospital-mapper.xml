@@ -9,7 +9,7 @@ SELECT no, city, gugun, dong, hospitalName, address, diagnosisType, phone
                               FROM BASEADDRESS b
                              WHERE b.dongcode = (SELECT DISTINCT code 
                                                    FROM HOUSEINFO
-                                                  WHERE no = #{no})	
+                                                  WHERE no = (SELECT DISTINCT no FROM HOUSEDEAL WHERE dealId = #{no}))	
                             )
 </select>
 </mapper>
