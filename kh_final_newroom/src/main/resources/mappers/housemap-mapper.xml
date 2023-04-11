@@ -26,7 +26,7 @@
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i, baseaddress b
 	WHERE d.no = i.no and i.code = b.dongcode
-</select>
+</select> 
 
 <select id="getDealInfoOne" parameterType="int" resultType="HouseDealDto">
 	SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
