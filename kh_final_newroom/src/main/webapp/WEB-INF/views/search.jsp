@@ -223,61 +223,61 @@
 //         				});
         				
         				//부동산 지도에 표시
-        				function markLand(place, type){
-        					$.get(
-          						"https://maps.googleapis.com/maps/api/geocode/json"
-   								,{	key:'${key}'
-   									, address: place.address
-   								}
-   								, function(data, status) {
-   									console.log("구글 맵" + data);
-   									tmpLat = data.results[0].geometry.location.lat;
-   									tmpLng = data.results[0].geometry.location.lng;
-   									addLandMarker({lat:tmpLat, lng:tmpLng, name:place["title"], type:type}, place);
-   								}
-   								, "json"
-   							);
-        				}
+//         				function markLand(place, type){
+//         					$.get(
+//           						"https://maps.googleapis.com/maps/api/geocode/json"
+//    								,{	key:'${key}'
+//    									, address: place.address
+//    								}
+//    								, function(data, status) {
+//    									console.log("구글 맵" + data);
+//    									tmpLat = data.results[0].geometry.location.lat;
+//    									tmpLng = data.results[0].geometry.location.lng;
+//    									addLandMarker({lat:tmpLat, lng:tmpLng, name:place["title"], type:type}, place);
+//    								}
+//    								, "json"
+//    							);
+//         				}
 			
 
         				//주변 부동산 버튼 눌렀을 떄
-        				$("#btn__land").click(function(){
-        					var sidoName = $("#sido option:selected").html();
-        					var gugunName = $("#gugun option:selected").html();
-        					var dongName = $("#dong option:selected").html();
+//         				$("#btn__land").click(function(){
+//         					var sidoName = $("#sido option:selected").html();
+//         					var gugunName = $("#gugun option:selected").html();
+//         					var dongName = $("#dong option:selected").html();
         					
-        					var keyword = '';
-        					if(dongName != '동'){
-        						keyword = sidoName + " " 
-        								+ gugunName + " "
-        								+ dongName + " 부동산";
-        					}else if(gugunName != '구/군'){
-        						keyword = sidoName + " " 
-								+ gugunName + " 부동산";
-							}else if(sidoName != '시/도'){
-        						keyword = sidoName + " 부동산"; 
-							}else{
-								keyword = '부동산';
-							}
+//         					var keyword = '';
+//         					if(dongName != '동'){
+//         						keyword = sidoName + " " 
+//         								+ gugunName + " "
+//         								+ dongName + " 부동산";
+//         					}else if(gugunName != '구/군'){
+//         						keyword = sidoName + " " 
+// 								+ gugunName + " 부동산";
+// 							}else if(sidoName != '시/도'){
+//         						keyword = sidoName + " 부동산"; 
+// 							}else{
+// 								keyword = '부동산';
+// 							}
         						
-        					$.ajax({
-        						url : '${rUrl}/land',
-        						method: 'post',
-        						dataType: 'JSON',
-        						contextType: 'application/json; charset:UTF-8;',
-        						data : {'keyword' : keyword,},
-        						success : function(landList){
-        							var items = landList['items'];
-        							for(var i = 0; i < items.length; i++){
-        								console.log(items[i]);
-	        							markLand(items[i], "land");
-        							}
-        						},
-        						error : function(xhr, status, msg){
-        							console.log(status + " " + msg);
-        						}
-        					});
-        				});
+//         					$.ajax({
+//         						url : '${rUrl}/land',
+//         						method: 'post',
+//         						dataType: 'JSON',
+//         						contextType: 'application/json; charset:UTF-8;',
+//         						data : {'keyword' : keyword,},
+//         						success : function(landList){
+//         							var items = landList['items'];
+//         							for(var i = 0; i < items.length; i++){
+//         								console.log(items[i]);
+// 	        							markLand(items[i], "land");
+//         							}
+//         						},
+//         						error : function(xhr, status, msg){
+//         							console.log(status + " " + msg);
+//         						}
+//         					});
+//         				});
         				
         				//버스 정류장 버튼 눌렀을 떄
         				$("#btn__busstop").click(function(){
