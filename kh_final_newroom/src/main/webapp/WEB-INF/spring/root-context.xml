@@ -21,7 +21,7 @@
 	
 	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
 		<property name="driverClassName" value="${DB.log4DriverName}"/>
-		<property name="url" value="${DB.url}"/>
+		<property name="url" value="${LO.url}"/>
 		<property name="username" value="${DB.username}"/>
 		<property name="password" value="${DB.password}"/>
 	</bean>
