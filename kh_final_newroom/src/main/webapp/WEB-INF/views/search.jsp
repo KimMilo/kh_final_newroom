@@ -617,9 +617,9 @@
                    		})
                    		
                    		if(dto != null){
-	                   		var info = dto.hospitalName+" 상세 정보<br>"
+	                   		var info = dto.hospitalName+"<br>"
 	                   		+ "<span style='color:#999; font-size:13px;'>"
-	                   		+ dto.validDate
+	                   		+ dto.diagnosisType
 	                   		+ "</span><br><br>"
 	                   		+ "주소 : "+dto.address+"<br>"
 	                   		+ "전화번호 : "+dto.phone+"<br>";
