@@ -111,7 +111,7 @@ SELECT * FROM BASEADDRESS;
 DROP TABLE SIDOCODE;
 CREATE TABLE SIDOCODE(
     sido_code VARCHAR2(1)
-  , sido_name VARCHAR2(10)
+  , sido_name VARCHAR2(20)
 );
 
 INSERT INTO SIDOCODE VALUES('A', '서울특별시');
@@ -121,8 +121,8 @@ SELECT sido_code, sido_name FROM sidocode;
 
 DROP TABLE GUGUNCODE;
 CREATE TABLE GUGUNCODE(
-    gugun_code VARCHAR2(1)
-  , gugun_name VARCHAR2(10)
+    gugun_code VARCHAR2(4)
+  , gugun_name VARCHAR2(20)
 );
 
 INSERT INTO GUGUNCODE VALUES('A01', '강남구');
@@ -146,7 +146,7 @@ DROP TABLE HOUSEINFO;
 CREATE TABLE HOUSEINFO(
     no NUMBER PRIMARY KEY
   , dong VARCHAR2(10)
-  , aptName VARCHAR2(30)
+  , aptName VARCHAR2(50)
   , code VARCHAR2(10)
   , buildYear VARCHAR2(20)
   , jibun VARCHAR2(30)
