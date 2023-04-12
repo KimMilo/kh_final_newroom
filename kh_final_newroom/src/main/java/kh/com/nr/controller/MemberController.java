@@ -141,8 +141,8 @@ public class MemberController {
 		try {
 			pageNumber = Integer.parseInt(p);
 		} catch (Exception e) {
-			mv.addObject("msg","요청하신 URL 오류가 발생하였습니다. 메인페이지로 이동합니다.");
-			mv.setViewName("error");
+			mv.addObject("msg","요청하신 URL 주소 오류가 발생하였습니다. 메인페이지로 이동합니다.");
+			mv.setViewName("error/error404");
 			return mv;
 		}
 		
