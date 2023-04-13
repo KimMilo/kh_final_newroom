@@ -15,7 +15,7 @@
     <img src="${rUrl }/resources/img/404.svg" />
     <br />
     <h3>This Page : <b style="color:black;">${url}</b>  Doesn't exist.</h3> 	
-    <a class="buton" href="${rUrl }/introducion">Our NewRoom</a>
+    <a class="buton" href="${rUrl }/introduction">Our NewRoom</a>
 </div>
 <script>
 	//jQuerystring 의도적 오류 접근 404 에러 별도 처리
