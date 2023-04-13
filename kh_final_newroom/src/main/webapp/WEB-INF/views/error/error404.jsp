@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Error 404 - Page Not Found!</title>
-<link rel="stylesheet" type="text/css" href="${rUrl }/resources/css/error404style.css" />
+<link rel="stylesheet" type="text/css" href="${rUrl }/resources/css/error-404-style.css" />
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 </head>
 <body>
