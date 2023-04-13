@@ -14,7 +14,7 @@
   <div class="emoji"><img src="${rUrl }/resources/img/unicorn.gif" width="420px;"></div>
   <p class="title">Ooooops!</p>
   <p class="text">Error : ${url }<br>Looks like our server crashed 🙀<br>We're working on a quick fix, come back soon.</p>
-  <div class="btn"><a class="buton" href="${rUrl }">Go NewRoom</a></div>
+  <div class="btn"><a class="buton" href="${rUrl }/introduction">Our NewRoom</a></div>
 </div>  
 </body>
 </html>
