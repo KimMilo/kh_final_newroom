@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
 	public ModelAndView handleError404(HttpServletRequest request, Exception e) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("error/error404");
-		mv.addObject("message", "404오류");
+		mv.addObject("message", "URL 오류 :D");
 		mv.addObject("url", request.getRequestURL());
 		return mv;
 	}
