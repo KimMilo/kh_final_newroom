@@ -10,7 +10,7 @@
 	body{text-align:center}
 </style>
 <title>Error 404 - Page Not Found!</title>
-<link rel="stylesheet" type="text/css" href="${rUrl }/resources/css/404style.css" />
+<link rel="stylesheet" type="text/css" href="${rUrl }/resources/css/error404style.css" />
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 </head>
 <body>
