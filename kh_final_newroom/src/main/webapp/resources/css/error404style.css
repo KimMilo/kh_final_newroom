@@ -35,31 +35,3 @@ h3 {
 a:hover {
     color: #ff0;
 }
-
-span {
-    font-size: 14px;
-    color: #FFF;
-    font-weight: normal;
-    text-align: center;
-}
-
-span a {
-    color: #FF0;
-    text-decoration: none;
-}
-
-span a:hover {
-    color: #F00;
-}
-
-@media screen and (max-width: 500px) {
-    img {
-        width: 70%;
-    }
-    .container {
-        padding: 70px 10px 10px 10px;
-    }
-    h3 {
-        font-size: 14px;
-    }
-}
