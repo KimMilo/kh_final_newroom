@@ -9,7 +9,7 @@
 <body>
 <script>
 	//jQuerystring 의도적 오류 접근 404 에러 별도 처리
-	var msg = '${msg }';
+	var msg = '${msg }' + 'url 조작 금지 :D;
 	alert(msg);
 	location.href="<%=request.getContextPath()%>";
 </script>
