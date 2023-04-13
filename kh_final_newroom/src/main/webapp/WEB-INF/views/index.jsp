@@ -30,8 +30,6 @@
 <body>
 	<jsp:include page="header.jsp" />
 	
-	
-	
 	<!-- Contents -->
 	<div class="container contents">
 		<div class="jumbotron text-center bg-transparent pb-0">
