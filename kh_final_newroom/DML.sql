@@ -330,13 +330,13 @@ SELECT * FROM HOUSEINFO;
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO HOUSEDEAL VALUES(1, 1, '24억', '2023', '03', '01', '135C', '15', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(2, 1, '24.5억', '2023', '03', '02', '135C', '17', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(3, 1, '22억', '2023', '03', '03', '135C', '1', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(1, 1, '24억', '2023', '03', '01', '135', '15', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(2, 1, '25억', '2023', '03', '02', '108', '17', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(3, 1, '22억', '2023', '03', '03', '84', '1', '매매', null);
 INSERT INTO HOUSEDEAL VALUES(4, 2, '18억', '2023', '03', '22', '109B', '11', '매매', null);
 INSERT INTO HOUSEDEAL VALUES(5, 3, '6억', '2023', '04', '30', '84', '1', '매매', null);
 INSERT INTO HOUSEDEAL VALUES(6, 4, '4억', '2023', '05', '15', '84', '6', '전세', null);
-INSERT INTO HOUSEDEAL VALUES(7, 5, '13.6억', '2023', '05', '30', '84', '11', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(7, 5, '14억', '2023', '05', '30', '84', '11', '매매', null);
 INSERT INTO HOUSEDEAL VALUES(8, 6, '6.5억', '2023', '06', '01', '84', '3', '전세', null);
 INSERT INTO HOUSEDEAL VALUES(9, 7, '1억/200', '2023', '06', '10', '83', '6', '월세', 200);
 INSERT INTO HOUSEDEAL VALUES(10, 8, '10억', '2023', '06', '15', '103', '저', '매매', null);
