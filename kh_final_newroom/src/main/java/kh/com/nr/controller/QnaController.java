@@ -1,7 +1,6 @@
 package kh.com.nr.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,13 +13,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.nr.common.Paging;
-import kh.com.nr.model.dto.HouseDealDto;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.dto.QnaDto;
 import kh.com.nr.model.service.QnaService;
@@ -68,7 +65,7 @@ public class QnaController {
 	// 질문 작성
 	@PostMapping("/qna")
 	@ResponseBody
-   	public int qnaAdd(@RequestBody QnaDto dto, HttpSession session) throws Exception {
+   	public int qnaAdd(@RequestBody QnaDto dto, HttpSession session) {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
 		dto.setUserid(loginInfo.getUserid());
 		return qService.write(dto);

@@ -25,12 +25,24 @@ body {
   font-size: 3em;
   text-align: center;
   line-height: 0em;
-  color: grey;
+  color: #ffa500;
 }
 .text {
   text-align: center;
 }
 
 a:hover {
-    color: #ff0;
+    color: #00ffff;
+}
+
+.btn {
+	text-align: center;
+}
+.buton {
+    background: #ffa500;
+    padding: 10px 20px;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 3px;
+    text-decoration: none;
 }

@@ -1,6 +1,5 @@
 package kh.com.nr.controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +56,7 @@ public class InterestController {
 	// 찜하기 등록
 	@GetMapping("/{dealId}")
 	@ResponseBody
-	private void setInterest(@PathVariable("dealId") int dealId, HttpSession session) throws IOException {
+	private void setInterest(@PathVariable("dealId") int dealId, HttpSession session) {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
 		String userid = loginInfo.getUserid();
 
@@ -67,7 +66,7 @@ public class InterestController {
 	// 찜하기 취소
 	@DeleteMapping("/{dealId}")
 	@ResponseBody
-	private void deleteInterest(@PathVariable("dealId") int dealId, HttpSession session) throws IOException {
+	private void deleteInterest(@PathVariable("dealId") int dealId, HttpSession session) {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
 		String userid = loginInfo.getUserid();
 

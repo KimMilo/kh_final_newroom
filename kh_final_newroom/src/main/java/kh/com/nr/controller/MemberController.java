@@ -1,6 +1,5 @@
 package kh.com.nr.controller;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,7 +46,7 @@ public class MemberController {
 	//로그인
 	@ResponseBody
 	@PostMapping("/login") 
-    public String login(MemberDto dto, HttpSession session) throws IOException {
+    public String login(MemberDto dto, HttpSession session) {
 		MemberDto data = new MemberDto();
 		data.setUserid(dto.getUserid());
 		data.setUserpw(dto.getUserpw());
@@ -63,7 +62,7 @@ public class MemberController {
 	//로그아웃
 	@ResponseBody
 	@GetMapping("/logout") 
-	public void logout(HttpSession session, HttpServletResponse resp, HttpServletRequest req) throws IOException{
+	public void logout(HttpSession session, HttpServletResponse resp, HttpServletRequest req) {
 		session.invalidate();
 	}
 	

@@ -27,7 +27,7 @@ public class ChatController {
 	// 채팅 목록 조회
 	@GetMapping("/{fromID}/{toID}")
 	@ResponseBody
-	public ModelAndView getChatListByID(ModelAndView mv, @PathVariable("fromID") String fromID, @PathVariable("toID") String toID) throws Exception {
+	public ModelAndView getChatListByID(ModelAndView mv, @PathVariable("fromID") String fromID, @PathVariable("toID") String toID){
 		ChatDto dto = new ChatDto();
 		dto.setFromID(fromID);
 		dto.setToID(toID);
@@ -40,7 +40,7 @@ public class ChatController {
 	// 새로운 메시지 조회
 	@GetMapping("/{lastID}/{fromID}/{toID}")
 	@ResponseBody
-	public List<ChatDto>chatLoadNewMessage(@PathVariable("lastID") int chatID, @PathVariable("fromID") String fromID, @PathVariable("toID") String toID) throws Exception {
+	public List<ChatDto>chatLoadNewMessage(@PathVariable("lastID") int chatID, @PathVariable("fromID") String fromID, @PathVariable("toID") String toID){
 		List<ChatDto> newList = new ArrayList<ChatDto>();
 		
 		ChatDto dto = new ChatDto();
@@ -54,7 +54,7 @@ public class ChatController {
 	// 채팅 전송
 	@PostMapping("")
 	@ResponseBody
-	public int submit(@RequestBody ChatDto dto) throws Exception {
+	public int submit(@RequestBody ChatDto dto){
 		int result = chatService.submit(dto);
 		
 		//관리자 채팅방 생성
@@ -68,7 +68,7 @@ public class ChatController {
 	//전체 채팅방 리스트 조회
 	@GetMapping("")
 	@ResponseBody
-	public List<RoomDto> getRoomList() throws Exception {
+	public List<RoomDto> getRoomList(){
 		System.out.println("=============전체 채팅방 조회");
 		List<RoomDto> rList = chatService.getRoomList();
 		return rList;
@@ -78,7 +78,7 @@ public class ChatController {
 	// 새로운 채팅방 조회
 	@GetMapping("/{lastRoomID}")
 	@ResponseBody
-	public List<RoomDto> chatLoadNewRoom(@PathVariable("lastRoomID") int lastRoomID) throws Exception {
+	public List<RoomDto> chatLoadNewRoom(@PathVariable("lastRoomID") int lastRoomID){
 		List<RoomDto> newRoomList = new ArrayList<RoomDto>();
 		newRoomList = chatService.chatLoadNewRoom(lastRoomID);
 		return newRoomList;

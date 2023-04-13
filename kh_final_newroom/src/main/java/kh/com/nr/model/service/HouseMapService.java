@@ -7,13 +7,13 @@ import kh.com.nr.model.dto.HouseInfoDto;
 import kh.com.nr.model.dto.SidoGugunCodeDto;
 
 public interface HouseMapService {
-	List<SidoGugunCodeDto> getSido() throws Exception;
-	List<SidoGugunCodeDto> getGugunInSido(String sido) throws Exception;
-	List<HouseInfoDto> getDongInGugun(String gugun) throws Exception;
-	List<HouseInfoDto> getAptInDong(String dong) throws Exception;
-	List<HouseDealDto> getDealInfo() throws Exception;
-	HouseDealDto getDealInfo(int no) throws Exception;
-	List<HouseDealDto> getDealInfoByAptName(String aptName) throws Exception;
-	List<HouseDealDto> getDealInfoByDong(String dong) throws Exception;
-	List<HouseDealDto> sortDealInfo(List<HouseDealDto> data, String sortType) throws Exception;
+	List<SidoGugunCodeDto> getSido();
+	List<SidoGugunCodeDto> getGugunInSido(String sido);
+	List<HouseInfoDto> getDongInGugun(String gugun);
+	List<HouseInfoDto> getAptInDong(String dong);
+	List<HouseDealDto> getDealInfo();
+	HouseDealDto getDealInfo(int no);
+	List<HouseDealDto> getDealInfoByAptName(String aptName);
+	List<HouseDealDto> getDealInfoByDong(String dong);
+	List<HouseDealDto> sortDealInfo(List<HouseDealDto> data, String sortType);
 }

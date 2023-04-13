@@ -1,7 +1,5 @@
 package kh.com.nr.controller;
 
-import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -74,7 +72,7 @@ public class NoticeController{
 	
 	//글 수정페이지 이동
 	@GetMapping("noticeUpdate") 
-	private String noticeUpdate(int bnum, Model model) throws IOException {
+	private String noticeUpdate(int bnum, Model model) {
 		NoticeDto dto = nservice.getBoard(bnum);
 		model.addAttribute("dto", dto);	
 		return "noticeUpdate";
@@ -82,7 +80,7 @@ public class NoticeController{
 
 	//글 수정하기
 	@PostMapping("noticeUpdate") 
-	private String noticeUpdate(NoticeDto dto, HttpSession session, HttpServletResponse resp, Model model) throws IOException {
+	private String noticeUpdate(NoticeDto dto, HttpSession session, HttpServletResponse resp, Model model) {
 		nservice.update(dto);
 		return read(dto.getBnum(), model);
 	}

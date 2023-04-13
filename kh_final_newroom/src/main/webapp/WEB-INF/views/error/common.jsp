@@ -9,12 +9,12 @@
 <link rel="stylesheet" type="text/css" href="${rUrl }/resources/css/error-common-style.css" />
 <title>error 페이지</title>
 </head>
-<body class="centered">
-  <div class="emoji"><img src="${rUrl }/resources/img/unicon.gif" width=250></div>
+<body>
+<div class="centered">
+  <div class="emoji"><img src="${rUrl }/resources/img/unicorn.gif" width="420px;"></div>
   <p class="title">Ooooops!</p>
-  <p class="text">${url }Error : ${exception }<br>Looks like our server crashed 🙀<br>We're working on a quick fix, come back soon.</p>
-
-  <a class="buton" href="${rUrl }">NewRoom 가기</a>
-
+  <p class="text">Error : ${url }<br>Looks like our server crashed 🙀<br>We're working on a quick fix, come back soon.</p>
+  <div class="btn"><a class="buton" href="${rUrl }">Go NewRoom</a></div>
+</div>  
 </body>
 </html>

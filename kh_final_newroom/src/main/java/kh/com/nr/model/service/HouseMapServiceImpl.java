@@ -16,49 +16,49 @@ public class HouseMapServiceImpl implements HouseMapService {
 	private HouseMapDao dao;
 	
 	@Override
-	public List<SidoGugunCodeDto> getSido() throws Exception {
+	public List<SidoGugunCodeDto> getSido() {
 		return dao.getSido();
 	}
 
 	@Override
-	public List<SidoGugunCodeDto> getGugunInSido(String sido) throws Exception {
+	public List<SidoGugunCodeDto> getGugunInSido(String sido) {
 		return dao.getGugunInSido(sido);
 	}
 
 	@Override
-	public List<HouseInfoDto> getDongInGugun(String gugun) throws Exception {
+	public List<HouseInfoDto> getDongInGugun(String gugun) {
 		return dao.getDongInGugun(gugun);
 	}
 
 	@Override
-	public List<HouseInfoDto> getAptInDong(String dong) throws Exception {
+	public List<HouseInfoDto> getAptInDong(String dong) {
 		return dao.getAptInDong(dong);
 	}
 	
 	@Override
-	public List<HouseDealDto> getDealInfo() throws Exception{
+	public List<HouseDealDto> getDealInfo() {
 		return dao.getDealInfo();
 	}
 	
 	@Override
-	public HouseDealDto getDealInfo(int no) throws Exception{
+	public HouseDealDto getDealInfo(int no) {
 		return dao.getDealInfoOne(no);
 	}
 
 	@Override
-	public List<HouseDealDto> getDealInfoByAptName(String aptName) throws Exception {
+	public List<HouseDealDto> getDealInfoByAptName(String aptName) {
 		// 아파트 이름으로 거래 정보 가져오기
 		return dao.getDealInfoByAptName(aptName);
 	}
 
 	@Override
-	public List<HouseDealDto> getDealInfoByDong(String dong) throws Exception {
+	public List<HouseDealDto> getDealInfoByDong(String dong) {
 		// 동 이름으로 거래 정보 가져오기
 		return dao.getDealInfoByDong(dong);
 	}
 
 	@Override
-	public List<HouseDealDto> sortDealInfo(List<HouseDealDto> data, String sortType) throws Exception {
+	public List<HouseDealDto> sortDealInfo(List<HouseDealDto> data, String sortType) {
 		// sort type에 따라 데이터 정렬 
 		if(sortType.equals("price")) { // 가격 기준으로 정렬
 			data.sort((HouseDealDto d1, HouseDealDto d2) -> d1.getDealAmount().compareTo(d2.getDealAmount()));

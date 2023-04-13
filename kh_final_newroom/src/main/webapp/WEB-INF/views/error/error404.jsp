@@ -11,12 +11,11 @@
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 </head>
 <body>
-
 <div class="container">
     <img src="${rUrl }/resources/img/404.svg" />
     <br />
-    <h3>죄송합니다.<br>요청하신 <b>${url}</b>이 존재하지 않습니다.(${message})</h3> 	
-    <a class="buton" href="${rUrl }">NewRoom 가기</a>
+    <h3>This Page : <b style="color:black;">${url}</b>  Doesn't exist.</h3> 	
+    <a class="buton" href="${rUrl }">Go NewRoom</a>
 </div>
 <script>
 	//jQuerystring 의도적 오류 접근 404 에러 별도 처리
