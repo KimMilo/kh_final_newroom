@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
 <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
@@ -15,7 +17,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
-
 <body>
     <!-- Navbar -->
 	<nav class="navbar navbar-expand-sm navbar-default py-3 border-bottom justify-content-between" style="background-color: rgb(238, 221, 130);">
@@ -220,6 +221,12 @@
     			}
     		});
     		
+    		var token = $("meta[name='_csrf']").attr("content");
+    		var header = $("meta[name='_csrf_header']").attr("content");
+    		$(document).ajaxSend(function(e, xhr, options) {
+    		    xhr.setRequestHeader(header, token);
+    		});
+
     		$("#submitLogin").click(function(){
     			$.ajax({
     				url: '${rUrl}/member/login',
