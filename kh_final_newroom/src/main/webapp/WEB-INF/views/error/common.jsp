@@ -6,20 +6,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<style>
-	body{background-color:#f7bfbf; text-align:center}
-</style>
+<link rel="stylesheet" type="text/css" href="${rUrl }/resources/css/error-common-style.css" />
 <title>error 페이지</title>
 </head>
-<body>
-죄송합니다.<br>
-요청하신 <b>${url}</b> 처리에 오류가 발생했습니다.
-<hr>
-${exception}
+<body class="centered">
+  <div class="emoji"><img src="${rUrl }/resources/img/unicon.gif" width=250></div>
+  <p class="title">Ooooops!</p>
+  <p class="text">${url }Error : ${exception }<br>Looks like our server crashed 🙀<br>We're working on a quick fix, come back soon.</p>
 
-<div class="d-flex flex-row-reverse">
-   <button onclick="${rUrl}" class="btn" style="color:orange;"><b style="color:white; font-size: 30px;">NewRoom</b></button>
-</div>
+  <a class="buton" href="${rUrl }">NewRoom 가기</a>
 
 </body>
 </html>
