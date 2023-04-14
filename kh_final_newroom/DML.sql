@@ -142,8 +142,8 @@ SELECT no, city, gugun, dong, hospitalName, address, diagnosisType, phone
                               FROM BASEADDRESS b
                              WHERE b.dongcode = (SELECT DISTINCT code 
                                                    FROM HOUSEINFO
-                                                  WHERE no = (SELECT DISTINCT no FROM HOUSEDEAL WHERE dealId = 7))	
-                            )
+                                                  WHERE no = (SELECT DISTINCT no FROM HOUSEDEAL WHERE dealId = 22))	
+                            );
 
 ------------------------------------------------------------------------------------------
 
@@ -209,6 +209,7 @@ INSERT INTO BASEADDRESS VALUES('서울시', '서초구', '방배동', 'A052');
 
 INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '가평읍', 'B011');
 INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '북면', 'B012');
+UPDATE BASEADDRESS set dong='가평읍' where dongcode = 'B012';
 --INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '상면', 'B013');
 --INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '설악면', 'B014');
 --INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '청평면', 'B015');
@@ -232,7 +233,7 @@ INSERT INTO BASEADDRESS VALUES('경기도', '남양주시', '별내동', 'B042')
 --INSERT INTO BASEADDRESS VALUES('경기도', '남양주시', '화도읍', 'B045');
 
 INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '고강동', 'B051');
-INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '오장동', 'B052');
+INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '오정동', 'B052');
 --INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '소사본동', 'B053');
 --INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '역곡동', 'B054');
 --INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '중동', 'B055');
@@ -306,7 +307,8 @@ SELECT SUBSTR(gugun_code,3,1) gugun_code, gugun_name FROM guguncode
 
 --------------------------------------------------------------------------------------------------
 INSERT INTO HOUSEINFO VALUES(1, '개포동', '더샵트리에', 'A011', '2021', '651-1', '37.484836', '127.057225', '1.jpg');
-INSERT INTO HOUSEINFO VALUES(2, '논현동', '논현e-편한세상', 'A012', '2005', '195-1', '37.506677', '127.028837', '2.jpg');
+update houseinfo set lat='37.46',lng='127.015' where no=1;
+INSERT INTO HOUSEINFO VALUES(2, '논현동', '논현e-편한세상', 'A012', '2005', '195-1', '37.506678', '127.028966', '2.jpg');
 INSERT INTO HOUSEINFO VALUES(3, '개봉동', '신개봉삼환', 'A021', '2001', '170-30', '37.494657', '126.854609', '3.jpg');
 INSERT INTO HOUSEINFO VALUES(4, '고척동', '청솔우성', 'A022', '2000', '329', '37.506295', '126.859759', '4.jpg');
 INSERT INTO HOUSEINFO VALUES(5, '노량진동', '쌍용예가', 'A031', '2010', '332', '37.509926', '126.943578', '5.jpg');
@@ -315,7 +317,7 @@ INSERT INTO HOUSEINFO VALUES(7, '마포동', '경남한신코아', 'A041', '1992
 INSERT INTO HOUSEINFO VALUES(8, '망원동', '마포영화블렌하임', 'A042', '2009', '517', '37.558483', '126.906273', '8.jpg');
 INSERT INTO HOUSEINFO VALUES(9, '반포동', '반포푸르지오', 'A051', '2000', '10', '37.503884', '126.996434', '9.jpg');
 INSERT INTO HOUSEINFO VALUES(10, '방배동', '방배한진로즈힐', 'A052', '2005', '3276', '37.486801', '126.983479', '10.jpg');
-INSERT INTO HOUSEINFO VALUES(11, '가평읍', '우림필유2단지', 'B011', '2006', '대곡리 366-8', '37.822611', '127.510036', '11.jpg');
+INSERT INTO HOUSEINFO VALUES(11, '가평읍', '태광', 'B011', '2006', '대곡리 285-6', '37.828281', '127.509511', '11.jpg');
 INSERT INTO HOUSEINFO VALUES(12, '가평읍', '가평센트럴파크더스카이', 'B012', '2022', '읍내리 457-5', '37.831323', '127.512106', '12.jpg');
 INSERT INTO HOUSEINFO VALUES(13, '대화동', '성저7단지건영', 'B021', '1996', '2081', '37.684164', '126.751997', '13.jpg');
 INSERT INTO HOUSEINFO VALUES(14, '대화동', '성저3단지풍림', 'B022', '1996', '2215', '37.678180', '126.747934', '14.jpg');

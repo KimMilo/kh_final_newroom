@@ -30,7 +30,9 @@ public class BusstopController  {
 	
 	@ResponseBody
 	@GetMapping("/{lati}/{long}")
-	 public String busstopList(@PathVariable("lati") String lat, @PathVariable("long") String lng) throws IOException {	
+	 public String busstopList(@PathVariable("lati") String lat, @PathVariable("long") String lng) throws IOException {
+		System.out.println(lat);
+		System.out.println(lng);
         StringBuilder urlBuilder = new StringBuilder(url); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + key); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/

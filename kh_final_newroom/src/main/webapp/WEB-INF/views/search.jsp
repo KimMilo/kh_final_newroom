@@ -518,7 +518,7 @@
 						        					});
 						        				});		
 						        				
-						        				
+
 						        				//버스 정류장 버튼 눌렀을 떄
 						        				$("#btn__busstop").click(function(){
 					        						$.ajax({
@@ -661,7 +661,7 @@
 							map.setCenter(marker.getPosition());
 						});
 
-						map.setZoom(14);
+						map.setZoom(15);
 						marker.setMap(map);
 						map.setCenter(marker.getPosition());
                     }
@@ -693,7 +693,7 @@
 							map.setCenter(marker.getPosition());
 						});
 
-						map.setZoom(14);
+						map.setZoom(15);
 						marker.setMap(map);
 						map.setCenter(marker.getPosition());
                     }
@@ -718,7 +718,7 @@
 							map.setCenter(marker.getPosition());
 						});
 
-						map.setZoom(14);
+						map.setZoom(15);
 						marker.setMap(map);
 						map.setCenter(marker.getPosition());
                     }
