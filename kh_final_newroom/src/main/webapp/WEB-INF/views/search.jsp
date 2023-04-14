@@ -279,26 +279,26 @@
 //         					});
 //         				});
         				
-        				//버스 정류장 버튼 눌렀을 떄
-        				$("#btn__busstop").click(function(){
-        					<c:forEach items="${dealList}" var="deal">
-        						$.ajax({
-		       						url : '${rUrl}/busstop/${deal.lat}/${deal.lng}',
-		       						method: 'get',
-		       						dataType: 'XML',
-		       						contextType: 'application/xml; charset:UTF-8;',
-		       						success : function(busstopList){
-		       							var items = $(busstopList).find('item');
-		       							for(var i = 0; i < items.length; i++){
-		        							addBusstopMarker(items[i], "bus");
-		       							}
-		       						},
-		       						error : function(xhr, status, msg){
- 		       							console.log(status + " " + msg);
-	       							}
-	       						});
-        					</c:forEach>
-        				});
+//         				//버스 정류장 버튼 눌렀을 떄
+//         				$("#btn__busstop").click(function(){
+//         					<c:forEach items="${dealList}" var="deal">
+//         						$.ajax({
+// 		       						url : '${rUrl}/busstop/${deal.lat}/${deal.lng}',
+// 		       						method: 'get',
+// 		       						dataType: 'XML',
+// 		       						contextType: 'application/xml; charset:UTF-8;',
+// 		       						success : function(busstopList){
+// 		       							var items = $(busstopList).find('item');
+// 		       							for(var i = 0; i < items.length; i++){
+// 		        							addBusstopMarker(items[i], "bus");
+// 		       							}
+// 		       						},
+// 		       						error : function(xhr, status, msg){
+//  		       							console.log(status + " " + msg);
+// 	       							}
+// 	       						});
+//         					</c:forEach>
+//         				});
         			});
         		</script>
 			</c:if>
@@ -516,9 +516,29 @@
 						        							console.log(status + " " + msg);
 						        						}
 						        					});
+						        				});		
+						        				
+						        				
+						        				//버스 정류장 버튼 눌렀을 떄
+						        				$("#btn__busstop").click(function(){
+					        						$.ajax({
+							       						url : '${rUrl}/busstop/${dto.lat}/${dto.lng}',
+							       						method: 'get',
+							       						dataType: 'XML',
+							       						contextType: 'application/xml; charset:UTF-8;',							       						
+							       						success : function(busstopList){
+							       							var items = $(busstopList).find('item');
+							       							for(var i = 0; i < items.length; i++){
+							       								addBusstopMarker(items[i], "bus");
+							       							}
+							       						},		
+							       						error : function(xhr, status, msg){
+					 		       							console.log(status + " " + msg);
+						       							}
+						       						});
 						        				});
+						        				
 						        			});
-
 											setCenterSelectedItem("${dto.lat}", "${dto.lng}");
 										} else {
 											alert("상세보기는 로그인 후 사용 가능합니다");
@@ -540,7 +560,7 @@
 				<script
 					src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
 				<script defer
-					src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANeOokozcE3_hMbOff4NAU9aCNOYeC-uM&callback=initMap"></script>
+					src="https://maps.googleapis.com/maps/api/js?key=${key }&callback=initMap"></script>
 				<script type="text/javascript">
                     const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                     let labelIndex = 0;
@@ -605,7 +625,7 @@
 						map.setCenter(marker.getPosition());
                     }
                     
-                    // 종류별로 해당 위치에 마커 표시 하기
+//                     // 종류별로 해당 위치에 마커 표시 하기
                     function addMarker(place, dto){   
                    		const marker = new google.maps.Marker({
                    			position: new google.maps.LatLng(parseFloat(place.lat),parseFloat(place.lng)),
@@ -690,9 +710,6 @@
                    		})
                    		
                    		var info = $(place).find('nodeno').text()+" 정류장<br>";
-//                    		+ "<span style='color:#999; font-size:13px;'> 정류장 번호 : "
-//                    		+ $(place).find('nodeno').text()
-//                    		+ "</span><br>";
                    		
                    		attachInfo(marker, info);
                    		
