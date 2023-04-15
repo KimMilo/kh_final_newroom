@@ -133,7 +133,7 @@
 				<button class="ms-3 btn btn-outline-secondary" onclick="location.href='${rUrl}/qna'">목록</button>
 				<div id="btnQnL">
 				</div>
-				<form class="navbar-nav ml-auto" action="${rUrl}/qnaSearch" method="get">
+				<form class="navbar-nav ml-auto" action="${rUrl}/qna/search" method="get">
 					<div class="form-group mr-1">
 						<select name="search_type" class="form-control">
 							<option value="btitle">제목</option>
@@ -205,18 +205,18 @@
 					<li class="page-item disabled"><a class="page-link">prev</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${rUrl }/qnaSearch?search_type=${typeName }&keyword=${keyword }&p=${paging.prevPage }">prev</a></li>
+					<li class="page-item"><a class="page-link" href="${rUrl }/qna/search?search_type=${typeName }&keyword=${keyword }&p=${paging.prevPage }">prev</a></li>
 				</c:otherwise>
 			</c:choose>
 			<c:forEach var="pNum" items="${paging.pageList }">
-				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/qnaSearch?search_type=${typeName }&keyword=${keyword }&p=${pNum }">${pNum }</a></li>
+				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/qna/search?search_type=${typeName }&keyword=${keyword }&p=${pNum }">${pNum }</a></li>
 			</c:forEach>
 			<c:choose>
 				<c:when test="${paging.nextPage eq - 1 or empty paging.page}">
 					<li class="page-item disabled"><a class="page-link">next</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${rUrl }/qnaSearch?search_type=${typeName }&keyword=${keyword }&p=${paging.nextPage}">next</a></li>
+					<li class="page-item"><a class="page-link" href="${rUrl }/qna/search?search_type=${typeName }&keyword=${keyword }&p=${paging.nextPage}">next</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
@@ -227,7 +227,7 @@
 	
 <script>
 $('#btnFAQ').click(function(){
-	location.href="${rUrl}/qnaSearch?search_type=FAQ&keyword=T";
+	location.href="${rUrl}/qna/search?search_type=FAQ&keyword=T";
 });
 
 $("#btnInsert").click(function(){

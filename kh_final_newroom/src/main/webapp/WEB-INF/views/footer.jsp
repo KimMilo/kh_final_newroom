@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*" import="java.text.SimpleDateFormat"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="rUrl" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="kr">
@@ -48,7 +49,7 @@ String time = df.format(today);
     </div>
     
     
-    <c:if test="${loginInfo.mrole eq 0}">
+    <sec:authorize access="hasRole('ROLE_MEMBER')">
     <div id="chat_icon"></div>
 	<div id="chat_content">
 		<div class="chYXNL">
@@ -96,9 +97,9 @@ String time = df.format(today);
 			</div>
 		</div>
 	</div>
-	</c:if>
+	</sec:authorize>
 
-	<c:if test="${loginInfo.mrole eq 1}">
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
 	<div id="chat_icon"></div>
 	<div id="chat_content">
 		<div class="chYXNL">
@@ -149,9 +150,9 @@ String time = df.format(today);
 		<div id="roomList" class="fiwphP">
 		</div>
 	</div>
-	</c:if>
+	</sec:authorize>
 	
-	<c:if test="${loginInfo.mrole eq 0}">
+	<sec:authorize access="hasRole('ROLE_MEMBER')">
 		<script>
 			$(function() {
 				chatListFunction(); //기존 채팅방 목록
@@ -341,9 +342,9 @@ String time = df.format(today);
 				}, 3000);
 			}
 		</script>
-	</c:if>
+	</sec:authorize>
 	
-	<c:if test="${loginInfo.mrole eq 1}">
+	<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<script>
 			$(function(){
 				loadRoomList(); //기존 채팅방 목록
@@ -596,7 +597,7 @@ String time = df.format(today);
 				}, 3000);
 			}
 		</script>
-	</c:if>
+	</sec:authorize>
 	   
 </footer>
 </body>

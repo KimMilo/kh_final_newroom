@@ -22,6 +22,7 @@ public class MemberDto {
 	private String username;
 	private String useremail;
 	private String userphone;
-	private int mrole; //회원0 관리자1
+	private String mrole; //회원0 관리자1
 	private String img; //프로필이미지
+	private int enable;
 }

@@ -23,7 +23,7 @@
     </div>
     <!--contents-->
     <div class="container">
-        <form class="form form-group" action="${rUrl}/noticeWrite" method="post">
+        <form class="form form-group" action="${rUrl}/notice/write" method="post">
             <div class="form-group">
                 <label for="btitle">제목: </label>
                 <input type="text" id="btitle" class="form-control" name="btitle" placeholder="제목을 입력하세요">
@@ -36,7 +36,7 @@
             <div class="form-group container row justify-content-center" style="margin-bottom:0">
                 <input type="submit" class="btn btn-outline-primary mr-1" value="글작성">
                 <input type="reset" class="btn mr-1 btn-outline-warning" value="초기화">
-                <input type="button" class="btn btn-outline-secondary" value="목록" onclick="location.href='${rUrl}/noticeList'">
+                <input type="button" class="btn btn-outline-secondary" value="목록" onclick="location.href='${rUrl}/notice/list'">
             </div>
         </form>
     </div>

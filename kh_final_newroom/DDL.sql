@@ -99,15 +99,15 @@ DROP TABLE USERINFO;
 CREATE TABLE USERINFO(
     no NUMBER PRIMARY KEY
   , userId VARCHAR2(20)
-  , userPw VARCHAR2(20)
+  , userPw VARCHAR2(150)
   , userName VARCHAR2(15)
   , userEmail VARCHAR2(30)
   , userPhone VARCHAR2(30)
-  , mRole NUMBER DEFAULT 0 CHECK (mRole IN(0,1))
+  , mRole VARCHAR2(20) DEFAULT 'ROLE_USER' CHECK (mRole IN('ROLE_USER','ROLE_ADMIN'))
   , img VARCHAR2(100)
 );
 
-
+SELECT * FROM USERINFO;
 -------------------------------------------------------------------------------
 
 DROP TABLE NOTICE;

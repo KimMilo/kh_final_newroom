@@ -7,6 +7,8 @@
 <!DOCTYPE html>
 <html lang="kr">
 <head>
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
 <style type="text/css">
     #map {
         width: 45%;
@@ -34,6 +36,7 @@
 	<div class="container-fluid contents">
 		<%-- 시/도, 구/군, 동 데이터 읽어와 갱신 --%>
 		<script type="text/javascript">
+		
 			$(function(){
 				// 시도 옵션 리스트 목록
 				$.ajax({
@@ -320,7 +323,7 @@
 								<%--로그인 정보 있으면 찜한 매물은 꽉 찬 하트 --%>
 								<c:if test="${not empty loginInfo}">
 									<img class="heartIcon" id="interest${dto.dealId}" src="" width="20px" height="20px"/>
-									<script>
+									<script>						
 										$(function(){
 											$.ajax({
 												url:'${rUrl}/interest/chk/${dto.dealId}',
@@ -356,8 +359,6 @@
 							</div>
 
 							<script type="text/javascript">
-		            						
-								
 								$('#item__${itemIdx}').click( function(event) {
 									var className = $(event.target).attr('class');
 									var idName = $(event.target).attr('id');

@@ -40,10 +40,10 @@
 
     <nav class="container navbar navbar-expand-sm navbar-light">
     	<c:if test="${loginInfo.mrole eq 1}">
-        	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/noticeWrite'">글쓰기</button>
+        	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/notice/write'">글쓰기</button>
         </c:if>
-        	<button class="ms-3 btn btn-outline-secondary" onclick="location.href='${rUrl}/noticeList'">목록</button>
-        <form class="navbar-nav ml-auto" action="${rUrl}/noticeSearch" method="get">
+        	<button class="ms-3 btn btn-outline-secondary" onclick="location.href='${rUrl}/notice/list'">목록</button>
+        <form class="navbar-nav ml-auto" action="${rUrl}/notice/search" method="get">
             <div class="form-group mr-1">
                 <select class="form-control" name="search_type">
                     <option value="btitle">제목</option>
@@ -82,7 +82,7 @@
 				<c:forEach var="data" items="${paging.page}" >
 					<tr>
 						<td>${data.bnum}</td>
-						<td id="title"><a href="noticeRead?bnum=${data.bnum}" style="color:black;">${data.btitle}
+						<td id="title"><a href="notice/read?bnum=${data.bnum}" style="color:black;">${data.btitle}
 						<c:if test="${!empty data.cmtCnt}">
 							[${data.cmtCnt}]
 						</c:if>
@@ -108,18 +108,18 @@
 					<li class="page-item disabled"><a class="page-link">prev</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${rUrl }/noticeSearch?search_type=${typeName }&keyword=${keyword }&p=${paging.prevPage }">prev</a></li>
+					<li class="page-item"><a class="page-link" href="${rUrl }/notice/search?search_type=${typeName }&keyword=${keyword }&p=${paging.prevPage }">prev</a></li>
 				</c:otherwise>
 			</c:choose>
 			<c:forEach var="pNum" items="${paging.pageList }">
-				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/noticeSearch?search_type=${typeName }&keyword=${keyword }&p=${pNum }">${pNum }</a></li>
+				<li class="page-item ${pNum eq pageNumber ? 'active' : '' }"><a class="page-link" href="${rUrl }/notice/search?search_type=${typeName }&keyword=${keyword }&p=${pNum }">${pNum }</a></li>
 			</c:forEach>
 			<c:choose>
 				<c:when test="${paging.nextPage eq - 1 or empty paging.page}">
 					<li class="page-item disabled"><a class="page-link">next</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="page-item"><a class="page-link" href="${rUrl }/noticeSearch?search_type=${typeName }&keyword=${keyword }&p=${paging.nextPage}">next</a></li>
+					<li class="page-item"><a class="page-link" href="${rUrl }/notice/search?search_type=${typeName }&keyword=${keyword }&p=${paging.nextPage}">next</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>

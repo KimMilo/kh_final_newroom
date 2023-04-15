@@ -107,7 +107,7 @@
 				<button id="btnFAQ" class="ms-3 btn" style="background-color: orange;"><b style="color:white;">FAQ가기</b></button>
 				<div id="btnQnL">
 				</div>
-				<form class="navbar-nav ml-auto" action="${rUrl}/qnaSearch" method="get">
+				<form class="navbar-nav ml-auto" action="${rUrl}/qna/search" method="get">
 					<div class="form-group mr-1">
 						<select name="search_type" class="form-control">
 							<option value="btitle">제목</option>
@@ -194,7 +194,7 @@
 	
 <script>
 $('#btnFAQ').click(function(){
-	location.href="${rUrl}/qnaSearch?search_type=FAQ&keyword=T";
+	location.href="${rUrl}/qna/search?search_type=FAQ&keyword=T";
 });
 
 $("#btnInsert").click(function(){

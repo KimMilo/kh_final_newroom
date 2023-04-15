@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,13 +24,14 @@ import kh.com.nr.model.dto.QnaDto;
 import kh.com.nr.model.service.QnaService;
 
 @Controller
+@RequestMapping("/qna")
 @CrossOrigin(origins = "*")
 public class QnaController {
 	@Autowired
 	QnaService qService;
 
 	//뷰 페이지 보여주기
-	@GetMapping("/qna")
+	@GetMapping("")
 	public ModelAndView qnaView(
 			ModelAndView mv
 		  , @RequestParam(name = "p", required = false, defaultValue = "1") String p) {
@@ -50,7 +52,7 @@ public class QnaController {
 	}
 	
 	// 질문 상세보기
-	@GetMapping("/qna/{bnum}")
+	@GetMapping("/{bnum}")
 	@ResponseBody
 	public QnaDto read(@PathVariable("bnum") int bnum) {
 		QnaDto dto = null;
@@ -63,7 +65,7 @@ public class QnaController {
 	}
 	
 	// 질문 작성
-	@PostMapping("/qna")
+	@PostMapping("")
 	@ResponseBody
    	public int qnaAdd(@RequestBody QnaDto dto, HttpSession session) {
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
@@ -72,7 +74,7 @@ public class QnaController {
 	}
 	
 	// 질문 수정
-	@PutMapping("/qna")
+	@PutMapping("")
 	@ResponseBody
 	public int qnaUpdate(@RequestBody QnaDto dto)
 			throws IOException {
@@ -80,14 +82,14 @@ public class QnaController {
 	}
 	
 	// 질문 삭제
-	@DeleteMapping("/qna/{bnum}")
+	@DeleteMapping("/{bnum}")
 	@ResponseBody
 	public int delete(@PathVariable("bnum") int bnum) {
 		return qService.delete(bnum);
 	}
 	
 	// 질문 검색
-	@GetMapping("qnaSearch")
+	@GetMapping("/search")
 	public ModelAndView search(
 			  ModelAndView mv
 			, String search_type

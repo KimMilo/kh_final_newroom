@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,12 +20,13 @@ import kh.com.nr.model.service.NoticeService;
 
 
 @Controller
+@RequestMapping("notice")
 public class NoticeController{
 	@Autowired
 	private NoticeService nservice;
 
 	//글 검색하기
-	@GetMapping("noticeSearch") 
+	@GetMapping("/search") 
 	private ModelAndView search(
 			  ModelAndView mv
 			, String search_type
@@ -63,7 +65,7 @@ public class NoticeController{
 	}
 
 	// 글삭제하기
-	@GetMapping("noticeDelete") 
+	@GetMapping("/delete") 
 	private ModelAndView delete(ModelAndView mv, int bnum) {
 		nservice.delete(bnum);
 		mv.setViewName("redirect:noticeList");
@@ -71,7 +73,7 @@ public class NoticeController{
 	}
 	
 	//글 수정페이지 이동
-	@GetMapping("noticeUpdate") 
+	@GetMapping("/update") 
 	private String noticeUpdate(int bnum, Model model) {
 		NoticeDto dto = nservice.getBoard(bnum);
 		model.addAttribute("dto", dto);	
@@ -79,14 +81,14 @@ public class NoticeController{
 	}
 
 	//글 수정하기
-	@PostMapping("noticeUpdate") 
+	@PostMapping("/update") 
 	private String noticeUpdate(NoticeDto dto, HttpSession session, HttpServletResponse resp, Model model) {
 		nservice.update(dto);
 		return read(dto.getBnum(), model);
 	}
 
 	//글 상세보기
-	@GetMapping("noticeRead") 
+	@GetMapping("/read") 
 	private String read(int bnum, Model model) {
 		NoticeDto dto = nservice.getBoard(bnum);
 		model.addAttribute("dto", dto);	
@@ -94,13 +96,13 @@ public class NoticeController{
 	}
 
 	//글작성 페이지 이동
-	@GetMapping("noticeWrite") 
+	@GetMapping("/write") 
 	private String noticeWritePage() {
 		return "noticeWrite";
 	}
 		
 	//글작성하기
-	@PostMapping("noticeWrite") 
+	@PostMapping("/write") 
 	private ModelAndView write(
 			ModelAndView mv
 			, NoticeDto dto, HttpSession session) {
@@ -112,7 +114,7 @@ public class NoticeController{
 	}
 
 	//전체 목록 보기
-	@GetMapping("noticeList") 
+	@GetMapping("list") 
 	private ModelAndView noticeList(
 			  ModelAndView mv
 			, @RequestParam(name = "p", required = false, defaultValue = "1") String p

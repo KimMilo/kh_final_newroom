@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,41 +34,44 @@ public class MemberController {
 	@Autowired
 	private MemberService mservice;
 
+//	@Autowired
+//	private BCryptPasswordEncoder pwEncoder;
 	
-	//id 중복체크
+	// id 중복체크
 	@ResponseBody
 	@GetMapping("/idCheck/{userid}")
 	public String idCheck(@PathVariable("userid") String userid) {
-		if(mservice.idCheck(userid))
+		if (mservice.idCheck(userid))
 			return "true";
 		return "false";
 	}
-	
-	//로그인
+
+	// 로그인
 	@ResponseBody
-	@PostMapping("/login") 
-    public String login(MemberDto dto, HttpSession session) {
+	@PostMapping("/login")
+	public String login(MemberDto dto, HttpSession session) {
 		MemberDto data = new MemberDto();
 		data.setUserid(dto.getUserid());
 		data.setUserpw(dto.getUserpw());
 		MemberDto member = mservice.loginCheck(data);
-		
-		if(member != null) { //로그인 성공
+
+		if (member != null) { // 로그인 성공
 			session.setAttribute("loginInfo", member);
 			return "true";
 		}
 		return "false";
-    }
-	
-	//로그아웃
+	}
+
+	// 로그아웃
 	@ResponseBody
-	@GetMapping("/logout") 
+	@GetMapping("/logout")
 	public void logout(HttpSession session, HttpServletResponse resp, HttpServletRequest req) {
 		session.invalidate();
 	}
-	
+
 	/**
 	 * TODO 이름, 전화번호, 이메일 인증을 통해서 인증번호 받기를 클릭하여 인증번호를 발송하는것까지만 구현하기
+	 * 
 	 * @return
 	 */
 //	//아이디 찾기 페이지 이동
@@ -92,23 +96,23 @@ public class MemberController {
 //		model.addAttribute("findResult", "success");
 //		return "findId";
 //	}
-	
-	//비밀번호 찾기 페이지 이동
-	@GetMapping("/findpw") 
+
+	// 비밀번호 찾기 페이지 이동
+	@GetMapping("/findpw")
 	public String findPwGet() {
 		return "findPw";
 	}
-	
-	//비밀번호 찾기
-	@PostMapping("/findpw") 
+
+	// 비밀번호 찾기
+	@PostMapping("/findpw")
 	public String findPw(String username, String userid, String userphone, Model model) {
 		MemberDto data = new MemberDto();
 		data.setUsername(username);
 		data.setUserid(userid);
 		data.setUserphone(userphone);
-		
+
 		MemberDto member = mservice.findUser(data);
-		if(member == null) { //회원 찾기 실패
+		if (member == null) { // 회원 찾기 실패
 			model.addAttribute("findResult", "fail");
 		} else {
 			model.addAttribute("user", member);
@@ -117,94 +121,96 @@ public class MemberController {
 		return "findPw";
 	}
 	
-	//비밀번호 수정
-	@PostMapping("/modifyPw") 
+	// 비밀번호 수정
+	@PostMapping("/modifyPw")
 	public String modifyPw(MemberDto dto) {
 		mservice.updateById(dto);
 		return "index";
 	}
-	
-	//마이페이지 이동
-	@GetMapping("/mypage") 
+
+	// 마이페이지 이동
+	@GetMapping("/mypage")
 	public String myPage() {
 		return "mypage";
 	}
-	
-	//회원 리스트 이동
-	@GetMapping("/list") 
-	public ModelAndView gotoMemberList(ModelAndView mv
-			, @RequestParam(name = "p", required = false, defaultValue = "1") String p
-			, @RequestParam(name = "name", required = false) String username
-			) {
+
+	// 회원 리스트 이동
+	@GetMapping("/list")
+	public ModelAndView gotoMemberList(ModelAndView mv,
+			@RequestParam(name = "p", required = false, defaultValue = "1") String p,
+			@RequestParam(name = "name", required = false) String username) {
 		int pageNumber = 1;
 		try {
 			pageNumber = Integer.parseInt(p);
 		} catch (Exception e) {
-			mv.addObject("msg","요청하신 URL 주소 오류가 발생하였습니다. 메인페이지로 이동합니다.");
+			mv.addObject("msg", "요청하신 URL 주소 오류가 발생하였습니다. 메인페이지로 이동합니다.");
 			mv.setViewName("error/error404");
 			return mv;
 		}
-		
+
 		int pageListLimit = 10;
-		Paging paging = mservice.getPage(pageNumber, pageListLimit, username); 		
-		
+		Paging paging = mservice.getPage(pageNumber, pageListLimit, username);
+
 		String keyword = username;
-		
+
 		mv.addObject("keyword", keyword);
 		mv.addObject("paging", paging);
-		
+
 		mv.setViewName("memberList");
 		return mv;
 	}
-	
-	//회원가입
+
+	// 회원가입
 	@ResponseBody
-	@PostMapping("/join") 
+	@PostMapping("/join")
 	public void join(MemberDto dto) {
+//		String encPw = pwEncoder.encode(dto.getUserpw());
+//	    dto.setUserpw(encPw);
 		mservice.join(dto);
 	}
-	
-	//회원정보 수정
+
+	// 회원정보 수정
 	@ResponseBody
-	@PutMapping("") 
+	@PutMapping("")
 	public String memberUpdate(@RequestBody MemberDto dto, HttpSession session) {
-		if(mservice.update(dto) == 1) {
+		if (mservice.update(dto) == 1) {
 			session.setAttribute("loginInfo", dto);
 			return "success";
 		}
 		return "fail";
 	}
-	
-	//회원정보 탈퇴
+
+	// 회원정보 탈퇴
 	@ResponseBody
-	@DeleteMapping("/{userid}") 
+	@DeleteMapping("/{userid}")
 	public String memberDelete(@PathVariable("userid") String userid, HttpSession session) {
-		if(mservice.delete(userid) == 1) {
+		if (mservice.delete(userid) == 1) {
 			session.invalidate();
 			return "success";
 		}
 		return "fail";
 	}
-	
-	//현재 로그인 되어있으면 아이디와 관리자 여부 리턴
+
+	// 현재 로그인 되어있으면 아이디와 관리자 여부 리턴
 	@ResponseBody
 	@GetMapping("/getUserId")
 	public Map<String, String> getUserId(HttpSession session) {
-		Map <String, String> user = new HashMap<>();
+		Map<String, String> user = new HashMap<>();
 		user.put("userId", "");
 		user.put("admin", "false");
 		user.put("name", "");
-		
+
 		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
-		if(loginInfo != null) {
+		if (loginInfo != null) {
 			user.put("userId", loginInfo.getUserid());
 			user.put("name", loginInfo.getUsername());
-			if(loginInfo.getMrole() == 1) user.put("admin", "true");
+			if (loginInfo.getMrole() == "ROLE_ADMIN")
+				user.put("admin", "true");
 		}
 		return user;
 	}
-	
-	//회원들 관리자 또는 일반회원으로 변경하기
+
+	// 회원들 관리자 또는 일반회원으로 변경하기
 	@ResponseBody
 	@PutMapping("/change")
 	public void changeMemberRole(@RequestBody MemberDto dto) {

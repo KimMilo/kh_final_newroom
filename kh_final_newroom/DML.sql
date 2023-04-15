@@ -142,7 +142,7 @@ SELECT no, city, gugun, dong, hospitalName, address, diagnosisType, phone
                               FROM BASEADDRESS b
                              WHERE b.dongcode = (SELECT DISTINCT code 
                                                    FROM HOUSEINFO
-                                                  WHERE no = (SELECT DISTINCT no FROM HOUSEDEAL WHERE dealId = 22))	
+                                                  WHERE no = (SELECT DISTINCT no FROM HOUSEDEAL WHERE dealId = 15))	
                             );
 
 ------------------------------------------------------------------------------------------
@@ -209,7 +209,6 @@ INSERT INTO BASEADDRESS VALUES('서울시', '서초구', '방배동', 'A052');
 
 INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '가평읍', 'B011');
 INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '북면', 'B012');
-UPDATE BASEADDRESS set dong='가평읍' where dongcode = 'B012';
 --INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '상면', 'B013');
 --INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '설악면', 'B014');
 --INSERT INTO BASEADDRESS VALUES('경기도', '가평군', '청평면', 'B015');
@@ -318,8 +317,8 @@ INSERT INTO HOUSEINFO VALUES(8, '망원동', '마포영화블렌하임', 'A042',
 INSERT INTO HOUSEINFO VALUES(9, '반포동', '반포푸르지오', 'A051', '2000', '10', '37.503884', '126.996434', '9.jpg');
 INSERT INTO HOUSEINFO VALUES(10, '방배동', '방배한진로즈힐', 'A052', '2005', '3276', '37.486801', '126.983479', '10.jpg');
 INSERT INTO HOUSEINFO VALUES(11, '가평읍', '태광', 'B011', '2006', '대곡리 285-6', '37.828281', '127.509511', '11.jpg');
-INSERT INTO HOUSEINFO VALUES(12, '가평읍', '가평센트럴파크더스카이', 'B012', '2022', '읍내리 457-5', '37.831323', '127.512106', '12.jpg');
-INSERT INTO HOUSEINFO VALUES(13, '대화동', '성저7단지건영', 'B021', '1996', '2081', '37.684164', '126.751997', '13.jpg');
+INSERT INTO HOUSEINFO VALUES(12, '가평읍', '가평센트럴파크더스카이', 'B011', '2022', '읍내리 457-5', '37.831323', '127.512106', '12.jpg');
+INSERT INTO HOUSEINFO VALUES(13, '대화동', '성저7단지건영', 'B022', '1996', '2081', '37.684164', '126.751997', '13.jpg');
 INSERT INTO HOUSEINFO VALUES(14, '대화동', '성저3단지풍림', 'B022', '1996', '2215', '37.678180', '126.747934', '14.jpg');
 INSERT INTO HOUSEINFO VALUES(15, '고촌읍', '김포고촌우방아이유쉘', 'B031', '2014', '신곡리 1284', '37.604503', '126.766739', '15.jpg');
 INSERT INTO HOUSEINFO VALUES(16, '구래동', '한강신도시반도유보라5차', 'B032', '2018', '117-3', '37.647286', '126.626571', '16.jpg');
@@ -332,28 +331,28 @@ SELECT * FROM HOUSEINFO;
 
 ---------------------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO HOUSEDEAL VALUES(1, 1, '24억', '2023', '03', '01', '135', '15', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(2, 1, '25억', '2023', '03', '02', '108', '17', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(3, 1, '22억', '2023', '03', '03', '84', '1', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(4, 2, '18억', '2023', '03', '22', '109B', '11', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(5, 3, '6억', '2023', '04', '30', '84', '1', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(6, 4, '4억', '2023', '05', '15', '84', '6', '전세', null);
-INSERT INTO HOUSEDEAL VALUES(7, 5, '14억', '2023', '05', '30', '84', '11', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(8, 6, '6.5억', '2023', '06', '01', '84', '3', '전세', null);
-INSERT INTO HOUSEDEAL VALUES(9, 7, '1억/200', '2023', '06', '10', '83', '6', '월세', 200);
-INSERT INTO HOUSEDEAL VALUES(10, 8, '10억', '2023', '06', '15', '103', '저', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(11, 9, '8억/120', '2023', '06', '22', '84', '중', '월세', 120);
-INSERT INTO HOUSEDEAL VALUES(12, 10, '11억', '2023', '07', '02', '97', '13', '전세', null);
-INSERT INTO HOUSEDEAL VALUES(13, 11, '4억', '2023', '07', '12', '122', '고층', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(14, 12, '2.2억', '2023', '07', '22', '59', '28', '전세', null);
-INSERT INTO HOUSEDEAL VALUES(15, 13, '4.5억', '2023', '08', '01', '84', '3', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(16, 14, '2억', '2023', '08', '22', '45', '14', '전세', null);
-INSERT INTO HOUSEDEAL VALUES(17, 15, '6.7억', '2023', '09', '15', '84', '5', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(18, 16, '5.1억', '2023', '09', '30', '96', '9', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(19, 17, '2.7억', '2023', '10', '15', '84', '3', '전세', null);
-INSERT INTO HOUSEDEAL VALUES(20, 18, '1.7억/120', '2023', '10', '30', '124', '5', '월세', 120);
-INSERT INTO HOUSEDEAL VALUES(21, 19, '2.5억', '2023', '11', '31', '59', '1', '매매', null);
-INSERT INTO HOUSEDEAL VALUES(22, 20, '4.5억', '2023', '12', '31', '59', '2', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(1, 15, '6.7억', '2023', '09', '15', '84', '5', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(2, 16, '5.1억', '2023', '09', '30', '96', '9', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(3, 17, '2.7억', '2023', '10', '15', '84', '3', '전세', null);
+INSERT INTO HOUSEDEAL VALUES(4, 18, '1.7억/120', '2023', '10', '30', '124', '5', '월세', 120);
+INSERT INTO HOUSEDEAL VALUES(5, 19, '2.5억', '2023', '11', '31', '59', '1', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(6, 20, '4.5억', '2023', '12', '31', '59', '2', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(7, 2, '18억', '2023', '03', '22', '109B', '11', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(8, 3, '6억', '2023', '04', '30', '84', '1', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(9, 4, '4억', '2023', '05', '15', '84', '6', '전세', null);
+INSERT INTO HOUSEDEAL VALUES(10, 5, '14억', '2023', '05', '30', '84', '11', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(11, 6, '6.5억', '2023', '06', '01', '84', '3', '전세', null);
+INSERT INTO HOUSEDEAL VALUES(12, 7, '1억/200', '2023', '06', '10', '83', '6', '월세', 200);
+INSERT INTO HOUSEDEAL VALUES(13, 8, '10억', '2023', '06', '15', '103', '저', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(14, 9, '8억/120', '2023', '06', '22', '84', '중', '월세', 120);
+INSERT INTO HOUSEDEAL VALUES(15, 10, '11억', '2023', '07', '02', '97', '13', '전세', null);
+INSERT INTO HOUSEDEAL VALUES(16, 11, '4억', '2023', '07', '12', '122', '고층', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(17, 12, '2.2억', '2023', '07', '22', '59', '28', '전세', null);
+INSERT INTO HOUSEDEAL VALUES(18, 13, '4.5억', '2023', '08', '01', '84', '3', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(19, 14, '2억', '2023', '08', '22', '45', '14', '전세', null);
+INSERT INTO HOUSEDEAL VALUES(20, 1, '24억', '2023', '03', '01', '135', '15', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(21, 1, '25억', '2023', '03', '02', '108', '17', '매매', null);
+INSERT INTO HOUSEDEAL VALUES(22, 1, '22억', '2023', '03', '03', '84', '1', '매매', null);
 
 SELECT * FROM HOUSEDEAL;
 SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
@@ -383,9 +382,9 @@ select i.userid, i.dealId, d.area, d.floor, d.dealAmount, f.AptName, f.img
 
 ------------------------------------------------------------------------------------------------
 
-INSERT INTO USERINFO VALUES(1, 'abc', 'abc', '아무개', 'abcd666@naver.com', '010-123-4567', 0, null);
-INSERT INTO USERINFO VALUES(2, 'admin', 'admin777', '관리자', 'admin@naver.com', '010-777-7777', 1, null);
-INSERT INTO USERINFO VALUES(3, '111', '111', '111', '111', '111', 0, null);
+INSERT INTO USERINFO VALUES(1, 'abc', 'abc', '아무개', 'abcd666@naver.com', '010-123-4567', 'ROLE_USER', null);
+INSERT INTO USERINFO VALUES(2, 'admin', 'admin', '관리자', 'admin@naver.com', '010-777-7777', 'ROLE_ADMIN', null);
+INSERT INTO USERINFO VALUES(3, '111', '111', '111', '111', '111', 'ROLE_USER', null);
 
 SELECT * FROM USERINFO;
 

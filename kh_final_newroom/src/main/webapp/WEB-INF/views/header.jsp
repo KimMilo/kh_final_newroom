@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="rUrl" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="kr">
@@ -45,9 +46,9 @@
 				<div class="modal-body">
 					<div class="pl-5 pr-5 form form-group">
 						<input type="text" name="userid" id="useridLogin"
-							class="my-2 form-control col-md-12 d-inline" placeholder="아이디"><br>
+							class="my-2 form-control col-md-12 d-inline" placeholder="아이디" required><br>
 						<input type="password" name="userpw" id="userpwLogin"
-							class="form-control col-md-12 d-inline" placeholder="패스워드">
+							class="form-control col-md-12 d-inline" placeholder="패스워드" required>
 						<div style="float: left;">
 							<a href="${rUrl}/member/findid" class="text-secondary float-right py-2"
 								style="font-size: 13px;">아이디 찾기</a>
@@ -226,7 +227,6 @@
 //     		$(document).ajaxSend(function(e, xhr, options) {
 //     		    xhr.setRequestHeader(header, token);
 //     		});
-
     		$("#submitLogin").click(function(){
     			$.ajax({
     				url: '${rUrl}/member/login',
@@ -264,7 +264,7 @@
 					if(user.userId){
 						userName = user.name;
 		    			content += '<li class="nav-item">';
-		    			content += '<a href="${rUrl}/noticeList" ';
+		    			content += '<a href="${rUrl}/notice/list" ';
 		    			content += 'class="nav-link font-weight-bold text-dark">공지사항 </a></li>';
 		    			content += '<li class="nav-item">';
 		    			content += '<a href="${rUrl}/qna" ';
