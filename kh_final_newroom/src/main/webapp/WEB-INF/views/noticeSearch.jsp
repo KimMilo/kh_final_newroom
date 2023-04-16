@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="rUrl" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="kr">
@@ -39,9 +40,9 @@
     </div>
 
     <nav class="container navbar navbar-expand-sm navbar-light">
-    	<c:if test="${loginInfo.mrole eq 1}">
+    	<sec:authorize access="hasRole('ROLE_ADMIN')" >
         	<button id="btnWrite" class="btn btn-outline-primary" onclick="location.href='${rUrl}/notice/write'">글쓰기</button>
-        </c:if>
+        </sec:authorize>
         	<button class="ms-3 btn btn-outline-secondary" onclick="location.href='${rUrl}/notice/list'">목록</button>
         <form class="navbar-nav ml-auto" action="${rUrl}/notice/search" method="get">
             <div class="form-group mr-1">

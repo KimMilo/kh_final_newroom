@@ -58,5 +58,8 @@ public class MemberDao {
 		return sqlSession.selectOne("member.selectTotalRowCount", username);
 	}
 
+	public MemberDto getOne(String username) {
+		return sqlSession.selectOne("member.selectOneId", username);
+	}
 	
 }

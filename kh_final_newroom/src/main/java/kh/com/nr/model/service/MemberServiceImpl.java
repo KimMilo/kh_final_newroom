@@ -78,4 +78,9 @@ public class MemberServiceImpl implements MemberService{
 		return dao.modifyRole(dto);
 	}
 
+	@Override
+	public MemberDto getOne(String name) {
+		return dao.getOne(name);
+	}
+
 }

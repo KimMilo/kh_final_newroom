@@ -81,7 +81,7 @@
 	       	<form>
 		          <div class="mb-3">
 		            <label for="recipient-name" class="col-form-label">작성자 : </label>
-		            <input type="text" class="form-control" id="useridQna1" name="userid" placeholder="" disabled>
+		            <input type="text" class="form-control" id="useridQna1" name="userid" value="${loginInfo.userid }" disabled>
 		          </div>
 		          <div class="mb-3">
 		            <label for="recipient-name" class="col-form-label">제목 : </label>

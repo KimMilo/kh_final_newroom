@@ -61,7 +61,7 @@
 										<td>${data.useremail }</td>
 										<td>${data.userphone }</td>
 										<c:choose>
-											<c:when test="${data.mrole eq 1 }">
+											<c:when test="${data.mrole eq 'ROLE_ADMIN' }">
 												<td>관리자</td>
 											</c:when>
 											<c:otherwise>
@@ -115,7 +115,7 @@
 <script>
 		$("#setAdmin").click(function(){
 			$(".chkMember:checked").each(function(){
-				var userInfo = {'userid' : this.id, 'mrole': 1,};
+				var userInfo = {'userid' : this.id, 'mrole': 'ROLE_ADMIN',};
 				
 				$.ajax({
 					url:'${rUrl}/member/change',
@@ -134,7 +134,7 @@
 		
 		$("#delAdmin").click(function(){
 			$(".chkMember:checked").each(function(){
-				var userInfo = {'userid' : this.id, 'mrole': 0,};
+				var userInfo = {'userid' : this.id, 'mrole': 'ROLE_MEMBER',};
 				
 				$.ajax({
 					url:'${rUrl}/member/change',

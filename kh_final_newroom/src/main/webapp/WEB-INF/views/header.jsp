@@ -2,12 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <c:set var="rUrl" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-<meta name="_csrf" content="${_csrf.token}">
-<meta name="_csrf_header" content="${_csrf.headerName}">
 <link rel="stylesheet" type="text/css" href="${rUrl}/resources/css/style.css" />
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
@@ -45,6 +44,7 @@
 				<!-- Modal body -->
 				<div class="modal-body">
 					<div class="pl-5 pr-5 form form-group">
+					<form:form name="f" action="${rUrl}/member/login" method="post">
 						<input type="text" name="userid" id="useridLogin"
 							class="my-2 form-control col-md-12 d-inline" placeholder="아이디" required><br>
 						<input type="password" name="userpw" id="userpwLogin"
@@ -58,6 +58,7 @@
 								style="font-size: 13px;">비밀번호 찾기</a>
 						</div>
 						<button id="submitLogin" class="btn btn-outline-secondary col-md-12">로그인</button>
+					</form:form>
 					</div>					
 				</div>
 
@@ -221,12 +222,7 @@
     				});
     			}
     		});
-    		
-//     		var token = $("meta[name='_csrf']").attr("content");
-//     		var header = $("meta[name='_csrf_header']").attr("content");
-//     		$(document).ajaxSend(function(e, xhr, options) {
-//     		    xhr.setRequestHeader(header, token);
-//     		});
+
     		$("#submitLogin").click(function(){
     			$.ajax({
     				url: '${rUrl}/member/login',
@@ -275,7 +271,7 @@
 		    			content += '<li class="nav-item">';
 		    			content += '<a href="${rUrl}/interest" ';
 		    			content += 'class="nav-link font-weight-bold text-dark">찜<b style="color:red;">♥</b> 매물 </a></li>';
-		    			
+		    		
 		    			if(user.admin == "true"){
 		    				content += '<li class="nav-item">';
 		    				content += '<a href="${rUrl}/member/list" ';

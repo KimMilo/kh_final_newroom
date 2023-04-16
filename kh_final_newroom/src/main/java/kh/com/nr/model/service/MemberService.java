@@ -19,4 +19,5 @@ public interface MemberService {
 	public int modifyRole(MemberDto dto); //회원 관리자 정보 수정
 
 	public Paging getPage(int pageNumber, int pageListLimit, String name);//회원조회
+	public MemberDto getOne(String name);
 }

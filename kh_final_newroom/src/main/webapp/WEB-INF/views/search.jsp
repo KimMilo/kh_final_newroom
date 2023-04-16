@@ -3,12 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="rUrl" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
-<meta name="_csrf" content="${_csrf.token}">
-<meta name="_csrf_header" content="${_csrf.headerName}">
 <style type="text/css">
     #map {
         width: 45%;
@@ -321,7 +320,7 @@
 							<div id="item__${itemIdx}" class="card d-inline-block"
 								style="position: relative 0 0; border: none; width: 160px; height: 100px;">
 								<%--로그인 정보 있으면 찜한 매물은 꽉 찬 하트 --%>
-								<c:if test="${not empty loginInfo}">
+								<sec:authorize access="isAuthenticated()">
 									<img class="heartIcon" id="interest${dto.dealId}" src="" width="20px" height="20px"/>
 									<script>						
 										$(function(){
@@ -338,7 +337,7 @@
 											});
 										})
 									</script>
-								</c:if>	
+								</sec:authorize>	
     							
     							<c:if test= "${dto.img eq null}">
 									<img src="${rUrl}/resources/img/room_sample.PNG" alt=""
@@ -357,7 +356,7 @@
 									<p class="card-text">${dto.floor}층, ${dto.area}㎡</p><br>
 								</div>
 							</div>
-
+							<sec:authorize access="isAuthenticated()">
 							<script type="text/javascript">
 								$('#item__${itemIdx}').click( function(event) {
 									var className = $(event.target).attr('class');
@@ -387,7 +386,7 @@
 									}
 									// 매물 상세 정보 
 									else{
-										if("${loginInfo}" != null && "${loginInfo}" != "") {
+// 										if("${loginInfo}" != null && "${loginInfo}" != "") {
 										    $.get("https://maps.googleapis.com/maps/api/geocode/json"
 													,{	key:'${key}'
 														, address: "${dto.dong}" + "+" + "${dto.aptName}" + "+" + "${dto.jibun}"
@@ -541,12 +540,13 @@
 						        				
 						        			});
 											setCenterSelectedItem("${dto.lat}", "${dto.lng}");
-										} else {
-											alert("상세보기는 로그인 후 사용 가능합니다");
-										}
+// 										} else {
+// 											alert("상세보기는 로그인 후 사용 가능합니다");
+// 										}
 									}
 								});
 	                        </script>
+	                        </sec:authorize>
 	                        <c:set var="itemIdx" value="${itemIdx + 1}"></c:set>
 						</c:forEach>
 					</c:when>

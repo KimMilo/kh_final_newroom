@@ -43,13 +43,7 @@
                     <input type="text" class="bg-transparent form-control border-0" value="${loginInfo.userid}" readonly>
                  </div>
            </div>
-           <div class="form-group row justify-content-center col-md-11">
-              	<label for="id" class="col-md-2 col-form-label text-right">비밀번호<span
-                      style="color: red;">*</span></label>
-              	<div class="col-md-3">
-                  	<input type="text" class="bg-transparent form-control border-0" value="${loginInfo.userpw}" readonly>
-              	</div>
-          </div>
+          
           <div class="form-group row justify-content-center col-md-11">
                <label for="id" class="bg-transparent col-md-2 col-form-label text-right ">이름<span
                             style="color: red;">*</span></label>
@@ -90,7 +84,7 @@
                     <label for="id" class="col-md-2 col-form-label text-right">비밀번호<span
                             style="color: red;">*</span></label>
                     <div class="col-md-3">
-                        <input type="text" id="userpwModify" class="form-control" value="${loginInfo.userpw}">
+                        <input type="password" id="userpwModify" class="form-control" placeholder="비밀번호 재입력.">
                     </div>
                 </div>
                 <div class="form-group row justify-content-center col-md-11">
@@ -202,8 +196,8 @@ $(function () {
  	    	}
          	
          	$.ajax({
-         		url : '${rUrl}/member',
-         		method: 'put',
+         		url : '${rUrl}/member/mypage',
+         		method: 'post',
          		contentType: 'application/json; charset=utf-8',
          		data: JSON.stringify(dto),
          	    success:function(response){

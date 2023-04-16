@@ -17,7 +17,7 @@
 </insert>
 
 <update id="update" parameterType="MemberDto">
-	UPDATE userinfo SET userpw = #{userpw}, username = #{username}, useremail = #{useremail}, 
+	UPDATE userinfo SET username = #{username}, useremail = #{useremail}, 
 		userphone = #{userphone}
 	WHERE userid = #{userid}
 </update>
@@ -69,5 +69,9 @@
 			AND username like '%'||#{username}||'%'
 		</if>
 	</trim>
+</select>
+
+<select id="selectOneId" resultType="MemberDto">
+	SELECT * FROM USERINFO WHERE userid = #{username}
 </select>
 </mapper>

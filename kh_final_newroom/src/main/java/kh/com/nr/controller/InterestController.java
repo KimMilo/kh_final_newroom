@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,6 +21,7 @@ import kh.com.nr.model.dto.InterestDto;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.service.HouseMapService;
 import kh.com.nr.model.service.InterestService;
+import kh.com.nr.model.service.MemberService;
 
 @RequestMapping("/interest")
 @Controller
@@ -30,18 +33,22 @@ public class InterestController {
 	@Autowired
 	private HouseMapService hservice;
 	
+	@Autowired
+	private MemberService mservice;	
+	
 	// 찜하기 페이지 이동
 	@GetMapping("")
-	private String gotoInterestList(Model model, HttpSession session) {
-		model.addAttribute("interList", getInterestList(session));
+	private String gotoInterestList(Model model) {
+		model.addAttribute("interList", getInterestList());
 		return "interestList";
 	}
 	
 	@GetMapping("/list")
 	@ResponseBody
-	private List<InterestDto> getInterestList(HttpSession session){
+	private List<InterestDto> getInterestList(){
 		List<InterestDto> interList = new ArrayList<>();
-		MemberDto dto = (MemberDto) session.getAttribute("loginInfo");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		MemberDto dto = mservice.getOne(auth.getName());
 		if(dto == null) return null;
 		
 		String userid = dto.getUserid();
@@ -56,8 +63,10 @@ public class InterestController {
 	// 찜하기 등록
 	@GetMapping("/{dealId}")
 	@ResponseBody
-	private void setInterest(@PathVariable("dealId") int dealId, HttpSession session) {
-		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
+	private void setInterest(@PathVariable("dealId") int dealId) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		MemberDto loginInfo = mservice.getOne(auth.getName());
+		
 		String userid = loginInfo.getUserid();
 
 		iservice.setInterest(new InterestDto(userid, dealId));
@@ -66,8 +75,9 @@ public class InterestController {
 	// 찜하기 취소
 	@DeleteMapping("/{dealId}")
 	@ResponseBody
-	private void deleteInterest(@PathVariable("dealId") int dealId, HttpSession session) {
-		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
+	private void deleteInterest(@PathVariable("dealId") int dealId) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		MemberDto loginInfo = mservice.getOne(auth.getName());
 		String userid = loginInfo.getUserid();
 
 		iservice.deleteInterest(new InterestDto(userid, dealId));
@@ -76,9 +86,10 @@ public class InterestController {
 	// 찜한 매물인지 확인
 	@GetMapping("/chk/{dealId}")
 	@ResponseBody
-	private String chkInterest(@PathVariable("dealId") int dealId, HttpSession session) {
+	private String chkInterest(@PathVariable("dealId") int dealId) {
 		InterestDto dto = new InterestDto();
-		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		MemberDto loginInfo = mservice.getOne(auth.getName());
 		String userid = loginInfo.getUserid();
 		
 		dto.setUserid(userid);

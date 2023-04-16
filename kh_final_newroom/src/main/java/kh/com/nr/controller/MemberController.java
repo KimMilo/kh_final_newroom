@@ -3,11 +3,11 @@ package kh.com.nr.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,9 +34,9 @@ public class MemberController {
 	@Autowired
 	private MemberService mservice;
 
-//	@Autowired
-//	private BCryptPasswordEncoder pwEncoder;
-	
+	@Autowired
+	private BCryptPasswordEncoder pwEncoder;
+		
 	// id 중복체크
 	@ResponseBody
 	@GetMapping("/idCheck/{userid}")
@@ -47,27 +47,26 @@ public class MemberController {
 	}
 
 	// 로그인
-	@ResponseBody
-	@PostMapping("/login")
-	public String login(MemberDto dto, HttpSession session) {
-		MemberDto data = new MemberDto();
-		data.setUserid(dto.getUserid());
-		data.setUserpw(dto.getUserpw());
-		MemberDto member = mservice.loginCheck(data);
-
-		if (member != null) { // 로그인 성공
-			session.setAttribute("loginInfo", member);
-			return "true";
-		}
-		return "false";
-	}
+//	@PostMapping("/login")
+//	public String login(MemberDto dto, HttpSession session) {
+//		MemberDto data = new MemberDto();
+//		data.setUserid(dto.getUserid());
+//		data.setUserpw(dto.getUserpw());
+//		MemberDto member = mservice.loginCheck(data);
+//
+//		if (member != null) { // 로그인 성공
+//			session.setAttribute("loginInfo", member);
+//			return "true";
+//		}
+//		return "false";
+//	}
 
 	// 로그아웃
-	@ResponseBody
-	@GetMapping("/logout")
-	public void logout(HttpSession session, HttpServletResponse resp, HttpServletRequest req) {
-		session.invalidate();
-	}
+//	@ResponseBody
+//	@GetMapping("/logout")
+//	public void logout(HttpSession session, HttpServletResponse resp, HttpServletRequest req) {
+//		session.invalidate();
+//	}
 
 	/**
 	 * TODO 이름, 전화번호, 이메일 인증을 통해서 인증번호 받기를 클릭하여 인증번호를 발송하는것까지만 구현하기
@@ -122,16 +121,21 @@ public class MemberController {
 	}
 	
 	// 비밀번호 수정
-	@PostMapping("/modifyPw")
+	@PostMapping("/modifypw")
 	public String modifyPw(MemberDto dto) {
+		dto.setUserpw(pwEncoder.encode(dto.getUserpw()));
 		mservice.updateById(dto);
 		return "index";
 	}
 
 	// 마이페이지 이동
 	@GetMapping("/mypage")
-	public String myPage() {
-		return "mypage";
+	public ModelAndView myPage(ModelAndView mv, String userpw) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		MemberDto mdto = mservice.getOne(auth.getName()); 
+		mv.addObject("loginInfo", mdto);
+		mv.setViewName("mypage");
+		return mv;
 	}
 
 	// 회원 리스트 이동
@@ -164,28 +168,48 @@ public class MemberController {
 	@ResponseBody
 	@PostMapping("/join")
 	public void join(MemberDto dto) {
-//		String encPw = pwEncoder.encode(dto.getUserpw());
-//	    dto.setUserpw(encPw);
+		String encPw = pwEncoder.encode(dto.getUserpw());
+	    dto.setUserpw(encPw);
 		mservice.join(dto);
 	}
 
 	// 회원정보 수정
 	@ResponseBody
-	@PutMapping("")
-	public String memberUpdate(@RequestBody MemberDto dto, HttpSession session) {
-		if (mservice.update(dto) == 1) {
-			session.setAttribute("loginInfo", dto);
-			return "success";
+	@PostMapping("/mypage")
+	public String memberUpdate(@RequestBody MemberDto dto) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		MemberDto mdto = mservice.getOne(auth.getName());
+		int result = 0;
+		if(pwEncoder.matches(dto.getUserpw(), mdto.getUserpw())) {
+			result = mservice.update(dto); 
 		}
-		return "fail";
+			
+		if(result == 1) {
+			return "success";
+		}else {
+			return "fail";
+		}
 	}
+	
+//	@ResponseBody
+//	@PutMapping("")
+//	public String memberUpdate(@RequestBody MemberDto dto, ModelAndView mv) throws IOException {
+//		if (mservice.update(dto) == 1) {
+//			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//			MemberDto mdto = mservice.getOne(auth.getName()); 
+//			mv.addObject("loginInfo", mdto);
+//			return "success";
+//		} else {
+//			return "fail";
+//		}
+//	}
 
 	// 회원정보 탈퇴
 	@ResponseBody
 	@DeleteMapping("/{userid}")
-	public String memberDelete(@PathVariable("userid") String userid, HttpSession session) {
+	public String memberDelete(@PathVariable("userid") String userid) {
 		if (mservice.delete(userid) == 1) {
-			session.invalidate();
+			SecurityContextHolder.clearContext();
 			return "success";
 		}
 		return "fail";
@@ -194,18 +218,20 @@ public class MemberController {
 	// 현재 로그인 되어있으면 아이디와 관리자 여부 리턴
 	@ResponseBody
 	@GetMapping("/getUserId")
-	public Map<String, String> getUserId(HttpSession session) {
+	public Map<String, String> getUserId() {
 		Map<String, String> user = new HashMap<>();
 		user.put("userId", "");
 		user.put("admin", "false");
 		user.put("name", "");
 
-		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		MemberDto loginInfo = mservice.getOne(auth.getName()); 
 		if (loginInfo != null) {
 			user.put("userId", loginInfo.getUserid());
 			user.put("name", loginInfo.getUsername());
-			if (loginInfo.getMrole() == "ROLE_ADMIN")
+			if (loginInfo.getMrole().contains("ADMIN")) {
 				user.put("admin", "true");
+			}
 		}
 		return user;
 	}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> --%>
 <c:set var="rUrl" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="kr">
@@ -25,7 +26,7 @@
     	<c:if test="${not empty user}">
     		<div class="container bg-light rounded" style="width: 700px;">
 	            <h1 class="m-md-3">${user.userid}님의 비밀번호 수정</h1>
-	            <form action="${rUrl}/member/modifyPw" method="post" class="m-md-3 py-md-3">
+	            <form action="${rUrl}/member/modifypw" method="post" class="m-md-3 py-md-3">
 	            	<input type="hidden" name="userid" value="${user.userid}">
 	                <div class="form-group row">
 	                    <label for="newPw" class="col-md-2 col-form-label text-right">새 비밀번호</label>
@@ -74,7 +75,7 @@
 	                </div>
 	            </form>
 	        </div>
-        </c:if>
+       </c:if>
     </div>
     <!-- Footer -->
     <jsp:include page="footer.jsp" />
@@ -83,8 +84,7 @@
 	if(message == 'fail'){
 		alert('일치하는 회원정보가 없습니다. 다시 확인 해주세요!!');
 	}
-</script>
-<script>
+
  	$('form').eq(0).submit(function(){ 
  		if($('#userpwd').val() == $('#newPw_check').val()){
  			return true;

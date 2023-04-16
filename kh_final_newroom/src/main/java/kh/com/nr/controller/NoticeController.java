@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kh.com.nr.common.Paging;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.dto.NoticeDto;
+import kh.com.nr.model.service.MemberService;
 import kh.com.nr.model.service.NoticeService;
 
 
@@ -24,6 +27,9 @@ import kh.com.nr.model.service.NoticeService;
 public class NoticeController{
 	@Autowired
 	private NoticeService nservice;
+	
+	@Autowired
+	MemberService mservice;
 
 	//글 검색하기
 	@GetMapping("/search") 
@@ -68,7 +74,7 @@ public class NoticeController{
 	@GetMapping("/delete") 
 	private ModelAndView delete(ModelAndView mv, int bnum) {
 		nservice.delete(bnum);
-		mv.setViewName("redirect:noticeList");
+		mv.setViewName("redirect:notice/list");
 		return mv;
 	}
 	
@@ -105,11 +111,12 @@ public class NoticeController{
 	@PostMapping("/write") 
 	private ModelAndView write(
 			ModelAndView mv
-			, NoticeDto dto, HttpSession session) {
-		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
+			, NoticeDto dto) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		MemberDto loginInfo = mservice.getOne(auth.getName());
 		dto.setUserid(loginInfo.getUserid());
 		nservice.write(dto);
-		mv.setViewName("redirect:noticeList");
+		mv.setViewName("noticeList");
 		return mv;
 	}
 

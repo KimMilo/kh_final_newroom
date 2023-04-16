@@ -1,10 +1,8 @@
 package kh.com.nr.controller;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kh.com.nr.common.Paging;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.dto.QnaDto;
+import kh.com.nr.model.service.MemberService;
 import kh.com.nr.model.service.QnaService;
 
 @Controller
@@ -29,12 +28,19 @@ import kh.com.nr.model.service.QnaService;
 public class QnaController {
 	@Autowired
 	QnaService qService;
+	
+	@Autowired
+	MemberService mservice;
 
 	//뷰 페이지 보여주기
 	@GetMapping("")
 	public ModelAndView qnaView(
 			ModelAndView mv
 		  , @RequestParam(name = "p", required = false, defaultValue = "1") String p) {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		MemberDto loginInfo = mservice.getOne(auth.getName());
+		
 		int pageNumber = 1;
 		try {
 			pageNumber = Integer.parseInt(p);
@@ -46,6 +52,7 @@ public class QnaController {
 		int pageListLimit = 10;
 		
 		Paging paging = qService.getPage(pageNumber, pageListLimit);
+		mv.addObject("loginInfo", loginInfo);
 		mv.addObject("paging", paging);		
 		mv.setViewName("qna");
 		return mv;
@@ -64,20 +71,18 @@ public class QnaController {
 		return dto;
 	}
 	
+	
 	// 질문 작성
 	@PostMapping("")
 	@ResponseBody
-   	public int qnaAdd(@RequestBody QnaDto dto, HttpSession session) {
-		MemberDto loginInfo = (MemberDto) session.getAttribute("loginInfo");
-		dto.setUserid(loginInfo.getUserid());
+   	public int qnaAdd(@RequestBody QnaDto dto) {
 		return qService.write(dto);
 	}
-	
+
 	// 질문 수정
 	@PutMapping("")
 	@ResponseBody
-	public int qnaUpdate(@RequestBody QnaDto dto)
-			throws IOException {
+	public int qnaUpdate(@RequestBody QnaDto dto){
 		return qService.update(dto);
 	}
 	
@@ -96,6 +101,9 @@ public class QnaController {
 			, String keyword
 			, @RequestParam(name = "p", required = false, defaultValue = "1") String p
 			) {	
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		MemberDto loginInfo = mservice.getOne(auth.getName());
 		
 		int pageNumber = 1;
 		try {
@@ -126,6 +134,7 @@ public class QnaController {
 		mv.addObject("paging", paging);
 		mv.addObject("typeName", typeName);
 		mv.addObject("keyword", keyword);
+		mv.addObject("loginInfo", loginInfo);
 		mv.setViewName("qnaSearch");
 		return mv;
 	}
