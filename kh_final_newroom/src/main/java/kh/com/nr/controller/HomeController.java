@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 	
-	@GetMapping("/authdiv")
+	@GetMapping("/authRole")
 	public ModelAndView authdiv(ModelAndView mv, HttpServletRequest req) {
 		
 		if(req.isUserInRole("ROLE_MEMBER")) {

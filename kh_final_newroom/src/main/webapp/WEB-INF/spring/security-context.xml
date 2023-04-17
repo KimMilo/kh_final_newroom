@@ -29,7 +29,7 @@
 				login-processing-url="/member/login"
 				username-parameter="userid"
 				password-parameter="userpw"
-				default-target-url="/authdiv"/>
+				default-target-url="/authRole"/>
 				
 		<security:logout
 				logout-url="/member/logout"
