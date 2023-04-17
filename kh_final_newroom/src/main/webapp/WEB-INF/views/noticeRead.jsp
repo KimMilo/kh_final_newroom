@@ -95,6 +95,7 @@
 
 	<jsp:include page="footer.jsp" />
 	
+<sec:authentication property="principal.username" var="userid"/>
 <script type="text/javascript">
 	function getCommentList(){
 		$.ajax({
@@ -112,7 +113,7 @@
 						cmtList += '<div class="media-body"><div class="mar-btm"><span class="btn-link text-semibold media-heading box-inline">';	
 						cmtList += result[i]['cwriter'];
 						cmtList += '</span> &nbsp;';
-						if('${loginInfo.userid}' == result[i]['cwriter']){
+						if('${userid}' == result[i]['cwriter']){
 							cmtList += '<span><a href="" class="delete" id=';
 							cmtList += result[i]['cnum'] + '>(삭제)</a></span>';
 						}
