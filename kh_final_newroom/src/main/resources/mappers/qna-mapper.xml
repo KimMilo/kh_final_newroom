@@ -7,14 +7,18 @@
 	(BNUM, BTITLE, USERID, BREADCNT, BWRITEDATE, BCONTENT, BLEVEL, QUESTIONNUM, isFAQ)
 	VALUES((SELECT NVL(MAX(BNUM), 0) + 1 FROM QNA)
 		 ,#{btitle},#{userid},default,default,#{bcontent},
-		 <if test="bnum == null">
-		 (SELECT NVL(MAX(BNUM), 0) + 1 FROM QNA)
-		</if>
-		<if test="bnum != null">
-			#{bnum}	
-		</if>
-		 ,(SELECT NVL(MAX(QUESTIONNUM), 0) + 1 FROM QNA)
-		 ,(SELECT isFAQ FROM QNA WHERE bnum = #{bnum})
+		 <choose>
+		 	<when test="bnum == null or bnum == ''">
+		 		(SELECT NVL(MAX(BNUM), 0) + 1 FROM QNA),
+		 		default,
+		 		default
+		 	</when>
+		 	<otherwise>
+		 		#{bnum},
+			 	(SELECT NVL(MAX(QUESTIONNUM), 0) + 1 FROM QNA),
+		 		(SELECT isFAQ FROM QNA WHERE bnum = #{bnum})
+		 	</otherwise>
+		 </choose>
 		 )
 </insert>
 

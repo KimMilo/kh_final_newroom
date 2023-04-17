@@ -203,6 +203,7 @@ $("#btnInsert").click(function(){
 		method: 'post',
 		contentType: 'application/json', 
 		data:JSON.stringify({
+			'bnum' : '',
 			'userid' : $("#useridQna").val(),
 			'btitle' : $("#btitle").val(),
 			'bcontent' : $("#bcontent").val(),

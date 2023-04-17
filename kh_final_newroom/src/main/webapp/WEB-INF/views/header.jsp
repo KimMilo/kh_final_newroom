@@ -145,21 +145,7 @@
     	var userName = '';
     	$(function(){
     		updateNavMenu();
-    		 $(document).on("click","#logout",function(event){
-    			 $.ajax({
-     				url : '${rUrl}/member/logout',
-     				method:'get',
-     				success:function(result){
-     					if(document.location.href.split("8090")[1] != '/nr/#' && 
-     							document.location.href.split("8090")[1] != '/nr/search#'){
-							location.href='/nr';
-     					}else{
-     						updateNavMenu();
-     					}
-     				}
-     			});
-    	    });
-    		
+
     		$("#idcheck").click(function(){
     			if(!$('#useridJoin').val()){
     				alert("ID를 입력하세요.");
@@ -222,33 +208,6 @@
     				});
     			}
     		});
-
-    		$("#submitLogin").click(function(){
-    			$.ajax({
-    				url: '${rUrl}/member/login',
-    				method: 'post',
-    				data:{
-    					'userid' : $("#useridLogin").val(),
-    					'userpw' : $("#userpwLogin").val(),
-    				},
-    				success:function(result){
-    					if(result == "false"){
-    						alert("아이디 또는 비밀번호를 확인해주세요");
-    					}else{
-    			    		updateNavMenu();
-							$("#useridLogin").val("");
-    						$("#userpwLogin").val("");
-    						
-    						alert("로그인 성공!!!");
-    						location.href="${rUrl}";
-    						
-    					}
-    				},
-    				error: function(){
-    					console.log('ajax error');
-    				}
-    			});
-    		});
     	});
     	
     	var updateNavMenu = function(){
@@ -282,7 +241,7 @@
 		    			content += '<a href="${rUrl}/member/mypage" ';
 		    			content += 'class="nav-link text-dark"><b>마이페이지</b></a></li>';
 		    			content += '<li class="nav-item mr-4">';
-		    			content += '<a href="" id="logout" ';
+		    			content += '<a href="${rUrl}/member/logout" id="logout" ';
 		    			content += 'class="nav-link text-dark"><b>로그아웃</b></a></li>';
 		    			content += '<li class="nav-item ml-3 nav-link text-dark">';
 		    			content += '<b>' + user.name + '</b>';

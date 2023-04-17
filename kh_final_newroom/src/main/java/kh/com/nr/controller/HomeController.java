@@ -21,7 +21,7 @@ public class HomeController {
 			mv.setViewName("redirect:/interest");
 		} else if(req.isUserInRole("ROLE_ADMIN")) {
 			mv.setViewName("redirect:/member/list");
-		} 		
+		} 
 		return mv;
 	}
 	

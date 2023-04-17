@@ -382,7 +382,7 @@ select i.userid, i.dealId, d.area, d.floor, d.dealAmount, f.AptName, f.img
 
 ------------------------------------------------------------------------------------------------
 
-UPDATE USERINFO SET mrole = 'ROLE_ADMIN' where username='admin';
+UPDATE USERINFO SET mrole = 'ROLE_ADMIN' where username='관리자';
 SELECT * FROM USERINFO;
 
 select i.userid, i.inum, d.area, d.floor, d.dealAmount, f.AptName, f.img
@@ -455,19 +455,20 @@ SELECT * FROM COMMENT_T;
 
 -------------------------------------------------------------------------------------------
 
-INSERT INTO QNA VALUES(1, '질문테스트1', 'abc', default, default, '테스트입니다.', 1, default, default);
-INSERT INTO QNA VALUES(2, '질문테스트2', 'abc', default, default, '테스트입니다.2', 2, default, default);
-INSERT INTO QNA VALUES(3, '질문테스트3', 'abc', default, default, '테스트입니다.3', 3, default, default);
-INSERT INTO QNA VALUES(4, '질문테스트4', 'abc', default, default, '테스트입니다.4', 4, default, default);
-INSERT INTO QNA VALUES(5, '질문테스트5', 'abc', default, default, '테스트입니다.5', 5, default, default);
+INSERT INTO QNA VALUES(1, '질문테스트1', 'sample', default, default, '테스트입니다.', 1, default, default);
+INSERT INTO QNA VALUES(2, '질문테스트2', 'sample', default, default, '테스트입니다.2', 2, default, default);
+INSERT INTO QNA VALUES(3, '질문테스트3', 'sample', default, default, '테스트입니다.3', 3, default, default);
+INSERT INTO QNA VALUES(4, '질문테스트4', 'sample', default, default, '테스트입니다.4', 4, default, default);
+INSERT INTO QNA VALUES(5, '질문테스트5', 'sample', default, default, '테스트입니다.5', 5, default, default);
 INSERT INTO QNA VALUES(6, '질문테스트6', 'admin', default, default, '테스트입니다.6', 6, default, default);
 
-INSERT INTO QNA VALUES(7, '로그인이 되지 않아요.', 'abc', default, default, '로그인이 되지 않는 경우 비밀번호 찾기를 통해 신규 비밀번호를 등록하여 로그인 해주세요!', 7, default, 'T');
-INSERT INTO QNA VALUES(8, '매물을 찜하는건 어떻게 하나요?', 'abc', default, default, '매물검색 후 조회되는 리스트의 빈하트를 클릭하시면 빨간하트로 변경되며 찜한 매물에 추가됩니다. 로그인 시 메인페이지 하단에 찜한 매물이 보여집니다!', 8, default, 'T');
-INSERT INTO QNA VALUES(9, '공인중개사 상담은 못하나요?', 'abc', default, default, '저희 사이트는 아직 공인중개사 상담은 어렵고 매물검색 시 주변 부동산조회를 통해 연락을 취해보세요!!', 9, default, 'T');
+INSERT INTO QNA VALUES(7, '로그인이 되지 않아요.', 'sample', default, default, '로그인이 되지 않는 경우 비밀번호 찾기를 통해 신규 비밀번호를 등록하여 로그인 해주세요!', 7, default, 'T');
+INSERT INTO QNA VALUES(8, '매물을 찜하는건 어떻게 하나요?', 'sample', default, default, '매물검색 후 조회되는 리스트의 빈하트를 클릭하시면 빨간하트로 변경되며 찜한 매물에 추가됩니다. 로그인 시 메인페이지 하단에 찜한 매물이 보여집니다!', 8, default, 'T');
+INSERT INTO QNA VALUES(9, '공인중개사 상담은 못하나요?', 'sample', default, default, '저희 사이트는 아직 공인중개사 상담은 어렵고 매물검색 시 주변 부동산조회를 통해 연락을 취해보세요!!', 9, default, 'T');
 
 
 SELECT * FROM QNA;
+SELECT NVL(MAX(BNUM), 0) + 1 FROM QNA;
 SELECT bnum, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ FROM qna WHERE questionnum is null ORDER BY bnum DESC;
 SELECT * FROM qna WHERE BNUM=5;
 UPDATE qna SET BREADCNT = BREADCNT+1 WHERE BNUM=5 AND userid != 'abc';

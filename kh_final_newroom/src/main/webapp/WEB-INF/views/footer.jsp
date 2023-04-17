@@ -153,6 +153,7 @@ String time = df.format(today);
 	</sec:authorize>
 	
 	<sec:authorize access="hasRole('ROLE_MEMBER')">
+	<sec:authentication property="principal.username" var="userid"/>
 		<script>
 			$(function() {
 				chatListFunction(); //기존 채팅방 목록
@@ -183,7 +184,7 @@ String time = df.format(today);
 					type: "POST",
 					contentType: "application/json",
 					data: JSON.stringify({
-						fromID: "${loginInfo.userid}",
+						fromID: "${userid}",
 						toID: "admin",
 						chatContent: chatContent,
 					}),
@@ -201,12 +202,12 @@ String time = df.format(today);
 			//기존에 주고받은 채팅 목록
 			function chatListFunction(){ 
 				$.ajax({
-					url : '${rUrl}/chat/${loginInfo.userid}/admin',
+					url : '${rUrl}/chat/${userid}/admin',
 					method : 'get',
 					success: function(result){
 						if(result != ""){
 							for(var i=0; i<result.length; i++){
-								if(result[i]["fromID"] == "${loginInfo.userid}"){ //내가 쓴거
+								if(result[i]["fromID"] == "${userid}"){ //내가 쓴거
 									addMyMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"])
 								}
 								else{ //상대방이 쓴거
@@ -227,12 +228,12 @@ String time = df.format(today);
 			//새로운 작성한 메시지가 있는지
 			function chatLoadNewMessage(){
 				$.ajax({
-					url : '${rUrl}/chat/'+lastID+'/${loginInfo.userid}/admin',
+					url : '${rUrl}/chat/'+lastID+'/${userid}/admin',
 					method : 'get',
 					success: function(result){
 						if(result == "") return;
 						for(var i=0; i<result.length; i++){
-							if(result[i]["fromID"] == "${loginInfo.userid}"){ //내가 쓴거
+							if(result[i]["fromID"] == "${userid}"){ //내가 쓴거
 								addMyMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"])
 							}
 							else{ //상대방이 쓴거
@@ -345,6 +346,7 @@ String time = df.format(today);
 	</sec:authorize>
 	
 	<sec:authorize access="hasRole('ROLE_ADMIN')">
+	<sec:authentication property="principal.username" var="userid"/>
 		<script>
 			$(function(){
 				loadRoomList(); //기존 채팅방 목록
@@ -444,7 +446,7 @@ String time = df.format(today);
 						for(var i=0; i<result.length; i++){
 							if(result == "") return;
 							for(var i=0; i<result.length; i++){
-								if(result[i]["fromID"] == "${loginInfo.userid}"){ //내가 쓴거
+								if(result[i]["fromID"] == "${userid}"){ //내가 쓴거
 									addMyMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"])
 								}
 								else{ //상대방이 쓴거
@@ -518,7 +520,7 @@ String time = df.format(today);
 					type: "POST",
 					contentType: "application/json",
 					data: JSON.stringify({
-						fromID: "${loginInfo.userid}",
+						fromID: "${userid}",
 						toID: userID,
 						chatContent: chatContent,
 					}),
@@ -556,12 +558,12 @@ String time = df.format(today);
 			//새롭게 작성한 메시지가 있는지
 			function chatLoadNewMessage(userID){
 				$.ajax({
-					url : '${rUrl}/chat/'+lastID+'/${loginInfo.userid}/'+userID,
+					url : '${rUrl}/chat/'+lastID+'/${userid}/'+userID,
 					method : 'get',
 					success: function(result){
 						if(result == "") return;
 						for(var i=0; i<result.length; i++){
-							if(result[i]["fromID"] == "${loginInfo.userid}"){ //내가 쓴거
+							if(result[i]["fromID"] == "${userid}"){ //내가 쓴거
 								addMyMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"])
 							}
 							else{ //상대방이 쓴거

@@ -46,28 +46,6 @@ public class MemberController {
 		return "false";
 	}
 
-	// 로그인
-//	@PostMapping("/login")
-//	public String login(MemberDto dto, HttpSession session) {
-//		MemberDto data = new MemberDto();
-//		data.setUserid(dto.getUserid());
-//		data.setUserpw(dto.getUserpw());
-//		MemberDto member = mservice.loginCheck(data);
-//
-//		if (member != null) { // 로그인 성공
-//			session.setAttribute("loginInfo", member);
-//			return "true";
-//		}
-//		return "false";
-//	}
-
-	// 로그아웃
-//	@ResponseBody
-//	@GetMapping("/logout")
-//	public void logout(HttpSession session, HttpServletResponse resp, HttpServletRequest req) {
-//		session.invalidate();
-//	}
-
 	/**
 	 * TODO 이름, 전화번호, 이메일 인증을 통해서 인증번호 받기를 클릭하여 인증번호를 발송하는것까지만 구현하기
 	 * 
@@ -190,19 +168,6 @@ public class MemberController {
 			return "fail";
 		}
 	}
-	
-//	@ResponseBody
-//	@PutMapping("")
-//	public String memberUpdate(@RequestBody MemberDto dto, ModelAndView mv) throws IOException {
-//		if (mservice.update(dto) == 1) {
-//			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-//			MemberDto mdto = mservice.getOne(auth.getName()); 
-//			mv.addObject("loginInfo", mdto);
-//			return "success";
-//		} else {
-//			return "fail";
-//		}
-//	}
 
 	// 회원정보 탈퇴
 	@ResponseBody
