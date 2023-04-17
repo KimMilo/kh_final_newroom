@@ -7,14 +7,14 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
-		
+	
 	<security:http pattern="/resources/**" security="none"/>
 	<security:http auto-config="true" use-expressions="true">
 		<security:csrf disabled="true"/>
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/member/findPw" access="permitAll" />
 		<security:intercept-url pattern="/member/modifydPw" access="permitAll" />
-		<security:intercept-url pattern="/interest" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
+		<security:intercept-url pattern="/interest/**" access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')" />
 		<security:intercept-url pattern="/noticeWrite" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/notice*" access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')" />
 		<security:intercept-url pattern="/member/list" access="hasRole('ROLE_ADMIN')"/>
@@ -38,7 +38,7 @@
 				invalidate-session="true"
 				delete-cookies="true" />
 				
-		<security:access-denied-handler error-page="/" />
+		<security:access-denied-handler error-page="error/access-denied" />
 	</security:http>
 	    
 	<security:authentication-manager>
