@@ -73,7 +73,7 @@ public class NoticeController{
 	@GetMapping("noticeDelete") 
 	private ModelAndView delete(ModelAndView mv, int bnum) {
 		nservice.delete(bnum);
-		mv.setViewName("noticeList");
+		mv.setViewName("redirect:noticeList");
 		return mv;
 	}
 	
@@ -87,7 +87,7 @@ public class NoticeController{
 
 	//글 수정하기
 	@PostMapping("noticeUpdate") 
-	private String noticeUpdate(NoticeDto dto, HttpSession session, HttpServletResponse resp, Model model) {
+	private String noticeUpdate(NoticeDto dto, Model model) {
 		nservice.update(dto);
 		return read(dto.getBnum(), model);
 	}
@@ -115,7 +115,7 @@ public class NoticeController{
 		MemberDto loginInfo = mservice.getOne(auth.getName());
 		dto.setUserid(loginInfo.getUserid());
 		nservice.write(dto);
-		mv.setViewName("noticeList");
+		mv.setViewName("redirect:noticeList");
 		return mv;
 	}
 
