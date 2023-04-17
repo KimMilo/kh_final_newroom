@@ -23,7 +23,6 @@ import kh.com.nr.model.service.NoticeService;
 
 
 @Controller
-@RequestMapping("notice")
 public class NoticeController{
 	@Autowired
 	private NoticeService nservice;
@@ -32,7 +31,7 @@ public class NoticeController{
 	MemberService mservice;
 
 	//글 검색하기
-	@GetMapping("/search") 
+	@GetMapping("noticeSearch") 
 	private ModelAndView search(
 			  ModelAndView mv
 			, String search_type
@@ -71,15 +70,15 @@ public class NoticeController{
 	}
 
 	// 글삭제하기
-	@GetMapping("/delete") 
+	@GetMapping("noticeDelete") 
 	private ModelAndView delete(ModelAndView mv, int bnum) {
 		nservice.delete(bnum);
-		mv.setViewName("redirect:notice/list");
+		mv.setViewName("noticeList");
 		return mv;
 	}
 	
 	//글 수정페이지 이동
-	@GetMapping("/update") 
+	@GetMapping("noticeUpdate") 
 	private String noticeUpdate(int bnum, Model model) {
 		NoticeDto dto = nservice.getBoard(bnum);
 		model.addAttribute("dto", dto);	
@@ -87,14 +86,14 @@ public class NoticeController{
 	}
 
 	//글 수정하기
-	@PostMapping("/update") 
+	@PostMapping("noticeUpdate") 
 	private String noticeUpdate(NoticeDto dto, HttpSession session, HttpServletResponse resp, Model model) {
 		nservice.update(dto);
 		return read(dto.getBnum(), model);
 	}
 
 	//글 상세보기
-	@GetMapping("/read") 
+	@GetMapping("noticeRead") 
 	private String read(int bnum, Model model) {
 		NoticeDto dto = nservice.getBoard(bnum);
 		model.addAttribute("dto", dto);	
@@ -102,13 +101,13 @@ public class NoticeController{
 	}
 
 	//글작성 페이지 이동
-	@GetMapping("/write") 
+	@GetMapping("noticeWrite") 
 	private String noticeWritePage() {
 		return "noticeWrite";
 	}
 		
 	//글작성하기
-	@PostMapping("/write") 
+	@PostMapping("noticeWrite") 
 	private ModelAndView write(
 			ModelAndView mv
 			, NoticeDto dto) {
@@ -121,7 +120,7 @@ public class NoticeController{
 	}
 
 	//전체 목록 보기
-	@GetMapping("list") 
+	@GetMapping("noticeList") 
 	private ModelAndView noticeList(
 			  ModelAndView mv
 			, @RequestParam(name = "p", required = false, defaultValue = "1") String p

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="rUrl" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="kr">
@@ -20,7 +21,7 @@
         <h3>공지 수정</h3>
     </div>
     <div class="container">
-        <form class="pl-5 pr-5 form form-group" action="${rUrl}/notice/update" method="post"> <!-- 수정하기 -->
+        <form class="pl-5 pr-5 form form-group" action="${rUrl}/noticeUpdate" method="post"> <!-- 수정하기 -->
         	<input type="hidden" name="bnum" value="${dto.bnum}">
         	<div class="form-group">
                 <label for="btitle">제목</label>
@@ -45,12 +46,13 @@
                 <textarea rows="10" style="height:100%;" name="bcontent" id="bcontent" class="form-control" name="bcontent">${dto.bcontent}</textarea>
             </div>
             <div class="container row justify-content-center" style="margin-bottom:0">
-                <c:if test="${loginInfo.userid eq dto.userid}"> <!-- 세션아이디랑 글쓴이가 같을때만 보여줌 -->
+            	<sec:authentication property="principal.username" var="userid"/>
+                <c:if test="${userid eq dto.userid}"> <!-- 세션아이디랑 글쓴이가 같을때만 보여줌 -->
 					<input type="submit" class="btn btn-outline-primary mr-1" value="수정하기">
-                	<input type="button" class="btn btn-outline-danger mr-1" value="삭제하기" onclick="location.href='${rUrl}/notice/delete?bnum=${dto.bnum}'">
+                	<input type="button" class="btn btn-outline-danger mr-1" value="삭제하기" onclick="location.href='${rUrl}/noticeDelete?bnum=${dto.bnum}'">
                 </c:if>
                 <input type="reset" class="btn mr-1 btn-outline-warning" value="초기화">
-                <input type="button" class="btn btn-outline-secondary" value="목록" onclick="location.href='${rUrl}/notice/list'">
+                <input type="button" class="btn btn-outline-secondary" value="목록" onclick="location.href='${rUrl}/noticeList'">
             </div>
         </form>
     </div>

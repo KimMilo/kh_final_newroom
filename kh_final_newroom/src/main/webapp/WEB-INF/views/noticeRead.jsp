@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="rUrl" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="kr">
@@ -52,16 +53,17 @@
 				</div>
 				<div class="container row justify-content-center"
 					style="margin-bottom: 0">
-					<c:if test="${loginInfo.userid eq dto.userid}">
+					<sec:authentication property="principal.username" var="userid"/>
+					<c:if test="${userid eq dto.userid}">
 						<input type="button" class="btn btn-outline-primary mr-1"
 							value="수정하기"
-							onclick="location.href='${rUrl}/notice/update?bnum=${dto.bnum}'">
+							onclick="location.href='${rUrl}/noticeUpdate?bnum=${dto.bnum}'">
 						<input type="button" class="btn btn-outline-danger mr-1"
 							value="삭제하기"
-							onclick="location.href='${rUrl}/notice/delete?bnum=${dto.bnum}'">
+							onclick="location.href='${rUrl}/noticeDelete?bnum=${dto.bnum}'">
 					</c:if>
 					<input type="button" class="btn btn-outline-secondary" value="목록"
-						onclick="location.href='${rUrl}/notice/list'">
+						onclick="location.href='${rUrl}/noticeList'">
 				</div>
 			</form>
 		</div>

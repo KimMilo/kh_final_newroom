@@ -219,7 +219,7 @@
 					if(user.userId){
 						userName = user.name;
 		    			content += '<li class="nav-item">';
-		    			content += '<a href="${rUrl}/notice/list" ';
+		    			content += '<a href="${rUrl}/noticeList" ';
 		    			content += 'class="nav-link font-weight-bold text-dark">공지사항 </a></li>';
 		    			content += '<li class="nav-item">';
 		    			content += '<a href="${rUrl}/qna" ';
