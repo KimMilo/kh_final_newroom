@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="${rUrl }/resources/css/access-denied.css" />
+<link rel="stylesheet" type="text/css" href="${rUrl }/resources/css/error-access-denied.css" />
 <title>Access denied</title>
 </head>
 <body>
@@ -27,7 +27,7 @@
 				out.println("아이디 : " + username.toString()+" ");
 			}
 		%>
-		계정은 <br>해당 ${url } 에 대한 권한이 없습니다.<br>
+		계정은 해당 페이지에 대한 권한이 없습니다.<br>
 		담당자에게 문의하여 주시기 바랍니다.<br></h3>
 		<a class="buton" href="${rUrl }">Main</a>
 	</div>

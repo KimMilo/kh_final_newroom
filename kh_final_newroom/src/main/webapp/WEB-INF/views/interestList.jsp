@@ -73,6 +73,7 @@
 	
 	<jsp:include page="footer.jsp" />
 
+
 <script>
 		var detailNo = '';
 		$(function(){

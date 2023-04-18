@@ -111,6 +111,7 @@
 
 	<!-- Footer -->
 	<jsp:include page="footer.jsp" />
+
 	
 <script>
 		$("#setAdmin").click(function(){

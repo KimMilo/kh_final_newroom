@@ -36,8 +36,7 @@
 				authentication-failure-handler-ref="customLoginFail"
 				login-processing-url="/member/login"
 				username-parameter="userid"
-				password-parameter="userpw"
-				default-target-url="/authRole"/>
+				password-parameter="userpw"/>
 				
 		<security:logout
 				logout-url="/member/logout"

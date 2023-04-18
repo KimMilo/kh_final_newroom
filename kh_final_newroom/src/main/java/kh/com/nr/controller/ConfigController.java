@@ -17,21 +17,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class ConfigController {
 	private static final Logger logger = 
 			LoggerFactory.getLogger(HomeController.class);
-
-	// 권한 별 첫 페이지
-	@GetMapping("/authRole")
-	public ModelAndView authdiv(ModelAndView mv, HttpServletRequest req) {
-		
-		if(req.isUserInRole("ROLE_MEMBER")) {
-			mv.setViewName("redirect:/interest");
-		} else if(req.isUserInRole("ROLE_ADMIN")) {
-			mv.setViewName("redirect:/member/list");
-		} 
-		return mv;
-	}
 	
 	// 로그인 성공
-	
+	@GetMapping("/authRole")
+    public ModelAndView authdivRole(ModelAndView mv, HttpServletRequest req) {
+		if(req.isUserInRole("ROLE_MEMBER")) {
+			mv.setViewName("redirect:interest");
+		} else if(req.isUserInRole("ROLE_ADMIN")) {
+			mv.setViewName("redirect:member/list");
+		} 
+		return mv;
+    }
 	
 	// 로그인 실패
 	@GetMapping("/loginForm")
@@ -43,12 +39,12 @@ public class ConfigController {
 	
 	// 접근권한 없음
 	@GetMapping("/access-denied")
-	public String denied(Model model, Authentication auth, HttpServletRequest req){
+	public ModelAndView denied(ModelAndView mv, Authentication auth, HttpServletRequest req){
 	AccessDeniedException ade = (AccessDeniedException) req.getAttribute(WebAttributes.ACCESS_DENIED_403);
 	logger.info("ex : {}",ade);
-	 model.addAttribute("auth", auth);
-	 model.addAttribute("errMsg", ade);
-	 model.addAttribute("url", req.getRequestURL());
-	 return "/error/access-denied";
+	 mv.addObject("auth", auth);
+	 mv.addObject("errMsg", ade);
+	 mv.setViewName("/error/access-denied");
+	 return mv;
 	} 
 }
