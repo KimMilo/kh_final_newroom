@@ -8,6 +8,11 @@
 
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	
+	
+	<bean id="customLoginFail" class="kh.com.nr.common.security.CustomLoginFailHandler"/>
+	
+	<bean id="customLoginSuccess" class="kh.com.nr.common.security.CustomLoginSuccessHandler"/>
+		
 	<security:http pattern="/resources/**" security="none"/>
 	<security:http auto-config="true" use-expressions="true">
 		<security:csrf disabled="true"/>
@@ -26,7 +31,9 @@
 		<security:intercept-url pattern="/comment/**" access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')" />
 		<security:intercept-url pattern="/hospital/**" access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')" />
 		<security:form-login
-				login-page="/"
+				login-page="/" 
+				authentication-success-handler-ref="customLoginSuccess"
+				authentication-failure-handler-ref="customLoginFail"
 				login-processing-url="/member/login"
 				username-parameter="userid"
 				password-parameter="userpw"
@@ -36,9 +43,9 @@
 				logout-url="/member/logout"
 				logout-success-url="/"
 				invalidate-session="true"
-				delete-cookies="true" />
+				delete-cookies="JSESSIONID" />
 				
-		<security:access-denied-handler error-page="error/access-denied" />
+		<security:access-denied-handler error-page="/access-denied" />
 	</security:http>
 	    
 	<security:authentication-manager>

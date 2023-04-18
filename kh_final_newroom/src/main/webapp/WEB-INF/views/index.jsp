@@ -79,10 +79,16 @@
 	
 	<sec:authorize access="!isAuthenticated()">
 	<script>
-			alert("로그인 또는 회원이 아니시라면 회원가입 후 로그인 해주세요 :D");
+	var exception = '${exception}';
+	if(exception != ""){
+		alert(exception);
+	}else{
+		alert("로그인 또는 회원이 아니시라면 회원가입 후 로그인 해주세요 :D");
+	}
 	</script>
 	</sec:authorize>
 	
+
 	<script>
 	$(function() {
 		// 시도 옵션 리스트 목록
