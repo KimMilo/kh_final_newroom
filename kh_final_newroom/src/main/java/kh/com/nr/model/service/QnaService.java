@@ -18,5 +18,6 @@ public interface QnaService {
 	public int write(QnaDto dto); //질문 작성
 
 	public Paging getPage(int pageNumber, int pageListLimit);
+	public List<QnaDto> getFAQList();
 	
 }

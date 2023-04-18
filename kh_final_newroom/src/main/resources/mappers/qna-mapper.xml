@@ -158,4 +158,7 @@
 	SELECT COUNT(*) FROM QNA WHERE isFAQ = 'T'
 </select>
 
+<select id="getFAQList" resultType="QnaDto"> 
+	SELECT * FROM qna WHERE isFAQ ='T'
+</select>
 </mapper>

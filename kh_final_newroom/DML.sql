@@ -13,6 +13,7 @@ SELECT chatID, fromID, toID, chatContent, chatTime
    AND chatID > 0 
  ORDER BY chatTime;
  
+ SELECT * FROM qna WHERE isFAQ ='T';
 -------------------------------------------------------------------------------
 SELECT * FROM CHAT_ROOM;
 

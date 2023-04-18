@@ -1,5 +1,7 @@
 package kh.com.nr.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -137,5 +139,12 @@ public class QnaController {
 		mv.addObject("loginInfo", loginInfo);
 		mv.setViewName("qnaSearch");
 		return mv;
+	}
+	
+	// 질문 목록
+	@GetMapping("/faq")
+	@ResponseBody
+	public List<QnaDto> getFAQList() {
+		return qService.getFAQList();
 	}
 }

@@ -125,6 +125,11 @@ public class QnaServiceImpl implements QnaService{
 		return paging;
 	}
 
+	@Override
+	public List<QnaDto> getFAQList() {
+		return dao.getFAQList();
+	}
+
 	
 	
 }
