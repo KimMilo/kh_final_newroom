@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class ConfigController {
+public class SecurityConfigController {
 	private static final Logger logger = 
 			LoggerFactory.getLogger(HomeController.class);
 	
