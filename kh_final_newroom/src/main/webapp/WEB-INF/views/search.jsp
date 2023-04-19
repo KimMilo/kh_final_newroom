@@ -113,13 +113,6 @@
 		<form action="${rUrl}/search" method="post"
 			class="form-inline justify-content-between mt-md-2">
 			<div class="form-group">
-				<input name="aptName" type="text" class="form-control mx-md-1"
-					placeholder="아파트 이름 입력" style="border: 0; font-size: 24px">
-				<button class="btn">
-					<i class="fas fa-search" style="font-size: 24px; color: #1abc9c"></i>
-				</button>
-			</div>
-			<div class="form-group">
 				<div class="form-group mx-md-1">
 					<select name="sido" id="sido" class="form-control" placeholder="시/도">
 								<option selected disabled>시/도</option>
@@ -151,418 +144,273 @@
 						<option value="floor">층별</option>
 					</select>
 				</div>
+				<div class="form-group">
+				<input name="aptName" type="text" class="form-control mx-md-1"
+					placeholder="아파트 이름 입력" style="border: 0; font-size: 24px">
+				</div>
 			</div>
-			<div class="form-group">
-				<button type="button" id="btn__safetyHospital"
-					class="btn border btn-sm">주변 병원</button>
-				<button type="button" id="btn__land" 
-					class="btn border btn-sm">주변 부동산</button>
-				<button type="button" id="btn__busstop" 
-					class="btn border btn-sm">주변 버스 정류소</button>
-				<button id="reset_btn" class="btn" type="reset">
-					<i class="fas fa-redo-alt" style="font-size: 10px; color: #1abc9c"></i>
-				</button>
-				<script>
-					$('#reset_btn').click(function(){
-						initMap(); //지도 초기화
-						
-						<c:forEach items="${dealList}" var="dto">
-							$.get("https://maps.googleapis.com/maps/api/geocode/json"
-								,{	key:'${key}'
-									, address: "${dto.dong}" + "+" + "${dto.aptName}" + "+" + "${dto.jibun}"
-								}
-								, function(data, status) {
-									tmpLat = data.results[0].geometry.location.lat;
-									tmpLng = data.results[0].geometry.location.lng;
-									addMarker({lat:tmpLat, lng:tmpLng, name:"${dto.aptName}", type:'house'}, null);
-								}
-								, "json"
-							);//매물get
-						</c:forEach>
-					})
-				</script>
+			<div class="form-group detailArea">
 			</div>
 		</form>
 		<hr>
-
-
-		<!-- 검색화면 컨텐츠 -->
-		<div class="container-fluid search-results w-100 pl-0">
-			<!-- 주변 병원 -->
-			<c:if test="${not empty dealList}">
-				<script type="text/javascript">
-        			$(function(){        	
-        				//  병원 지도에 표시
-//         				function markCoronaHospitalPlace(place, type){
-//         					$.get(
-//        							"https://maps.googleapis.com/maps/api/geocode/json"
-// 								,{	key:'${key}'
-// 									, address: place.address
-// 								}
-// 								, function(data, status) {
-// 									tmpLat = data.results[0].geometry.location.lat;
-// 									tmpLng = data.results[0].geometry.location.lng;
-// 									addMarker({lat:tmpLat, lng:tmpLng, name:place["hospitalName"], type:type}, place);
-// 								}
-// 								, "json"
-// 							);        		  
-//         				};
-        				
-						// 병원 조회 버튼 눌렀을 때 : type hospital
-//         				$("#btn__safetyHospital").click(function(){
-//         	  				$.ajax({
-//         						url : '${rUrl}/hospital/safety/${dealList[0].no}',
-//         						method : 'get',
-//         						success : function(hospitalList){
-//         							for(var i = 0; i < hospitalList.length; i++){
-//         								markCoronaHospitalPlace(hospitalList[i], "hospital");
-//         							}
-//         						},
-//         						error : function(xhr, status, msg){
-// 									console.log(status + " " + msg);									
-// 								}
-//         					});
-//         				});
-        				
-        				//부동산 지도에 표시
-//         				function markLand(place, type){
-//         					$.get(
-//           						"https://maps.googleapis.com/maps/api/geocode/json"
-//    								,{	key:'${key}'
-//    									, address: place.address
-//    								}
-//    								, function(data, status) {
-//    									console.log("구글 맵" + data);
-//    									tmpLat = data.results[0].geometry.location.lat;
-//    									tmpLng = data.results[0].geometry.location.lng;
-//    									addLandMarker({lat:tmpLat, lng:tmpLng, name:place["title"], type:type}, place);
-//    								}
-//    								, "json"
-//    							);
-//         				}
-			
-
-        				//주변 부동산 버튼 눌렀을 떄
-//         				$("#btn__land").click(function(){
-//         					var sidoName = $("#sido option:selected").html();
-//         					var gugunName = $("#gugun option:selected").html();
-//         					var dongName = $("#dong option:selected").html();
-        					
-//         					var keyword = '';
-//         					if(dongName != '동'){
-//         						keyword = sidoName + " " 
-//         								+ gugunName + " "
-//         								+ dongName + " 부동산";
-//         					}else if(gugunName != '구/군'){
-//         						keyword = sidoName + " " 
-// 								+ gugunName + " 부동산";
-// 							}else if(sidoName != '시/도'){
-//         						keyword = sidoName + " 부동산"; 
-// 							}else{
-// 								keyword = '부동산';
-// 							}
-        						
-//         					$.ajax({
-//         						url : '${rUrl}/land',
-//         						method: 'post',
-//         						dataType: 'JSON',
-//         						contextType: 'application/json; charset:UTF-8;',
-//         						data : {'keyword' : keyword,},
-//         						success : function(landList){
-//         							var items = landList['items'];
-//         							for(var i = 0; i < items.length; i++){
-//         								console.log(items[i]);
-// 	        							markLand(items[i], "land");
-//         							}
-//         						},
-//         						error : function(xhr, status, msg){
-//         							console.log(status + " " + msg);
-//         						}
-//         					});
-//         				});
-        				
-//         				//버스 정류장 버튼 눌렀을 떄
-//         				$("#btn__busstop").click(function(){
-//         					<c:forEach items="${dealList}" var="deal">
-//         						$.ajax({
-// 		       						url : '${rUrl}/busstop/${deal.lat}/${deal.lng}',
-// 		       						method: 'get',
-// 		       						dataType: 'XML',
-// 		       						contextType: 'application/xml; charset:UTF-8;',
-// 		       						success : function(busstopList){
-// 		       							var items = $(busstopList).find('item');
-// 		       							for(var i = 0; i < items.length; i++){
-// 		        							addBusstopMarker(items[i], "bus");
-// 		       							}
-// 		       						},
-// 		       						error : function(xhr, status, msg){
-//  		       							console.log(status + " " + msg);
-// 	       							}
-// 	       						});
-//         					</c:forEach>
-//         				});
-        			});
-        		</script>
-			</c:if>
-			<!-- 매물 목록 -->
-			<div id="item-list" class="d-inline-block w-50 sticky-top overflow-auto float-left" style="height: 90vh;">
-				<header >
-					<h3>전체 매물 :  ${fn:length(dealList)} 개</h3>
-					<hr>
-				</header>
-				<c:choose>
-					<c:when test="${not empty dealList}">
-						
-					
-						<c:set var="itemIdx" value="0"></c:set>
-						<%--매물 반복문 도는곳 --%>
-						<c:forEach items="${dealList}" var="dto"> 
-							<div id="item__${itemIdx}" class="card d-inline-block"
-								style="position: relative 0 0; border: none; width: 160px; height: 100px;">
-								<%--로그인 정보 있으면 찜한 매물은 꽉 찬 하트 --%>
-								<sec:authorize access="isAuthenticated()">
-									<img class="heartIcon" id="interest${dto.dealId}" src="" width="20px" height="20px"/>
-									<script>						
-										$(function(){
-											$.ajax({
-												url:'${rUrl}/interest/chk/${dto.dealId}',
-												method:'get',
-												success:function(result){
-													if(result == 'true'){
-														$("#interest${dto.dealId}").attr('src', './resources/img/heart_fill.png');
-													}else {
-														$("#interest${dto.dealId}").attr('src', './resources/img/heart_empty.png');
-													}
-												},
-											});
-										})
-									</script>
-								</sec:authorize>	
-    							
-    							<c:if test= "${dto.img eq null}">
-									<img src="${rUrl}/resources/img/room_sample.PNG" alt=""
-										style="width: 140px; height: 100px;">
-    							</c:if>
-								<c:if test= "${dto.img ne null}">
-									<img src="${rUrl}/resources/img/houseinner/${dto.img}" alt=""
-										style="width: 140px; height: 100px;">
-    							</c:if>
-    							
-    							<div class="card-body p-md-1">
-										<h5 style="overflow: hidden; width: 130px; height: 25px;" class="font-weight-bold">${dto.aptName}</h5>
-										<h5><button class="btn btn-sm btn-primary disabled">아파트</button></h5>
-									<p class="card-text font-weight-bold">${dto.dtype }
-										${dto.dealAmount}</p>
-									<p class="card-text">${dto.floor}층, ${dto.area}㎡</p><br>
-								</div>
-							</div>
+		<!-- 매물 목록 -->
+		<div id="item-list" class="d-inline-block w-50 sticky-top overflow-auto float-left" style="height: 90vh;">
+			<header >
+				<h3>전체 매물 :  ${fn:length(dealList)} 개</h3>
+				<hr>
+			</header>
+			<c:choose>
+				<c:when test="${not empty dealList}">
+					<c:set var="itemIdx" value="0"></c:set>
+					<%--매물 반복문 도는곳 --%>
+					<c:forEach items="${dealList}" var="dto"> 
+						<div id="item__${itemIdx}" class="card d-inline-block"
+							style="position: relative 0 0; border: none; width: 160px; height: 100px;">
+							<%--로그인 정보 있으면 찜한 매물은 꽉 찬 하트 --%>
 							<sec:authorize access="isAuthenticated()">
-							<script type="text/javascript">
-								$('#item__${itemIdx}').click( function(event) {
-									var className = $(event.target).attr('class');
-									var idName = $(event.target).attr('id');
-									
-									// 찜 등록 및 해제
-									if(className == 'heartIcon'){
-										if($("#"+idName).attr('src') == './resources/img/heart_fill.png'){
-	                    	    			$.ajax({
-												url:'${rUrl}/interest/${dto.dealId}',
-												method:'delete',
-												success:function(){
-													$("#"+idName).attr('src', './resources/img/heart_empty.png');
-	                    	    					alert("찜 목록에서 해제 되었습니다.");
+								<img class="heartIcon" id="interest${dto.dealId}" src="" width="20px" height="20px"/>
+								<script>						
+									$(function(){
+										$.ajax({
+											url:'${rUrl}/interest/chk/${dto.dealId}',
+											method:'get',
+											success:function(result){
+												if(result == 'true'){
+													$("#interest${dto.dealId}").attr('src', './resources/img/heart_fill.png');
+												}else {
+													$("#interest${dto.dealId}").attr('src', './resources/img/heart_empty.png');
 												}
-											});
-	                    	    		}else if($("#"+idName).attr('src') == './resources/img/heart_empty.png'){
-											$.ajax({
-												url:'${rUrl}/interest/${dto.dealId}',
-												method:'get',
-												success:function(){
-													$("#"+idName).attr('src', './resources/img/heart_fill.png');
-	                    	    					alert("찜 목록에 등록이 되었습니다.");
+											},
+										});
+									})
+								</script>
+							</sec:authorize>	
+   							
+   							<c:if test= "${dto.img eq null}">
+								<img src="${rUrl}/resources/img/room_sample.PNG" alt=""
+									style="width: 140px; height: 100px;">
+   							</c:if>
+							<c:if test= "${dto.img ne null}">
+								<img src="${rUrl}/resources/img/houseinner/${dto.img}" alt=""
+									style="width: 140px; height: 100px;">
+   							</c:if>
+   							
+   							<div class="card-body p-md-1">
+									<h5 style="overflow: hidden; width: 130px; height: 25px;" class="font-weight-bold">${dto.aptName}</h5>
+									<h5><button class="btn btn-sm btn-primary disabled">아파트</button></h5>
+								<p class="card-text font-weight-bold">${dto.dtype }
+									${dto.dealAmount}</p>
+								<p class="card-text">${dto.floor}층, ${dto.area}㎡</p><br>
+							</div>
+						</div>
+						<sec:authorize access="isAuthenticated()">
+						<script type="text/javascript">
+							$('#item__${itemIdx}').click( function(event) {
+								var className = $(event.target).attr('class');
+								var idName = $(event.target).attr('id');
+								
+								// 찜 등록 및 해제
+								if(className == 'heartIcon'){
+									if($("#"+idName).attr('src') == './resources/img/heart_fill.png'){
+                    	    			$.ajax({
+											url:'${rUrl}/interest/${dto.dealId}',
+											method:'delete',
+											success:function(){
+												$("#"+idName).attr('src', './resources/img/heart_empty.png');
+                    	    					alert("찜 목록에서 해제 되었습니다.");
+											}
+										});
+                    	    		}else if($("#"+idName).attr('src') == './resources/img/heart_empty.png'){
+										$.ajax({
+											url:'${rUrl}/interest/${dto.dealId}',
+											method:'get',
+											success:function(){
+												$("#"+idName).attr('src', './resources/img/heart_fill.png');
+                    	    					alert("찜 목록에 등록이 되었습니다.");
+											}
+										});
+                    	    		}
+								}
+								// 매물 상세 정보 
+								else{
+									    $.get("https://maps.googleapis.com/maps/api/geocode/json"
+												,{	key:'${key}'
+													, address: "${dto.dong}" + "+" + "${dto.aptName}" + "+" + "${dto.jibun}"
 												}
-											});
-	                    	    		}
-									}
-									// 매물 상세 정보 
-									else{
-// 										if("${loginInfo}" != null && "${loginInfo}" != "") {
-										    $.get("https://maps.googleapis.com/maps/api/geocode/json"
-													,{	key:'${key}'
-														, address: "${dto.dong}" + "+" + "${dto.aptName}" + "+" + "${dto.jibun}"
-													}
-													, function(data, status) {
-														tmpLat = data.results[0].geometry.location.lat;
-														tmpLng = data.results[0].geometry.location.lng;
-														addHouseMarker({lat:tmpLat, lng:tmpLng, name:"${dto.aptName}", type:'house'}, null);
-													}
-													, "json"
-												);//get	
-												
-											$('#item-list').empty();
-											let str = '<header><h3><button id="back" class="btn btn-outline-secondary btn-sm me-2"><b class="fas fa-arrow-left">≪</b></button>'
-												+ "${dto.aptName}" + '</h3>'
-												+ '<hr> </header><div class="item container w-100"><img src="${rUrl}/resources/img/housescatch/'
-												+ "${dto.img}" +'"alt="" width="100%">'
-												+ '<div class="item__content container px-md-5"><h1 class="font-weight-bold">'
-						                    	+ "${dto.dtype}" + "${dto.dealAmount}" + '</h1>'
-						                    	+ '<p>' + '확인 날짜 : ${dto.dealYear}-${dto.dealMonth}-${dto.dealDay}' + '<br>'
-							                    + '<hr class="mb-md-3" style="border-color: orange;">'
-							                    + '</p>'
-							                    + '<table class="table">'
-							                    + '<tr>'
-							                    + '<th>전용 면적</th>'
-							                    + '<td>' + '${dto.area}㎡' + '</td>'
-												+ '</tr>'
-												+ '<tr>'
-												+ '<th>거래 구분</th>'
-												+ '<td>아파트</td>'
-												+ '</tr>'
-												+ '<tr>'
-												+ '<th>층</th>'
-												+ '<td>' + '${dto.floor}층' + '</td>'
-												+ '</tr>'
-												+ '</table>'
-												+ '</div></div>';
-											$('#item-list').append(str);
-											$('#back').click(function(){
-												location.href = "${rUrl}/search";
-											});
-											$(function(){        	
-						        				//  병원 지도에 표시
-						         				function markCoronaHospitalPlace(place, type){
-						         					$.get(
-						        							"https://maps.googleapis.com/maps/api/geocode/json"
-						 								,{	key:'${key}'
-						 									, address: place.address
-						 								}
-						 								, function(data, status) {
-						 									tmpLat = data.results[0].geometry.location.lat;
-						 									tmpLng = data.results[0].geometry.location.lng;
-						 									addMarker({lat:tmpLat, lng:tmpLng, name:place["hospitalName"], type:type}, place);
-						 								}
-						 								, "json"
-						 							);        		  
-						         				};
-									
-						         				// 병원 조회 버튼 눌렀을 때 : type hospital
-						         				$("#btn__safetyHospital").click(function(){
-						         	  				$.ajax({
-						         						url : '${rUrl}/hospital/safety/${dto.dealId}',
-						         						method : 'get',
-						         						success : function(hospitalList){
-						         							for(var i = 0; i < hospitalList.length; i++){
-						         								markCoronaHospitalPlace(hospitalList[i], "hospital");
-						         							}
-						         						},
-						         						error : function(xhr, status, msg){
-						 									console.log(status + " " + msg);									
-						 								}
-						         					});
-						         				});
-						         				
-						         				// 부동산 지도 표시
-						         				function markLand(place, type){
-						        					$.get(
-						          						"https://maps.googleapis.com/maps/api/geocode/json"
-						   								,{	key:'${key}'
-						   									, address: place.address
-						   								}
-						   								, function(data, status) {
-						   									console.log("구글 맵" + data);
-						   									tmpLat = data.results[0].geometry.location.lat;
-						   									tmpLng = data.results[0].geometry.location.lng;
-						   									addLandMarker({lat:tmpLat, lng:tmpLng, name:place["title"], type:type}, place);
-						   								}
-						   								, "json"
-						   							);
-						        				}
-									
+												, function(data, status) {
+													tmpLat = data.results[0].geometry.location.lat;
+													tmpLng = data.results[0].geometry.location.lng;
+													addHouseMarker({lat:tmpLat, lng:tmpLng, name:"${dto.aptName}", type:'house'}, null);
+												}
+												, "json"
+											);//get	
+											
+										$('#item-list').empty();
+										let area = '<button type="button" id="btn__safetyHospital" class="btn border btn-sm">주변 병원</button>'
+												 + '<button type="button" id="btn__land" class="btn border btn-sm">주변 부동산</button>'
+												 + '<button type="button" id="btn__busstop"	class="btn border btn-sm">주변 버스 정류소</button>'
+											
+										let str = '<header><h3><button id="back" class="btn btn-outline-secondary btn-sm me-2"><b class="fas fa-arrow-left">≪</b></button>'
+											+ "${dto.aptName}" + '</h3>'
+											+ '<hr> </header><div class="item container w-100"><img src="${rUrl}/resources/img/housescatch/'
+											+ "${dto.img}" +'"alt="" width="100%">'
+											+ '<div class="item__content container px-md-5"><h1 class="font-weight-bold">'
+					                    	+ "${dto.dtype}" + "${dto.dealAmount}" + '</h1>'
+					                    	+ '<p>' + '확인 날짜 : ${dto.dealYear}-${dto.dealMonth}-${dto.dealDay}' + '<br>'
+						                    + '<hr class="mb-md-3" style="border-color: orange;">'
+						                    + '</p>'
+						                    + '<table class="table">'
+						                    + '<tr>'
+						                    + '<th>전용 면적</th>'
+						                    + '<td>' + '${dto.area}㎡' + '</td>'
+											+ '</tr>'
+											+ '<tr>'
+											+ '<th>거래 구분</th>'
+											+ '<td>아파트</td>'
+											+ '</tr>'
+											+ '<tr>'
+											+ '<th>층</th>'
+											+ '<td>' + '${dto.floor}층' + '</td>'
+											+ '</tr>'
+											+ '</table>'
+											+ '</div></div>';
+										$('.detailArea').append(area);
+										$('#item-list').append(str);
+										$('#back').click(function(){
+											location.href = "${rUrl}/search";
+										});
+										$(function(){        	
+					        				//  병원 지도에 표시
+					         				function markCoronaHospitalPlace(place, type){
+					         					$.get(
+					        							"https://maps.googleapis.com/maps/api/geocode/json"
+					 								,{	key:'${key}'
+					 									, address: place.address
+					 								}
+					 								, function(data, status) {
+					 									tmpLat = data.results[0].geometry.location.lat;
+					 									tmpLng = data.results[0].geometry.location.lng;
+					 									addMarker({lat:tmpLat, lng:tmpLng, name:place["hospitalName"], type:type}, place);
+					 								}
+					 								, "json"
+					 							);        		  
+					         				};
+								
+					         				// 병원 조회 버튼 눌렀을 때 : type hospital
+					         				$("#btn__safetyHospital").click(function(){
+					         	  				$.ajax({
+					         						url : '${rUrl}/hospital/safety/${dto.dealId}',
+					         						method : 'get',
+					         						success : function(hospitalList){
+					         							for(var i = 0; i < hospitalList.length; i++){
+					         								markCoronaHospitalPlace(hospitalList[i], "hospital");
+					         							}
+					         						},
+					         						error : function(xhr, status, msg){
+					 									console.log(status + " " + msg);									
+					 								}
+					         					});
+					         				});
+					         				
+					         				// 부동산 지도 표시
+					         				function markLand(place, type){
+					        					$.get(
+					          						"https://maps.googleapis.com/maps/api/geocode/json"
+					   								,{	key:'${key}'
+					   									, address: place.address
+					   								}
+					   								, function(data, status) {
+					   									console.log("구글 맵" + data);
+					   									tmpLat = data.results[0].geometry.location.lat;
+					   									tmpLng = data.results[0].geometry.location.lng;
+					   									addLandMarker({lat:tmpLat, lng:tmpLng, name:place["title"], type:type}, place);
+					   								}
+					   								, "json"
+					   							);
+					        				}
+								
 
-						        				//주변 부동산 버튼 눌렀을 떄
-						        				$("#btn__land").click(function(){
-						        					var sidoName = '${dto.city}';
-						        					var gugunName = '${dto.gugun}';
-						        					var dongName = '${dto.dong}';
-						        					
-						        					var keyword = '';
-						        					if(dongName != '동'){
-						        						keyword = sidoName + " " 
-						        								+ gugunName + " "
-						        								+ dongName + " 부동산";
-						        					}else if(gugunName != '구/군'){
-						        						keyword = sidoName + " " 
-														+ gugunName + " 부동산";
-													}else if(sidoName != '시/도'){
-						        						keyword = sidoName + " 부동산"; 
-													}else{
-														keyword = '부동산';
-													}
-						        						
-						        					$.ajax({
-						        						url : '${rUrl}/land',
-						        						method: 'post',
-						        						dataType: 'JSON',
-						        						contextType: 'application/json; charset:UTF-8;',
-						        						data : {'keyword' : keyword,},
-						        						success : function(landList){
-						        							var items = landList['items'];
-						        							for(var i = 0; i < items.length; i++){
-						        								console.log(items[i]);
-							        							markLand(items[i], "land");
-						        							}
-						        						},
-						        						error : function(xhr, status, msg){
-						        							console.log(status + " " + msg);
-						        						}
-						        					});
-						        				});		
-						        				
+					        				//주변 부동산 버튼 눌렀을 떄
+					        				$("#btn__land").click(function(){
+					        					var sidoName = '${dto.city}';
+					        					var gugunName = '${dto.gugun}';
+					        					var dongName = '${dto.dong}';
+					        					
+					        					var keyword = '';
+					        					if(dongName != '동'){
+					        						keyword = sidoName + " " 
+					        								+ gugunName + " "
+					        								+ dongName + " 부동산";
+					        					}else if(gugunName != '구/군'){
+					        						keyword = sidoName + " " 
+													+ gugunName + " 부동산";
+												}else if(sidoName != '시/도'){
+					        						keyword = sidoName + " 부동산"; 
+												}else{
+													keyword = '부동산';
+												}
+					        						
+					        					$.ajax({
+					        						url : '${rUrl}/land',
+					        						method: 'post',
+					        						dataType: 'JSON',
+					        						contextType: 'application/json; charset:UTF-8;',
+					        						data : {'keyword' : keyword,},
+					        						success : function(landList){
+					        							var items = landList['items'];
+					        							for(var i = 0; i < items.length; i++){
+					        								console.log(items[i]);
+						        							markLand(items[i], "land");
+					        							}
+					        						},
+					        						error : function(xhr, status, msg){
+					        							console.log(status + " " + msg);
+					        						}
+					        					});
+					        				});		
+					        				
 
-						        				//버스 정류장 버튼 눌렀을 떄
-						        				$("#btn__busstop").click(function(){
-					        						$.ajax({
-							       						url : '${rUrl}/busstop/${dto.lat}/${dto.lng}',
-							       						method: 'get',
-							       						dataType: 'XML',
-							       						contextType: 'application/xml; charset:UTF-8;',							       						
-							       						success : function(busstopList){
-							       							var items = $(busstopList).find('item');
-							       							for(var i = 0; i < items.length; i++){
-							       								addBusstopMarker(items[i], "bus");
-							       							}
-							       						},		
-							       						error : function(xhr, status, msg){
-					 		       							console.log(status + " " + msg);
+					        				//버스 정류장 버튼 눌렀을 떄
+					        				$("#btn__busstop").click(function(){
+				        						$.ajax({
+						       						url : '${rUrl}/busstop/${dto.lat}/${dto.lng}',
+						       						method: 'get',
+						       						dataType: 'XML',
+						       						contextType: 'application/xml; charset:UTF-8;',							       						
+						       						success : function(busstopList){
+						       							var items = $(busstopList).find('item');
+						       							for(var i = 0; i < items.length; i++){
+						       								addBusstopMarker(items[i], "bus");
 						       							}
-						       						});
-						        				});
-						        				
-						        			});
-											setCenterSelectedItem("${dto.lat}", "${dto.lng}");
-// 										} else {
-// 											alert("상세보기는 로그인 후 사용 가능합니다");
-// 										}
+						       						},		
+						       						error : function(xhr, status, msg){
+				 		       							console.log(status + " " + msg);
+					       							}
+					       						});
+					        				});
+					        				
+					        			});
+										setCenterSelectedItem("${dto.lat}", "${dto.lng}");
 									}
 								});
-	                        </script>
-	                        </sec:authorize>
-	                        <c:set var="itemIdx" value="${itemIdx + 1}"></c:set>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
-						<h1>해당 매물은 없습니다.</h1>
-					</c:otherwise>
-				</c:choose>
-			</div>
+                        </script>
+                        </sec:authorize>
+                        <c:set var="itemIdx" value="${itemIdx + 1}"></c:set>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<h1>해당 매물은 없습니다.</h1>
+				</c:otherwise>
+			</c:choose>
+		</div>
 
-			<!-- 지도 -->
-			<div id="map" class="d-inline-block w-40 m-md-2">
-				<script
-					src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
-				<script defer
-					src="https://maps.googleapis.com/maps/api/js?key=${key }&callback=initMap"></script>
-				<script type="text/javascript">
+		<!-- 지도 -->
+		<div id="map" class="d-inline-block w-40 m-md-2">
+			<script
+				src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+			<script defer
+				src="https://maps.googleapis.com/maps/api/js?key=${key }&callback=initMap"></script>
+			<script type="text/javascript">
                     const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
                     let labelIndex = 0;
                     
@@ -734,7 +582,6 @@
 						});
                     } 
                 </script>
-			</div>
 		</div>
 	</div>
 	
