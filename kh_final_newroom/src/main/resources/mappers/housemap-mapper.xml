@@ -23,7 +23,7 @@
 <select id="getDealInfo" resultType="HouseDealDto">
 	SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney, b.city, b.gugun,
-	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
+	i.dong, i.aptName, i.jibun, i.lat, i.lng, d.img
 	FROM housedeal d, houseinfo i, baseaddress b
 	WHERE d.no = i.no and i.code = b.dongcode
 </select> 

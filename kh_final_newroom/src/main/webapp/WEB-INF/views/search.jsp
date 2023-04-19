@@ -109,6 +109,40 @@
 				});
 			});		        	 	
 		</script>
+		
+		<!-- 매물 등록 -->
+		<div class="modal" id="insert">
+		<div class="modal-dialog modal-dialog-centered">
+		<form name="f" action="${rUrl}/insert" method="post">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<div class="modal-header justify-content-center">
+					<h4 class="modal-title">매물등록</h4>
+				</div>
+				<!-- Modal body -->
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<c:if test="${not empty dealList}">
+					<div class="modal-body">
+						<div class="pl-5 pr-5 form form-group">
+							<div class="insert"></div>
+						</div>					
+					</div>
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-success">등록</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+				</div>					
+				</c:if>
+				</sec:authorize>
+				<sec:authorize access="hasRole('ROLE_MEMBER')">
+					<b style="color: red;">관리자 확인이 필요한 서비스에요~ 관리자에게 문의 해주시기 바랍니다.</b>	
+				</sec:authorize>
+			</div>
+		</form>
+		</div>
+	</div>
+	
+		
 		<!-- 매물 전체 검색화면 navbar -->
 		<form action="${rUrl}/search" method="post"
 			class="form-inline justify-content-between mt-md-2">
@@ -246,12 +280,29 @@
 											);//get	
 											
 										$('#item-list').empty();
+										let insert = '<input type="hidden" name="no" class="my-2 form-control col-md-12 d-inline" value="${dto.no}">'
+										         + '<input type="text" name="dealAmount" class="form-control col-md-12 d-inline my-2" placeholder="희망가격" required>'
+												 + '<input type="hidden" name="dealYear" class="form-control col-md-12 d-inline" value="${dto.dealYear}">'
+												 + '<input type="hidden" name="dealYear" class="form-control col-md-12 d-inline" value="${dto.dealMonth}">'
+												 + '<input type="hidden" name="dealYear" class="form-control col-md-12 d-inline" value="${dto.dealDay}">'
+												 + '<input type="text" name="dealYear" class="form-control col-md-12 d-inline my-2" placeholder="면적" required>'
+												 + '<input type="text" name="dealYear" class="form-control col-md-12 d-inline my-2" placeholder="층" required>'
+												 + '<select name="dtype" class="form-control my-2">'
+												 + '<option selected disabled>거래타입</option>'
+												 + '<option value="apt">매매</option>'
+												 + '<option value="houses">전세</option>'
+												 + '<option value="opist">월세</option></select>'
+												 + '<input type="test" name="rentMoney" class="form-control col-md-12 d-inline my-2" placeholder="임대료" required>'
+												 + '매물 도면<input type="file" name="report" class="form-control col-md-12 d-inline">'
+											
 										let area = '<button type="button" id="btn__safetyHospital" class="btn border btn-sm">주변 병원</button>'
 												 + '<button type="button" id="btn__land" class="btn border btn-sm">주변 부동산</button>'
 												 + '<button type="button" id="btn__busstop"	class="btn border btn-sm">주변 버스 정류소</button>'
 											
-										let str = '<header><h3><button id="back" class="btn btn-outline-secondary btn-sm me-2"><b class="fas fa-arrow-left">≪</b></button>'
-											+ "${dto.aptName}" + '</h3>'
+										let str = '<header><div class="d-flex justify-content-between"><button id="back" class="btn btn-outline-secondary btn-sm me-2"><b class="fas fa-arrow-left">≪</b></button>'
+											+ '<h3>' + "${dto.aptName}" + '</h3>' 
+											+ '<button class="btn btn-warning btn-sm" type="button" data-toggle="modal" data-target="#insert">'
+											+ '<b>매물 등록</b></button></div>'
 											+ '<hr> </header><div class="item container w-100"><img src="${rUrl}/resources/img/housescatch/'
 											+ "${dto.img}" +'"alt="" width="100%">'
 											+ '<div class="item__content container px-md-5"><h1 class="font-weight-bold">'
@@ -274,6 +325,8 @@
 											+ '</tr>'
 											+ '</table>'
 											+ '</div></div>';
+											
+										$('.insert').append(insert);
 										$('.detailArea').append(area);
 										$('#item-list').append(str);
 										$('#back').click(function(){
@@ -411,8 +464,8 @@
 			<script defer
 				src="https://maps.googleapis.com/maps/api/js?key=${key }&callback=initMap"></script>
 			<script type="text/javascript">
-                    const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-                    let labelIndex = 0;
+//                     const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+//                     let labelIndex = 0;
                     
                     var map;
                     var start = {lat: 37.5665734, lng: 126.978179};
