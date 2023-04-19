@@ -202,7 +202,7 @@ String time = df.format(today);
 			//기존에 주고받은 채팅 목록
 			function chatListFunction(){ 
 				$.ajax({
-					url : '${rUrl}/chat/${userid}/admin',
+					url : '${rUrl}/chat/' + lastID + '/${userid}/admin',
 					method : 'get',
 					success: function(result){
 						if(result != ""){
@@ -297,7 +297,7 @@ String time = df.format(today);
 								'</div><div class="hzdYcJ"><div class="dQDbhd"><div class="brWGXU">NewRoom</div>'+
 								'<div class="cQwzqb">'+chatTime+
 								'</div></div><div class="gDLhWw"><div id="hello_msg" class="iJraMc">'+
-								'<div class="bWMjYC"><div><div lass="kHnNft gETHTV">안녕하세요 방문해주셔서 감사합니다. 무엇을 도와드릴까요?</div></div></div></div></div></div></div>'
+								'<div class="bWMjYC"><div><div lass="kHnNft gETHTV">안녕하세요 :) 무엇을 도와드릴까요?</div></div></div></div></div></div></div>'
 						);
 						
 						$('#hello_msg').append(
