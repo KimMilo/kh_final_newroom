@@ -48,4 +48,8 @@ public class HouseMapDao {
 		return sqlSession.selectList("houseMap.getDealInfoByDong", dong);
 	}
 
+	public int insert(HouseDealDto hdto) {
+		return sqlSession.insert("houseMap.insert", hdto);
+	}
+
 }

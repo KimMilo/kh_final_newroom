@@ -69,6 +69,11 @@ public class HouseMapServiceImpl implements HouseMapService {
 		}
 		return data;
 	}
+
+	@Override
+	public int insert(HouseDealDto hdto) {
+		return dao.insert(hdto);
+	}
 	
 	
 }

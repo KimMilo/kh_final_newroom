@@ -19,7 +19,7 @@ public class HouseSearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	HouseMapService hmService;
+	private HouseMapService hmService;
 	
 	@GetMapping("/search")
 	public String search(Model model) {

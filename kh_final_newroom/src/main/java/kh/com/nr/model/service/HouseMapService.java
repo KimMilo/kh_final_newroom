@@ -16,4 +16,5 @@ public interface HouseMapService {
 	List<HouseDealDto> getDealInfoByAptName(String aptName);
 	List<HouseDealDto> getDealInfoByDong(String dong);
 	List<HouseDealDto> sortDealInfo(List<HouseDealDto> data, String sortType);
+	int insert(HouseDealDto hdto);
 }

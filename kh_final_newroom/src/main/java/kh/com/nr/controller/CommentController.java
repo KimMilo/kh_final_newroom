@@ -27,7 +27,7 @@ public class CommentController {
 	private NoticeService nservice;
 
 	@Autowired
-	MemberService mservice;
+	private MemberService mservice;
 	
 	@GetMapping(value="", produces = "text/json; charset=utf8")
 	public String getComment(int bnum) {

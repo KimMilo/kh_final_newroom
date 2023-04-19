@@ -52,4 +52,21 @@
 	WHERE d.no=i.no AND i.dong LIKE #{dong}
 </select>
 
+<insert id="insert" parameterType="HouseDealDto">
+	INSERT INTO HOUSEDEAL 
+		VALUES((SELECT NVL(MAX(dealId, 0) + 1)
+			 , #{no}, #{dealAmount}, #{dealYear}, #{dealMonth}, #{dealDay}, #{area}
+			 , #{floor}, #{dtype},
+			<choose>
+			 	<when test="rentMoney == null or rentMoney == ''">
+			 		default
+			 	</when>
+			 	<otherwise>
+			 		#{rentMoney}
+			 	</otherwise>
+		 	</choose>
+			 , #{img}
+		)
+</insert>
+
 </mapper>

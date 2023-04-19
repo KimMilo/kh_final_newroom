@@ -113,7 +113,7 @@
 		<!-- 매물 등록 -->
 		<div class="modal" id="insert">
 		<div class="modal-dialog modal-dialog-centered">
-		<form name="f" action="${rUrl}/insert" method="post">
+		<form name="f" action="${rUrl}/insert" method="post" enctype="multipart/form-data">
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header justify-content-center">
@@ -282,17 +282,17 @@
 										$('#item-list').empty();
 										let insert = '<input type="hidden" name="no" class="my-2 form-control col-md-12 d-inline" value="${dto.no}">'
 										         + '<input type="text" name="dealAmount" class="form-control col-md-12 d-inline my-2" placeholder="희망가격" required>'
-												 + '<input type="hidden" name="dealYear" class="form-control col-md-12 d-inline" value="${dto.dealYear}">'
-												 + '<input type="hidden" name="dealYear" class="form-control col-md-12 d-inline" value="${dto.dealMonth}">'
-												 + '<input type="hidden" name="dealYear" class="form-control col-md-12 d-inline" value="${dto.dealDay}">'
-												 + '<input type="text" name="dealYear" class="form-control col-md-12 d-inline my-2" placeholder="면적" required>'
-												 + '<input type="text" name="dealYear" class="form-control col-md-12 d-inline my-2" placeholder="층" required>'
+												 + '<input type="text" name="dealYear" class="form-control col-md-12 d-inline my-2" placeholder="희망년도" required>'
+												 + '<input type="text" name="dealMonth" class="form-control col-md-12 d-inline my-2" placeholder="희망월" required>'
+												 + '<input type="text" name="dealDay" class="form-control col-md-12 d-inline my-2" placeholder="희망일자" required">'
+												 + '<input type="text" name="area" class="form-control col-md-12 d-inline my-2" placeholder="면적" required>'
+												 + '<input type="text" name="floor" class="form-control col-md-12 d-inline my-2" placeholder="층" required>'
 												 + '<select name="dtype" class="form-control my-2">'
 												 + '<option selected disabled>거래타입</option>'
-												 + '<option value="apt">매매</option>'
-												 + '<option value="houses">전세</option>'
-												 + '<option value="opist">월세</option></select>'
-												 + '<input type="test" name="rentMoney" class="form-control col-md-12 d-inline my-2" placeholder="임대료" required>'
+												 + '<option value="매매">매매</option>'
+												 + '<option value="전세">전세</option>'
+												 + '<option value="월세">월세</option></select>'
+												 + '<input type="test" name="rentMoney" class="form-control col-md-12 d-inline my-2" placeholder="임대료">'
 												 + '매물 도면<input type="file" name="report" class="form-control col-md-12 d-inline">'
 											
 										let area = '<button type="button" id="btn__safetyHospital" class="btn border btn-sm">주변 병원</button>'
