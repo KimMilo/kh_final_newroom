@@ -106,7 +106,7 @@
 	   		  		 WHERE isFAQ = 'T' ORDER BY blevel DESC, questionnum ASC))
 	  WHERE N BETWEEN #{start} AND #{end}
 </select>
-
+ 
 <select id="selectPage" parameterType="map" resultType="QnaDto">
 	SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') bwritedate, bcontent, blevel, questionnum,isFAQ
 	  FROM (SELECT ROWNUM AS N

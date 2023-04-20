@@ -13,7 +13,7 @@
         width: 45%;
         height: 1000px;
     }
-    
+     
      .interest:hover{
     	cursor: pointer;
     }

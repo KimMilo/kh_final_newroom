@@ -1,33 +1,27 @@
 package kh.com.nr.controller;
-
+ 
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import kh.com.nr.common.FileUtil;
 import kh.com.nr.model.dto.HouseDealDto;
-import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.service.HouseMapService;
-import kh.com.nr.model.service.MemberService;
 
 @Controller
 public class HouseInsertController {
 	
 	@Autowired
 	private HouseMapService hmservice;
-	
+	 
 	@Autowired
 	@Qualifier("fileUtil")
 	private FileUtil fileUtil;

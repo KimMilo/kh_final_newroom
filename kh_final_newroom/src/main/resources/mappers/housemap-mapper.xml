@@ -69,5 +69,5 @@
 			 , #{scatchImg}
 		)
 </insert>
-
+ 
 </mapper>

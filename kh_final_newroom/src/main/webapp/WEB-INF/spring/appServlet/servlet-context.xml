@@ -17,7 +17,7 @@
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-
+ 
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<!-- webapp 내의 resources에 css파일 jpg파일 등등 을 넣었을 때 해당 코드가 resources의 내부 모든 경로의 파일을 get방식으로 출력해줌. -->

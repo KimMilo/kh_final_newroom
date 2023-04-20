@@ -9,7 +9,7 @@ import kh.com.nr.model.dao.HouseMapDao;
 import kh.com.nr.model.dto.HouseDealDto;
 import kh.com.nr.model.dto.HouseInfoDto;
 import kh.com.nr.model.dto.SidoGugunCodeDto;
-
+ 
 @Service
 public class HouseMapServiceImpl implements HouseMapService {
 	@Autowired
