@@ -22,15 +22,15 @@
  
 <select id="getDealInfo" resultType="HouseDealDto">
 	SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
-	d.area, d.floor, d.dtype, d.rentMoney, b.city, b.gugun,
-	i.dong, i.aptName, i.jibun, i.lat, i.lng, d.img
+	d.area, d.floor, d.dtype, d.rentMoney, b.city, b.gugun, d.scatchImg,
+	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i, baseaddress b
 	WHERE d.no = i.no and i.code = b.dongcode
 </select> 
 
 <select id="getDealInfoOne" parameterType="int" resultType="HouseDealDto">
 	SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
-	d.area, d.floor, d.dtype, d.rentMoney, b.city, b.gugun,
+	d.area, d.floor, d.dtype, d.rentMoney, b.city, b.gugun, d.scatchImg,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i, baseaddress b
 	WHERE d.no = i.no and d.dealId = #{no} and i.code = b.dongcode
@@ -38,7 +38,7 @@
 
 <select id="getDealInfoByAptName" parameterType="String" resultType="HouseDealDto">
 	SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
-	d.area, d.floor, d.dtype, d.rentMoney,
+	d.area, d.floor, d.dtype, d.rentMoney, d.scatchImg,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
 	WHERE d.no=i.no AND i.aptName like '%' || #{aptName} || '%'
@@ -46,7 +46,7 @@
 
 <select id="getDealInfoByDong" parameterType="String" resultType="HouseDealDto">
 	SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
-	d.area, d.floor, d.dtype, d.rentMoney, 
+	d.area, d.floor, d.dtype, d.rentMoney, d.scatchImg,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i
 	WHERE d.no=i.no AND i.dong LIKE #{dong}
@@ -54,18 +54,19 @@
 
 <insert id="insert" parameterType="HouseDealDto">
 	INSERT INTO HOUSEDEAL 
-		VALUES((SELECT NVL(MAX(dealId, 0) + 1)
+		VALUES(
+			 (SELECT NVL(MAX(dealId), 0) + 1 FROM HOUSEDEAL)
 			 , #{no}, #{dealAmount}, #{dealYear}, #{dealMonth}, #{dealDay}, #{area}
 			 , #{floor}, #{dtype},
 			<choose>
 			 	<when test="rentMoney == null or rentMoney == ''">
-			 		default
+			 		null
 			 	</when>
 			 	<otherwise>
 			 		#{rentMoney}
 			 	</otherwise>
 		 	</choose>
-			 , #{img}
+			 , #{scatchImg}
 		)
 </insert>
 

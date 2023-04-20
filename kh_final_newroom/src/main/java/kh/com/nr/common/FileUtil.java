@@ -1,10 +1,7 @@
 package kh.com.nr.common;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.util.WebUtils;
 
 @Component
 @PropertySource("classpath:properties/newroom-info.properties")
@@ -33,20 +30,24 @@ public class FileUtil {
 		if(multi != null && !multi.equals("")) {
 			result = new HashMap<String, String>();
 			
-			String orginalFileName = multi.getOriginalFilename();
+			String scatchImg = multi.getOriginalFilename();
+			
 			
 			// file을 server에 특정 위치(저장할 폴더)에 저장
-			String webServerRoot = request.getSession().getServletContext().getRealPath("");
-			String savePath = webServerRoot + env.getProperty("local.repository");
+			String propPath = env.getProperty("local.reprository");
+			System.out.println(propPath);
+			String path = WebUtils.getRealPath(request.getSession().getServletContext(), propPath);
+			System.out.println(path);
 			if(addedPath != null) {
-				savePath += addedPath;
+				path += addedPath;
 			}
 			// 저장할 폴더가 안만들어져 있다면 만들어줘야함.
-			File folder = new File(savePath);
+			File folder = new File(path);
 			if(!folder.exists()) {
 				folder.mkdirs();
 			} 
-			result.put("original", orginalFileName);
+			multi.transferTo(new File(path + "\\" + scatchImg));
+			result.put("original", scatchImg);
 		}
 		return result;
 	}

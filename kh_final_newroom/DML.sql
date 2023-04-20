@@ -331,7 +331,6 @@ INSERT INTO HOUSEINFO VALUES(20, '오정동', '오정휴먼시아3단지', 'B052
 SELECT * FROM HOUSEINFO;
 
 ---------------------------------------------------------------------------------------------------------------------------------
-
 INSERT INTO HOUSEDEAL VALUES(1, 15, '6.7억', '2023', '09', '15', '84', '5', '매매', null, '15.jpg');
 INSERT INTO HOUSEDEAL VALUES(2, 16, '5.1억', '2023', '09', '30', '96', '9', '매매', null, '16.jpg');
 INSERT INTO HOUSEDEAL VALUES(3, 17, '2.7억', '2023', '10', '15', '84', '3', '전세', null, '17.jpg');
@@ -355,6 +354,8 @@ INSERT INTO HOUSEDEAL VALUES(20, 1, '24억', '2023', '03', '01', '135', '15', '�
 INSERT INTO HOUSEDEAL VALUES(21, 1, '25억', '2023', '03', '02', '108', '17', '매매', null, '1.jpg');
 INSERT INTO HOUSEDEAL VALUES(22, 1, '22억', '2023', '03', '03', '84', '1', '매매', null, '1.jpg');
 
+
+DELETE FROM HOUSEDEAL WHERE dealid=23;
 SELECT * FROM HOUSEDEAL;
 SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney,

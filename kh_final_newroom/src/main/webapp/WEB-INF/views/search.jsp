@@ -304,7 +304,7 @@
 											+ '<button class="btn btn-warning btn-sm" type="button" data-toggle="modal" data-target="#insert">'
 											+ '<b>매물 등록</b></button></div>'
 											+ '<hr> </header><div class="item container w-100"><img src="${rUrl}/resources/img/housescatch/'
-											+ "${dto.img}" +'"alt="" width="100%">'
+											+ "${dto.scatchImg}" +'"alt="" width="100%">' 
 											+ '<div class="item__content container px-md-5"><h1 class="font-weight-bold">'
 					                    	+ "${dto.dtype}" + "${dto.dealAmount}" + '</h1>'
 					                    	+ '<p>' + '확인 날짜 : ${dto.dealYear}-${dto.dealMonth}-${dto.dealDay}' + '<br>'

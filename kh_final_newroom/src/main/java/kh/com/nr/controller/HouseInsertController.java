@@ -28,12 +28,12 @@ public class HouseInsertController {
 	@Autowired
 	private HouseMapService hmservice;
 	
+	@Autowired
 	@Qualifier("fileUtil")
 	private FileUtil fileUtil;
 	
 	@PostMapping("/insert")
-	public ModelAndView doInsertBoard(
-			MultipartHttpServletRequest multiReq,
+	public ModelAndView insert(
 			@RequestParam(name = "report", required = false) MultipartFile multi
 			, HttpServletRequest request
 			,ModelAndView mv
@@ -41,30 +41,19 @@ public class HouseInsertController {
 			) {
 		Map<String, String> filePath;
 		try {
-			//fileListPath = fileUtil.saveFileList(multiReq, request, null);
 			filePath = fileUtil.saveFile(multi, request, null);
-			hdto.setImg(filePath.get("original"));
+			hdto.setScatchImg(filePath.get("original"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
-		
-		hdto.setNo(hdto.getNo());
-		hdto.setDealAmount(hdto.getDealAmount());
-		hdto.setDealYear(hdto.getDealYear());
-		hdto.setDealMonth(hdto.getDealMonth());
-		hdto.setDealDay(hdto.getDealDay());
-		hdto.setArea(hdto.getArea());
-		hdto.setFloor(hdto.getFloor());
-		hdto.setDtype(hdto.getDtype());
-		hdto.setRentMoney(hdto.getRentMoney());
-		
+				
 		int result = hmservice.insert(hdto);
 		if(result == 1) {
 			mv.addObject("insertR", "매물 등록 완료!");
 		} else {
 			mv.addObject("insertR", "매물 등록 실패! 다시 확인 바람.");
 		}
-		mv.setViewName("search");
+		mv.setViewName("redirect:search");
 		return mv;
 	}
 }
