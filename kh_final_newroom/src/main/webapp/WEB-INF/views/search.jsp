@@ -113,7 +113,7 @@
 		<!-- 매물 등록 -->
 		<div class="modal" id="insert">
 		<div class="modal-dialog modal-dialog-centered">
-		<form name="f" action="${rUrl}/insert" method="post" enctype="multipart/form-data">
+		<form name="f" action="${rUrl}/map/insert" method="post" enctype="multipart/form-data">
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header justify-content-center">
@@ -640,6 +640,13 @@
 	
 	<!-- Footer -->
 	<jsp:include page="footer.jsp" />
+	<script>
+		var insertR = '${insertR}';
+		if(insertR != ""){
+			location.href="${rUrl}/search";
+			alert(insertR);
+		}
+	</script>
 </body>
 
 </html>
