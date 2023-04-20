@@ -29,7 +29,7 @@ import kh.com.nr.model.service.QnaService;
 @CrossOrigin(origins = "*")
 public class QnaController {
 	@Autowired
-	QnaService qService;
+	QnaService qservice;
 	
 	@Autowired
 	MemberService mservice;
@@ -53,7 +53,7 @@ public class QnaController {
 		}
 		int pageListLimit = 10;
 		
-		Paging paging = qService.getPage(pageNumber, pageListLimit);
+		Paging paging = qservice.getPage(pageNumber, pageListLimit);
 		mv.addObject("loginInfo", loginInfo);
 		mv.addObject("paging", paging);		
 		mv.setViewName("qna");
@@ -66,7 +66,7 @@ public class QnaController {
 	public QnaDto read(@PathVariable("bnum") int bnum) {
 		QnaDto dto = null;
 		try {
-			dto = qService.getBoard(bnum);
+			dto = qservice.getBoard(bnum);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,21 +78,21 @@ public class QnaController {
 	@PostMapping("")
 	@ResponseBody
    	public int qnaAdd(@RequestBody QnaDto dto) {
-		return qService.write(dto);
+		return qservice.write(dto);
 	}
 
 	// 질문 수정
 	@PutMapping("")
 	@ResponseBody
 	public int qnaUpdate(@RequestBody QnaDto dto){
-		return qService.update(dto);
+		return qservice.update(dto);
 	}
 	
 	// 질문 삭제
 	@DeleteMapping("/{bnum}")
 	@ResponseBody
 	public int delete(@PathVariable("bnum") int bnum) {
-		return qService.delete(bnum);
+		return qservice.delete(bnum);
 	}
 	
 	// 질문 검색
@@ -121,16 +121,16 @@ public class QnaController {
 		Paging paging = null;
 		if (search_type.equals("btitle")) { // 이름으로 검색
 			typeName = "btitle";
-			paging = qService.searchTitle(pageNumber, pageListLimit, keyword);
+			paging = qservice.searchTitle(pageNumber, pageListLimit, keyword);
 		} else if (search_type.equals("bcontent")) { // 내용으로 검색
 			typeName = "bcontent";
-			paging = qService.searchContent(pageNumber, pageListLimit, keyword);
+			paging = qservice.searchContent(pageNumber, pageListLimit, keyword);
 		} else if (search_type.equals("userid")) {// 작성자로 검색
 			typeName = "userid";
-			paging = qService.searchWriter(pageNumber, pageListLimit, keyword);
+			paging = qservice.searchWriter(pageNumber, pageListLimit, keyword);
 		} else if (search_type.equals("FAQ")) {
 			typeName = "FAQ";
-			paging = qService.searchFAQ(pageNumber, pageListLimit);
+			paging = qservice.searchFAQ(pageNumber, pageListLimit);
 		}
 	 
 		mv.addObject("paging", paging);
@@ -145,6 +145,6 @@ public class QnaController {
 	@GetMapping("/faq")
 	@ResponseBody
 	public List<QnaDto> getFAQList() {
-		return qService.getFAQList();
+		return qservice.getFAQList();
 	}
 }

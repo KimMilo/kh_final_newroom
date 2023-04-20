@@ -22,7 +22,7 @@ import kh.com.nr.model.service.ChatService;
 @CrossOrigin(origins = "*")
 public class ChatController {
 	@Autowired
-	private ChatService chatService;
+	private ChatService cservice;
 	
 	// 채팅 목록 조회
 	@GetMapping("/{fromID}/{toID}")
@@ -31,7 +31,7 @@ public class ChatController {
 		ChatDto dto = new ChatDto();
 		dto.setFromID(fromID);
 		dto.setToID(toID);
-		List<ChatDto> cList = chatService.getChatListByID(dto);
+		List<ChatDto> cList = cservice.getChatListByID(dto);
 		mv.addObject("cList", cList);
 		mv.setViewName("/{fromID}/toID}");
 		return mv;
@@ -47,7 +47,7 @@ public class ChatController {
 		dto.setChatID(chatID);
 		dto.setFromID(fromID);
 		dto.setToID(toID);
-		newList = chatService.chatLoadNewMessage(dto);
+		newList = cservice.chatLoadNewMessage(dto);
 		return newList;
 	}
 		
@@ -55,11 +55,11 @@ public class ChatController {
 	@PostMapping("")
 	@ResponseBody
 	public int submit(@RequestBody ChatDto dto){
-		int result = chatService.submit(dto);
+		int result = cservice.submit(dto);
 		
 		//관리자 채팅방 생성
 		if(!(dto.getFromID().equals("admin"))) { //관리자(admin)가 보내는 메시지는 채팅방 생성x
-			chatService.makeRoom(dto.getFromID());
+			cservice.makeRoom(dto.getFromID());
 		}
 		return result;
 	}
@@ -70,7 +70,7 @@ public class ChatController {
 	@ResponseBody
 	public List<RoomDto> getRoomList(){
 		System.out.println("=============전체 채팅방 조회");
-		List<RoomDto> rList = chatService.getRoomList();
+		List<RoomDto> rList = cservice.getRoomList();
 		return rList;
 	}
 	
@@ -80,7 +80,7 @@ public class ChatController {
 	@ResponseBody
 	public List<RoomDto> chatLoadNewRoom(@PathVariable("lastRoomID") int lastRoomID){
 		List<RoomDto> newRoomList = new ArrayList<RoomDto>();
-		newRoomList = chatService.chatLoadNewRoom(lastRoomID);
+		newRoomList = cservice.chatLoadNewRoom(lastRoomID);
 		return newRoomList;
 	}
 }
