@@ -8,8 +8,8 @@
 		SELECT * FROM comment_t WHERE BNUM=#{bnum} ORDER BY cwritedate DESC
 	</select>
 	<insert id="insertComment" parameterType="CommentDto">
-		INSERT INTO comment_t(BNUM, CWRITER, CCONTENT, CWRITEDATE)
-		VALUES(#{bnum},#{cwriter},#{ccontent},default)
+		INSERT INTO comment_t(CNUM, BNUM, CWRITER, CCONTENT, CWRITEDATE)
+		VALUES((SELECT NVL(MAX(CNUM),0)+1 FROM comment_t), #{bnum},#{cwriter},#{ccontent},default)
 	</insert>
 	<delete id="deleteComment" parameterType="CommentDto">
 		DELETE FROM comment_t WHERE cnum = #{cnum} and cwriter=#{cwriter}

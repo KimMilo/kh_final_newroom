@@ -1,11 +1,13 @@
 package kh.com.nr.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -34,20 +36,20 @@ public class HouseSearchController extends HttpServlet {
 	@Qualifier("fileUtil")
 	private FileUtil fileUtil;
 	
-	@GetMapping("")
-	public String search(Model model) {
-		List<HouseDealDto> dealList = new ArrayList<>();
-		try {
-			dealList = hmservice.getDealInfo();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		model.addAttribute("dealList", dealList);
-		return "search";
-	}
+//	@GetMapping("")
+//	public String search(Model model) {
+//		List<HouseDealDto> dealList = new ArrayList<>();
+//		try {
+//			dealList = hmservice.getDealInfo();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		model.addAttribute("dealList", dealList);
+//		return "search";
+//	}
 	
-	@PostMapping("")
+	@GetMapping("")
 	public String search(String sido, String gugun, String dong, String aptName, 
 			String houseType,String sortType, Model model) {
 
@@ -92,9 +94,11 @@ public class HouseSearchController extends HttpServlet {
 	public ModelAndView insert(
 			@RequestParam(name = "report", required = false) MultipartFile multi
 			, HttpServletRequest request
+			, HttpServletResponse response
 			,ModelAndView mv
 			, HouseDealDto hdto
-			) {
+			) throws UnsupportedEncodingException {
+				
 		Map<String, String> filePath;
 		try {
 			filePath = fileUtil.saveFile(multi, request, null);

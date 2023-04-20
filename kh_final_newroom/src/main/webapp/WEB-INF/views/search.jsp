@@ -145,8 +145,7 @@
 	
 		
 		<!-- 매물 전체 검색화면 navbar -->
-		<form action="${rUrl}/search" method="post" class="form-inline justify-content-between mt-md-2">
-			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+		<form action="${rUrl}/search" method="get" class="form-inline justify-content-between mt-md-2">
 			<div class="form-group">
 				<div class="form-group mx-md-1">
 					<select name="sido" id="sido" class="form-control" placeholder="시/도">

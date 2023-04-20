@@ -5,16 +5,20 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.WebAttributes;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class SecurityConfigController {
+public class SecurityConfigController{
 	private static final Logger logger = 
 			LoggerFactory.getLogger(HomeController.class);
 	

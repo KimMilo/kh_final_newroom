@@ -22,7 +22,7 @@
     </div>
     <div class="container">
         <form class="pl-5 pr-5 form form-group" action="${rUrl}/noticeUpdate" method="post"> <!-- 수정하기 -->
-        	<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
+        	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
         	<input type="hidden" name="bnum" value="${dto.bnum}">
         	<div class="form-group">
                 <label for="btitle">제목</label>

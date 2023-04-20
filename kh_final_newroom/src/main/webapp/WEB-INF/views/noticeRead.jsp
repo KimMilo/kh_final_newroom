@@ -164,6 +164,7 @@
 			$.ajax({
 				url:'${rUrl}/comment/' + this.id,
 				method: 'delete',
+				beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 				success : function(){
 					getCommentList();
 				},

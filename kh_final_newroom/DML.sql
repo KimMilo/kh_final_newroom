@@ -355,7 +355,7 @@ INSERT INTO HOUSEDEAL VALUES(21, 1, '25억', '2023', '03', '02', '108', '17', '�
 INSERT INTO HOUSEDEAL VALUES(22, 1, '22억', '2023', '03', '03', '84', '1', '매매', null, '1.jpg');
 
 
-DELETE FROM HOUSEDEAL WHERE dealid=23;
+DELETE FROM HOUSEDEAL WHERE dealid =23;
 SELECT * FROM HOUSEDEAL;
 SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
 	d.area, d.floor, d.dtype, d.rentMoney,

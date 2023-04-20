@@ -1,7 +1,7 @@
 package kh.com.nr.common;
  
 import java.io.File;
-import java.util.HashMap; 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,9 +35,9 @@ public class FileUtil {
 			
 			// file을 server에 특정 위치(저장할 폴더)에 저장
 			String propPath = env.getProperty("local.reprository");
-			System.out.println(propPath);
+			
 			String path = WebUtils.getRealPath(request.getSession().getServletContext(), propPath);
-			System.out.println(path);
+
 			if(addedPath != null) {
 				path += addedPath;
 			}

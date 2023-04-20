@@ -206,7 +206,7 @@ $("#btnInsert").click(function(){
 		contentType: 'application/json', 
 		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 		data:JSON.stringify({
-			'bnum' : '',
+			'bnum' : -1,
 			'userid' : $("#useridQna").val(),
 			'btitle' : $("#btitle").val(),
 			'bcontent' : $("#bcontent").val(),
@@ -329,6 +329,7 @@ $("#updateQna").click(function(){
  		url : '${rUrl}/qna',
  		method: 'put',
  		contentType: 'application/json; charset=utf-8',
+ 		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
  		data: JSON.stringify(dto),
  	    success:function(result){
   	    	alert("수정 하였습니다.");
@@ -345,6 +346,7 @@ $("#deleteQna").click(function(){
 	$.ajax({
 		url:'${rUrl}/qna/'+detailNo,
 		method:'delete',
+		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 		success:function(){
 			alert("게시글이 삭제되었습니다.");
 			location.href="${rUrl}/qna";

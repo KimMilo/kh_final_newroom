@@ -24,7 +24,7 @@
     <!--contents-->
     <div class="container">
         <form class="form form-group" action="${rUrl}/noticeWrite" method="post">
-        	<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
+        	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
             <div class="form-group">
                 <label for="btitle">제목: </label>
                 <input type="text" id="btitle" class="form-control" name="btitle" placeholder="제목을 입력하세요">

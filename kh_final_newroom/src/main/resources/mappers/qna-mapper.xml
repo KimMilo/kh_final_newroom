@@ -8,7 +8,7 @@
 	VALUES((SELECT NVL(MAX(BNUM), 0) + 1 FROM QNA)
 		 ,#{btitle},#{userid},default,default,#{bcontent},
 		 <choose>
-		 	<when test="bnum == null or bnum == ''">
+		 	<when test="bnum == null or bnum == -1">
 		 		(SELECT NVL(MAX(BNUM), 0) + 1 FROM QNA),
 		 		default,
 		 		default

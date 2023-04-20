@@ -39,8 +39,7 @@
 			</h6>
 			<hr class="my-4">
 			<div class="btn-group">
-				<form action="${rUrl}/search" method="post" class="form-inline">
-					<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
+				<form action="${rUrl}/search" method="get" class="form-inline">
 					<div class="form-group mx-md-1">
 						<select name="sido" id="sido" class="form-control">
 							<option selected disabled>시/도</option>
@@ -61,6 +60,14 @@
 							<option selected disabled>주거/매물형태</option>
 							<option value="apt">아파트</option>
 							<option value="houses">연립주택</option>
+						</select>
+					</div>
+					<div class="form-group mx-md-1">
+						<select name="sortType" id="sortType" class="form-control">
+							<option selected disabled>정렬기준</option>
+							<option value="price">가격순</option>
+							<option value="area">면적순</option>
+							<option value="floor">층별</option>
 						</select>
 					</div>
 					<div class="form-group">
