@@ -15,7 +15,7 @@
 		
 	<security:http pattern="/resources/**" security="none"/>
 	<security:http auto-config="true" use-expressions="true">
-		<security:csrf disabled="true"/>
+		<security:csrf disabled="false"/> <!-- 비활성화 -->
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/member/findPw" access="permitAll" />
 		<security:intercept-url pattern="/member/modifydPw" access="permitAll" />
@@ -31,6 +31,7 @@
 		<security:intercept-url pattern="/comment/**" access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')" />
 		<security:intercept-url pattern="/hospital/**" access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')" />
 		<security:form-login
+				
 				login-page="/" 
 				authentication-success-handler-ref="customLoginSuccess"
 				authentication-failure-handler-ref="customLoginFail"

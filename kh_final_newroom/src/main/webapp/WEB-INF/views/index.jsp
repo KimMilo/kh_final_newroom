@@ -40,6 +40,7 @@
 			<hr class="my-4">
 			<div class="btn-group">
 				<form action="${rUrl}/search" method="post" class="form-inline">
+					<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
 					<div class="form-group mx-md-1">
 						<select name="sido" id="sido" class="form-control">
 							<option selected disabled>시/도</option>

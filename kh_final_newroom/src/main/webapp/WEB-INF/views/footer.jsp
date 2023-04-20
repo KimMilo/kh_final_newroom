@@ -182,6 +182,7 @@ String time = df.format(today);
 				$.ajax({
 					url: "${rUrl}/chat",
 					type: "POST",
+					beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 					contentType: "application/json",
 					data: JSON.stringify({
 						fromID: "${userid}",
@@ -519,6 +520,7 @@ String time = df.format(today);
 					url: "${rUrl}/chat",
 					type: "POST",
 					contentType: "application/json",
+					beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 					data: JSON.stringify({
 						fromID: "${userid}",
 						toID: userID,

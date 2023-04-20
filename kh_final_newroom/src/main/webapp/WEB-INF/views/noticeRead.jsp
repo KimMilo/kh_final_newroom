@@ -145,6 +145,7 @@
 				url:"${rUrl}/comment",
 				data:{'bnum':'${dto.bnum}', 'content':$('#cmt').val()},
 				method:'post',
+				beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 				success:function(result){
 					if(result == 'success'){
 						getCommentList();

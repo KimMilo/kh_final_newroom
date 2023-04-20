@@ -114,6 +114,7 @@
 		<div class="modal" id="insert">
 		<div class="modal-dialog modal-dialog-centered">
 		<form name="f" action="${rUrl}/search/insert" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header justify-content-center">
@@ -146,6 +147,7 @@
 		<!-- 매물 전체 검색화면 navbar -->
 		<form action="${rUrl}/search" method="post"
 			class="form-inline justify-content-between mt-md-2">
+			<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
 			<div class="form-group">
 				<div class="form-group mx-md-1">
 					<select name="sido" id="sido" class="form-control" placeholder="시/도">
@@ -408,6 +410,7 @@
 					        						method: 'post',
 					        						dataType: 'JSON',
 					        						contextType: 'application/json; charset:UTF-8;',
+					        						beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 					        						data : {'keyword' : keyword,},
 					        						success : function(landList){
 					        							var items = landList['items'];

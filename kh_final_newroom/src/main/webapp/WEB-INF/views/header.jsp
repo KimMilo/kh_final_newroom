@@ -45,6 +45,7 @@
 				<div class="modal-body">
 					<div class="pl-5 pr-5 form form-group">
 					<form:form name="f" action="${rUrl}/member/login" method="post">
+						<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
 						<input type="text" name="userid" id="useridLogin"
 							class="my-2 form-control col-md-12 d-inline" placeholder="아이디" required><br>
 						<input type="password" name="userpw" id="userpwLogin"
@@ -241,8 +242,9 @@
 		    			content += '<a href="${rUrl}/member/mypage" ';
 		    			content += 'class="nav-link text-dark"><b>마이페이지</b></a></li>';
 		    			content += '<li class="nav-item mr-4">';
-		    			content += '<a href="${rUrl}/member/logout" id="logout" ';
-		    			content += 'class="nav-link text-dark"><b>로그아웃</b></a></li>';
+		    			content += '<form action="${rUrl}/member/logout" method="POST" onclick="this.submit();">';
+		    			content += '<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">';
+		    			content += '<a style="cursor:pointer;" class="nav-link text-dark"><b>로그아웃</b></a></form></li>';
 		    			content += '<li class="nav-item ml-3 nav-link text-dark">';
 		    			content += '<b>' + user.name + '</b>';
 		    			content += '(' + user.userId + ')님 환영합니다 :D</li>';

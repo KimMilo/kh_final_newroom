@@ -36,6 +36,7 @@
 	      </div>
 	      <div class="modal-body">
 	        <form action="${rUrl }/qna" method="post">
+	        	<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
 	          <div class="mb-3">
 	            <label for="recipient-name" class="col-form-label">작성자 : </label>
 	            <input type="text" class="form-control" id="useridQna" name="userid" value="${loginInfo.userid }" disabled>
@@ -203,6 +204,7 @@ $("#btnInsert").click(function(){
 		url:'${rUrl}/qna',
 		method: 'post',
 		contentType: 'application/json', 
+		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 		data:JSON.stringify({
 			'bnum' : '',
 			'userid' : $("#useridQna").val(),
@@ -264,6 +266,7 @@ $(".qnaDetail").click(function(){
            			url:'${rUrl}/qna',
            			method: 'post',
            			contentType: 'application/json', 
+           			beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
            			data:JSON.stringify({
            				'bnum' : detailNo,
            				'userid' : $('#replyUserid').val(),
