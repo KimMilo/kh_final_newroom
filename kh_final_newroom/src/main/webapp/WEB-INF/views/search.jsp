@@ -114,7 +114,7 @@
 		<div class="modal" id="insert">
 		<div class="modal-dialog modal-dialog-centered">
 		<form name="f" action="${rUrl}/search/insert" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
+			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 			<div class="modal-content">
 				<!-- Modal Header -->
 				<div class="modal-header justify-content-center">
@@ -145,9 +145,8 @@
 	
 		
 		<!-- 매물 전체 검색화면 navbar -->
-		<form action="${rUrl}/search" method="post"
-			class="form-inline justify-content-between mt-md-2">
-			<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
+		<form action="${rUrl}/search" method="post" class="form-inline justify-content-between mt-md-2">
+			<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 			<div class="form-group">
 				<div class="form-group mx-md-1">
 					<select name="sido" id="sido" class="form-control" placeholder="시/도">
@@ -251,6 +250,7 @@
                     	    			$.ajax({
 											url:'${rUrl}/interest/${dto.dealId}',
 											method:'delete',
+											beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 											success:function(){
 												$("#"+idName).attr('src', './resources/img/heart_empty.png');
                     	    					alert("찜 목록에서 해제 되었습니다.");

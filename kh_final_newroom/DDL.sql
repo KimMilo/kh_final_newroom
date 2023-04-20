@@ -81,7 +81,7 @@ CREATE TABLE HOUSEDEAL(
   , dealDay VARCHAR2(10)
   , area VARCHAR2(20)
   , floor VARCHAR2(10)
-  , dtype VARCHAR2(10)
+  , dtype VARCHAR2(20)
   , rentMoney VARCHAR2(20)
   , scatchImg VARCHAR2(100)
 );
