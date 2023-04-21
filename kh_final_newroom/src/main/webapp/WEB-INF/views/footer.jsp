@@ -181,7 +181,7 @@ String time = df.format(today);
 				var chatContent = $('#chatContent').val();
 				$.ajax({
 					url: "${rUrl}/chat",
-					type: "POST",
+					type: 'post',
 					beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 					contentType: "application/json",
 					data: JSON.stringify({
@@ -441,7 +441,7 @@ String time = df.format(today);
 				//기존 채팅목록 가져오기
 				$.ajax({
 					url:'${rUrl}/chat/admin/' + userID,
-					method: 'GET',
+					method: 'get',
 					success : function(result){
 						if(result == "") return;
 						for(var i=0; i<result.length; i++){
@@ -517,8 +517,8 @@ String time = df.format(today);
 				var chatContent = $('#chatContent').val();
 				
 				$.ajax({
-					url: "${rUrl}/chat",
-					type: "POST",
+					url: '${rUrl}/chat',
+					type: 'post',
 					contentType: "application/json",
 					beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 					data: JSON.stringify({

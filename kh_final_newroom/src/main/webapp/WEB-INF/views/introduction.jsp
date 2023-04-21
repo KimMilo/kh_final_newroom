@@ -149,18 +149,5 @@ $(window).scroll(function(){
 	}
 });
 </script>
-
-<!-- script> 
-$('#box_active1').on("click", pageMoveHandler);
-$('#box_active2').on("click", pageMoveHandler);
-$('#box_active3').on("click", pageMoveHandler1);
-	
-function pageMoveHandler(){
-	location.href="<--%=request.getContextPath()%>/";
-
-function pageMoveHandler1(){
-	location.href="<--%=request.getContextPath()%>/chat";
-
-</script-->
 </body>
 </html>

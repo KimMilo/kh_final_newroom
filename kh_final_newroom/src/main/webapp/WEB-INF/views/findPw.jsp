@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%-- <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> --%>
 <c:set var="rUrl" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="kr">
@@ -27,7 +26,7 @@
     		<div class="container bg-light rounded" style="width: 700px;">
 	            <h1 class="m-md-3">${user.userid}님의 비밀번호 수정</h1>
 	            <form action="${rUrl}/member/modifypw" method="post" class="m-md-3 py-md-3">
-	            	<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
+	            	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	            	<input type="hidden" name="userid" value="${user.userid}">
 	                <div class="form-group row">
 	                    <label for="newPw" class="col-md-2 col-form-label text-right">새 비밀번호</label>
@@ -53,7 +52,7 @@
 	        <div class="container bg-light rounded" style="width: 700px;">
 	            <h1 class="m-md-3">비밀번호 찾기</h1>
 	            <form action="${rUrl}/member/findpw" method="post" class="m-md-3 py-md-3">
-	            	<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
+	            	<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 	                <div class="form-group row">
 	                    <label for="username" class="col-md-2 col-form-label text-right">이름</label>
 	                    <div class="col-md-10">

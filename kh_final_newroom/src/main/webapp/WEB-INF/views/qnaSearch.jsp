@@ -57,8 +57,6 @@
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	      </div>
 	      <div class="modal-body">
-	        <form action="${rUrl }/qna" method="post">
-	        	<input type="hidden" name="${_csrf.headerName }" value="${_csrf.token }">
 	          <div class="mb-3">
 	            <label for="recipient-name" class="col-form-label">작성자 : </label>
 	            <input type="text" class="form-control" id="useridQna" name="userid" value="${loginInfo.userid }" disabled>
@@ -71,7 +69,6 @@
 	            <label for="message-text" class="col-form-label">내용 : </label>
 	            <textarea rows="15" class="form-control" id="bcontent" name="bcontent"></textarea>
 	          </div>
-	        </form>
 	      </div>
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
@@ -235,10 +232,10 @@ $("#btnInsert").click(function(){
 	$.ajax({
 		url:'${rUrl}/qna',
 		method: 'post',
-		contentType: 'application/json', 
 		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
+		contentType: 'application/json', 
 		data:JSON.stringify({
-			'bnum' : '',
+			'bnum' : -1,
 			'userid' : $("#useridQna").val(),
 			'btitle' : $("#btitle").val(),
 			'bcontent' : $("#bcontent").val(),
@@ -297,8 +294,8 @@ $(".qnaDetail").click(function(){
            		$.ajax({
            			url:'${rUrl}/qna',
            			method: 'post',
-           			contentType: 'application/json', 
            			beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
+           			contentType: 'application/json', 
            			data:JSON.stringify({
            				'bnum' : detailNo,
            				'userid' : $('#replyUserid').val(),
@@ -347,6 +344,7 @@ $("#updateQna").click(function(){
  	$.ajax({
  		url : '${rUrl}/qna',
  		method: 'put',
+ 		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
  		contentType: 'application/json; charset=utf-8',
  		data: JSON.stringify(dto),
  	    success:function(result){
@@ -364,6 +362,7 @@ $("#deleteQna").click(function(){
 	$.ajax({
 		url:'${rUrl}/qna/'+detailNo,
 		method:'delete',
+		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 		success:function(){
 			alert("게시글이 삭제되었습니다.");
 			location.href="${rUrl}/qna";
@@ -394,6 +393,7 @@ $("#updateQna").click(function(){
  	$.ajax({
  		url : '${rUrl}/qna',
  		method: 'put',
+ 		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
  		contentType: 'application/json; charset=utf-8',
  		data: JSON.stringify(dto),
  	    success:function(result){
@@ -409,6 +409,7 @@ $("#deleteQna").click(function(){
 	$.ajax({
 		url:'${rUrl}/qna/'+detailNo,
 		method:'delete',
+		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 		success:function(){
 			alert("게시글이 삭제되었습니다.");
 			location.href="${rUrl}/qna";

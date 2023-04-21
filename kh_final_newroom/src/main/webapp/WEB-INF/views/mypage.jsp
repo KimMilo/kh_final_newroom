@@ -164,6 +164,7 @@ $(function () {
      	$.ajax({
      		url : '${rUrl}/member/${loginInfo.userid}',
      		method: 'delete',
+     		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
      		contentType: 'application/json; charset=utf-8',
      	    success:function(response){
      	    	if(response == 'success'){
@@ -198,8 +199,8 @@ $(function () {
          	$.ajax({
          		url : '${rUrl}/member/mypage',
          		method: 'post',
-         		contentType: 'application/json; charset=utf-8',
          		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
+         		contentType: 'application/json; charset=utf-8',
          		data: JSON.stringify(dto),
          	    success:function(response){
          	    	if(response == 'success'){

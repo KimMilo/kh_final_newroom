@@ -102,7 +102,7 @@
 		// 시도 옵션 리스트 목록
 		$.ajax({
 			url : '${rUrl}/map/sido',
-			type : 'GET',
+			type : 'get',
 			contextType : 'application/json;charset=utf-8',
 			dataType : 'json',
 			success : function(result) {
@@ -125,7 +125,7 @@
 			function() {
 				$.ajax({
 					url : '${rUrl}/map/gugun/'+ $("#sido").val(),
-					type : 'GET',
+					type : 'get',
 					contextType : 'application/json;charset=utf-8',
 					dataType : 'json',
 					success : function(result) {
@@ -150,7 +150,7 @@
 		$("#gugun").change(function() {
 			$.ajax({
 				url : '${rUrl}/map/dong/'+ $("#gugun").val(),
-				type : 'GET',
+				type : 'get',
 				contextType : 'application/json;charset=utf-8',
 				dataType : 'json',
 				success : function(result) {

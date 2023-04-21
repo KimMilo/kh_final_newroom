@@ -121,8 +121,8 @@
 				$.ajax({
 					url:'${rUrl}/member/change',
 					method:'put',
-					contentType: 'application/json; charset=utf-8',
 					beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
+					contentType: 'application/json; charset=utf-8',
                     data: JSON.stringify(userInfo),
 					success:function(){
 						location.href="${rUrl}/member/list";

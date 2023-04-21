@@ -104,6 +104,7 @@
 				$.ajax({
 					url:'${rUrl}/interest/'+detailNo,
 					method:'delete',
+					beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
 					success:function(){
     					alert("찜 목록에서 해제 되었습니다.");
     					location.href="${rUrl}/interest";

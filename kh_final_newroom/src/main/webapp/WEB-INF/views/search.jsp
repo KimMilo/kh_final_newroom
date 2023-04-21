@@ -40,7 +40,7 @@
 				// 시도 옵션 리스트 목록
 				$.ajax({
 					url:'${rUrl}/map/sido',
-					type : 'GET',
+					type : 'get',
 					contextType : 'application/json;charset=utf-8',
 					dataType : 'json',
 					success : function(result){
@@ -62,7 +62,7 @@
 				$("#sido").change(function(){
 					$.ajax({
 						url:'${rUrl}/map/gugun/'+$("#sido").val(),
-						type : 'GET',
+						type : 'get',
 						contextType : 'application/json;charset=utf-8',
 						dataType : 'json',
 						success : function(result){
@@ -87,7 +87,7 @@
 				$("#gugun").change(function(){
 					$.ajax({
 						url:'${rUrl}/map/dong/'+$("#gugun").val(),
-						type : 'GET',
+						type : 'get',
 						contextType : 'application/json;charset=utf-8',
 						dataType : 'json',
 						success : function(result){
@@ -408,8 +408,8 @@
 					        						url : '${rUrl}/land',
 					        						method: 'post',
 					        						dataType: 'JSON',
-					        						contextType: 'application/json; charset:UTF-8;',
 					        						beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
+					        						contextType: 'application/json; charset:UTF-8;',
 					        						data : {'keyword' : keyword,},
 					        						success : function(landList){
 					        							var items = landList['items'];
