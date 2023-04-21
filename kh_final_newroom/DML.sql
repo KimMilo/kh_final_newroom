@@ -455,11 +455,6 @@ INSERT INTO COMMENT_T VALUES(3, 1, 'admin', 'comment테스트입니다3.', defau
 
 SELECT * FROM COMMENT_T;
 
-SELECT c.*, u.img
-		  FROM comment_t c, userinfo u
-		 WHERE c.cwriter=u.userid
-          AND BNUM=28 ORDER BY cwritedate DESC;
-
 -------------------------------------------------------------------------------------------
 
 INSERT INTO QNA VALUES(1, '질문테스트1', 'sample', default, default, '테스트입니다.', 1, default, default);

@@ -259,7 +259,7 @@
 		    			content += '<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">';
 		    			content += '<a style="cursor:pointer;" class="nav-link text-dark"><b>로그아웃</b></a></form></li>';
 		    			content += '<li class="nav-item ml-3 nav-link text-dark">';
-		    			content += '<img src="${rUrl}/resources/img/userimg/' + user.img + '" width="40px;" height="25px;">'
+		    			content += '<img src="${rUrl}/resources/img/userimg/' + user.img + '" width="30px;" height="30px;">'
 		    			content += '<b>' + user.name + '</b>';
 		    			content += '(' + user.userId + ')님 환영합니다 :D</li>';
 		    			
