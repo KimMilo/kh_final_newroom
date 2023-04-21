@@ -83,9 +83,9 @@
 				<c:forEach var="data" items="${paging.page}" >
 					<tr>
 						<td>${data.bnum}</td>
-						<td id="title"><a href="noticeRead?bnum=${data.bnum}" style="color:black;">${data.btitle}
+						<td id="title"><a href="noticeRead?bnum=${data.bnum}" style="color:black; text-decoration:none; cursor:pointer;">${data.btitle}
 						<c:if test="${!empty data.cmtCnt}">
-							<button class="btn btn-info btn-sm">[${data.cmtCnt}]</button>
+							<button class="btn btn-info btn-sm">${data.cmtCnt}</button>
 						</c:if>
 						</a></td>
 						<td>${data.userid}</td>
