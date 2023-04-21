@@ -3,8 +3,11 @@ package kh.com.nr.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import kh.com.nr.common.FileUtil;
 import kh.com.nr.common.Paging;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.service.MemberService;
@@ -32,6 +37,10 @@ import kh.com.nr.model.service.MemberService;
 public class MemberController {
 	@Autowired
 	private MemberService mservice;
+	
+	@Autowired
+	@Qualifier("fileUtil")
+	private FileUtil fileUtil;
 
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
@@ -142,12 +151,26 @@ public class MemberController {
 	}
 
 	// 회원가입
-	@ResponseBody
 	@PostMapping("/join")
-	public void join(MemberDto dto) {
+	public void join(
+			@RequestParam(name = "report", required = false) MultipartFile multi
+		  , HttpServletRequest request
+		  , HttpServletResponse response
+		  , ModelAndView mv
+		  , MemberDto dto) {
+		Map<String, String> filePath;
+		
+		try {
+			filePath = fileUtil.saveJoin(multi, request, null);
+			dto.setImg(filePath.get("original"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
+		
 		String encPw = pwEncoder.encode(dto.getUserpw());
 	    dto.setUserpw(encPw);
-		mservice.join(dto);
+		
+	    mservice.join(dto);
 	}
 
 	// 회원정보 수정
@@ -193,6 +216,7 @@ public class MemberController {
 		if (loginInfo != null) {
 			user.put("userId", loginInfo.getUserid());
 			user.put("name", loginInfo.getUsername());
+			user.put("img", loginInfo.getImg());
 			if (loginInfo.getMrole().contains("ADMIN")) {
 				user.put("admin", "true");
 			}

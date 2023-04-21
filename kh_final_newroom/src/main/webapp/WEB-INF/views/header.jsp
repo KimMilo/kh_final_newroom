@@ -84,51 +84,63 @@
 				<!-- Modal body -->
 				<div class="modal-body">
 					<div class="pl-3 pr-1 form form-group">
-						<div class="form-inline form-group col-14">
+						<div id="idcheck" style="position:relative; left:350px; top:33px;">
+							<b style="color:red; cursor:pointer;">중복체크</b><br>
+						</div>
+						<form id="joinAjax">
+						<div class="form-inline form-group">
 							<label for="useridJoin" class="control-label col-3">아이디<span
 								style="color: red;">*</span></label>
-							<div class="col-9">
+							<div class="col-6">
 								<input type="text" class="form-control" id="useridJoin" name="userid"
-									placeholder="아이디를 입력하세요">
-								<button id="idcheck" type="submit" class="btn">중복체크</button><br>
+									placeholder="아이디를 입력하세요" required>
 							</div>
 						</div>
 
-						<div class="form-inline form-group col-14">
+						<div class="form-inline form-group col-12">
 							<label for="userpwJoin" class="col-3 control-label">비밀번호<span
 								style="color: red;">*</span></label>
 							<div class="col-9">
 								<input type="password" class="form-control" id="userpwJoin" name="userpw"
-									placeholder="비밀번호를 입력하세요">
+									placeholder="비밀번호를 입력하세요" required>
 							</div>
 						</div>
 
-						<div class="form-inline form-group col-14">
+						<div class="form-inline form-group col-12">
 							<label for="name" class="col-3 control-label">이름<span
 								style="color: red;">*</span></label>
 							<div class="col-9">
 								<input type="text" class="form-control" id="name" name="username"
-									placeholder="이름을 입력하세요">
+									placeholder="이름을 입력하세요" required>
 							</div>
 						</div>
 
-						<div class="form-inline form-group col-14">
+						<div class="form-inline form-group col-12">
 							<label for="address" class="col-3 control-label">이메일<span
 								style="color: red;">*</span></label>
 							<div class="col-9">
 								<input type="email" class="form-control" id="email"
-									name="useremail" placeholder="newroom@naver.com">
+									name="useremail" placeholder="newroom@naver.com" required>
 							</div>
 						</div>
 
-						<div class="form-inline form-group col-14">
+						<div class="form-inline form-group col-12">
 							<label for="phone" class="col-3 control-label">전화번호<span
 								style="color: red;">*</span></label>
 							<div class="col-9">
 								<input type="text" class="form-control" id="phone" name="userphone"
-									placeholder="010-xxxx-xxxx">
+									placeholder="010-xxxx-xxxx" required>
 							</div>
 						</div>
+						<div class="form-inline form-group col-12">
+							<label for="phone" class="col-3 control-label">회원사진<span
+								style="color: red;">*</span></label>
+							<div class="col-9">
+								<input type="file" id="img" name="report"
+									placeholder="첨부파일">
+							</div>
+						</div>
+						</form>
 						<button id="submitJoin" class="btn btn-outline-secondary col-sm-10 ml-4">회원가입</button>
 					</div>
 				</div>
@@ -179,17 +191,16 @@
     			 	alert("ID 중복 체크해주세요.");
     				return false;
     			}else {
+    				var form = $('#joinAjax')[0];
+    				var formData = new FormData(form);
     				$.ajax({
     					url:'${rUrl}/member/join',
     					method : 'post',
+    					enctype:'multipart/form-data',
     					beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
-    					data:{
-    						'userid' : $("#useridJoin").val(),
-    						'userpw' : $("#userpwJoin").val(),
-    						'username' : $("#name").val(),
-    						'useremail' : $("#email").val(),
-    						'userphone' : $("#phone").val(),
-    					},
+    					data: formData,
+    					processData: false,
+    				    contentType: false,
     					success: function(result){
     						if(result.length > 0){
     							alert(result);
@@ -199,6 +210,7 @@
         						$("#name").val("");
         						$("#email").val("");
         						$("#phone").val("");
+        						$("#img").val("");
         						
         						alert("회원가입 성공!!!");
         						location.href="${rUrl}";
@@ -247,6 +259,7 @@
 		    			content += '<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">';
 		    			content += '<a style="cursor:pointer;" class="nav-link text-dark"><b>로그아웃</b></a></form></li>';
 		    			content += '<li class="nav-item ml-3 nav-link text-dark">';
+		    			content += '<img src="${rUrl}/resources/img/userimg/' + user.img + '" width="40px;" height="25px;">'
 		    			content += '<b>' + user.name + '</b>';
 		    			content += '(' + user.userId + ')님 환영합니다 :D</li>';
 		    			

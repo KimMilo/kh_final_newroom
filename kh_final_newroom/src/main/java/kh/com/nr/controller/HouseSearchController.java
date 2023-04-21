@@ -97,7 +97,7 @@ public class HouseSearchController extends HttpServlet {
 			, HttpServletResponse response
 			,ModelAndView mv
 			, HouseDealDto hdto
-			) throws UnsupportedEncodingException {
+			) {
 				
 		Map<String, String> filePath;
 		try {

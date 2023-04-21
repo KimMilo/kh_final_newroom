@@ -17,13 +17,10 @@ import org.springframework.web.util.WebUtils;
 @PropertySource("classpath:properties/newroom-info.properties")
 public class FileUtil {
 	
-//	@Value("${local.repository}")
-//	private String UPLOAD_FOLDER;
 	
 	@Autowired
 	private Environment env;
 	
-//	@Bean
 	public Map<String, String> saveFile(MultipartFile multi, HttpServletRequest request, String addedPath) throws Exception{
 		Map<String, String> result = null;
 
@@ -34,7 +31,7 @@ public class FileUtil {
 			
 			
 			// file을 server에 특정 위치(저장할 폴더)에 저장
-			String propPath = env.getProperty("local.reprository");
+			String propPath = env.getProperty("local.repository");
 			
 			String path = WebUtils.getRealPath(request.getSession().getServletContext(), propPath);
 
@@ -48,6 +45,32 @@ public class FileUtil {
 			} 
 			multi.transferTo(new File(path + "\\" + scatchImg));
 			result.put("original", scatchImg);
+		}
+		return result;
+	}
+	
+	public Map<String, String> saveJoin(MultipartFile multi, HttpServletRequest request, String addedPath) throws Exception{
+		Map<String, String> result = null;
+
+		if(multi != null && !multi.equals("")) {
+			result = new HashMap<String, String>();
+			
+			String img = multi.getOriginalFilename();
+			
+			
+			String propPath = env.getProperty("local.repository2");
+			
+			String path = WebUtils.getRealPath(request.getSession().getServletContext(), propPath);
+
+			if(addedPath != null) {
+				path += addedPath;
+			}
+			File folder = new File(path);
+			if(!folder.exists()) {
+				folder.mkdirs();
+			} 
+			multi.transferTo(new File(path + "\\" + img));
+			result.put("original", img);
 		}
 		return result;
 	}

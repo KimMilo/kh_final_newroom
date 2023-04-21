@@ -34,6 +34,7 @@ public class CommentController {
 		List<CommentDto> commentList = nservice.getCommentList(bnum);
 		Gson gs = new Gson();
 		String result = gs.toJson(commentList);
+		System.out.println(result.toString());
 		return result;
 	}
 	

@@ -21,6 +21,8 @@ public class CommentDto {
 	private String cwriter;	// 코멘트 작성자
 	private String ccontent; // 코멘트 내용
 	private String cwriteDate; // 작성일시
+	
+	private String img;//프로필이미지
 
 	public CommentDto(int bnum, String cwriter, String ccontent, String cwriteDate) {
 		this.bnum = bnum;

@@ -11,9 +11,9 @@
 </select>
 
 <insert id="join" parameterType="MemberDto">
-	INSERT INTO userinfo (no, userid, userpw, username, useremail, userphone)
+	INSERT INTO userinfo (no, userid, userpw, username, useremail, userphone, img)
 	VALUES (
-		(SELECT NVL(MAX(no),0)+1 FROM USERINFO),#{userid}, #{userpw}, #{username}, #{useremail}, #{userphone})
+		(SELECT NVL(MAX(no),0)+1 FROM USERINFO),#{userid}, #{userpw}, #{username}, #{useremail}, #{userphone}, #{img})
 </insert>
 
 <update id="update" parameterType="MemberDto">

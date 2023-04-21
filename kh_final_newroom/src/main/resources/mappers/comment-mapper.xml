@@ -5,7 +5,10 @@
 		SELECT COUNT(*) FROM comment_t WHERE BNUM=#{bnum}
 	</select>
 	<select id="selectCommentList" resultType="CommentDto">
-		SELECT * FROM comment_t WHERE BNUM=#{bnum} ORDER BY cwritedate DESC
+		SELECT c.*, u.img
+		  FROM comment_t c, userinfo u
+		 WHERE c.cwriter = u.userid
+		   AND BNUM=#{bnum} ORDER BY cwritedate DESC
 	</select>
 	<insert id="insertComment" parameterType="CommentDto">
 		INSERT INTO comment_t(CNUM, BNUM, CWRITER, CCONTENT, CWRITEDATE)

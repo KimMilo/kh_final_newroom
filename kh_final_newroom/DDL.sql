@@ -1,5 +1,19 @@
 --DDL
 
+DROP TABLE USERINFO;
+CREATE TABLE USERINFO(
+    no NUMBER PRIMARY KEY
+  , userId VARCHAR2(20) UNIQUE
+  , userPw VARCHAR2(150)
+  , userName VARCHAR2(15)
+  , userEmail VARCHAR2(30)
+  , userPhone VARCHAR2(30)
+  , mRole VARCHAR2(20) DEFAULT 'ROLE_MEMBER' CHECK (mRole IN('ROLE_MEMBER','ROLE_ADMIN'))
+  , enabled NUMBER DEFAULT 1
+  , img VARCHAR2(100)
+);
+-------------------------------------------------------------------------------
+
 DROP TABLE CHAT;
 CREATE TABLE CHAT(
     chatID NUMBER PRIMARY KEY
@@ -96,21 +110,7 @@ CREATE TABLE INTEREST(
 
 --------------------------------------------------------------------------------
 
-DROP TABLE USERINFO;
-CREATE TABLE USERINFO(
-    no NUMBER PRIMARY KEY
-  , userId VARCHAR2(20) UNIQUE
-  , userPw VARCHAR2(150)
-  , userName VARCHAR2(15)
-  , userEmail VARCHAR2(30)
-  , userPhone VARCHAR2(30)
-  , mRole VARCHAR2(20) DEFAULT 'ROLE_MEMBER' CHECK (mRole IN('ROLE_MEMBER','ROLE_ADMIN'))
-  , enabled NUMBER DEFAULT 1
-  , img VARCHAR2(100)
-);
 
-SELECT * FROM USERINFO;
--------------------------------------------------------------------------------
 
 DROP TABLE NOTICE;
 CREATE TABLE NOTICE(

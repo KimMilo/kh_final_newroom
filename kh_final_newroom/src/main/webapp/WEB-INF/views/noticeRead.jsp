@@ -109,7 +109,7 @@
 					var cmtList = '';
 					for(var i=0; i<result.length; i++){
 						cmtList += '<div class="media-block">';
-						cmtList += '<span class="media-left mr-1"><img class="img-circle img-sm" alt="Profile Picture" src="${rUrl}/resources/img/chat_profile_user.png"></span>'
+						cmtList += '<span class="media-left mr-1"><img class="img-circle img-sm" alt="Profile Picture" src="${rUrl}/resources/img/userimg/' + result[i]['img'] +'"></span>'
 						cmtList += '<div class="media-body"><div class="mar-btm"><span class="btn-link text-semibold media-heading box-inline">';	
 						cmtList += result[i]['cwriter'];
 						cmtList += '</span> &nbsp;';
