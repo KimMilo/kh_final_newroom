@@ -20,5 +20,7 @@ public class ChatDto {
 	private String toID; //상대방
 	private String chatContent; //채팅 내용
 	private String chatTime; //전송 시간
+	
+	private String img;
 
 }

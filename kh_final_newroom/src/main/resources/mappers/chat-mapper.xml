@@ -3,19 +3,20 @@
 <mapper namespace="chat">
 	<select id="getChatListByID" parameterType="ChatDto" resultType="ChatDto"> 
 		SELECT chatID, fromID, toID, chatContent, chatTime
-          FROM CHAT 
+          FROM CHAT
          WHERE (fromID = #{fromID} AND toID = #{toID})  
 		    OR (fromID = #{toID} AND toID = #{fromID}) 
 		 ORDER BY chatTime
 	</select>
 	
 	<select id="chatLoadNewMessage" parameterType="ChatDto" resultType="ChatDto"> 
-		SELECT chatID, fromID, toID, chatContent, chatTime 
-		  FROM CHAT 
+		SELECT c.chatID, c.fromID, c.toID, c.chatContent, c.chatTime, i.img 
+		  FROM CHAT c, USERINFO i 
 		 WHERE ((fromID = #{fromID} AND toID = #{toID})
 		    OR (fromID = #{toID} AND toID = #{fromID}))
-		   AND chatID > #{chatID} 
-		 ORDER BY chatTime
+		   AND chatID > #{chatID}
+		   AND c.toId = i.userid
+		 ORDER BY c.chatTime
 	</select>
 	
 	<insert id="submit" parameterType="ChatDto">

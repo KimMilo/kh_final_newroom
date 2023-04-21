@@ -1,5 +1,12 @@
 --DML
 
+INSERT INTO USERINFO VALUES(1,'admin','admin','관리자', 'admin@newroom.co.kr', '010-1234-5678','ROLE_ADMIN',1,'chat_profile_mgr2.png');
+UPDATE USERINFO SET mrole = 'ROLE_ADMIN' where username='관리자';
+       
+--SELECT * FROM USERINFO;
+
+---------------------------------------------------------------------------------------
+
 SELECT * FROM CHAT;
 SELECT chatID, fromID, toID, chatContent, chatTime 
   FROM CHAT 
@@ -12,6 +19,15 @@ SELECT chatID, fromID, toID, chatContent, chatTime
     OR (fromID = 'admin' AND toID = 'abc')
    AND chatID > 0 
  ORDER BY chatTime;
+ 
+ SELECT c.chatID, c.fromID, c.toID, c.chatContent, c.chatTime, i.img 
+		  FROM CHAT c, USERINFO i 
+		 WHERE ((fromID = 'admin' AND toID = 'sample')
+		    OR (fromID = 'sample' AND toID = 'admin'))
+		   AND chatID > 0
+		   AND c.toId = i.userid
+		 ORDER BY chatTime;
+ 
  
  SELECT * FROM qna WHERE isFAQ ='T';
 -------------------------------------------------------------------------------
@@ -384,45 +400,7 @@ select i.userid, i.dealId, d.area, d.floor, d.dealAmount, f.AptName, f.img
 
 ------------------------------------------------------------------------------------------------
 
-UPDATE USERINFO SET mrole = 'ROLE_ADMIN' where username='관리자';
-SELECT * FROM USERINFO;
 
-select i.userid, i.inum, d.area, d.floor, d.dealAmount, f.AptName, f.img
-	from housedeal d JOIN interest i on d.hdnum = i.inum JOIN houseinfo f on d.hdnum = f.hsnum
-	where i.userid = 'abc';
-    
-SELECT *
-	  FROM (SELECT ROWNUM AS N
-	   			 , no
-	   			 , userid
-	   			 , userpw
-	   			 , username
-	   			 , useremail
-	   			 , userphone
-	   			 , mrole
-	   			 , img
-	   		  FROM (SELECT * FROM USERINFO ORDER BY no ASC))
-	 WHERE N BETWEEN 1 AND 5;
-
-SELECT COUNT(*) FROM USERINFO;
-SELECT COUNT(*) FROM USERINFO WHERE username LIKE '%1%';
-SELECT * 
-FROM (SELECT ROWNUM AS N
-	   			 , no
- 	   			 , userid 
- 	   			 , userpw
- 	   			 , username 
- 	   			 , useremail 
- 	   			 , userphone 
- 	   			 , mrole 
- 	   			 , img 
- 	   		  FROM (SELECT * FROM USERINFO ORDER BY no ASC)) 
- 	 WHERE N BETWEEN 1 AND 10 
- 	   AND username like '%1%'; 
-       
-SELECT * FROM USERINFO WHERE username like '%1%';
-
----------------------------------------------------------------------------------------
 
 INSERT INTO NOTICE VALUES(1, '공지테스트1', 'admin', default, default, '테스트입니다1.', default);
 INSERT INTO NOTICE VALUES(2, '공지테스트2', 'admin', default, default, '테스트입니다2.', default);

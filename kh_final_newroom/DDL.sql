@@ -3,35 +3,72 @@
 DROP TABLE USERINFO;
 CREATE TABLE USERINFO(
     no NUMBER PRIMARY KEY
-  , userId VARCHAR2(20) UNIQUE
-  , userPw VARCHAR2(150)
-  , userName VARCHAR2(15)
-  , userEmail VARCHAR2(30)
-  , userPhone VARCHAR2(30)
+  , userId VARCHAR2(20) NOT NULL UNIQUE
+  , userPw VARCHAR2(150) NOT NULL
+  , userName VARCHAR2(15) NOT NULL
+  , userEmail VARCHAR2(30) NOT NULL
+  , userPhone VARCHAR2(30) NOT NULL
   , mRole VARCHAR2(20) DEFAULT 'ROLE_MEMBER' CHECK (mRole IN('ROLE_MEMBER','ROLE_ADMIN'))
   , enabled NUMBER DEFAULT 1
-  , img VARCHAR2(100)
+  , img VARCHAR2(100) NOT NULL
+);
+
+
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------
+
+DROP TABLE CHAT_ROOM;
+CREATE TABLE CHAT_ROOM(
+    roomID NUMBER PRIMARY KEY
+  , userID VARCHAR2(20) REFERENCES USERINFO(userId) ON DELETE CASCADE
 );
 -------------------------------------------------------------------------------
 
 DROP TABLE CHAT;
 CREATE TABLE CHAT(
     chatID NUMBER PRIMARY KEY
-  , fromID VARCHAR2(20) REFERENCES USERINFO(userid)
-  , toID VARCHAR2(20) REFERENCES USERINFO(userid)
+  , fromID VARCHAR2(20) REFERENCES USERINFO(userid) ON DELETE CASCADE
+  , toID VARCHAR2(20) REFERENCES USERINFO(userid) ON DELETE CASCADE
   , chatContent VARCHAR2(2000)
   , chatTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
 ------------------------------------------------------------------------------
-DROP TABLE CHAT_ROOM;
-CREATE TABLE CHAT_ROOM(
-    roomID NUMBER PRIMARY KEY
-  , userID VARCHAR2(20)
+SELECT * FROM QNA;
+DROP TABLE QNA;
+CREATE TABLE QNA(
+    bnum NUMBER PRIMARY KEY
+  , btitle VARCHAR2(100)
+  , userid VARCHAR2(20) REFERENCES USERINFO(userid) ON DELETE CASCADE
+  , breadcnt NUMBER DEFAULT 0
+  , bwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  , bcontent VARCHAR2(2000)
+  , blevel NUMBER REFERENCES QNA(bnum)
+  , questionnum NUMBER DEFAULT 0
+  , isFAQ CHAR(1) DEFAULT 'F' CHECK(isFAQ IN('T','F'))
 );
 
--------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+
+DROP TABLE NOTICE;
+CREATE TABLE NOTICE(
+    bnum NUMBER PRIMARY KEY
+  , btitle VARCHAR2(100)
+  , userid VARCHAR2(20) REFERENCES USERINFO(userid)
+  , breadcnt NUMBER DEFAULT 0
+  , bwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  , bcontent VARCHAR2(2000)
+  , cmtcnt NUMBER DEFAULT 0
+);
+
+-----------------------------------------------------------------------------------------------
+
 DROP TABLE HOSPITAL;
 CREATE TABLE HOSPITAL(
     no NUMBER PRIMARY KEY
@@ -112,18 +149,7 @@ CREATE TABLE INTEREST(
 
 
 
-DROP TABLE NOTICE;
-CREATE TABLE NOTICE(
-    bnum NUMBER PRIMARY KEY
-  , btitle VARCHAR2(100)
-  , userid VARCHAR2(20) REFERENCES USERINFO(userid)
-  , breadcnt NUMBER DEFAULT 0
-  , bwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  , bcontent VARCHAR2(2000)
-  , cmtcnt NUMBER DEFAULT 0
-);
 
------------------------------------------------------------------------------------------------
 DROP TABLE COMMENT_T;
 CREATE TABLE COMMENT_T(
     cnum NUMBER PRIMARY KEY
@@ -134,15 +160,4 @@ CREATE TABLE COMMENT_T(
 );
 
 -----------------------------------------------------------------------------------
-DROP TABLE QNA;
-CREATE TABLE QNA(
-    bnum NUMBER PRIMARY KEY
-  , btitle VARCHAR2(100)
-  , userid VARCHAR2(20)
-  , breadcnt NUMBER DEFAULT 0
-  , bwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  , bcontent VARCHAR2(2000)
-  , blevel NUMBER REFERENCES qna(bnum)
-  , questionnum NUMBER DEFAULT 0
-  , isFAQ CHAR(1) DEFAULT 'F' CHECK(isFAQ IN('T','F'))
-);
+

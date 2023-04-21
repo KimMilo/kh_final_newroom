@@ -176,7 +176,6 @@ String time = df.format(today);
 			})
 			
 			//새로운 메시지 전송
-			//엔터 한번 칠 때마다 실행
 			function submitFunction(){ 
 				var chatContent = $('#chatContent').val();
 				$.ajax({
@@ -203,7 +202,7 @@ String time = df.format(today);
 			//기존에 주고받은 채팅 목록
 			function chatListFunction(){ 
 				$.ajax({
-					url : '${rUrl}/chat/' + lastID + '/${userid}/admin',
+					url : '${rUrl}/chat/${userid}/admin',
 					method : 'get',
 					success: function(result){
 						if(result != ""){
@@ -440,18 +439,16 @@ String time = df.format(today);
 				userID = this.id;
 				//기존 채팅목록 가져오기
 				$.ajax({
-					url:'${rUrl}/chat/admin/' + userID,
-					method: 'get',
-					success : function(result){
-						if(result == "") return;
-						for(var i=0; i<result.length; i++){
-							if(result == "") return;
+					url : '${rUrl}/chat/admin/' + userID,
+					method : 'get',
+					success: function(result){
+						if(result != ""){
 							for(var i=0; i<result.length; i++){
-								if(result[i]["fromID"] == "${userid}"){ //내가 쓴거
+								if(result[i]["fromID"] == "admin"){ //내가 쓴거
 									addMyMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"])
 								}
 								else{ //상대방이 쓴거
-									addYourMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"])
+									addYourMessage(result[i]["chatContent"], result[i]["chatTime"])
 								}
 								if(i == result.length-1) lastID = result[i]["chatID"]; //마지막 메시지번호
 							}
@@ -460,7 +457,9 @@ String time = df.format(today);
 					error: function(error){
 						console.log(error);
 					}
-				})
+				});
+		
+				
 				
 				//채팅창 보이고 방 목록 안보이게
 				$('#chatRoom').css("display","block");
@@ -469,7 +468,7 @@ String time = df.format(today);
 				
 				//채팅 메시지 갱신
 				getInfiniteChat(userID);
-			})
+			});
 			
 			//채팅방에서 뒤로가기 버튼
 			$('.kpjiFD').on('click', function(){
@@ -512,7 +511,6 @@ String time = df.format(today);
 			}
 			
 			//새로운 메시지 전송
-			//엔터 한번 칠 때마다 실행
 			function submitFunction(){ 
 				var chatContent = $('#chatContent').val();
 				
@@ -560,7 +558,7 @@ String time = df.format(today);
 			//새롭게 작성한 메시지가 있는지
 			function chatLoadNewMessage(userID){
 				$.ajax({
-					url : '${rUrl}/chat/'+lastID+'/${userid}/'+userID,
+					url:'${rUrl}/chat/' + lastID + '/admin/' + userID,
 					method : 'get',
 					success: function(result){
 						if(result == "") return;
