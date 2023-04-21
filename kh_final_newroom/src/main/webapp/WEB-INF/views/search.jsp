@@ -221,7 +221,7 @@
 							</sec:authorize>	
    							
    							<c:if test= "${dto.img eq null}">
-								<img src="${rUrl}/resources/img/room_sample.PNG" alt=""
+								<img src="${rUrl}/resources/img/room_sample1.png" alt=""
 									style="width: 140px; height: 100px;">
    							</c:if>
 							<c:if test= "${dto.img ne null}">
