@@ -85,7 +85,7 @@
 						<td>${data.bnum}</td>
 						<td id="title"><a href="noticeRead?bnum=${data.bnum}" style="color:black;">${data.btitle}
 						<c:if test="${!empty data.cmtCnt}">
-							[${data.cmtCnt}]
+							<button class="btn btn-info btn-sm">[${data.cmtCnt}]</button>
 						</c:if>
 						</a></td>
 						<td>${data.userid}</td>
