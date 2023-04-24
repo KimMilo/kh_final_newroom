@@ -69,8 +69,8 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public MemberDto findUser(MemberDto data) {
-		return dao.findUser(data);
+	public MemberDto findPw(MemberDto data) {
+		return dao.findPw(data);
 	}
 	
 	@Override
@@ -81,6 +81,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberDto getOne(String name) {
 		return dao.getOne(name);
+	}
+
+	@Override
+	public MemberDto findId(MemberDto data) {
+		return dao.findId(data);
 	}
 
 }

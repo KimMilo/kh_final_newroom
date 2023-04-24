@@ -3,7 +3,7 @@
 INSERT INTO USERINFO VALUES(1,'admin','admin','관리자', 'admin@newroom.co.kr', '010-1234-5678','ROLE_ADMIN',1,'chat_profile_mgr2.png');
 UPDATE USERINFO SET mrole = 'ROLE_ADMIN' where username='관리자';
        
---SELECT * FROM USERINFO;
+SELECT * FROM USERINFO;
 
 ---------------------------------------------------------------------------------------
 SELECT c.chatID, c.fromID, c.toID, c.chatContent, c.chatTime,i.img

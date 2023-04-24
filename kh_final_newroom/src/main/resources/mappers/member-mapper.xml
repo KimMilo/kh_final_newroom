@@ -34,8 +34,12 @@
 	DELETE FROM userinfo WHERE userid = #{userid}
 </delete>
 
-<select id="findUser" parameterType="MemberDto" resultType="MemberDto">
+<select id="findPw" parameterType="MemberDto" resultType="MemberDto">
 	SELECT * FROM userinfo WHERE userid = #{userid} and username = #{username} and userphone = #{userphone}
+</select>
+
+<select id="findId" parameterType="MemberDto" resultType="MemberDto">
+	SELECT * FROM userinfo WHERE userpw = #{userpw} and username = #{username} and userphone = #{userphone} and useremail = #{useremail}
 </select>
 
 <update id="modifyRole" parameterType="MemberDto">
@@ -75,6 +79,6 @@
 </select>
 
 <select id="selectOneId" resultType="MemberDto">
-	SELECT * FROM USERINFO WHERE userid = #{username}
+	SELECT * FROM USERINFO WHERE userid = #{username} or username = #{username}
 </select>
 </mapper>

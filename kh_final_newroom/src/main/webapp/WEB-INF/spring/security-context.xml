@@ -19,6 +19,7 @@
 		<security:intercept-url pattern="/" access="permitAll" />
 		<security:intercept-url pattern="/member/findPw" access="permitAll" />
 		<security:intercept-url pattern="/member/modifydPw" access="permitAll" />
+		<security:intercept-url pattern="/member/findId" access="permitAll" />
 		<security:intercept-url pattern="/interest/**" access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')" />
 		<security:intercept-url pattern="/noticeWrite" access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/notice*" access="hasAnyRole('ROLE_MEMBER','ROLE_ADMIN')" />

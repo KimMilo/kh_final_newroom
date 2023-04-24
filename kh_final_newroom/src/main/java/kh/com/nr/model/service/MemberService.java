@@ -15,7 +15,8 @@ public interface MemberService {
 	public int update(MemberDto member); //회원정보 수정
 	public int updateById(MemberDto member); //아이디로 회원정보 수정
 	public int delete(String userid); //회원정보 삭제
-	public MemberDto findUser(MemberDto data); //비밀번호 찾기
+	public MemberDto findPw(MemberDto data); //비밀번호 찾기
+	public MemberDto findId(MemberDto data); //ID 찾기
 	public int modifyRole(MemberDto dto); //회원 관리자 정보 수정
 
 	public Paging getPage(int pageNumber, int pageListLimit, String name);//회원조회

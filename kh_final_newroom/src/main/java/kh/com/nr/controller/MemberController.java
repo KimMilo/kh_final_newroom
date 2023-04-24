@@ -53,50 +53,38 @@ public class MemberController {
 			return "true";
 		return "false";
 	}
-
-	/**
-	 * TODO 이름, 전화번호, 이메일 인증을 통해서 인증번호 받기를 클릭하여 인증번호를 발송하는것까지만 구현하기
-	 * 
-	 * @return
-	 */
-//	//아이디 찾기 페이지 이동
-//	@GetMapping("/findId") 
-//	public String findIdGet() {
-//		return "findId";
-//	}
-//		
-//	//아이디 찾기
-//	@PostMapping("/findId") 
-//	public String findId(String username, String userphone, String useremail, Model model) {
-//		MemberDto data = new MemberDto();
-//		data.setUsername(username);
-//		data.setUseremail(useremail);
-//		data.setUserphone(userphone);
-//		
-//		MemberDto member = mservice.findUser(data);
-//		if(member == null) { //회원 찾기 실패
-//			model.addAttribute("findResult", "fail");
-//		}
-//		model.addAttribute("user", member);
-//		model.addAttribute("findResult", "success");
-//		return "findId";
-//	}
+	//아이디 찾기 페이지 이동
+	@GetMapping("/findId") 
+	public String findIdGet() {
+		return "findId";
+	}
+		
+	//아이디 찾기
+	@PostMapping("/findId") 
+	public String findId(MemberDto dto, Model model) {
+		MemberDto mdto = mservice.getOne(dto.getUsername());
+		dto.setUserpw(mdto.getUserpw());
+		MemberDto member = mservice.findId(dto);
+		
+		if (member == null) { // 회원 찾기 실패
+			model.addAttribute("findResult", "fail");
+		} else {
+			model.addAttribute("user", member);
+			model.addAttribute("findResult", "success");
+		}
+		return "findId";
+	}
 
 	// 비밀번호 찾기 페이지 이동
-	@GetMapping("/findpw")
+	@GetMapping("/findPw")
 	public String findPwGet() {
 		return "findPw";
 	}
 
 	// 비밀번호 찾기
-	@PostMapping("/findpw")
-	public String findPw(String username, String userid, String userphone, Model model) {
-		MemberDto data = new MemberDto();
-		data.setUsername(username);
-		data.setUserid(userid);
-		data.setUserphone(userphone);
-
-		MemberDto member = mservice.findUser(data);
+	@PostMapping("/findPw")
+	public String findPw(MemberDto dto, Model model) {
+		MemberDto member = mservice.findPw(dto);
 		if (member == null) { // 회원 찾기 실패
 			model.addAttribute("findResult", "fail");
 		} else {
@@ -107,7 +95,7 @@ public class MemberController {
 	}
 	
 	// 비밀번호 수정
-	@PostMapping("/modifypw")
+	@PostMapping("/modifyPw")
 	public String modifyPw(MemberDto dto) {
 		dto.setUserpw(pwEncoder.encode(dto.getUserpw()));
 		mservice.updateById(dto);

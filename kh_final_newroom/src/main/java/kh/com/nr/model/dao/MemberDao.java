@@ -41,8 +41,12 @@ public class MemberDao {
 		return sqlSession.delete("member.delete", userid);
 	}
 
-	public MemberDto findUser(MemberDto data) {
-		return sqlSession.selectOne("member.findUser", data);
+	public MemberDto findPw(MemberDto data) {
+		return sqlSession.selectOne("member.findPw", data);
+	}
+	
+	public MemberDto findId(MemberDto data) {
+		return sqlSession.selectOne("member.findId", data);
 	}
 
 	public int modifyRole(MemberDto dto) {
@@ -61,5 +65,7 @@ public class MemberDao {
 	public MemberDto getOne(String username) {
 		return sqlSession.selectOne("member.selectOneId", username);
 	}
+
+
 	
 }
