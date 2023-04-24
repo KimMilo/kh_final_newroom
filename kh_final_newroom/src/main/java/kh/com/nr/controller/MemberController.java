@@ -156,7 +156,6 @@ public class MemberController {
 			@RequestParam(name = "report", required = false) MultipartFile multi
 		  , HttpServletRequest request
 		  , HttpServletResponse response
-		  , ModelAndView mv
 		  , MemberDto dto) {
 		Map<String, String> filePath;
 		
@@ -176,7 +175,21 @@ public class MemberController {
 	// 회원정보 수정
 	@ResponseBody
 	@PostMapping("/mypage")
-	public String memberUpdate(@RequestBody MemberDto dto) {
+	public String memberUpdate(
+			@RequestParam(name = "report", required = false) MultipartFile multi
+			  , HttpServletRequest request
+			  , HttpServletResponse response
+			  , MemberDto dto) {
+		
+		Map<String, String> filePath;
+		
+		try {
+			filePath = fileUtil.saveJoin(multi, request, null);
+			dto.setImg(filePath.get("original"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		MemberDto mdto = mservice.getOne(auth.getName());
 		int result = 0;

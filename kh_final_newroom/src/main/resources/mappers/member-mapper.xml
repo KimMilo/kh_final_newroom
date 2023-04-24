@@ -19,6 +19,9 @@
 <update id="update" parameterType="MemberDto">
 	UPDATE userinfo SET username = #{username}, useremail = #{useremail}, 
 		userphone = #{userphone}
+		<if test="img != null or img == ''">
+		 ,img = #{img}
+		</if>
 	WHERE userid = #{userid}
 </update>
 

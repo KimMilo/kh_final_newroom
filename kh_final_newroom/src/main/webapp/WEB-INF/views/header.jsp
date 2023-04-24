@@ -48,7 +48,7 @@
 						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 						<input type="text" name="userid" id="useridLogin"
 							class="my-2 form-control col-md-12 d-inline" placeholder="아이디" required><br>
-						<input type="password" name="userpw" id="userpwLogin"
+						<input type="password" autoComplete="off" name="userpw" id="userpwLogin"
 							class="form-control col-md-12 d-inline" placeholder="패스워드" required>
 						<div style="float: left;">
 							<a href="${rUrl}/member/findid" class="text-secondary float-right py-2"
@@ -101,7 +101,7 @@
 							<label for="userpwJoin" class="col-3 control-label">비밀번호<span
 								style="color: red;">*</span></label>
 							<div class="col-9">
-								<input type="password" class="form-control" id="userpwJoin" name="userpw"
+								<input type="password" autoComplete="off" class="form-control" id="userpwJoin" name="userpw"
 									placeholder="비밀번호를 입력하세요" required>
 							</div>
 						</div>

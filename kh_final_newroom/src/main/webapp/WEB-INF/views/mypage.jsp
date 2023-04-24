@@ -37,33 +37,35 @@
 <div id="con1" class="collapse mt-5 my-auto pt-5 pb-5">
 	<div class="content container">
        	<div class="form form-group">
-           	<div class="form-group row justify-content-center col-md-11">
-                 <label for="id" class="col-md-2 col-form-label text-right">아이디</label>
+       		<div class="form-group row justify-content-center col-md-11">
+                 <label class="col-md-2 col-form-label text-right" style="position: relative; top: 7px;">회원 사진</label>
                	 <div class="col-md-3">
-                    <input type="text" class="bg-transparent form-control border-0" value="${loginInfo.userid}" readonly>
+                    <img width="80px;" height="70px;" src="${rUrl }/resources/img/userimg/${loginInfo.img}">
+                 </div>
+           </div>
+           	<div class="form-group row justify-content-center col-md-11">
+                 <label class="col-md-2 col-form-label text-right">아이디</label>
+               	 <div class="col-md-3" style="position: relative; top: 5px;">
+                    ${loginInfo.userid}
                  </div>
            </div>
           
           <div class="form-group row justify-content-center col-md-11">
-               <label for="id" class="bg-transparent col-md-2 col-form-label text-right ">이름<span
-                            style="color: red;">*</span></label>
-               <div class="col-md-3">
-                    <input type="text" class="bg-transparent form-control border-0" value="${loginInfo.username}" readonly >
+               <label class="bg-transparent col-md-2 col-form-label text-right ">이름</label>
+               <div class="col-md-3" style="position: relative; top: 5px;">
+                    ${loginInfo.username}
                </div>
           </div>
           <div class="form-group row justify-content-center col-md-11">
-               <label for="id" class="col-md-2 col-form-label text-right">이메일<span
-                            style="color: red;">*</span></label>
-               <div class="col-md-3">
-                    <input type="email" class="bg-transparent form-control border-0" readonly
-                            value="${loginInfo.useremail}">
+               <label class="col-md-2 col-form-label text-right">이메일</label>
+               <div class="col-md-3" style="position: relative; top: 5px;">
+                   ${loginInfo.useremail}
                </div>
           </div>
           <div class="form-group row justify-content-center col-md-11">
-               <label for="id" class="col-md-2 col-form-label text-right">전화번호<span
-                            style="color: red;">*</span></label>
-               <div class="col-md-3">
-                   <input type="tel" class="bg-transparent form-control border-0" value="${loginInfo.userphone}" readonly>
+               <label class="col-md-2 col-form-label text-right">전화번호</label>
+               <div class="col-md-3" style="position: relative; top: 5px;">
+                   ${loginInfo.userphone}
                </div>
           </div>
        </div>
@@ -74,41 +76,55 @@
 <div id="con2" class="collapse mt-5 my-auto pt-5 pb-5">
       <div class="content container">
             <div class="form form-group">
+	            <div class="form-group row justify-content-center col-md-11">
+	                 <label class="col-md-2 col-form-label text-right" style="position: relative; top: 7px;">회원 사진</label>
+	               	 <div class="col-md-3">
+	                    <img width="80px;" height="70px;" src="${rUrl }/resources/img/userimg/${loginInfo.img}">
+	                 </div>
+	           </div>
+      		<form id="modifyInfo">
+	            <div class="form-group row justify-content-center col-md-11">
+            		<label for="modifyImg" class="col-md-2 col-form-label text-right" style="position: relative; left: 10px; font-size:12px; color: blue;"><b>사진 변경</b></label>
+	            	<div class="col-md-3">
+		                <input type="file" id="modifyImg" name="report">
+	            	</div>
+	           </div>
                 <div class="form-group row justify-content-center col-md-11">
-                    <label for="id" class="col-md-2 col-form-label text-right">아이디</label>
+                    <label class="col-md-2 col-form-label text-right">아이디</label>
                     <div class="col-md-3">
-                        <input type="text" id="useridModify" class="form-control" value="${loginInfo.userid}" readonly>
+                        <input type="text" name="userid" class="form-control" value="${loginInfo.userid}" readonly>
                     </div>
                 </div>
             	<div class="form-group row justify-content-center col-md-11">
-                    <label for="id" class="col-md-2 col-form-label text-right">비밀번호<span
+                    <label for="userpwCheck" class="col-md-2 col-form-label text-right">비밀번호<span
                             style="color: red;">*</span></label>
                     <div class="col-md-3">
-                        <input type="password" id="userpwModify" class="form-control" placeholder="비밀번호 재입력.">
+                        <input type="password" autoComplete="off" name="userpw" id="userpwCheck" class="form-control" placeholder="비밀번호 재입력.">
                     </div>
                 </div>
                 <div class="form-group row justify-content-center col-md-11">
-                    <label for="id" class="col-md-2 col-form-label text-right">이름<span
+                    <label for="usernameModify" class="col-md-2 col-form-label text-right">이름<span
                             style="color: red;">*</span></label>
                     <div class="col-md-3">
-                        <input type="text" id="usernameModify" class="form-control" value="${loginInfo.username}">
+                        <input type="text" name="username" id="usernameModify" class="form-control" value="${loginInfo.username}">
                     </div>
                 </div>
                 <div class="form-group row justify-content-center col-md-11">
-                    <label for="id" class="col-md-2 col-form-label text-right">이메일<span
+                    <label for="useremailModify" class="col-md-2 col-form-label text-right">이메일<span
                             style="color: red;">*</span></label>
                     <div class="col-md-3">
-                        <input type="email" id="useremailModify" class="form-control"
+                        <input type="email" name="useremail" id="useremailModify" class="form-control"
                             value="${loginInfo.useremail}">
                     </div>
                 </div>
                 <div class="form-group row justify-content-center col-md-11">
-                    <label for="id" class="col-md-2 col-form-label text-right">전화번호<span
+                    <label for="userphoneModify" class="col-md-2 col-form-label text-right">전화번호<span
                             style="color: red;">*</span></label>
                     <div class="col-md-3">
-                        <input type="tel" id="userphoneModify" class="form-control" value="${loginInfo.userphone}">
+                        <input type="tel" name="userphone" id="userphoneModify" class="form-control" value="${loginInfo.userphone}">
                     </div>
                 </div>
+                </form>
                 <div class="row justify-content-center">
                 	<button id="modifyMember" class="btn btn-outline-danger col-md-3 mt-3 mb-5">수정완료</button>
                 </div>
@@ -188,34 +204,35 @@ $(function () {
             
        	// 수정 버튼 누르면 수정 진행
          $("#modifyMember").click(function(){
-         	var dto = {
-				'userid' : $("#useridModify").val(),
-				'userpw' : $("#userpwModify").val(),
-				'username' : $("#usernameModify").val(),
-				'useremail' : $("#useremailModify").val(),
-				'userphone' : $("#userphoneModify").val(),
- 	    	}
-         	
-         	$.ajax({
-         		url : '${rUrl}/member/mypage',
-         		method: 'post',
-         		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
-         		contentType: 'application/json; charset=utf-8',
-         		data: JSON.stringify(dto),
-         	    success:function(response){
-         	    	if(response == 'success'){
-          	    	alert("수정 하였습니다.");
-         	    	}else{
-         	    		alert("수정에 실패하였습니다.");
-         	    	}
-         	    	
-        	    	location.href="${rUrl}/member/mypage";
-         	    },
-         	    error : function(xhr, status, msg){
- 					console.log(status + " " + msg);
- 				}
-         	    
-         	});
+        	var pwCheck = $('#userpwCheck').val();
+        	if(pwCheck == ""){
+        		alert("비밀번호 확인이 필요합니다.")
+        	} else {
+	         	var form = $('#modifyInfo')[0];
+	         	var formData = new FormData(form);
+	         	$.ajax({
+	         		url : '${rUrl}/member/mypage',
+	         		method: 'post',
+	         		enctype:'multipart/form-data',
+	         		beforeSend : function(xhr){ xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");},
+	         		data: formData,
+	         		processData: false,
+				    contentType: false,
+	         	    success:function(response){
+	         	    	if(response == 'success'){
+	          	    	alert("수정 하였습니다.");
+	         	    	}else{
+	         	    		alert("수정에 실패하였습니다.");
+	         	    	}
+	         	    	
+	        	    	location.href="${rUrl}/member/mypage";
+	         	    },
+	         	    error : function(xhr, status, msg){
+	 					console.log(status + " " + msg);
+	 				}
+	         	    
+	         	});
+        	}
          });   
      });
 </script>
