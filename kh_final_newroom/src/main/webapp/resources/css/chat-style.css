@@ -329,6 +329,7 @@
 
 
 .kWDOaK {
+	overflow:scroll !important;
     z-index: 0;
     padding-top: 60px;
 }

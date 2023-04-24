@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="rUrl" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html>
 <html lang="kr">
@@ -20,7 +21,7 @@
     <jsp:include page="header.jsp" />
     	
         <!-- 아이디 찾기 내용 -->
-        <c:if test="${empty user}">
+    	<sec:authorize access="!isAuthenticated()">
 	        <div class="container bg-light rounded" style="width: 700px;">
 	            <h1 class="m-md-3">아이디 찾기</h1>
 	            <form action="${rUrl}/member/findId" method="post" class="m-md-3 py-md-3">
@@ -54,7 +55,7 @@
 	                </div>
 	            </form>
 	        </div>
-       </c:if>
+       </sec:authorize>
     <!-- Footer -->
     <jsp:include page="footer.jsp" />
 <script>
@@ -67,6 +68,12 @@
 		location.href="${rUrl}";
 	}
  </script>
+ <sec:authorize access="isAuthenticated()">
+ <script>
+ 	alert("이미 로그인 상태입니다 :() 메인으로 이동");
+ 	location.href="${rUrl}";
+ </script>
+ </sec:authorize>
 </body>
 
 </html>

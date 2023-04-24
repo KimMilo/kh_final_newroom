@@ -159,9 +159,12 @@ String time = df.format(today);
 				chatListFunction(); //기존 채팅방 목록
 				
 				$('#chat_icon').click(function() {
+										
 					$('#chat_content').css("display", "block");
 					$('#chat_icon').css("display", "none");
 					getInfiniteChat();//기존 채팅목록 갱신
+					//스크롤 자동 내림
+					$('.hZzROU')[0].scrollIntoView(false);
 				})
 				
 				$('.closeBtn').click(function(){ //닫기 버튼
@@ -214,10 +217,12 @@ String time = df.format(today);
 									addYourMessage(result[i]["chatContent"], result[i]["chatTime"])
 								}
 								if(i == result.length-1) lastID = result[i]["chatID"]; //마지막 메시지번호
+								 
 							}
 						}
 						var chatTime = '<%= time %>';
 						addHelloMessage(chatTime); //첫 인사말 한번만
+						 //스크롤 자동 내림
 					},
 					error: function(error){
 						console.log(error);
@@ -241,8 +246,6 @@ String time = df.format(today);
 							}
 							lastID = result[i]["chatID"];
 						}
-						 //스크롤 자동 내림
-						$('#chatList').scrollTop($('#chatList').scrollHeight);
 					},
 					error: function(error){
 						console.log(error);
@@ -266,6 +269,7 @@ String time = df.format(today);
 						'</div></div></div></div></div>'+
 						'<div class="krXYna"><div size="24" class="user_profile" style="background-image: url(${rUrl}/resources/img/userimg/'+img+')"></div></div></div>'
 				);
+				
 			}
 			
 			//화면에 보여줌 2. 상대방 메시지
@@ -323,6 +327,8 @@ String time = df.format(today);
 				var chatContent = $(this).next().text();
 				var chatTime = '<%= time %>';
 				addYourMessage(chatContent, chatTime);
+				//스크롤 자동 내림
+				$('.hZzROU')[0].scrollIntoView(false);
 			})
 			
 			$(document).on('mouseover', '.qnaContent', function(){
@@ -337,10 +343,12 @@ String time = df.format(today);
 			
 			var setNewMessage;
 			//3초마다 새로운 메시지가 있는지 확인
-			function getInfiniteChat(){ 
+			function getInfiniteChat(){
 				setNewMessage = setInterval(function(){
+					//스크롤 자동 내림
+					$('.hZzROU')[0].scrollIntoView(false);
 					chatLoadNewMessage();
-				}, 3000);
+				}, 100);
 			}
 		</script>
 	</sec:authorize>
@@ -453,6 +461,8 @@ String time = df.format(today);
 									addYourMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"], result[i]["img"])
 								}
 								if(i == result.length-1) lastID = result[i]["chatID"]; //마지막 메시지번호
+								 //스크롤 자동 내림
+								$('.hZzROU')[0].scrollIntoView(false);
 							}
 						}
 					},
@@ -527,11 +537,14 @@ String time = df.format(today);
 					}),
 					success: function(result){
 						console.log("전송 완료");
+						
 					},
 					error: function(error){
 						console.log(error);
 					}
 				});
+				 //스크롤 자동 내림
+				$('.hZzROU')[0].scrollIntoView(false);
 				$('#chatContent').val('');
 			}
 			
@@ -571,6 +584,8 @@ String time = df.format(today);
 								addYourMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"], result[i]["img"])
 							}
 							if(i == result.length-1) lastID = result[i]["chatID"]; //마지막 메시지번호
+							 //스크롤 자동 내림
+							$('.hZzROU')[0].scrollIntoView(false);
 						}
 					},
 					error: function(error){
