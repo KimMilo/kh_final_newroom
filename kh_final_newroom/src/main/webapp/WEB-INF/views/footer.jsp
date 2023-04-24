@@ -198,6 +198,8 @@ String time = df.format(today);
 						console.log(error);
 					}
 				});
+				//스크롤 자동 내림
+				$('.hZzROU')[0].scrollIntoView(false);
 				$('#chatContent').val('');
 			}
 			var lastID = 0; //가장 마지막에 받은 메시지 아이디
@@ -245,6 +247,8 @@ String time = df.format(today);
 								addYourMessage(result[i]["chatContent"], result[i]["chatTime"])
 							}
 							lastID = result[i]["chatID"];
+							//스크롤 자동 내림
+							$('.hZzROU')[0].scrollIntoView(false);
 						}
 					},
 					error: function(error){
@@ -345,10 +349,8 @@ String time = df.format(today);
 			//3초마다 새로운 메시지가 있는지 확인
 			function getInfiniteChat(){
 				setNewMessage = setInterval(function(){
-					//스크롤 자동 내림
-					$('.hZzROU')[0].scrollIntoView(false);
 					chatLoadNewMessage();
-				}, 100);
+				}, 3000);
 			}
 		</script>
 	</sec:authorize>
