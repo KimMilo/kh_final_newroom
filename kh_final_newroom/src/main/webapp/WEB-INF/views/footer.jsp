@@ -208,7 +208,7 @@ String time = df.format(today);
 						if(result != ""){
 							for(var i=0; i<result.length; i++){
 								if(result[i]["fromID"] == "${userid}"){ //내가 쓴거
-									addMyMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"])
+									addMyMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"], result[i]["img"])
 								}
 								else{ //상대방이 쓴거
 									addYourMessage(result[i]["chatContent"], result[i]["chatTime"])
@@ -234,7 +234,7 @@ String time = df.format(today);
 						if(result == "") return;
 						for(var i=0; i<result.length; i++){
 							if(result[i]["fromID"] == "${userid}"){ //내가 쓴거
-								addMyMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"])
+								addMyMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"], result[i]["img"])
 							}
 							else{ //상대방이 쓴거
 								addYourMessage(result[i]["chatContent"], result[i]["chatTime"])
@@ -251,7 +251,7 @@ String time = df.format(today);
 			}
 			
 			//화면에 보여줌 1.내 메시지
-			function addMyMessage(fromID, chatContent, chatTime){ 
+			function addMyMessage(fromID, chatContent, chatTime, img){ 
 				$('#chatList').append('<div class="me kZiNZK">' + 
 						'<div class="hzdYcJ">'+
 						'<div class="me_ttl">'+
@@ -264,7 +264,7 @@ String time = df.format(today);
 						'<div>'+
 						'<div class="kHnNft gETHTV">'+chatContent+'</div>'+
 						'</div></div></div></div></div>'+
-						'<div class="krXYna"><div size="24" class="user_profile"></div></div></div>'
+						'<div class="krXYna"><div size="24" class="user_profile" style="background-image: url(${rUrl}/resources/img/userimg/'+img+')"></div></div></div>'
 				);
 			}
 			
@@ -439,16 +439,18 @@ String time = df.format(today);
 				userID = this.id;
 				//기존 채팅목록 가져오기
 				$.ajax({
-					url : '${rUrl}/chat/admin/' + userID,
-					method : 'get',
-					success: function(result){
-						if(result != ""){
+					url:'${rUrl}/chat/admin/'+ userID,
+					method: 'get',
+					success : function(result){
+						if(result == "") return;
+						for(var i=0; i<result.length; i++){
+							if(result == "") return;
 							for(var i=0; i<result.length; i++){
 								if(result[i]["fromID"] == "admin"){ //내가 쓴거
 									addMyMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"])
 								}
 								else{ //상대방이 쓴거
-									addYourMessage(result[i]["chatContent"], result[i]["chatTime"])
+									addYourMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"], result[i]["img"])
 								}
 								if(i == result.length-1) lastID = result[i]["chatID"]; //마지막 메시지번호
 							}
@@ -457,9 +459,7 @@ String time = df.format(today);
 					error: function(error){
 						console.log(error);
 					}
-				});
-		
-				
+				})
 				
 				//채팅창 보이고 방 목록 안보이게
 				$('#chatRoom').css("display","block");
@@ -469,6 +469,7 @@ String time = df.format(today);
 				//채팅 메시지 갱신
 				getInfiniteChat(userID);
 			});
+
 			
 			//채팅방에서 뒤로가기 버튼
 			$('.kpjiFD').on('click', function(){
@@ -498,10 +499,10 @@ String time = df.format(today);
 				);
 			}
 			
-			function addYourMessage(fromID, chatContent, chatTime){ 
+			function addYourMessage(fromID, chatContent, chatTime, img){ 
 				$('#chatList').append('<div class="kZiNZK dWAxCX">'+
 						'<div class="krXYna">'+
-						'<div size="24" class="user_profile"></div>'+
+						'<div size="24" class="user_profile" style="background-image: url(${rUrl}/resources/img/userimg/'+img+')"></div>'+
 						'</div><div class="hzdYcJ"><div class="dQDbhd"><div class="your_brWGXU">'+fromID+'</div>'+
 						'<div class="cQwzqb">'+chatTime+
 						'</div></div><div class="gDLhWw"><div class="iJraMc">'+
@@ -558,16 +559,16 @@ String time = df.format(today);
 			//새롭게 작성한 메시지가 있는지
 			function chatLoadNewMessage(userID){
 				$.ajax({
-					url:'${rUrl}/chat/' + lastID + '/admin/' + userID,
+					url : '${rUrl}/chat/'+lastID+'/admin/'+userID,
 					method : 'get',
 					success: function(result){
 						if(result == "") return;
 						for(var i=0; i<result.length; i++){
-							if(result[i]["fromID"] == "${userid}"){ //내가 쓴거
+							if(result[i]["fromID"] == "admin"){ //내가 쓴거
 								addMyMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"])
 							}
 							else{ //상대방이 쓴거
-								addYourMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"])
+								addYourMessage(result[i]["fromID"], result[i]["chatContent"], result[i]["chatTime"], result[i]["img"])
 							}
 							if(i == result.length-1) lastID = result[i]["chatID"]; //마지막 메시지번호
 						}
@@ -578,7 +579,6 @@ String time = df.format(today);
 				});
 			}
 			
-
 			var setNewRoom;
 			var setNewMessage;
 			

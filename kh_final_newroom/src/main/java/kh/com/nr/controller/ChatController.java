@@ -27,14 +27,12 @@ public class ChatController {
 	// 채팅 목록 조회
 	@GetMapping("/{fromID}/{toID}")
 	@ResponseBody
-	public ModelAndView getChatListByID(ModelAndView mv, @PathVariable("fromID") String fromID, @PathVariable("toID") String toID){
+	public List<ChatDto> getChatListByID(ModelAndView mv, @PathVariable("fromID") String fromID, @PathVariable("toID") String toID){
 		ChatDto dto = new ChatDto();
 		dto.setFromID(fromID);
 		dto.setToID(toID);
 		List<ChatDto> cList = cservice.getChatListByID(dto);
-		mv.addObject("cList", cList);
-		mv.setViewName("/{fromID}/toID}");
-		return mv;
+		return cList;
 	}
 	
 	// 새로운 메시지 조회

@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="chat">
 	<select id="getChatListByID" parameterType="ChatDto" resultType="ChatDto"> 
-		SELECT chatID, fromID, toID, chatContent, chatTime
-          FROM CHAT
-         WHERE (fromID = #{fromID} AND toID = #{toID})  
-		    OR (fromID = #{toID} AND toID = #{fromID}) 
+		SELECT c.chatID, c.fromID, c.toID, c.chatContent, c.chatTime,i.img
+          FROM CHAT c, USERINFO i
+         WHERE ((fromID = #{fromID} AND toID = #{toID})  
+		    OR (fromID = #{toID} AND toID = #{fromID})) 
+		   AND c.fromID = i.userid
 		 ORDER BY chatTime
 	</select>
 	
@@ -15,7 +16,7 @@
 		 WHERE ((fromID = #{fromID} AND toID = #{toID})
 		    OR (fromID = #{toID} AND toID = #{fromID}))
 		   AND chatID > #{chatID}
-		   AND c.toId = i.userid
+		   AND c.fromID = i.userid
 		 ORDER BY c.chatTime
 	</select>
 	

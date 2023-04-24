@@ -6,8 +6,23 @@ UPDATE USERINFO SET mrole = 'ROLE_ADMIN' where username='관리자';
 --SELECT * FROM USERINFO;
 
 ---------------------------------------------------------------------------------------
-
+SELECT c.chatID, c.fromID, c.toID, c.chatContent, c.chatTime,i.img
+          FROM CHAT c, USERINFO i
+         WHERE ((fromID = 'sample' AND toID = 'admin')  
+		    OR (fromID = 'admin' AND toID = 'sample')) 
+		   AND c.fromID = i.userid
+		 ORDER BY chatTime;
+    
+    SELECT c.chatID, c.fromID, c.toID, c.chatContent, c.chatTime, 
+            (select img as from userinfo where userid='sample') as img
+		  FROM CHAT c, USERINFO i 
+		 WHERE ((fromID = 'sample' AND toID ='admin')
+		    OR (fromID = 'admin' AND toID ='sample'))
+		   AND c.fromId = i.userid
+		 ORDER BY c.chatTime;
+         
 SELECT * FROM CHAT;
+DELETE FROM CHAT WHERE chatid = 19;
 SELECT chatID, fromID, toID, chatContent, chatTime 
   FROM CHAT 
  WHERE (fromID = 'abc' AND toID = 'admin')
@@ -25,7 +40,7 @@ SELECT chatID, fromID, toID, chatContent, chatTime
 		 WHERE ((fromID = 'admin' AND toID = 'sample')
 		    OR (fromID = 'sample' AND toID = 'admin'))
 		   AND chatID > 0
-		   AND c.toId = i.userid
+		   AND c.fromID = i.userid
 		 ORDER BY chatTime;
  
  
