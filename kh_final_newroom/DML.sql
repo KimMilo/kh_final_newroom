@@ -3,23 +3,24 @@
 INSERT INTO USERINFO VALUES(1,'admin','admin','관리자', 'admin@newroom.co.kr', '010-1234-5678','ROLE_ADMIN',1,'chat_profile_mgr2.png');
 UPDATE USERINFO SET mrole = 'ROLE_ADMIN' where username='관리자';
        
-SELECT * FROM USERINFO;
+--SELECT * FROM USERINFO;
 
----------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+/*
 SELECT c.chatID, c.fromID, c.toID, c.chatContent, c.chatTime,i.img
-          FROM CHAT c, USERINFO i
-         WHERE ((fromID = 'sample' AND toID = 'admin')  
-		    OR (fromID = 'admin' AND toID = 'sample')) 
-		   AND c.fromID = i.userid
-		 ORDER BY chatTime;
+  FROM CHAT c, USERINFO i
+ WHERE ((fromID = 'sample' AND toID = 'admin')  
+    OR (fromID = 'admin' AND toID = 'sample')) 
+   AND c.fromID = i.userid
+ ORDER BY chatTime;
     
-    SELECT c.chatID, c.fromID, c.toID, c.chatContent, c.chatTime, 
-            (select img as from userinfo where userid='sample') as img
-		  FROM CHAT c, USERINFO i 
-		 WHERE ((fromID = 'sample' AND toID ='admin')
-		    OR (fromID = 'admin' AND toID ='sample'))
-		   AND c.fromId = i.userid
-		 ORDER BY c.chatTime;
+SELECT c.chatID, c.fromID, c.toID, c.chatContent, c.chatTime, 
+        (select img as from userinfo where userid='sample') as img
+  FROM CHAT c, USERINFO i 
+  WHERE ((fromID = 'sample' AND toID ='admin')
+     OR (fromID = 'admin' AND toID ='sample'))
+    AND c.fromId = i.userid
+  ORDER BY c.chatTime;
          
 SELECT * FROM CHAT;
 DELETE FROM CHAT WHERE chatid = 19;
@@ -45,139 +46,181 @@ SELECT chatID, fromID, toID, chatContent, chatTime
  
  
  SELECT * FROM qna WHERE isFAQ ='T';
--------------------------------------------------------------------------------
-SELECT * FROM CHAT_ROOM;
+ */
+--------------------------------------------------------------------------------
+--SELECT * FROM CHAT_ROOM;
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
-INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '개포동', '서울미치과의원', '서울시 강남구 개포동 652', '치과', '02-576-2828');
-INSERT INTO HOSPITAL VALUES(2, '서울시', '강남구', '개포동', '이원경내과의원', '서울시 강남구 개포동 653', '내과', '02-575-0441');
-INSERT INTO HOSPITAL VALUES(3, '서울시', '강남구', '개포동', '송영명소아과의원', '서울시 강남구 개포동 169-12', '소아과', '02-573-6227');
-INSERT INTO HOSPITAL VALUES(4, '서울시', '강남구', '개포동', '유대상정형외과의원', '서울시 강남구 개포동 168-5', '정형외과', '02-575-9811');
-INSERT INTO HOSPITAL VALUES(5, '서울시', '강남구', '개포동', '행복한이야기한의원', '서울시 강남구 개포동 655-4', '한의원', '02-3463-1079');
+INSERT INTO QNA VALUES(1, 'FAQ) 로그인이 되지 않아요.', 'admin', default, default, '답변 : 로그인이 되지 않는 경우 비밀번호 찾기를 통해 신규 비밀번호를 등록하여 로그인 해주세요!', 1, default, 'T');
+INSERT INTO QNA VALUES(2, 'FAQ) 매물을 찜하는건 어떻게 하나요?', 'admin', default, default, '답변 : 매물검색 후 조회되는 리스트의 빈하트를 클릭하시면 빨간하트로 변경되며 찜한 매물에 추가됩니다. 로그인 시 메인페이지 하단에 찜한 매물이 보여집니다!', 2, default, 'T');
+INSERT INTO QNA VALUES(3, 'FAQ) 공인중개사 상담은 못하나요?', 'admin', default, default, '답변 : 저희 사이트는 아직 공인중개사 상담은 어렵고 매물검색 시 주변 부동산조회를 통해 연락을 취해보세요!!', 3, default, 'T');
 
-INSERT INTO HOSPITAL VALUES(6, '서울시', '강남구', '논현동', '강남차병원', '서울시 강남구 역삼동 605', '여성병원', '02-1577-4488');
-INSERT INTO HOSPITAL VALUES(7, '서울시', '강남구', '논현동', '라이브치과병원', '서울시 강남구 역삼동 604-1', '치과', '1599-2275');
-INSERT INTO HOSPITAL VALUES(8, '서울시', '강남구', '논현동', '비에비스나무병원', '서울시 강남구 논현동 175-10', '내과', '1577-7502');
-INSERT INTO HOSPITAL VALUES(9, '서울시', '강남구', '논현동', '김성민이비인후과의원', '서울시 강남구 논현동 234-26', '이비인후과', '02-541-5252');
+INSERT INTO QNA VALUES(4, '질문테스트4', 'sample', default, default, '테스트입니다.4', 4, default, default);
+INSERT INTO QNA VALUES(5, '질문테스트5', 'sample', default, default, '테스트입니다.5', 5, default, default);
+INSERT INTO QNA VALUES(6, '질문테스트6', 'sample1', default, default, '테스트입니다.6', 6, default, default);
+INSERT INTO QNA VALUES(7, '질문테스트7', 'sample1', default, default, '테스트입니다.7', 7, default, default);
+INSERT INTO QNA VALUES(8, '질문테스트8', 'sample2', default, default, '테스트입니다.8', 8, default, default);
+INSERT INTO QNA VALUES(9, '질문테스트9', 'sample2', default, default, '테스트입니다.9', 9, default, default);
 
-INSERT INTO HOSPITAL VALUES(10, '서울시', '구로구', '개봉동', '구로다나병원', '서울시 구로구 개봉동 353-2', '정신건강의학과', '0507-1361-8001');
-INSERT INTO HOSPITAL VALUES(11, '서울시', '구로구', '개봉동', '민전산부인과의원', '서울시 구로구 개봉동 161-25', '산부인과', '02-2685-3388');
-INSERT INTO HOSPITAL VALUES(12, '서울시', '구로구', '개봉동', '이기현안과의원', '서울시 구로구 개봉동 156-5', '안과', '02-2612-0110');
-INSERT INTO HOSPITAL VALUES(13, '서울시', '구로구', '개봉동', '명손한의원', '서울시 구로구 개봉동 178-13', '한의원', '02-6949-6019');
-INSERT INTO HOSPITAL VALUES(14, '서울시', '구로구', '개봉동', '탑비뇨기과의원', '서울시 구로구 개봉동 173-1', '비뇨의학과', '02-2687-9575');
 
-INSERT INTO HOSPITAL VALUES(15, '서울시', '구로구', '고척동', '하얀미소치과의원', '서울시 구로구 고척동 189', '치과', '02-2671-2875');
-INSERT INTO HOSPITAL VALUES(16, '서울시', '구로구', '고척동', '목동현대요양병원', '서울시 구로구 고척동 176-3', '요양병원', '02-3666-1122');
-INSERT INTO HOSPITAL VALUES(17, '서울시', '구로구', '고척동', '신목제일의원', '서울시 구로구 고척동 41-2', '내과', '02-2615-7010');
-INSERT INTO HOSPITAL VALUES(18, '서울시', '구로구', '고척동', '동명한의원', '서울시 구로구 고척동 195-13', '한의원', '02-2618-9975');
-INSERT INTO HOSPITAL VALUES(19, '서울시', '구로구', '고척동', '서울드림정형외과의원', '서울시 구로구 고척동 189', '정형외과', '02-2066-3060');
+INSERT INTO QNA VALUES(10, '질문테스트A', 'sample3', default, default, '테스트입니다.A', 10, default, default);
+INSERT INTO QNA VALUES(11, '질문테스트B', 'sample3', default, default, '테스트입니다.B', 11, default, default);
+INSERT INTO QNA VALUES(12, '질문테스트C', 'sample4', default, default, '테스트입니다.C', 12, default, default);
+INSERT INTO QNA VALUES(13, '질문테스트D', 'sample4', default, default, '테스트입니다.D', 13, default, default);
+INSERT INTO QNA VALUES(14, '질문테스트E', 'sample5', default, default, '테스트입니다.E', 14, default, default);
+INSERT INTO QNA VALUES(15, '질문테스트F', 'sample5', default, default, '테스트입니다.F', 15, default, default);
 
-INSERT INTO HOSPITAL VALUES(20, '서울시', '동작구', '노량진동', '노량진튼튼의원', '서울시 동작구 노량진동 330', '정형외과', '02-822-7582');
-INSERT INTO HOSPITAL VALUES(21, '서울시', '동작구', '노량진동', '척척박사한의원', '서울시 동작구 노량진동 119-143', '한의원', '0507-1331-7797안내');
-INSERT INTO HOSPITAL VALUES(22, '서울시', '동작구', '노량진동', '기쁨준내과의원', '서울시 동작구 노량진동 54-11', '내과', '0507-1420-7576');
-INSERT INTO HOSPITAL VALUES(23, '서울시', '동작구', '노량진동', '홍정신건강의학과의원', '서울시 동작구 노량진동 236-4', '정신건강의학과', '02-815-8383');
-INSERT INTO HOSPITAL VALUES(24, '서울시', '동작구', '노량진동', '청화병원', '서울시 동작구 노량진동 311-8', '산부인과', '02-815-3788');
+INSERT INTO QNA VALUES(16, '질문테스트ㄱ', 'sample6', default, default, '테스트입니다.ㄱ', 16, default, default);
+INSERT INTO QNA VALUES(17, '질문테스트ㄴ', 'sample6', default, default, '테스트입니다.ㄴ', 17, default, default);
+INSERT INTO QNA VALUES(18, '질문테스트ㄷ', 'sample7', default, default, '테스트입니다.ㄷ', 18, default, default);
+INSERT INTO QNA VALUES(19, '질문테스트ㄹ', 'sample7', default, default, '테스트입니다.ㄹ', 19, default, default);
+INSERT INTO QNA VALUES(20, '질문테스트ㅁ', 'sample8', default, default, '테스트입니다.ㅁ', 20, default, default);
+INSERT INTO QNA VALUES(21, '질문테스트ㅂ', 'sample8', default, default, '테스트입니다.ㅂ', 21, default, default);
 
-INSERT INTO HOSPITAL VALUES(25, '서울시', '동작구', '대방동', '성애병원', '서울시 영등포구 신길동 451-5', '종합병원', '02-840-7114');
-INSERT INTO HOSPITAL VALUES(26, '서울시', '동작구', '대방동', '송가정의학과의원', '서울시 동작구 대방동 503', '가정의학과', '02-817-1655');
-INSERT INTO HOSPITAL VALUES(27, '서울시', '동작구', '대방동', '서울해치과', '서울시 동작구 대방동 37-2', '치과', '02-817-8228');
-INSERT INTO HOSPITAL VALUES(28, '서울시', '동작구', '대방동', '고이비인후과의원', '서울시 동작구 대방동 501', '이비인후과', '02-814-3777');
-INSERT INTO HOSPITAL VALUES(29, '서울시', '동작구', '대방동', '이영록내과의원', '서울시 동작구 대방동 502', '내과', '02-825-7525');
 
-INSERT INTO HOSPITAL VALUES(30, '서울시', '마포구', '마포동', '옵티마성형외과', '서울시 마포구 마포동 386-4', '성형외과', '02-555-5566');
-INSERT INTO HOSPITAL VALUES(31, '서울시', '마포구', '마포동', '첨단과학의원', '서울시 마포구 마포동 136-1', '내과', '02-701-5047');
-INSERT INTO HOSPITAL VALUES(32, '서울시', '마포구', '마포동', '최소아과', '서울시 마포구 도화동 83', '소아청소년과', null);
-INSERT INTO HOSPITAL VALUES(33, '서울시', '마포구', '마포동', '박재필치과의원', '서울시 마포구 도화동 290-1', '치과', '02-713-2853');
-INSERT INTO HOSPITAL VALUES(34, '서울시', '마포구', '마포동', '제일한의원', '서울시 마포구 도화동 205-16', '한의원', '02-312-2323');
 
-INSERT INTO HOSPITAL VALUES(35, '서울시', '마포구', '망원동', '본항외과의원', '서울시 마포구 망원동 478-11', '외과', '02-332-9774');
-INSERT INTO HOSPITAL VALUES(36, '서울시', '마포구', '망원동', '정내과의원', '서울시 마포구 망원동 486-39', '내과', '02-336-7570');
-INSERT INTO HOSPITAL VALUES(37, '서울시', '마포구', '망원동', '이승호이비인후과의원', '서울시 마포구 망원동 482-9', '이비인후과', '02-334-7582');
-INSERT INTO HOSPITAL VALUES(38, '서울시', '마포구', '망원동', '포근담산부인과의원', '서울시 마포구 서교동 441-3', '산부인과', '02-324-9966');
-INSERT INTO HOSPITAL VALUES(39, '서울시', '마포구', '망원동', '이가인의원', '서울시 마포구 망원동 378-2', '피부과', '02-3143-6590');
 
-INSERT INTO HOSPITAL VALUES(40, '서울시', '서초구', '반포동', '정다운내과의원', '서울시 서초구 반포동 2-8', '내과', '02-3476-1571');
-INSERT INTO HOSPITAL VALUES(41, '서울시', '서초구', '반포동', '예원이비인후과의원', '서울시 서초구 반포동 18-4', '이비인후과', '02-595-0075');
-INSERT INTO HOSPITAL VALUES(42, '서울시', '서초구', '반포동', '예지원피부과', '서울시 서초구 반포동 18-3', '피부과', '02-536-8275');
-INSERT INTO HOSPITAL VALUES(43, '서울시', '서초구', '반포동', '반포한의원', '서울시 서초구 잠원동 75-13', '한의원', '0507-1404-1275');
-INSERT INTO HOSPITAL VALUES(44, '서울시', '서초구', '반포동', '서울성모병원', '서울시 서초구 반포동 505', '종합병원', '02-1588-1511');
+/*
+SELECT * FROM QNA;
+SELECT NVL(MAX(BNUM), 0) + 1 FROM QNA;
+SELECT bnum, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ FROM qna WHERE questionnum is null ORDER BY bnum DESC;
+SELECT * FROM qna WHERE BNUM=5;
+UPDATE qna SET BREADCNT = BREADCNT+1 WHERE BNUM=5 AND userid != 'abc';
+*/
+--------------------------------------------------------------------------------
 
-INSERT INTO HOSPITAL VALUES(45, '서울시', '서초구', '방배동', '서울마더스성형외과', '서울시 서초구 방배동 1970', '성형외과', '02-525-2375');
-INSERT INTO HOSPITAL VALUES(46, '서울시', '서초구', '방배동', '포에버의원', '서울시 서초구 방배동 1751', '피부과', '02-1577-8346');
-INSERT INTO HOSPITAL VALUES(47, '서울시', '서초구', '방배동', '시원하이신경외과의원', '서울시 서초구 방배동 1923', '정형외과', '0507-1375-4153');
-INSERT INTO HOSPITAL VALUES(48, '서울시', '서초구', '방배동', '이수리더스내과의원', '서울시 서초구 방배동 3160', '내과', '02-599-8288');
-INSERT INTO HOSPITAL VALUES(49, '서울시', '서초구', '방배동', '골든시니어치과의원', '서울시 서초구 방배동 952-4', '치과', '0507-1431-2805');
+INSERT INTO NOTICE VALUES(1, '공지 테스트1', 'admin', default, default, '공지 테스트입니다1.', default);
+INSERT INTO NOTICE VALUES(2, '공지 테스트2', 'admin', default, default, '공지 테스트입니다2.', default);
+INSERT INTO NOTICE VALUES(3, '공지 테스트3', 'admin', default, default, '공지 테스트입니다3.', default);
+INSERT INTO NOTICE VALUES(4, '공지 테스트4', 'admin', default, default, '공지 테스트입니다4.', default);
+INSERT INTO NOTICE VALUES(5, '공지 테스트5', 'admin', default, default, '공지 테스트입니다5.', default);
 
-INSERT INTO HOSPITAL VALUES(50, '경기도', '가평군', '가평읍', '성모의원', '경기도 가평군 가평읍 대곡리 232', '병원', '031-582-1833');
-INSERT INTO HOSPITAL VALUES(51, '경기도', '가평군', '가평읍', '임내과의원', '경기도 가평군 가평읍 읍내리 476-7', '내과', '031-581-0675');
-INSERT INTO HOSPITAL VALUES(52, '경기도', '가평군', '가평읍', '가평삼성의원', '경기도 가평군 가평읍 읍내리 615-5', '가정의학과', '031-585-3658');
-INSERT INTO HOSPITAL VALUES(53, '경기도', '가평군', '가평읍', '서울수치과의원', '경기도 가평군 가평읍 대곡리 239-16', '치과', '031-582-2842');
-INSERT INTO HOSPITAL VALUES(54, '경기도', '가평군', '가평읍', '송정한의원', '경기도 가평군 가평읍 읍내리 474-3', '한의원', '031-582-0812');
+INSERT INTO NOTICE VALUES(6, '일반공지 테스트1', 'admin', default, default, '일반공지 테스트입니다1.', default);
+INSERT INTO NOTICE VALUES(7, '일반공지 테스트2', 'admin', default, default, '일반공지 테스트입니다2.', default);
+INSERT INTO NOTICE VALUES(8, '일반공지 테스트3', 'admin', default, default, '일반공지 테스트입니다3.', default);
+INSERT INTO NOTICE VALUES(9, '일반공지 테스트4', 'admin', default, default, '일반공지 테스트입니다4.', default);
+INSERT INTO NOTICE VALUES(10, '일반공지 테스트5', 'admin', default, default, '일반공지 테스트입니다5.', default);
 
-INSERT INTO HOSPITAL VALUES(55, '경기도', '고양시', '대화동', '세종치과의원', '경기도 고양시 일산서구 대화동 2033', '치과', '031-911-1222');
-INSERT INTO HOSPITAL VALUES(56, '경기도', '고양시', '대화동', '하나로솔한의원', '경기도 고양시 일산서구 대화동 2324', '한의원', '031-923-1022');
-INSERT INTO HOSPITAL VALUES(57, '경기도', '고양시', '대화동', '건누리병원', '경기도 고양시 일산서구 주엽동 5', '가정의학과', '031-913-6113');
-INSERT INTO HOSPITAL VALUES(58, '경기도', '고양시', '대화동', '정미성소아과의원', '경기도 고양시 일산서구 일산동 1065', '소아청소년과', '031-917-8275');
-INSERT INTO HOSPITAL VALUES(59, '경기도', '고양시', '대화동', '하나정형외과의원', '경기도 고양시 일산서구 대화동 2127', '정형외과', '031-918-5252');
+INSERT INTO NOTICE VALUES(11, '전체공지 테스트1', 'admin', default, default, '전체공지 테스트입니다1.', default);
+INSERT INTO NOTICE VALUES(12, '전체공지 테스트2', 'admin', default, default, '전체공지 테스트입니다2.', default);
+INSERT INTO NOTICE VALUES(13, '전체공지 테스트3', 'admin', default, default, '전체공지 테스트입니다3.', default);
+INSERT INTO NOTICE VALUES(14, '전체공지 테스트4', 'admin', default, default, '전체공지 테스트입니다4.', default);
+INSERT INTO NOTICE VALUES(15, '전체공지 테스트5', 'admin', default, default, '전체공지 테스트입니다5.', default);
 
-INSERT INTO HOSPITAL VALUES(60, '경기도', '김포시', '고촌읍', '김포365한의원', '경기도 김포시 고촌읍 신곡리 532-70', '한의원', '0507-1433-2399');
-INSERT INTO HOSPITAL VALUES(61, '경기도', '김포시', '고촌읍', '애플소아청소년과의원', '경기도 김포시 고촌읍 신곡리 610-4', '소아청소년과', '031-985-8275');
-INSERT INTO HOSPITAL VALUES(62, '경기도', '김포시', '고촌읍', '경희한의원', '경기도 김포시 고촌읍 신곡리 539-8', '한의원', '031-985-1025');
-INSERT INTO HOSPITAL VALUES(63, '경기도', '김포시', '고촌읍', '배원엽내과의원', '경기도 김포시 고촌읍 신곡리 533-30', '내과', '031-986-7512');
-INSERT INTO HOSPITAL VALUES(64, '경기도', '김포시', '고촌읍', '소나무치과의원', '경기도 김포시 고촌읍 신곡리 573-5', '치과', '031-985-2252');
+/*
+SELECT * FROM NOTICE;
+SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM'),bcontent,cmtcnt FROM notice ORDER BY bnum DESC;
 
-INSERT INTO HOSPITAL VALUES(65, '경기도', '김포시', '구래동', '김포밝은안과의원', '경기도 김포시 구래동 6880-2', '안과', '0507-1433-0091');
-INSERT INTO HOSPITAL VALUES(66, '경기도', '김포시', '구래동', '연세비케이의원', '경기도 김포시 구래동 6881-9', '피부과', '031-996-9904');
-INSERT INTO HOSPITAL VALUES(67, '경기도', '김포시', '구래동', '든든한치과의원', '경기도 김포시 구래동 6885-1', '치과', '031-988-2872');
-INSERT INTO HOSPITAL VALUES(68, '경기도', '김포시', '구래동', '구래한의원', '경기도 김포시 구래동 6886-6', '한의원', '0507-1330-1275');
-INSERT INTO HOSPITAL VALUES(69, '경기도', '김포시', '구래동', '더좋은성형외과의원', '경기도 김포시 구래동 6917-2', '성형외과', '0507-1480-3533');
+SELECT * FROM NOTICE WHERE btitle LIKE '%1%' OR userid LIKE '%1%' OR bcontent LIKE '%1%';
 
-INSERT INTO HOSPITAL VALUES(70, '경기도', '남양주시', '금곡동', '동의당한의원', '경기도 남양주시 금곡동 185-21', '한의원', '031-595-8275');
-INSERT INTO HOSPITAL VALUES(71, '경기도', '남양주시', '금곡동', '소망의원', '경기도 남양주시 금곡동 153-1', '병원', '031-559-1798');
-INSERT INTO HOSPITAL VALUES(72, '경기도', '남양주시', '금곡동', '양병원', '경기도 남양주시 금곡동 433-5', '병원', '031-590-9000');
-INSERT INTO HOSPITAL VALUES(73, '경기도', '남양주시', '금곡동', '동서울의원', '경기도 남양주시 금곡동 427-19', '내과', '031-592-5155');
+SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') bwritedate,bcontent,cmtcnt
+	  FROM (SELECT ROWNUM AS N
+	   			 , bnum
+	   			 , btitle
+	   			 , userid
+	   			 , breadcnt
+	   			 , bwritedate
+	   			 , bcontent
+	   			 , cmtcnt
+	   		  FROM (SELECT * FROM NOTICE 
+	   		  		 WHERE btitle like '%1%'))
+	WHERE N BETWEEN 1 AND 10;
+*/    
+--------------------------------------------------------------------------------
 
-INSERT INTO HOSPITAL VALUES(74, '경기도', '남양주시', '별내동', '임내과의원', '경기도 남양주시 별내동 930', '내과', '031-573-8272');
-INSERT INTO HOSPITAL VALUES(75, '경기도', '남양주시', '별내동', '별가람소아치과의원', '경기도 남양주시 별내동 824', '치과', '031-569-2275');
-INSERT INTO HOSPITAL VALUES(76, '경기도', '남양주시', '별내동', '별내박내과의원', '경기도 남양주시 별내동 826-5', '내과', '0507-1377-8876');
-INSERT INTO HOSPITAL VALUES(77, '경기도', '남양주시', '별내동', '별내굿타임의원', '경기도 남양주시 별내동 826', '정형외과', '0507-1366-8385');
-INSERT INTO HOSPITAL VALUES(78, '경기도', '남양주시', '별내동', '별내참사랑의원', '경기도 남양주시 별내동 826-10', '가정의학과', '031-528-0175');
+INSERT INTO COMMENT_T VALUES(1, 1, 'sample', '안녕하세요', default);
+INSERT INTO COMMENT_T VALUES(2, 1, 'admin', '안녕하세요~ 반가워요~', default);
 
-INSERT INTO HOSPITAL VALUES(79, '경기도', '부천시', '고강동', '영제한의원', '경기도 부천시 고강동 393', '한의원', '032-681-3548');
-INSERT INTO HOSPITAL VALUES(80, '경기도', '부천시', '고강동', '다솜가정의원', '경기도 부천시 고강동 395', '내과', '032-682-9400');
-INSERT INTO HOSPITAL VALUES(81, '경기도', '부천시', '고강동', '한사랑가정의원', '경기도 부천시 고강동 558-1', '가정의학과', '032-676-6548');
-INSERT INTO HOSPITAL VALUES(82, '경기도', '부천시', '고강동', '미소안치과의원', '서울시 양천구 신월동 928-1', '치과', '02-2695-2080');
-INSERT INTO HOSPITAL VALUES(83, '경기도', '부천시', '고강동', '신월맥한의원', '서울시 양천구 신월동 225-17', '한의원', '0507-1492-1210');
+INSERT INTO COMMENT_T VALUES(3, 2, 'sample1', '안녕하세요', default);
+INSERT INTO COMMENT_T VALUES(4, 2, 'admin', '안녕하세요~ 반가워요~', default);
 
-INSERT INTO HOSPITAL VALUES(84, '경기도', '부천시', '오정동', '코코이비인후과의원', '서울시 부천시 오정동 725', '이비인후과', '032-676-7585');
-INSERT INTO HOSPITAL VALUES(85, '경기도', '부천시', '오정동', '튼튼신경외과의원', '서울시 부천시 오정동 576-2', '신경외과', '032-678-0005');
-INSERT INTO HOSPITAL VALUES(86, '경기도', '부천시', '오정동', '상록한의원', '서울시 부천시 오정동 555', '한의원', '032-681-9955');
-INSERT INTO HOSPITAL VALUES(87, '경기도', '부천시', '오정동', '참사랑의원', '서울시 부천시 오정동 577-3', '병원', '032-672-7174');
-INSERT INTO HOSPITAL VALUES(88, '경기도', '부천시', '오정동', '태소아과의원', '서울시 부천시 오정동 543', '소아청소년과', '032-682-6072');
+INSERT INTO COMMENT_T VALUES(5, 3, 'sample2', '안녕하세요', default);
+INSERT INTO COMMENT_T VALUES(6, 3, 'admin', '안녕하세요~ 반가워요~', default);
 
-SELECT * FROM HOSPITAL;
----------------------------------------------------------------------------------------
+INSERT INTO COMMENT_T VALUES(7, 4, 'sample3', '안녕하세요', default);
+INSERT INTO COMMENT_T VALUES(8, 4, 'admin', '안녕하세요~ 반가워요~', default);
 
-SELECT no, city, gugun, dong, hospitalName, address, diagnosisType, phone
-  FROM HOSPITAL
- WHERE (city, gugun, dong) IN (SELECT DISTINCT city, gugun, dong
-                              FROM BASEADDRESS b
-                             WHERE b.dongcode = (SELECT DISTINCT code 
-                                                   FROM HOUSEINFO
-                                                  WHERE no = 2)	
-                            );
+INSERT INTO COMMENT_T VALUES(9, 5, 'sample4', '안녕하세요', default);
+INSERT INTO COMMENT_T VALUES(10, 5, 'admin', '안녕하세요~ 반가워요~', default);
 
-SELECT no, city, gugun, dong, hospitalName, address, diagnosisType, phone
-  FROM HOSPITAL
- WHERE (city, gugun, dong) IN (SELECT DISTINCT city, gugun, dong
-                              FROM BASEADDRESS b
-                             WHERE b.dongcode = (SELECT DISTINCT code 
-                                                   FROM HOUSEINFO
-                                                  WHERE no = (SELECT DISTINCT no FROM HOUSEDEAL WHERE dealId = 15))	
-                            );
+INSERT INTO COMMENT_T VALUES(11, 6, 'sample5', '안녕하세요', default);
+INSERT INTO COMMENT_T VALUES(12, 6, 'admin', '안녕하세요~ 반가워요~', default);
 
-------------------------------------------------------------------------------------------
+INSERT INTO COMMENT_T VALUES(13, 7, 'sample6', '안녕하세요', default);
+INSERT INTO COMMENT_T VALUES(14, 7, 'admin', '안녕하세요~ 반가워요~', default);
+
+INSERT INTO COMMENT_T VALUES(15, 8, 'sample7', '안녕하세요', default);
+INSERT INTO COMMENT_T VALUES(16, 8, 'admin', '안녕하세요~ 반가워요~', default);
+
+INSERT INTO COMMENT_T VALUES(17, 9, 'sample8', '안녕하세요', default);
+INSERT INTO COMMENT_T VALUES(18, 9, 'admin', '안녕하세요~ 반가워요~', default);
+
+INSERT INTO COMMENT_T VALUES(19, 10, 'sample', '안녕하세요.', default);
+INSERT INTO COMMENT_T VALUES(20, 10, 'sample1', '안녕하세요. 잘 부탁 드립니다.', default);
+
+INSERT INTO COMMENT_T VALUES(21, 11, 'sample2', '안녕하세요.', default);
+INSERT INTO COMMENT_T VALUES(22, 11, 'sample3', '안녕하세요. 잘 부탁 드립니다.', default);
+
+INSERT INTO COMMENT_T VALUES(23, 12, 'sample4', '안녕하세요.', default);
+INSERT INTO COMMENT_T VALUES(24, 12, 'sample5', '안녕하세요. 잘 부탁 드립니다.', default);
+
+INSERT INTO COMMENT_T VALUES(25, 13, 'sample6', '안녕하세요.!!!', default);
+INSERT INTO COMMENT_T VALUES(26, 13, 'sample7', '안녕하세요.', default);
+
+INSERT INTO COMMENT_T VALUES(27, 14, 'sample8', '안녕하세요. 사이트가 보기 편하네요~', default);
+INSERT INTO COMMENT_T VALUES(28, 14, 'admin', '안녕하세요.!! 감사합니다.', default);
+
+INSERT INTO COMMENT_T VALUES(29, 15, 'sample', '안녕하세요1', default);
+INSERT INTO COMMENT_T VALUES(30, 15, 'sample1', '안녕하세요2', default);
+INSERT INTO COMMENT_T VALUES(31, 15, 'sample2', '안녕하세요3', default);
+INSERT INTO COMMENT_T VALUES(32, 15, 'sample3', '안녕하세요4', default);
+INSERT INTO COMMENT_T VALUES(33, 15, 'sample4', '안녕하세요5', default);
+INSERT INTO COMMENT_T VALUES(34, 15, 'sample5', '안녕하세요6', default);
+INSERT INTO COMMENT_T VALUES(35, 15, 'sample6', '안녕하세요7', default);
+INSERT INTO COMMENT_T VALUES(36, 15, 'sample7', '안녕하세요8', default);
+INSERT INTO COMMENT_T VALUES(37, 15, 'sample8', '안녕하세요9', default);
+INSERT INTO COMMENT_T VALUES(38, 15, 'admin', '안녕하세요~~~~:D', default);
+
+--SELECT * FROM COMMENT_T;
+
+--------------------------------------------------------------------------------
+
+INSERT INTO SIDOCODE VALUES('A', '서울특별시');
+INSERT INTO SIDOCODE VALUES('B', '경기도');
+
+--SELECT sido_code, sido_name FROM sidocode;
+--------------------------------------------------------------------------------
+
+INSERT INTO GUGUNCODE VALUES('A01', '강남구');
+INSERT INTO GUGUNCODE VALUES('A02', '구로구');
+INSERT INTO GUGUNCODE VALUES('A03', '동작구');
+INSERT INTO GUGUNCODE VALUES('A04', '마포구');
+INSERT INTO GUGUNCODE VALUES('A05', '서초구');
+--INSERT INTO GUGUNCODE VALUES('A06', '성동구');
+--INSERT INTO GUGUNCODE VALUES('A07', '송파구');
+--INSERT INTO GUGUNCODE VALUES('A08', '영등포구');
+--INSERT INTO GUGUNCODE VALUES('A09', '용산구');
+--INSERT INTO GUGUNCODE VALUES('A10', '종로구');
+
+INSERT INTO GUGUNCODE VALUES('B01', '가평군');
+INSERT INTO GUGUNCODE VALUES('B02', '고양시');
+INSERT INTO GUGUNCODE VALUES('B03', '김포시');
+INSERT INTO GUGUNCODE VALUES('B04', '남양주시');
+INSERT INTO GUGUNCODE VALUES('B05', '부천시');
+--INSERT INTO GUGUNCODE VALUES('B06', '성남시');
+--INSERT INTO GUGUNCODE VALUES('B07', '수원시');
+--INSERT INTO GUGUNCODE VALUES('B08', '안양시');
+--INSERT INTO GUGUNCODE VALUES('B09', '용인시');
+--INSERT INTO GUGUNCODE VALUES('B10', '평택시');
+
+/*
+SELECT * FROM GUGUNCODE;
+
+SELECT SUBSTR(gugun_code,3,1) gugun_code, gugun_name FROM guguncode
+	where gugun_code = '001' ORDER BY gugun_code;
+*/
+--------------------------------------------------------------------------------
 
 INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '개포동', 'A011');
 INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '논현동', 'A012');
@@ -299,46 +342,12 @@ INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '오정동', 'B052');
 --INSERT INTO BASEADDRESS VALUES('경기도', '평택시', '신장동', 'B104');
 --INSERT INTO BASEADDRESS VALUES('경기도', '평택시', '평택동', 'B105');
 
-SELECT * FROM BASEADDRESS;
+--SELECT * FROM BASEADDRESS;
 
-----------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
-INSERT INTO SIDOCODE VALUES('A', '서울특별시');
-INSERT INTO SIDOCODE VALUES('B', '경기도');
 
-SELECT sido_code, sido_name FROM sidocode;
----------------------------------------------------------------------------------------------------
-
-INSERT INTO GUGUNCODE VALUES('A01', '강남구');
-INSERT INTO GUGUNCODE VALUES('A02', '구로구');
-INSERT INTO GUGUNCODE VALUES('A03', '동작구');
-INSERT INTO GUGUNCODE VALUES('A04', '마포구');
-INSERT INTO GUGUNCODE VALUES('A05', '서초구');
---INSERT INTO GUGUNCODE VALUES('A06', '성동구');
---INSERT INTO GUGUNCODE VALUES('A07', '송파구');
---INSERT INTO GUGUNCODE VALUES('A08', '영등포구');
---INSERT INTO GUGUNCODE VALUES('A09', '용산구');
---INSERT INTO GUGUNCODE VALUES('A10', '종로구');
-
-INSERT INTO GUGUNCODE VALUES('B01', '가평군');
-INSERT INTO GUGUNCODE VALUES('B02', '고양시');
-INSERT INTO GUGUNCODE VALUES('B03', '김포시');
-INSERT INTO GUGUNCODE VALUES('B04', '남양주시');
-INSERT INTO GUGUNCODE VALUES('B05', '부천시');
---INSERT INTO GUGUNCODE VALUES('B06', '성남시');
---INSERT INTO GUGUNCODE VALUES('B07', '수원시');
---INSERT INTO GUGUNCODE VALUES('B08', '안양시');
---INSERT INTO GUGUNCODE VALUES('B09', '용인시');
---INSERT INTO GUGUNCODE VALUES('B10', '평택시');
-
-SELECT * FROM GUGUNCODE;
-
-SELECT SUBSTR(gugun_code,3,1) gugun_code, gugun_name FROM guguncode
-	where gugun_code = '001' ORDER BY gugun_code;
-
---------------------------------------------------------------------------------------------------
 INSERT INTO HOUSEINFO VALUES(1, '개포동', '더샵트리에', 'A011', '2021', '651-1', '37.484836', '127.057225', '1.jpg');
-update houseinfo set lat='37.46',lng='127.015' where no=1;
 INSERT INTO HOUSEINFO VALUES(2, '논현동', '논현e-편한세상', 'A012', '2005', '195-1', '37.506678', '127.028966', '2.jpg');
 INSERT INTO HOUSEINFO VALUES(3, '개봉동', '신개봉삼환', 'A021', '2001', '170-30', '37.494657', '126.854609', '3.jpg');
 INSERT INTO HOUSEINFO VALUES(4, '고척동', '청솔우성', 'A022', '2000', '329', '37.506295', '126.859759', '4.jpg');
@@ -359,9 +368,11 @@ INSERT INTO HOUSEINFO VALUES(18, '별내동', '남양주별내아이파크', 'B0
 INSERT INTO HOUSEINFO VALUES(19, '고강동', '동문미도', 'B051', '1989', '327-7', '37.525164', '126.825966', '19.jpg');
 INSERT INTO HOUSEINFO VALUES(20, '오정동', '오정휴먼시아3단지', 'B052', '2006', '732', '37.532837', '126.787682', '20.jpg');
 
-SELECT * FROM HOUSEINFO;
+--SELECT * FROM HOUSEINFO;
 
----------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+
 INSERT INTO HOUSEDEAL VALUES(1, 15, '6.7억', '2023', '09', '15', '84', '5', '매매', null, '15.jpg');
 INSERT INTO HOUSEDEAL VALUES(2, 16, '5.1억', '2023', '09', '30', '96', '9', '매매', null, '16.jpg');
 INSERT INTO HOUSEDEAL VALUES(3, 17, '2.7억', '2023', '10', '15', '84', '3', '전세', null, '17.jpg');
@@ -385,7 +396,7 @@ INSERT INTO HOUSEDEAL VALUES(20, 1, '24억', '2023', '03', '01', '135', '15', '�
 INSERT INTO HOUSEDEAL VALUES(21, 1, '25억', '2023', '03', '02', '108', '17', '매매', null, '1.jpg');
 INSERT INTO HOUSEDEAL VALUES(22, 1, '22억', '2023', '03', '03', '84', '1', '매매', null, '1.jpg');
 
-
+/*
 DELETE FROM HOUSEDEAL WHERE dealid =23;
 SELECT * FROM HOUSEDEAL;
 SELECT d.no, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay, 
@@ -405,79 +416,146 @@ SELECT d.no, d.dealId, d.dealAmount, d.dealYear, d.dealMonth, d.dealDay,
 	i.dong, i.aptName, i.jibun, i.lat, i.lng, i.img
 	FROM housedeal d, houseinfo i, baseaddress b
 	WHERE d.no = i.no and i.code = b.dongcode;
-    
-------------------------------------------------------------------------------------------
+*/  
+--------------------------------------------------------------------------------
 
+
+/*
 SELECT * FROM INTEREST;
 select i.userid, i.dealId, d.area, d.floor, d.dealAmount, f.AptName, f.img
 	from housedeal d JOIN interest i on d.dealId = i.dealId JOIN houseinfo f on d.no = f.no
 	where i.userid = 'sample';
-
-------------------------------------------------------------------------------------------------
-
-
-
-INSERT INTO NOTICE VALUES(1, '공지테스트1', 'admin', default, default, '테스트입니다1.', default);
-INSERT INTO NOTICE VALUES(2, '공지테스트2', 'admin', default, default, '테스트입니다2.', default);
-INSERT INTO NOTICE VALUES(3, '공지테스트3', 'admin', default, default, '테스트입니다3.', default);
-INSERT INTO NOTICE VALUES(4, '공지테스트4', 'admin', default, default, '테스트입니다4.', default);
-
-SELECT * FROM NOTICE;
-SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM'),bcontent,cmtcnt FROM notice ORDER BY bnum DESC;
-
-SELECT * FROM NOTICE WHERE btitle LIKE '%1%' OR userid LIKE '%1%' OR bcontent LIKE '%1%';
-
-SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') bwritedate,bcontent,cmtcnt
-	  FROM (SELECT ROWNUM AS N
-	   			 , bnum
-	   			 , btitle
-	   			 , userid
-	   			 , breadcnt
-	   			 , bwritedate
-	   			 , bcontent
-	   			 , cmtcnt
-	   		  FROM (SELECT * FROM NOTICE 
-	   		  		 WHERE btitle like '%1%'))
-	WHERE N BETWEEN 1 AND 10;
-    
-----------------------------------------------------------------------------------------
-
-INSERT INTO COMMENT_T VALUES(1, 1, 'admin', 'comment테스트입니다1.', default);
-INSERT INTO COMMENT_T VALUES(2, 1, 'admin', 'comment테스트입니다2.', default);
-INSERT INTO COMMENT_T VALUES(3, 1, 'admin', 'comment테스트입니다3.', default);
-
-SELECT * FROM COMMENT_T;
-
--------------------------------------------------------------------------------------------
-
-INSERT INTO QNA VALUES(1, '질문테스트1', 'sample', default, default, '테스트입니다.', 1, default, default);
-INSERT INTO QNA VALUES(2, '질문테스트2', 'sample', default, default, '테스트입니다.2', 2, default, default);
-INSERT INTO QNA VALUES(3, '질문테스트3', 'sample', default, default, '테스트입니다.3', 3, default, default);
-INSERT INTO QNA VALUES(4, '질문테스트4', 'sample', default, default, '테스트입니다.4', 4, default, default);
-INSERT INTO QNA VALUES(5, '질문테스트5', 'sample', default, default, '테스트입니다.5', 5, default, default);
-INSERT INTO QNA VALUES(6, '질문테스트6', 'admin', default, default, '테스트입니다.6', 6, default, default);
-
-INSERT INTO QNA VALUES(7, 'FAQ) 로그인이 되지 않아요.', 'admin', default, default, '답변 : 로그인이 되지 않는 경우 비밀번호 찾기를 통해 신규 비밀번호를 등록하여 로그인 해주세요!', 7, 7, 'T');
-INSERT INTO QNA VALUES(8, 'FAQ) 매물을 찜하는건 어떻게 하나요?', 'admin', default, default, '답변 : 매물검색 후 조회되는 리스트의 빈하트를 클릭하시면 빨간하트로 변경되며 찜한 매물에 추가됩니다. 로그인 시 메인페이지 하단에 찜한 매물이 보여집니다!', 8, 8, 'T');
-INSERT INTO QNA VALUES(9, 'FAQ) 공인중개사 상담은 못하나요?', 'admin', default, default, '답변 : 저희 사이트는 아직 공인중개사 상담은 어렵고 매물검색 시 주변 부동산조회를 통해 연락을 취해보세요!!', 9, 9, 'T');
+*/
+--------------------------------------------------------------------------------
 
 
-SELECT * FROM QNA;
-SELECT NVL(MAX(BNUM), 0) + 1 FROM QNA;
-SELECT bnum, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwritedate, bcontent, questionnum, isFAQ FROM qna WHERE questionnum is null ORDER BY bnum DESC;
-SELECT * FROM qna WHERE BNUM=5;
-UPDATE qna SET BREADCNT = BREADCNT+1 WHERE BNUM=5 AND userid != 'abc';
+INSERT INTO HOSPITAL VALUES(1, '서울시', '강남구', '개포동', '서울미치과의원', '서울시 강남구 개포동 652', '치과', '02-576-2828');
+INSERT INTO HOSPITAL VALUES(2, '서울시', '강남구', '개포동', '이원경내과의원', '서울시 강남구 개포동 653', '내과', '02-575-0441');
+INSERT INTO HOSPITAL VALUES(3, '서울시', '강남구', '개포동', '송영명소아과의원', '서울시 강남구 개포동 169-12', '소아과', '02-573-6227');
+INSERT INTO HOSPITAL VALUES(4, '서울시', '강남구', '개포동', '유대상정형외과의원', '서울시 강남구 개포동 168-5', '정형외과', '02-575-9811');
+INSERT INTO HOSPITAL VALUES(5, '서울시', '강남구', '개포동', '행복한이야기한의원', '서울시 강남구 개포동 655-4', '한의원', '02-3463-1079');
 
-----------------------------------------------------------------------------------------------
+INSERT INTO HOSPITAL VALUES(6, '서울시', '강남구', '논현동', '강남차병원', '서울시 강남구 역삼동 605', '여성병원', '02-1577-4488');
+INSERT INTO HOSPITAL VALUES(7, '서울시', '강남구', '논현동', '라이브치과병원', '서울시 강남구 역삼동 604-1', '치과', '1599-2275');
+INSERT INTO HOSPITAL VALUES(8, '서울시', '강남구', '논현동', '비에비스나무병원', '서울시 강남구 논현동 175-10', '내과', '1577-7502');
+INSERT INTO HOSPITAL VALUES(9, '서울시', '강남구', '논현동', '김성민이비인후과의원', '서울시 강남구 논현동 234-26', '이비인후과', '02-541-5252');
 
+INSERT INTO HOSPITAL VALUES(10, '서울시', '구로구', '개봉동', '구로다나병원', '서울시 구로구 개봉동 353-2', '정신건강의학과', '0507-1361-8001');
+INSERT INTO HOSPITAL VALUES(11, '서울시', '구로구', '개봉동', '민전산부인과의원', '서울시 구로구 개봉동 161-25', '산부인과', '02-2685-3388');
+INSERT INTO HOSPITAL VALUES(12, '서울시', '구로구', '개봉동', '이기현안과의원', '서울시 구로구 개봉동 156-5', '안과', '02-2612-0110');
+INSERT INTO HOSPITAL VALUES(13, '서울시', '구로구', '개봉동', '명손한의원', '서울시 구로구 개봉동 178-13', '한의원', '02-6949-6019');
+INSERT INTO HOSPITAL VALUES(14, '서울시', '구로구', '개봉동', '탑비뇨기과의원', '서울시 구로구 개봉동 173-1', '비뇨의학과', '02-2687-9575');
 
+INSERT INTO HOSPITAL VALUES(15, '서울시', '구로구', '고척동', '하얀미소치과의원', '서울시 구로구 고척동 189', '치과', '02-2671-2875');
+INSERT INTO HOSPITAL VALUES(16, '서울시', '구로구', '고척동', '목동현대요양병원', '서울시 구로구 고척동 176-3', '요양병원', '02-3666-1122');
+INSERT INTO HOSPITAL VALUES(17, '서울시', '구로구', '고척동', '신목제일의원', '서울시 구로구 고척동 41-2', '내과', '02-2615-7010');
+INSERT INTO HOSPITAL VALUES(18, '서울시', '구로구', '고척동', '동명한의원', '서울시 구로구 고척동 195-13', '한의원', '02-2618-9975');
+INSERT INTO HOSPITAL VALUES(19, '서울시', '구로구', '고척동', '서울드림정형외과의원', '서울시 구로구 고척동 189', '정형외과', '02-2066-3060');
 
+INSERT INTO HOSPITAL VALUES(20, '서울시', '동작구', '노량진동', '노량진튼튼의원', '서울시 동작구 노량진동 330', '정형외과', '02-822-7582');
+INSERT INTO HOSPITAL VALUES(21, '서울시', '동작구', '노량진동', '척척박사한의원', '서울시 동작구 노량진동 119-143', '한의원', '0507-1331-7797안내');
+INSERT INTO HOSPITAL VALUES(22, '서울시', '동작구', '노량진동', '기쁨준내과의원', '서울시 동작구 노량진동 54-11', '내과', '0507-1420-7576');
+INSERT INTO HOSPITAL VALUES(23, '서울시', '동작구', '노량진동', '홍정신건강의학과의원', '서울시 동작구 노량진동 236-4', '정신건강의학과', '02-815-8383');
+INSERT INTO HOSPITAL VALUES(24, '서울시', '동작구', '노량진동', '청화병원', '서울시 동작구 노량진동 311-8', '산부인과', '02-815-3788');
 
+INSERT INTO HOSPITAL VALUES(25, '서울시', '동작구', '대방동', '성애병원', '서울시 영등포구 신길동 451-5', '종합병원', '02-840-7114');
+INSERT INTO HOSPITAL VALUES(26, '서울시', '동작구', '대방동', '송가정의학과의원', '서울시 동작구 대방동 503', '가정의학과', '02-817-1655');
+INSERT INTO HOSPITAL VALUES(27, '서울시', '동작구', '대방동', '서울해치과', '서울시 동작구 대방동 37-2', '치과', '02-817-8228');
+INSERT INTO HOSPITAL VALUES(28, '서울시', '동작구', '대방동', '고이비인후과의원', '서울시 동작구 대방동 501', '이비인후과', '02-814-3777');
+INSERT INTO HOSPITAL VALUES(29, '서울시', '동작구', '대방동', '이영록내과의원', '서울시 동작구 대방동 502', '내과', '02-825-7525');
 
+INSERT INTO HOSPITAL VALUES(30, '서울시', '마포구', '마포동', '옵티마성형외과', '서울시 마포구 마포동 386-4', '성형외과', '02-555-5566');
+INSERT INTO HOSPITAL VALUES(31, '서울시', '마포구', '마포동', '첨단과학의원', '서울시 마포구 마포동 136-1', '내과', '02-701-5047');
+INSERT INTO HOSPITAL VALUES(32, '서울시', '마포구', '마포동', '최소아과', '서울시 마포구 도화동 83', '소아청소년과', null);
+INSERT INTO HOSPITAL VALUES(33, '서울시', '마포구', '마포동', '박재필치과의원', '서울시 마포구 도화동 290-1', '치과', '02-713-2853');
+INSERT INTO HOSPITAL VALUES(34, '서울시', '마포구', '마포동', '제일한의원', '서울시 마포구 도화동 205-16', '한의원', '02-312-2323');
 
+INSERT INTO HOSPITAL VALUES(35, '서울시', '마포구', '망원동', '본항외과의원', '서울시 마포구 망원동 478-11', '외과', '02-332-9774');
+INSERT INTO HOSPITAL VALUES(36, '서울시', '마포구', '망원동', '정내과의원', '서울시 마포구 망원동 486-39', '내과', '02-336-7570');
+INSERT INTO HOSPITAL VALUES(37, '서울시', '마포구', '망원동', '이승호이비인후과의원', '서울시 마포구 망원동 482-9', '이비인후과', '02-334-7582');
+INSERT INTO HOSPITAL VALUES(38, '서울시', '마포구', '망원동', '포근담산부인과의원', '서울시 마포구 서교동 441-3', '산부인과', '02-324-9966');
+INSERT INTO HOSPITAL VALUES(39, '서울시', '마포구', '망원동', '이가인의원', '서울시 마포구 망원동 378-2', '피부과', '02-3143-6590');
 
+INSERT INTO HOSPITAL VALUES(40, '서울시', '서초구', '반포동', '정다운내과의원', '서울시 서초구 반포동 2-8', '내과', '02-3476-1571');
+INSERT INTO HOSPITAL VALUES(41, '서울시', '서초구', '반포동', '예원이비인후과의원', '서울시 서초구 반포동 18-4', '이비인후과', '02-595-0075');
+INSERT INTO HOSPITAL VALUES(42, '서울시', '서초구', '반포동', '예지원피부과', '서울시 서초구 반포동 18-3', '피부과', '02-536-8275');
+INSERT INTO HOSPITAL VALUES(43, '서울시', '서초구', '반포동', '반포한의원', '서울시 서초구 잠원동 75-13', '한의원', '0507-1404-1275');
+INSERT INTO HOSPITAL VALUES(44, '서울시', '서초구', '반포동', '서울성모병원', '서울시 서초구 반포동 505', '종합병원', '02-1588-1511');
 
+INSERT INTO HOSPITAL VALUES(45, '서울시', '서초구', '방배동', '서울마더스성형외과', '서울시 서초구 방배동 1970', '성형외과', '02-525-2375');
+INSERT INTO HOSPITAL VALUES(46, '서울시', '서초구', '방배동', '포에버의원', '서울시 서초구 방배동 1751', '피부과', '02-1577-8346');
+INSERT INTO HOSPITAL VALUES(47, '서울시', '서초구', '방배동', '시원하이신경외과의원', '서울시 서초구 방배동 1923', '정형외과', '0507-1375-4153');
+INSERT INTO HOSPITAL VALUES(48, '서울시', '서초구', '방배동', '이수리더스내과의원', '서울시 서초구 방배동 3160', '내과', '02-599-8288');
+INSERT INTO HOSPITAL VALUES(49, '서울시', '서초구', '방배동', '골든시니어치과의원', '서울시 서초구 방배동 952-4', '치과', '0507-1431-2805');
 
+INSERT INTO HOSPITAL VALUES(50, '경기도', '가평군', '가평읍', '성모의원', '경기도 가평군 가평읍 대곡리 232', '병원', '031-582-1833');
+INSERT INTO HOSPITAL VALUES(51, '경기도', '가평군', '가평읍', '임내과의원', '경기도 가평군 가평읍 읍내리 476-7', '내과', '031-581-0675');
+INSERT INTO HOSPITAL VALUES(52, '경기도', '가평군', '가평읍', '가평삼성의원', '경기도 가평군 가평읍 읍내리 615-5', '가정의학과', '031-585-3658');
+INSERT INTO HOSPITAL VALUES(53, '경기도', '가평군', '가평읍', '서울수치과의원', '경기도 가평군 가평읍 대곡리 239-16', '치과', '031-582-2842');
+INSERT INTO HOSPITAL VALUES(54, '경기도', '가평군', '가평읍', '송정한의원', '경기도 가평군 가평읍 읍내리 474-3', '한의원', '031-582-0812');
+
+INSERT INTO HOSPITAL VALUES(55, '경기도', '고양시', '대화동', '세종치과의원', '경기도 고양시 일산서구 대화동 2033', '치과', '031-911-1222');
+INSERT INTO HOSPITAL VALUES(56, '경기도', '고양시', '대화동', '하나로솔한의원', '경기도 고양시 일산서구 대화동 2324', '한의원', '031-923-1022');
+INSERT INTO HOSPITAL VALUES(57, '경기도', '고양시', '대화동', '건누리병원', '경기도 고양시 일산서구 주엽동 5', '가정의학과', '031-913-6113');
+INSERT INTO HOSPITAL VALUES(58, '경기도', '고양시', '대화동', '정미성소아과의원', '경기도 고양시 일산서구 일산동 1065', '소아청소년과', '031-917-8275');
+INSERT INTO HOSPITAL VALUES(59, '경기도', '고양시', '대화동', '하나정형외과의원', '경기도 고양시 일산서구 대화동 2127', '정형외과', '031-918-5252');
+
+INSERT INTO HOSPITAL VALUES(60, '경기도', '김포시', '고촌읍', '김포365한의원', '경기도 김포시 고촌읍 신곡리 532-70', '한의원', '0507-1433-2399');
+INSERT INTO HOSPITAL VALUES(61, '경기도', '김포시', '고촌읍', '애플소아청소년과의원', '경기도 김포시 고촌읍 신곡리 610-4', '소아청소년과', '031-985-8275');
+INSERT INTO HOSPITAL VALUES(62, '경기도', '김포시', '고촌읍', '경희한의원', '경기도 김포시 고촌읍 신곡리 539-8', '한의원', '031-985-1025');
+INSERT INTO HOSPITAL VALUES(63, '경기도', '김포시', '고촌읍', '배원엽내과의원', '경기도 김포시 고촌읍 신곡리 533-30', '내과', '031-986-7512');
+INSERT INTO HOSPITAL VALUES(64, '경기도', '김포시', '고촌읍', '소나무치과의원', '경기도 김포시 고촌읍 신곡리 573-5', '치과', '031-985-2252');
+
+INSERT INTO HOSPITAL VALUES(65, '경기도', '김포시', '구래동', '김포밝은안과의원', '경기도 김포시 구래동 6880-2', '안과', '0507-1433-0091');
+INSERT INTO HOSPITAL VALUES(66, '경기도', '김포시', '구래동', '연세비케이의원', '경기도 김포시 구래동 6881-9', '피부과', '031-996-9904');
+INSERT INTO HOSPITAL VALUES(67, '경기도', '김포시', '구래동', '든든한치과의원', '경기도 김포시 구래동 6885-1', '치과', '031-988-2872');
+INSERT INTO HOSPITAL VALUES(68, '경기도', '김포시', '구래동', '구래한의원', '경기도 김포시 구래동 6886-6', '한의원', '0507-1330-1275');
+INSERT INTO HOSPITAL VALUES(69, '경기도', '김포시', '구래동', '더좋은성형외과의원', '경기도 김포시 구래동 6917-2', '성형외과', '0507-1480-3533');
+
+INSERT INTO HOSPITAL VALUES(70, '경기도', '남양주시', '금곡동', '동의당한의원', '경기도 남양주시 금곡동 185-21', '한의원', '031-595-8275');
+INSERT INTO HOSPITAL VALUES(71, '경기도', '남양주시', '금곡동', '소망의원', '경기도 남양주시 금곡동 153-1', '병원', '031-559-1798');
+INSERT INTO HOSPITAL VALUES(72, '경기도', '남양주시', '금곡동', '양병원', '경기도 남양주시 금곡동 433-5', '병원', '031-590-9000');
+INSERT INTO HOSPITAL VALUES(73, '경기도', '남양주시', '금곡동', '동서울의원', '경기도 남양주시 금곡동 427-19', '내과', '031-592-5155');
+
+INSERT INTO HOSPITAL VALUES(74, '경기도', '남양주시', '별내동', '임내과의원', '경기도 남양주시 별내동 930', '내과', '031-573-8272');
+INSERT INTO HOSPITAL VALUES(75, '경기도', '남양주시', '별내동', '별가람소아치과의원', '경기도 남양주시 별내동 824', '치과', '031-569-2275');
+INSERT INTO HOSPITAL VALUES(76, '경기도', '남양주시', '별내동', '별내박내과의원', '경기도 남양주시 별내동 826-5', '내과', '0507-1377-8876');
+INSERT INTO HOSPITAL VALUES(77, '경기도', '남양주시', '별내동', '별내굿타임의원', '경기도 남양주시 별내동 826', '정형외과', '0507-1366-8385');
+INSERT INTO HOSPITAL VALUES(78, '경기도', '남양주시', '별내동', '별내참사랑의원', '경기도 남양주시 별내동 826-10', '가정의학과', '031-528-0175');
+
+INSERT INTO HOSPITAL VALUES(79, '경기도', '부천시', '고강동', '영제한의원', '경기도 부천시 고강동 393', '한의원', '032-681-3548');
+INSERT INTO HOSPITAL VALUES(80, '경기도', '부천시', '고강동', '다솜가정의원', '경기도 부천시 고강동 395', '내과', '032-682-9400');
+INSERT INTO HOSPITAL VALUES(81, '경기도', '부천시', '고강동', '한사랑가정의원', '경기도 부천시 고강동 558-1', '가정의학과', '032-676-6548');
+INSERT INTO HOSPITAL VALUES(82, '경기도', '부천시', '고강동', '미소안치과의원', '서울시 양천구 신월동 928-1', '치과', '02-2695-2080');
+INSERT INTO HOSPITAL VALUES(83, '경기도', '부천시', '고강동', '신월맥한의원', '서울시 양천구 신월동 225-17', '한의원', '0507-1492-1210');
+
+INSERT INTO HOSPITAL VALUES(84, '경기도', '부천시', '오정동', '코코이비인후과의원', '서울시 부천시 오정동 725', '이비인후과', '032-676-7585');
+INSERT INTO HOSPITAL VALUES(85, '경기도', '부천시', '오정동', '튼튼신경외과의원', '서울시 부천시 오정동 576-2', '신경외과', '032-678-0005');
+INSERT INTO HOSPITAL VALUES(86, '경기도', '부천시', '오정동', '상록한의원', '서울시 부천시 오정동 555', '한의원', '032-681-9955');
+INSERT INTO HOSPITAL VALUES(87, '경기도', '부천시', '오정동', '참사랑의원', '서울시 부천시 오정동 577-3', '병원', '032-672-7174');
+INSERT INTO HOSPITAL VALUES(88, '경기도', '부천시', '오정동', '태소아과의원', '서울시 부천시 오정동 543', '소아청소년과', '032-682-6072');
+
+/*
+SELECT * FROM HOSPITAL;
+SELECT no, city, gugun, dong, hospitalName, address, diagnosisType, phone
+  FROM HOSPITAL
+ WHERE (city, gugun, dong) IN (SELECT DISTINCT city, gugun, dong
+                              FROM BASEADDRESS b
+                             WHERE b.dongcode = (SELECT DISTINCT code 
+                                                   FROM HOUSEINFO
+                                                  WHERE no = 2)	
+                            );
+
+SELECT no, city, gugun, dong, hospitalName, address, diagnosisType, phone
+  FROM HOSPITAL
+ WHERE (city, gugun, dong) IN (SELECT DISTINCT city, gugun, dong
+                              FROM BASEADDRESS b
+                             WHERE b.dongcode = (SELECT DISTINCT code 
+                                                   FROM HOUSEINFO
+                                                  WHERE no = (SELECT DISTINCT no FROM HOUSEDEAL WHERE dealId = 15))	
+                            );
+*/
+--------------------------------------------------------------------------------
 
 
 

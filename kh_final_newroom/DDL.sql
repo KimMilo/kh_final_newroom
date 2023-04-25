@@ -1,163 +1,169 @@
 --DDL
-
-DROP TABLE USERINFO;
-CREATE TABLE USERINFO(
-    no NUMBER PRIMARY KEY
-  , userId VARCHAR2(20) NOT NULL UNIQUE
-  , userPw VARCHAR2(150) NOT NULL
-  , userName VARCHAR2(15) NOT NULL
-  , userEmail VARCHAR2(30) NOT NULL
-  , userPhone VARCHAR2(30) NOT NULL
-  , mRole VARCHAR2(20) DEFAULT 'ROLE_MEMBER' CHECK (mRole IN('ROLE_MEMBER','ROLE_ADMIN'))
-  , enabled NUMBER DEFAULT 1
-  , img VARCHAR2(100) NOT NULL
-);
-
-
-
-
-
-
-
-
-
--------------------------------------------------------------------------------
-
 DROP TABLE CHAT_ROOM;
-CREATE TABLE CHAT_ROOM(
-    roomID NUMBER PRIMARY KEY
-  , userID VARCHAR2(20) REFERENCES USERINFO(userId) ON DELETE CASCADE
-);
--------------------------------------------------------------------------------
-
 DROP TABLE CHAT;
-CREATE TABLE CHAT(
-    chatID NUMBER PRIMARY KEY
-  , fromID VARCHAR2(20) REFERENCES USERINFO(userid) ON DELETE CASCADE
-  , toID VARCHAR2(20) REFERENCES USERINFO(userid) ON DELETE CASCADE
-  , chatContent VARCHAR2(2000)
-  , chatTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-------------------------------------------------------------------------------
-SELECT * FROM QNA;
 DROP TABLE QNA;
-CREATE TABLE QNA(
-    bnum NUMBER PRIMARY KEY
-  , btitle VARCHAR2(100)
-  , userid VARCHAR2(20) REFERENCES USERINFO(userid) ON DELETE CASCADE
-  , breadcnt NUMBER DEFAULT 0
-  , bwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  , bcontent VARCHAR2(2000)
-  , blevel NUMBER REFERENCES QNA(bnum)
-  , questionnum NUMBER DEFAULT 0
-  , isFAQ CHAR(1) DEFAULT 'F' CHECK(isFAQ IN('T','F'))
-);
-
-------------------------------------------------------------------------------------
-
-DROP TABLE NOTICE;
-CREATE TABLE NOTICE(
-    bnum NUMBER PRIMARY KEY
-  , btitle VARCHAR2(100)
-  , userid VARCHAR2(20) REFERENCES USERINFO(userid)
-  , breadcnt NUMBER DEFAULT 0
-  , bwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  , bcontent VARCHAR2(2000)
-  , cmtcnt NUMBER DEFAULT 0
-);
-
------------------------------------------------------------------------------------------------
-
-DROP TABLE HOSPITAL;
-CREATE TABLE HOSPITAL(
-    no NUMBER PRIMARY KEY
-  , city VARCHAR2(20)
-  , gugun VARCHAR2(20)
-  , dong VARCHAR2(20)
-  , hospitalName VARCHAR2(30)
-  , address VARCHAR2(200)
-  , diagnosisType VARCHAR2(200)
-  , phone VARCHAR2(30)
-);
-
------------------------------------------------------------------------------------
-DROP TABLE BASEADDRESS;
-CREATE TABLE BASEADDRESS(
-    city VARCHAR2(20)
-  , gugun VARCHAR2(20)
-  , dong VARCHAR2(20)
-  , dongcode VARCHAR2(4)
-);
-
---------------------------------------------------------------------------------
-
-DROP TABLE SIDOCODE;
-CREATE TABLE SIDOCODE(
-    sido_code VARCHAR2(1)
-  , sido_name VARCHAR2(20)
-);
-
-------------------------------------------------------------------------------------
-
-DROP TABLE GUGUNCODE;
-CREATE TABLE GUGUNCODE(
-    gugun_code VARCHAR2(4)
-  , gugun_name VARCHAR2(20)
-);
-
------------------------------------------------------------------------------------------------
-DROP TABLE HOUSEINFO;
-CREATE TABLE HOUSEINFO(
-    no NUMBER PRIMARY KEY
-  , dong VARCHAR2(20)
-  , aptName VARCHAR2(50)
-  , code VARCHAR2(10)
-  , buildYear VARCHAR2(20)
-  , jibun VARCHAR2(30)
-  , lat VARCHAR2(30)
-  , lng VARCHAR2(30)
-  , img VARCHAR2(100)
-);
-
-------------------------------------------------------------------------------------
-
-DROP TABLE HOUSEDEAL;
-CREATE TABLE HOUSEDEAL(
-    dealId NUMBER PRIMARY KEY
-  , no NUMBER --REFERENCES HOUSEINFO(no)
-  , dealAmount VARCHAR2(20)
-  , dealYear VARCHAR2(10)
-  , dealMonth VARCHAR2(5)
-  , dealDay VARCHAR2(10)
-  , area VARCHAR2(20)
-  , floor VARCHAR2(10)
-  , dtype VARCHAR2(20)
-  , rentMoney VARCHAR2(20)
-  , scatchImg VARCHAR2(100)
-);
-
---------------------------------------------------------------------------------
-
-DROP TABLE INTEREST;
-CREATE TABLE INTEREST(
-    userid VARCHAR2(20)
-  , dealId NUMBER REFERENCES HOUSEDEAL(dealId)
-);
-
---------------------------------------------------------------------------------
-
-
-
-
 DROP TABLE COMMENT_T;
-CREATE TABLE COMMENT_T(
-    cnum NUMBER PRIMARY KEY
-  , bnum NUMBER
-  , cwriter VARCHAR2(20)
-  , ccontent VARCHAR2(2000)
-  , cwritedate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+DROP TABLE NOTICE;
+DROP TABLE INTEREST;
+DROP TABLE USERINFO;
+DROP TABLE HOUSEDEAL;
+DROP TABLE HOUSEINFO;
+DROP TABLE HOSPITAL;
+DROP TABLE BASEADDRESS;
+DROP TABLE SIDOCODE;
+DROP TABLE GUGUNCODE;
+
+--------------------------------------------------------------------------------
+
+/* # 회원 테이블 */
+CREATE TABLE USERINFO(
+    NO NUMBER PRIMARY KEY
+  , USERID VARCHAR2(20) NOT NULL UNIQUE
+  , USERPW VARCHAR2(150) NOT NULL
+  , USERNAME VARCHAR2(15) NOT NULL
+  , USEREMAIL VARCHAR2(30) NOT NULL
+  , USERPHONE VARCHAR2(30) NOT NULL
+  , MROLE VARCHAR2(20) DEFAULT 'ROLE_MEMBER' CHECK (mRole IN('ROLE_MEMBER','ROLE_ADMIN'))
+  , ENABLED NUMBER DEFAULT 1
+  , IMG VARCHAR2(100) NOT NULL
 );
 
------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 
+/* # 채팅방 테이블 */
+CREATE TABLE CHAT_ROOM(
+    ROOMID NUMBER PRIMARY KEY
+  , USERID VARCHAR2(20) REFERENCES USERINFO(USERID) ON DELETE CASCADE
+);
+
+--------------------------------------------------------------------------------
+
+/* # 채팅 테이블 */
+CREATE TABLE CHAT(
+    CHATID NUMBER PRIMARY KEY
+  , FROMID VARCHAR2(20) NOT NULL REFERENCES USERINFO(USERID) ON DELETE CASCADE
+  , TOID VARCHAR2(20) NOT NULL REFERENCES USERINFO(USERID) ON DELETE CASCADE
+  , CHATCONTENT VARCHAR2(2000) NOT NULL
+  , CHATTIME TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+--------------------------------------------------------------------------------
+
+/* # 질문게시판 테이블 */
+CREATE TABLE QNA(
+    BNUM NUMBER PRIMARY KEY
+  , BTITLE VARCHAR2(100) NOT NULL
+  , USERID VARCHAR2(20) NOT NULL REFERENCES USERINFO(USERID) ON DELETE CASCADE
+  , BREADCNT NUMBER DEFAULT 0
+  , BWRITEDATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  , BCONTENT VARCHAR2(2000) NOT NULL
+  , BLEVEL NUMBER NOT NULL REFERENCES QNA(BNUM)
+  , QUESTIONNUM NUMBER DEFAULT 0
+  , ISFAQ CHAR(1) DEFAULT 'F' CHECK(isFAQ IN('T','F'))
+);
+
+--------------------------------------------------------------------------------
+
+/* # 공지게시판 테이블 */
+CREATE TABLE NOTICE(
+    BNUM NUMBER PRIMARY KEY
+  , btitle VARCHAR2(100)
+  , USERID VARCHAR2(20) NOT NULL REFERENCES USERINFO(USERID) ON DELETE CASCADE
+  , BREADCNT NUMBER DEFAULT 0
+  , BWRITEDATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  , BCONTENT VARCHAR2(2000) NOT NULL
+  , CMTCNT NUMBER DEFAULT 0
+);
+
+--------------------------------------------------------------------------------
+
+/* # 댓글 테이블 */
+CREATE TABLE COMMENT_T(
+    CNUM NUMBER PRIMARY KEY
+  , BNUM NUMBER NOT NULL REFERENCES NOTICE(BNUM) ON DELETE CASCADE
+  , CWRITER VARCHAR2(20) NOT NULL REFERENCES USERINFO(USERID) ON DELETE CASCADE
+  , CCONTENT VARCHAR2(2000) NOT NULL
+  , CWRITEDATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+--------------------------------------------------------------------------------
+
+/* # 시/도 테이블 */
+CREATE TABLE SIDOCODE(
+    SIDO_CODE VARCHAR2(1) PRIMARY KEY
+  , SIDO_NAME VARCHAR2(20) NOT NULL UNIQUE
+);
+
+--------------------------------------------------------------------------------
+
+/* # 구/군 테이블 */
+CREATE TABLE GUGUNCODE(
+    GUGUN_CODE VARCHAR2(4) PRIMARY KEY
+  , GUGUN_NAME VARCHAR2(20) NOT NULL UNIQUE
+);
+
+--------------------------------------------------------------------------------
+
+/* # 주소카테고리 테이블 */
+CREATE TABLE BASEADDRESS(
+    DONGCODE VARCHAR2(4) PRIMARY KEY
+  , DONG VARCHAR2(20) NOT NULL UNIQUE
+  , CITY VARCHAR2(20) REFERENCES SIDOCODE(SIDO_NAME) ON DELETE SET NULL 
+  , GUGUN VARCHAR2(20) REFERENCES GUGUNCODE(GUGUN_NAME) ON DELETE SET NULL
+);
+
+--------------------------------------------------------------------------------
+
+/* # 집정보 테이블 */
+CREATE TABLE HOUSEINFO(
+    NO NUMBER PRIMARY KEY
+  , DONG VARCHAR2(20) NOT NULL REFERENCES BASEADDRESS(DONG) ON DELETE SET NULL
+  , APTNAME VARCHAR2(50) NOT NULL
+  , CODE VARCHAR2(4) NOT NULL REFERENCES BASEADDRESS(DONGCODE) ON DELETE SET NULL
+  , BUILDYEAR VARCHAR2(20) NOT NULL
+  , JIBUN VARCHAR2(30) NOT NULL
+  , LAT VARCHAR2(30) NOT NULL
+  , LNG VARCHAR2(30) NOT NULL
+  , IMG VARCHAR2(100) NOT NULL
+);
+
+--------------------------------------------------------------------------------
+
+/* # 매물정보 테이블 */
+CREATE TABLE HOUSEDEAL(
+    DEALID NUMBER PRIMARY KEY
+  , NO NUMBER NOT NULL REFERENCES HOUSEINFO(NO) ON DELETE SET NULL
+  , DEALAMOUNT VARCHAR2(20) NOT NULL
+  , DEALYEAR VARCHAR2(10) NOT NULL
+  , DEALMONTH VARCHAR2(5) NOT NULL
+  , DEALDAY VARCHAR2(10) NOT NULL
+  , AREA VARCHAR2(20) NOT NULL
+  , FLOOR VARCHAR2(10) NOT NULL
+  , DTYPE VARCHAR2(20) NOT NULL
+  , RENTMONEY VARCHAR2(20) NOT NULL
+  , SCATCHIMG VARCHAR2(100) NOT NULL
+);
+
+--------------------------------------------------------------------------------
+
+/* # 찜한 매물 테이블 */
+CREATE TABLE INTEREST(
+    USERID VARCHAR2(20) NOT NULL REFERENCES USERINFO(USERID) ON DELETE CASCADE
+  , DEALID NUMBER NOT NULL REFERENCES HOUSEDEAL(DEALID) ON DELETE CASCADE
+);
+
+--------------------------------------------------------------------------------
+
+/* # 주변 병원 테이블 */
+CREATE TABLE HOSPITAL(
+    NO NUMBER PRIMARY KEY
+  , CITY VARCHAR2(20) NOT NULL REFERENCES SIDOCODE(SIDO_NAME) ON DELETE SET NULL
+  , GUGUN VARCHAR2(20) NOT NULL REFERENCES GUGUNCODE(GUGUN_NAME) ON DELETE SET NULL
+  , DONG VARCHAR2(20) NOT NULL REFERENCES BASEADDRESS(DONG) ON DELETE SET NULL
+  , HOSPITALNAME VARCHAR2(30) NOT NULL
+  , ADDRESS VARCHAR2(200) NOT NULL
+  , DIAGNOSISTYPE VARCHAR2(200) NOT NULL
+  , PHONE VARCHAR2(30) NOT NULL
+);
+
+--------------------------------------------------------------------------------
