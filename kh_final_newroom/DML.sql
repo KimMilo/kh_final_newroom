@@ -3,7 +3,7 @@
 INSERT INTO USERINFO VALUES(1,'admin','admin','관리자', 'admin@newroom.co.kr', '010-1234-5678','ROLE_ADMIN',1,'chat_profile_mgr2.png');
 UPDATE USERINFO SET mrole = 'ROLE_ADMIN' where username='관리자';
        
---SELECT * FROM USERINFO;
+SELECT * FROM USERINFO;
 
 --------------------------------------------------------------------------------
 /*
@@ -51,7 +51,6 @@ SELECT chatID, fromID, toID, chatContent, chatTime
 --SELECT * FROM CHAT_ROOM;
 
 --------------------------------------------------------------------------------
-
 INSERT INTO QNA VALUES(1, 'FAQ) 로그인이 되지 않아요.', 'admin', default, default, '답변 : 로그인이 되지 않는 경우 비밀번호 찾기를 통해 신규 비밀번호를 등록하여 로그인 해주세요!', 1, default, 'T');
 INSERT INTO QNA VALUES(2, 'FAQ) 매물을 찜하는건 어떻게 하나요?', 'admin', default, default, '답변 : 매물검색 후 조회되는 리스트의 빈하트를 클릭하시면 빨간하트로 변경되며 찜한 매물에 추가됩니다. 로그인 시 메인페이지 하단에 찜한 매물이 보여집니다!', 2, default, 'T');
 INSERT INTO QNA VALUES(3, 'FAQ) 공인중개사 상담은 못하나요?', 'admin', default, default, '답변 : 저희 사이트는 아직 공인중개사 상담은 어렵고 매물검색 시 주변 부동산조회를 통해 연락을 취해보세요!!', 3, default, 'T');
@@ -186,7 +185,7 @@ INSERT INTO COMMENT_T VALUES(38, 15, 'admin', '안녕하세요~~~~:D', default);
 
 --------------------------------------------------------------------------------
 
-INSERT INTO SIDOCODE VALUES('A', '서울특별시');
+INSERT INTO SIDOCODE VALUES('A', '서울시');
 INSERT INTO SIDOCODE VALUES('B', '경기도');
 
 --SELECT sido_code, sido_name FROM sidocode;
@@ -221,7 +220,6 @@ SELECT SUBSTR(gugun_code,3,1) gugun_code, gugun_name FROM guguncode
 	where gugun_code = '001' ORDER BY gugun_code;
 */
 --------------------------------------------------------------------------------
-
 INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '개포동', 'A011');
 INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '논현동', 'A012');
 --INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '대치동', 'A013');
