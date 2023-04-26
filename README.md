@@ -35,7 +35,7 @@
 </div><br>
 <div align="center">
   
-![회원가입 800](https://user-images.githubusercontent.com/116356234/228622134-e5a7db10-c7fb-4037-8dd8-09f95b2561e1.gif) 
+<!--![회원가입 800](https://user-images.githubusercontent.com/116356234/228622134-e5a7db10-c7fb-4037-8dd8-09f95b2561e1.gif)-->
   
 </div>
 
