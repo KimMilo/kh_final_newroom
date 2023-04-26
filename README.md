@@ -333,8 +333,7 @@
 
 ## 4️⃣ 산출물
 ## 1.개발일정
-![일정](https://user-images.githubusercontent.com/116356234/228160064-d3644862-3945-4d58-93d0-4baba962796b.png)
-[데일리 일정 보기(Google Drive)](https://docs.google.com/spreadsheets/d/1CawW7X56g70JCO-MmkeiacJanTxpTwznG2hZXZjfstY/edit?usp=sharing)
+![image](https://user-images.githubusercontent.com/115056845/234485049-dbff95c2-cdd5-41c9-8386-8a44eb20c12a.png)
 
 ## 2.요구사항 정의서
 
