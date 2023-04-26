@@ -1,7 +1,17 @@
 --DML
 
 INSERT INTO USERINFO VALUES(1,'admin','admin','관리자', 'admin@newroom.co.kr', '010-1234-5678','ROLE_ADMIN',1,'chat_profile_mgr2.png');
-UPDATE USERINFO SET mrole = 'ROLE_ADMIN' where username='관리자';
+INSERT INTO USERINFO VALUES(2,'sample','sample','김샘플', 'sample@newroom.co.kr', '010-0000-0000','ROLE_MEMBER',1,'chat_profile_user2.png');
+INSERT INTO USERINFO VALUES(3,'sample1','sample1','일샘플', 'sample1@newroom.co.kr', '010-0000-0000','ROLE_MEMBER',1,'chat_profile_user3.png');
+INSERT INTO USERINFO VALUES(4,'sample2','sample2','이샘플', 'sample2@newroom.co.kr', '010-0000-0000','ROLE_MEMBER',1,'chat_profile_user4.png');
+INSERT INTO USERINFO VALUES(5,'sample3','sample3','삼샘플', 'sample3@newroom.co.kr', '010-0000-0000','ROLE_MEMBER',1,'chat_profile_user5.png');
+INSERT INTO USERINFO VALUES(6,'sample4','sample4','사샘플', 'sample4@newroom.co.kr', '010-0000-0000','ROLE_MEMBER',1,'chat_profile_user6.png');
+INSERT INTO USERINFO VALUES(7,'sample5','sample5','오샘플', 'sample5@newroom.co.kr', '010-0000-0000','ROLE_MEMBER',1,'chat_profile_user7.png');
+INSERT INTO USERINFO VALUES(8,'sample6','sample6','육샘플', 'sample6@newroom.co.kr', '010-0000-0000','ROLE_MEMBER',1,'chat_profile_user8.png');
+INSERT INTO USERINFO VALUES(9,'sample7','sample7','칠샘플', 'sample7@newroom.co.kr', '010-0000-0000','ROLE_MEMBER',1,'chat_profile_user9.png');
+INSERT INTO USERINFO VALUES(10,'sample8','sample8','팔샘플', 'sample8@newroom.co.kr', '010-0000-0000','ROLE_MEMBER',1,'chat_profile_user10.png');
+
+--UPDATE USERINFO SET mrole = 'ROLE_ADMIN' where username='관리자';
        
 SELECT * FROM USERINFO;
 
@@ -47,6 +57,7 @@ SELECT chatID, fromID, toID, chatContent, chatTime
  
  SELECT * FROM qna WHERE isFAQ ='T';
  */
+ 
 --------------------------------------------------------------------------------
 --SELECT * FROM CHAT_ROOM;
 
