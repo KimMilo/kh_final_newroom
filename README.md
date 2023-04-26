@@ -19,7 +19,7 @@
 
 ## 2️⃣ 개발 환경
 <p align="center">
-![image](https://user-images.githubusercontent.com/115056845/234472984-2d402655-955a-4427-897d-f3cee19ef756.png)
+<img src="https://user-images.githubusercontent.com/115056845/234472984-2d402655-955a-4427-897d-f3cee19ef756.png")
 </p>
 ## 3️⃣ 주요 기능
 
