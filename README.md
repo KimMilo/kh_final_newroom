@@ -340,7 +340,9 @@
 <h3 align="center">마이페이지</h3>
 
 ![요구사항정의서(마이 페이지)](https://user-images.githubusercontent.com/116356234/228162759-a9741668-59dd-42b8-80c5-34508abe8c67.png)
-[요구사항 정의서 전체보기(Google Drive)](https://docs.google.com/spreadsheets/d/1WZ8FKLGcB3sAmk1_qZcC9mDx_BMDflsnClbkX-mwUqw/edit?usp=sharing)
+[요구사항 정의서 전체보기(Google Drive)](https://docs.google.com/spreadsheets/d/1A4yDDKDaFBGuqHNY0vVn_qyPTB5ifYktmCiy60eF7ZU/edit?usp=share_link)
+
+
 
 ## 3. UI 설계서
 
