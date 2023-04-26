@@ -21,6 +21,7 @@
     <jsp:include page="header.jsp" />
     	
         <!-- 아이디 찾기 내용 -->
+        <div class="container-fluid bg-secondary w-100 d-flex align-items-center" style="height: 80vh;">
     	<sec:authorize access="!isAuthenticated()">
 	        <div class="container bg-light rounded" style="width: 700px;">
 	            <h1 class="m-md-3">아이디 찾기</h1>
@@ -56,6 +57,7 @@
 	            </form>
 	        </div>
        </sec:authorize>
+       </div>
     <!-- Footer -->
     <jsp:include page="footer.jsp" />
 <script>

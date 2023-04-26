@@ -49,7 +49,7 @@
     	</c:if>
     	
         <!-- 비밀번호 찾기 내용 -->
-        <sec:authorize access="!isAuthenticated()">
+        <c:if test="${empty user}">
 	        <div class="container bg-light rounded" style="width: 700px;">
 	            <h1 class="m-md-3">비밀번호 찾기</h1>
 	            <form action="${rUrl}/member/findPw" method="post" class="m-md-3 py-md-3">
@@ -77,7 +77,7 @@
 	                </div>
 	            </form>
 	        </div>
-       </sec:authorize>
+       </c:if>
     </div>
     <!-- Footer -->
     <jsp:include page="footer.jsp" />
