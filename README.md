@@ -18,7 +18,7 @@
 - 1:1 실시간 상담 제공
 
 ## 2️⃣ 개발 환경
-<p align="center"><img src="https://user-images.githubusercontent.com/116356234/227253152-a512e104-b310-4f1f-a2eb-65d74890e08a.png"></p>
+<p align="center">![image](https://user-images.githubusercontent.com/115056845/234472858-6d7ae89f-ad30-458d-b628-a10644929eab.png)</p>
 
 ## 3️⃣ 주요 기능
 
