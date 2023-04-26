@@ -333,7 +333,7 @@
 
 ## 4️⃣ 산출물
 ## 1.개발일정
-![image](https://user-images.githubusercontent.com/115056845/234485049-dbff95c2-cdd5-41c9-8386-8a44eb20c12a.png)
+<p align="center">![image](https://user-images.githubusercontent.com/115056845/234485049-dbff95c2-cdd5-41c9-8386-8a44eb20c12a.png)</p>
 
 ## 2.요구사항 정의서
 
