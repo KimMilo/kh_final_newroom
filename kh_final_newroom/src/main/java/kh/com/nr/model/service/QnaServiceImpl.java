@@ -44,7 +44,7 @@ public class QnaServiceImpl implements QnaService{
 		
 		List<QnaDto> data = dao.searchContent(page);
 		
-		int totalRowCount = dao.selectTotalRowCountT(keyword); 
+		int totalRowCount = dao.selectTotalRowCountC(keyword); 
 		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
 		int pageCount = (totalRowCount / pageListLimit) + mod;
 		
@@ -62,7 +62,7 @@ public class QnaServiceImpl implements QnaService{
 		
 		List<QnaDto> data = dao.searchWriter(page);
 		
-		int totalRowCount = dao.selectTotalRowCountT(keyword); 
+		int totalRowCount = dao.selectTotalRowCountU(keyword); 
 		int mod = totalRowCount % pageListLimit == 0 ? 0 : 1;
 		int pageCount = (totalRowCount / pageListLimit) + mod;
 		
