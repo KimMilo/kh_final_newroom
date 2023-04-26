@@ -333,7 +333,7 @@
 
 ## 4️⃣ 산출물
 ## 1. 개발일정
-<p align="center"><img src="https://user-images.githubusercontent.com/115056845/234546379-fb2d47ff-fdcc-479f-9956-03bbf0e3e30e.png"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/115056845/234551298-8249de64-7c11-49c9-853c-44b6eb4cc61c.png"></p>
 
 ## 2. 요구사항 정의서
 
