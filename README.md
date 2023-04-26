@@ -337,12 +337,12 @@
 
 ## 2.요구사항 정의서
 
-<h3 align="center">마이페이지</h3>
+<h3 align="center">일부 이미지</h3>
 
 ![요구사항정의서(샘플)](https://user-images.githubusercontent.com/115056845/234485865-a895aa50-5177-4f83-9d0c-1e75e69a99fa.png)
 [요구사항 정의서 전체보기(Google Drive)](https://docs.google.com/spreadsheets/d/1A4yDDKDaFBGuqHNY0vVn_qyPTB5ifYktmCiy60eF7ZU/edit?usp=share_link)
 
-
+!!!!일단 여기까지
 
 ## 3. UI 설계서
 
