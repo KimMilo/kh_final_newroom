@@ -74,7 +74,7 @@
 <img src="https://user-images.githubusercontent.com/115056845/234857040-694bc8ed-2006-4745-bdd4-35ff4916c842.gif"><br><br><br>
   <div>🔶 아이디 찾기</div><br><br>
 <img src="https://user-images.githubusercontent.com/115056845/234877187-e63b01ac-d6b4-4bf5-ade9-a9ee7113b46c.gif"><br><br><br>
-  <div>🔶 비밀번호 </div><br><br>
+  <div>🔶 비밀번호 찾기 </div><br><br>
 <img src="https://user-images.githubusercontent.com/115056845/234877337-108df6a4-5cde-4c70-9026-a904ec9455bd.gif">
 
 
