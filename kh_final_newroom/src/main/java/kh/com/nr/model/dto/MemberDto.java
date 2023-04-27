@@ -16,6 +16,19 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class MemberDto {
+ 
+// # USERINFO 테이블
+//--------- -------- ------------- 
+//NO        NOT NULL NUMBER        
+//USERID    NOT NULL VARCHAR2(20)  
+//USERPW    NOT NULL VARCHAR2(150) 
+//USERNAME  NOT NULL VARCHAR2(15)  
+//USEREMAIL NOT NULL VARCHAR2(30)  
+//USERPHONE NOT NULL VARCHAR2(30)  
+//MROLE              VARCHAR2(20)  
+//ENABLED            NUMBER        
+//IMG       NOT NULL VARCHAR2(100) 
+	
 	private int no;
 	private String userid;
 	private String userpw;

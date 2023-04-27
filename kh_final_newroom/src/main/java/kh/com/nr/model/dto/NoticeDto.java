@@ -16,6 +16,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class NoticeDto {
+
+// # NOTICE 테이블
+//---------- -------- -------------- 
+//BNUM       NOT NULL NUMBER         
+//BTITLE              VARCHAR2(100)  
+//USERID     NOT NULL VARCHAR2(20)   
+//BREADCNT            NUMBER         
+//BWRITEDATE          TIMESTAMP(6)   
+//BCONTENT   NOT NULL VARCHAR2(2000) 
+//CMTCNT              NUMBER  
+	
 	private int bnum; //글번호
 	private String btitle; //제목
 	private String userid; //작성자

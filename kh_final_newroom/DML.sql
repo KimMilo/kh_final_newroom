@@ -13,7 +13,8 @@ INSERT INTO USERINFO VALUES(10,'sample8','sample8','팔샘플', 'sample8@newroom
 
 --UPDATE USERINFO SET mrole = 'ROLE_ADMIN' where username='관리자';
        
-SELECT * FROM USERINFO;
+--SELECT * FROM USERINFO;
+--desc USERINFO;
 
 --------------------------------------------------------------------------------
 /*
@@ -57,10 +58,11 @@ SELECT chatID, fromID, toID, chatContent, chatTime
  
  SELECT * FROM qna WHERE isFAQ ='T';
  */
+ --desc CHAT;
  
 --------------------------------------------------------------------------------
 --SELECT * FROM CHAT_ROOM;
-
+--desc CHAT_ROOM;
 --------------------------------------------------------------------------------
 INSERT INTO QNA VALUES(1, 'FAQ) 로그인이 되지 않아요.', 'admin', default, default, '답변 : 로그인이 되지 않는 경우 비밀번호 찾기를 통해 신규 비밀번호를 등록하여 로그인 해주세요!', 1, default, 'T');
 INSERT INTO QNA VALUES(2, 'FAQ) 매물을 찜하는건 어떻게 하나요?', 'admin', default, default, '답변 : 매물검색 후 조회되는 리스트의 빈하트를 클릭하시면 빨간하트로 변경되며 찜한 매물에 추가됩니다. 로그인 시 메인페이지 하단에 찜한 매물이 보여집니다!', 2, default, 'T');
@@ -98,6 +100,9 @@ SELECT bnum, userid, breadcnt, TO_CHAR(bwritedate, 'YYYY-MM-DD HH24:MI') bwrited
 SELECT * FROM qna WHERE BNUM=5;
 UPDATE qna SET BREADCNT = BREADCNT+1 WHERE BNUM=5 AND userid != 'abc';
 */
+
+--desc QNA;
+
 --------------------------------------------------------------------------------
 
 INSERT INTO NOTICE VALUES(1, '공지 테스트1', 'admin', default, default, '공지 테스트입니다1.', default);
@@ -137,6 +142,8 @@ SELECT bnum, btitle, userid, breadcnt, TO_CHAR(bwritedate,'YYYY-DD-MM HH24:MM') 
 	   		  		 WHERE btitle like '%1%'))
 	WHERE N BETWEEN 1 AND 10;
 */    
+
+--desc NOTICE;
 --------------------------------------------------------------------------------
 
 INSERT INTO COMMENT_T VALUES(1, 1, 'sample', '안녕하세요', default);
@@ -193,13 +200,14 @@ INSERT INTO COMMENT_T VALUES(37, 15, 'sample8', '안녕하세요9', default);
 INSERT INTO COMMENT_T VALUES(38, 15, 'admin', '안녕하세요~~~~:D', default);
 
 --SELECT * FROM COMMENT_T;
-
+--desc COMMENT_T;
 --------------------------------------------------------------------------------
 
 INSERT INTO SIDOCODE VALUES('A', '서울시');
 INSERT INTO SIDOCODE VALUES('B', '경기도');
 
 --SELECT sido_code, sido_name FROM sidocode;
+--desc SIDOCODE;
 --------------------------------------------------------------------------------
 
 INSERT INTO GUGUNCODE VALUES('A01', '강남구');
@@ -230,6 +238,9 @@ SELECT * FROM GUGUNCODE;
 SELECT SUBSTR(gugun_code,3,1) gugun_code, gugun_name FROM guguncode
 	where gugun_code = '001' ORDER BY gugun_code;
 */
+
+--desc GUGUNCODE;
+
 --------------------------------------------------------------------------------
 INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '개포동', 'A011');
 INSERT INTO BASEADDRESS VALUES('서울시', '강남구', '논현동', 'A012');
@@ -352,6 +363,7 @@ INSERT INTO BASEADDRESS VALUES('경기도', '부천시', '오정동', 'B052');
 --INSERT INTO BASEADDRESS VALUES('경기도', '평택시', '평택동', 'B105');
 
 --SELECT * FROM BASEADDRESS;
+--desc BASEADDRESS;
 
 --------------------------------------------------------------------------------
 
@@ -378,7 +390,7 @@ INSERT INTO HOUSEINFO VALUES(19, '고강동', '동문미도', 'B051', '1989', '3
 INSERT INTO HOUSEINFO VALUES(20, '오정동', '오정휴먼시아3단지', 'B052', '2006', '732', '37.532837', '126.787682', '20.jpg');
 
 --SELECT * FROM HOUSEINFO;
-
+--desc HOUSEINFO;
 --------------------------------------------------------------------------------
 
 
@@ -435,6 +447,9 @@ select i.userid, i.dealId, d.area, d.floor, d.dealAmount, f.AptName, f.img
 	from housedeal d JOIN interest i on d.dealId = i.dealId JOIN houseinfo f on d.no = f.no
 	where i.userid = 'sample';
 */
+--desc HOUSEDEAL;
+--desc INTEREST;
+
 --------------------------------------------------------------------------------
 
 
@@ -564,6 +579,8 @@ SELECT no, city, gugun, dong, hospitalName, address, diagnosisType, phone
                                                   WHERE no = (SELECT DISTINCT no FROM HOUSEDEAL WHERE dealId = 15))	
                             );
 */
+
+--desc HOSPITAL;
 --------------------------------------------------------------------------------
 
 

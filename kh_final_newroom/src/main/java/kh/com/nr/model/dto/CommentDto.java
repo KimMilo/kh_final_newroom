@@ -16,6 +16,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class CommentDto {
+
+// # COMMENT_T 테이블
+//---------- -------- -------------- 
+//CNUM       NOT NULL NUMBER         
+//BNUM       NOT NULL NUMBER         
+//CWRITER    NOT NULL VARCHAR2(20)   
+//CCONTENT   NOT NULL VARCHAR2(2000) 
+//CWRITEDATE          TIMESTAMP(6) 
+	
 	private int cnum;	// 코멘트 식별번호
 	private int bnum; 	// 게시글 번호
 	private String cwriter;	// 코멘트 작성자

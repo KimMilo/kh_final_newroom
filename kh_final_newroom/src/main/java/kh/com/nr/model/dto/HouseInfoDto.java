@@ -16,6 +16,19 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class HouseInfoDto {
+
+// # HOUSEINFO 테이블
+//--------- -------- ------------- 
+//NO        NOT NULL NUMBER        
+//DONG      NOT NULL VARCHAR2(20)  
+//APTNAME   NOT NULL VARCHAR2(50)  
+//CODE      NOT NULL VARCHAR2(4)   
+//BUILDYEAR NOT NULL VARCHAR2(20)  
+//JIBUN     NOT NULL VARCHAR2(30)  
+//LAT       NOT NULL VARCHAR2(30)  
+//LNG       NOT NULL VARCHAR2(30)  
+//IMG       NOT NULL VARCHAR2(100) 
+	
 	private int no;
 	private String dong;
 	private String aptName;

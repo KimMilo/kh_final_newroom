@@ -16,6 +16,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class RoomDto {
+
+// # CHAT_ROOM 테이블
+//------ -------- ------------ 
+//ROOMID NOT NULL NUMBER       
+//USERID          VARCHAR2(20) 
+
+	
 	private int roomID; //방번호
 	private String userID; //이 채팅방에서 대화하는 사용자 아이디
 	

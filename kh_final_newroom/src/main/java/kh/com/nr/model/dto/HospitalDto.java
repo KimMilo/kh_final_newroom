@@ -16,6 +16,18 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class HospitalDto {
+
+// # HOSPITAL 테이블
+//------------- -------- ------------- 
+//NO            NOT NULL NUMBER        
+//CITY          NOT NULL VARCHAR2(20)  
+//GUGUN         NOT NULL VARCHAR2(20)  
+//DONG          NOT NULL VARCHAR2(20)  
+//HOSPITALNAME  NOT NULL VARCHAR2(30)  
+//ADDRESS       NOT NULL VARCHAR2(200) 
+//DIAGNOSISTYPE NOT NULL VARCHAR2(200) 
+//PHONE                  VARCHAR2(30)  
+	
 	private int no;
 	private String city; // 도시
 	private String gugun; // 구군

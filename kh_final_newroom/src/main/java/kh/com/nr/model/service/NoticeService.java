@@ -8,7 +8,6 @@ import kh.com.nr.common.Paging;
 import kh.com.nr.model.dto.CommentDto;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.dto.NoticeDto;
-import kh.com.nr.model.dto.NoticePageDto;
 
 @Service
 public interface NoticeService {

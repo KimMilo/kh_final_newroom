@@ -12,7 +12,6 @@ import kh.com.nr.model.dao.NoticeDao;
 import kh.com.nr.model.dto.CommentDto;
 import kh.com.nr.model.dto.MemberDto;
 import kh.com.nr.model.dto.NoticeDto;
-import kh.com.nr.model.dto.NoticePageDto;
 
 @Service
 public class NoticeServiceImpl implements NoticeService{

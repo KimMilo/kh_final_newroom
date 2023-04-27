@@ -16,6 +16,20 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class QnaDto {
+
+// # QNA 테이블
+//----------- -------- -------------- 
+//BNUM        NOT NULL NUMBER         
+//BTITLE      NOT NULL VARCHAR2(100)  
+//USERID      NOT NULL VARCHAR2(20)   
+//BREADCNT             NUMBER         
+//BWRITEDATE           TIMESTAMP(6)   
+//BCONTENT    NOT NULL VARCHAR2(2000) 
+//BLEVEL      NOT NULL NUMBER         
+//QUESTIONNUM          NUMBER         
+//ISFAQ                CHAR(1)        
+
+	
 	private int bnum; //글번호
 	private String btitle; //글제목
 	private String userid; //작성자
