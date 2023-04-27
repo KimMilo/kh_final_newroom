@@ -5,7 +5,6 @@
 2. [개발 환경](#2️⃣-개발-환경)
 3. [주요 기능](#3️⃣-주요-기능)
 4. [산출물](#4️⃣-산출물)
-5. [최종발표자료(Google Drive)](https://drive.google.com/file/d/1gRAI_0MbRt3lTkd1YDYI3rnQ9ZZ93Y5Q/view?usp=sharing)
 
 ## 1️⃣ 개발 배경과 목표
 ### 개발 배경
@@ -21,315 +20,109 @@
 <p align="center"><img width="680px;" height="420px;" src="https://user-images.githubusercontent.com/115056845/234472984-2d402655-955a-4427-897d-f3cee19ef756.png")></p>
   
 ## 3️⃣ 주요 기능
-<!--
+
 <br>
 
-<h3>✅ 회원가입/로그인 </h3>
+<h3>✅ 회원가입/로그인(로그아웃) </h3>
   
 <br>
   
 <div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+<img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
 회원가입
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+<img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
+
 </div><br>
 <div align="center">
   
-![회원가입 800](https://user-images.githubusercontent.com/116356234/228622134-e5a7db10-c7fb-4037-8dd8-09f95b2561e1.gif)
+![회원가입](https://user-images.githubusercontent.com/115056845/234856171-54069a22-adc6-4505-be89-500081882589.gif)
   
 </div>
 
 - 정보입력 시 문구 안내
-  - 비밀번호 입력 시 "최소 8자 이상, 영문,숫자,특수문자(!@#$%) 각 1개 이상" 형식 확인 안내
+  - ID 중복체크 확인 안내
+  - 사용 가능 / 불가능 ID 안내
   - 비밀번호 확인 입력 시 비밀번호와 일치 확인 한내
-  - 휴대폰 번호 입력 시 형식 확인 안내
-- 인증번호 받기 버튼 클릭 시 결과에 따라 문구 안내 및 이메일로 인증 메일 발송
-- 인증번호 확인 버튼 클릭 시 결과 alert
-- 회원가입 버튼 클릭 시 유효성 검사에 따른 alert
-  - 아이디 인증 확인
-  - 비밀번호 "최소 8자 이상, 영문,숫자,특수문자(!@#$%) 각 1개 이상" 형식 확인
-  - 휴대폰 번호 형식 확인
-- 회원가입 성공 시 로그인 페이지로 이동
- 
-</div>
 
----
+- 회원가입 성공 시 메인페이지로 이동
+ 
 <br> 
   
 <div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-로그인
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+<img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
+로그인(로그아웃)
+<img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
 </div><br>
 <div align="center">
   
-![로그인 800](https://user-images.githubusercontent.com/116356234/228622051-92735add-ef39-46b5-a0e2-7825009342a2.gif)   
-  
+![로그인](https://user-images.githubusercontent.com/115056845/234857040-694bc8ed-2006-4745-bdd4-35ff4916c842.gif)
+
 </div>
 
 - 로그인 시 아이디/비밀번호가 틀릴경우 alert
-- 로그인 성공 시 메인페이지로 이동
-
-</div>
-
+- 아이디 찾기 및 비밀번호 찾기 시 해당 페이지로 이동
+- 로그인 성공 시 관리자는 회원리스트, 일반회원은 관심매물 페이지로 이동
+- 로그아웃 시 메인페이지로 이동(spring security session 소멸)
 <br>
 
-<h3>✅ 메인 페이지 </h3>
+<h3>✅ 공지사항 </h3>
   
 <br>
   
 <div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-클래스/리뷰 추천 
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
+<img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
+공지사항 
+<img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
+</div><br>
+<div align="center">
+
+  <div>🔶 공지사항 - 목록</div><br><br>
+<img src="https://user-images.githubusercontent.com/115056845/234870342-a658a91c-d805-4227-8d51-623612c0d8f7.gif"><br><br><br>
+  <div>🔶 공지사항 - 글쓰기</div><br><br>
+<img src="https://user-images.githubusercontent.com/115056845/234870372-a933cdb2-b3a1-4573-98f8-8b387ad80958.gif"><br><br><br>
+  <div>🔶 공지사항 - 상세</div><br><br>
+<img src="https://user-images.githubusercontent.com/115056845/234870392-7269ef71-9bad-425a-a97a-0b362950b138.gif">
+
+  
+</div>
+
+- 제목/내용/작성자 키워드 검색
+- 검색 반영한 페이징 처리
+- 글 작성
+  - 글 작성 후 공지사항 목록 페이지로 이동
+  - 초기화 클릭 시 작성 중인 내용 초기화
+  - 목록 클릭 시 공지사항 목록 페이지로 이동
+- 글 상세보기
+  - 수정완료 후 공지사항 목록 페이지로 이동
+  - 삭제완료 후 공지사항 목록 페이지로 이동
+  - 목록 클릭 시 공지사항 목록 페이지로 이동
+
+<br>
+
+<h3>✅  </h3>
+  
+<br>
+  
+<div align="center">
+<img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
+회원가입
+<img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
+
 </div><br>
 <div align="center">
   
-![메인 페이지 800](https://user-images.githubusercontent.com/116356234/228622068-f6d55f2d-945c-40ba-a28e-fdd0e412b466.gif)
+![회원가입](https://user-images.githubusercontent.com/115056845/234856171-54069a22-adc6-4505-be89-500081882589.gif)
   
 </div>
 
-- 추천 유형에 따라 클래스 목록 노출
-- 좌우 버튼 클릭 시 목록 이동
-  - 클래스 개수에 따라 이동 횟수 설정
-  - 각 방향으로 마지막일 경우 해당 방향 버튼 숨김
-- 클래스, 리뷰 클릭 시 상세 페이지로 이동
-- 카테고리 클릭 시 해당 클래스 목록 조회 페이지로 이동
+- 정보입력 시 문구 안내
+  - ID 중복체크 확인 안내
+  - 사용 가능 / 불가능 ID 안내
+  - 비밀번호 확인 입력 시 비밀번호와 일치 확인 한내
 
-<div align="center">
-<strong>
-목록 출력 및 목록이동 설정
-</strong>
-</div>
-
-![메인 페이지](https://user-images.githubusercontent.com/116356234/229087535-5436495f-207d-4692-b098-3807ab3b021d.png)
+- 회원가입 성공 시 메인페이지로 이동
  
-</div>
 
-<br>
-
-<h3>✅ 목록 페이지 </h3>
-  
-<br>
-  
-<div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-클래스 목록 조회/정렬
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-</div><br>
-<div align="center">
-  
-![목록 조회 800](https://user-images.githubusercontent.com/116356234/228622085-b3357a84-e936-4fd9-ab2d-9315aef348c5.gif) 
-  
-</div>
-
-- 다른 페이지에서 카테고리 선택 및 검색으로 진입 시 해당 값 적용 
-- 페이지 진입/검색버튼 클릭/정렬 기준 선택/페이지 버튼 클릭 시 Ajax로 입력 및 선택 된 키워드, 조건, 정렬기준의 클래스 조회
-- 총 클래스 개수 표시 및 9개의 클래스 마다 페이징 처리
-
-<div align="center">
-<strong>
-목록 페이지 진입 시
-</strong>
-</div>
-
-![목록-데이터 처리](https://user-images.githubusercontent.com/116356234/229090712-8e506c7e-f9da-4dea-afb7-8e915e5a15dc.png)
-
-<div align="center">
-<strong>
-조회 시 SQL
-</strong>
-</div>
-
-![목록-SQL문](https://user-images.githubusercontent.com/116356234/229090720-728f2e8a-d51d-4bb1-b646-691c088eba17.png) 
-
-<div align="center">
-<strong>
-조회 시 정렬 SQL
-</strong>
-</div>
-
-![목록-정렬 기준 SQL문](https://user-images.githubusercontent.com/116356234/229090723-b8757799-df65-4679-a639-29cf3d98c41f.png) 
-
-</div>
-
-<br>
-
-<h3>✅ 상세 페이지 </h3>
-  
-<br>
-  
-<div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-클래스 상세 조회
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-</div><br>
-<div align="center">
-  
-![상세 페이지 800](https://user-images.githubusercontent.com/116356234/228622097-3c8ac5a5-9e57-4add-aff6-b35f5db9b7ef.gif)  
-  
-</div>
-
-- 메인/목록 페이지의 목록 클릭 및 마이페이지의 클래스명 클릭 시 상세페이지로 이동
-- 사진 목록 클릭 시 해당 사진으로 확대보기 변경
-- JQuery UI 라이브러리의 datepicker를 사용하여 클래스 신청 시 날짜 선택
-- 네비의 각 부분 클릭 시 해당 부분으로 스크롤 이동 및 일정 이상 내려갈 경우 클래스 신청 버튼 표시
-- 클래스 신청 버튼 클릭 시 신청 일정 선택 UI 노출 및 기존 정보 유지
-- Kakao Maps API 사용하여 지도에 위치 안내
-- 후기 별점 우측 ▼버튼 호버 시 드롭다운 상세 점수 표시 
-
-<div align="center">
-<strong>
-상세 페이지 진입 시
-</strong>
-</div>
-
-![상세 페이지 이동](https://user-images.githubusercontent.com/116356234/229093533-93e216ce-108f-4325-b68d-7f263a0c3d4d.png)
- 
-</div>
-
----
-<br> 
-  
-<div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-클래스 신청
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-</div><br>
-<div align="center">
-  
-![클래스 신청 800](https://user-images.githubusercontent.com/116356234/228622119-950696fa-cf43-4e77-9549-88f101ce71cc.gif)  
-  
-</div>
-
-- JQuery UI 라이브러리의 datepicker를 사용하여 클래스 신청 시 날짜 선택
-- 선택 한 날짜에 따라 Ajax를 통해 해당 날짜의 일정 목록 표시
-- 신청 시 비로그인 시 alert 및 로그인 페이지로 이동
-- 일정/인원 미선택 시 alert
-- 신청 시 Ajax를 통해 신청 정보 추가 후 alert 및 페이지 재로드
-  
-<div align="center"><strong>클래스 신청 데이터 처리</strong></div>
-  
-![상세-클래스 신청](https://user-images.githubusercontent.com/116356234/229094696-719c94b1-d25d-49bc-a7f7-36d392c23dce.png)
-
-<div align="center"><strong>날짜 별 일정조회 JSP</strong></div>
-
-![상세-날짜 별 일정조회](https://user-images.githubusercontent.com/116356234/229094687-36feb70d-2f61-46d8-a65d-26aaccd17222.png)  
-
-<div align="center"><strong>날짜 별 일정조회 SQL</strong></div>
-
-![상세-날짜 별 일정조회(SQL)](https://user-images.githubusercontent.com/116356234/229094694-2dc9eaab-f21b-4ec0-9103-7fc5cc916ecb.png) 
-
-</div>
-
-
-<h3>✅ 마이 페이지 - 펼쳐보기(클릭) </h3>
-<div markdown="1">
-  
-<br>
-  
-<div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-프로필 수정
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-</div><br>
-<div align="center">
-  
-![프로필 수정 800](https://user-images.githubusercontent.com/116356234/228622127-f5e470d7-0caf-4c9f-97d3-ce82f6c2fe67.gif) 
-  
-</div>
-
-- 마이페이지에서 프로필 수정 버튼 클릭 시 수정 모달창 표시
-- 수정이 불가능한 아이디(이메일)/이름은 기존 값 표시
-- 기존 비밀번호 입력 시 하단 안내 표시
-- 새 비밀번호/휴대폰 번호 입력 시 형식 안내
-- 수정 버튼 클릭 시 기존 비밀번호 및 입력된 사항 유효성 검사 후 결과에 따라 alert
- 
-<div align="center">
-<strong>
-유효성 체크
-</strong>
-</div>
-
-![회원정보수정-유효성](https://user-images.githubusercontent.com/116356234/229105594-99ceadc2-d121-4c2c-be51-b3d2adaf68db.png)  
-  
-
-<div align="center">
-<strong>
-세션 로그인 정보 수정
-</strong>
-</div>
-
-![회원정보수정-세션 로그인 정보 수정](https://user-images.githubusercontent.com/116356234/229105601-a4f2372f-7c0f-40e2-be70-a925fcc0e6aa.png) 
-  
-</div>
-
----
-<br> 
-  
-<div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-신청 취소
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-</div><br>
-<div align="center">
-  
-![신청 취소 800](https://user-images.githubusercontent.com/116356234/228622111-9cd6b5f8-52ea-4263-982e-865a67586f19.gif)   
-  
-</div>
-
-- 좌측 네비에 신청/취소 내역 클릭 시 신청/취소 내역 Ajax 조회
-- [취소 신청] 버튼 클릭 시 결과 alert 및 재조회
-- 신청/취소 내역에 클래스명 클릭 시 상세 페이지로 이동
-
-</div>
-
----
-<br> 
-  
-<div align="center">
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-리뷰 등록/수정/삭제
-<img src="https://res.cloudinary.com/dnik5jlzd/image/upload/c_scale,h_10,w_225/v1679302400/readme/%EC%84%A0_vkktmh.png">
-</div><br>
-<div align="center">
-  
-![리뷰 등록및수정 800](https://user-images.githubusercontent.com/116356234/228622056-43887fb3-805f-4386-8ba5-83020757c558.gif)   
-  
-</div>
-
-- 리뷰 등록
-  - 신청 내역에서 리뷰 등록 여부에 따라 [리뷰 등록] 버튼 표시
-  - [리뷰 등록] 버튼 클릭 시 리뷰 등록 모달창 표시
-  - [등록] 버튼 클릭 시 필수 입력사항 미입력 등 결과에 따른 alert
-  - 등록 시 Commons-fileupload를 통해 첨부파일 처리
-- 좌측 네비에 리뷰 관리 클릭 시 리뷰 내역 Ajax로 조회
-- [더보기▼] 버튼 클릭 시 리뷰 내용 및 사진 표시
-- 리뷰 수정
-  - [수정] 버튼 클릭 시 리뷰 수정 모달창 표시
-  - 사진을 제외한 기존 정보 AJax로 가져온 후 표시
-  - 모달창의 [수정] 버튼 클릭 시 결과 alert
-- 리뷰 삭제
-  - [삭제] 버튼 클릭 시 리뷰 삭제 및 결과 alert
-
-<div align="center">
-<strong>
-리뷰 등록 데이터 처리
-</strong>
-</div>
-
-![리뷰 등록-데이터 처리](https://user-images.githubusercontent.com/116356234/229109199-484a1a19-5195-465e-89e2-03cbb3999f7a.png) 
-
-<div align="center">
-<strong>
-수정 시 기존 리뷰 정보 출력
-</strong>
-</div>
-
-![리뷰 수정-기존 리뷰 정보 출력](https://user-images.githubusercontent.com/116356234/229109203-213fd0cb-3706-4a97-9d49-6e1c36c2f2dc.png)
-
-</div>
--->
 
 ## 4️⃣ 산출물
 ## 1. 개발일정
