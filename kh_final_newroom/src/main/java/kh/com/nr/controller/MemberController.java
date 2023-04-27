@@ -40,7 +40,7 @@ public class MemberController {
 	
 	@Autowired
 	@Qualifier("fileUtil")
-	private FileUtil fileUtil;
+	private FileUtil fUtil;
 
 	@Autowired
 	private BCryptPasswordEncoder pwEncoder;
@@ -148,7 +148,7 @@ public class MemberController {
 		Map<String, String> filePath;
 		
 		try {
-			filePath = fileUtil.saveJoin(multi, request, null);
+			filePath = fUtil.saveJoin(multi, request, null);
 			dto.setImg(filePath.get("original"));
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -172,7 +172,7 @@ public class MemberController {
 		Map<String, String> filePath;
 		
 		try {
-			filePath = fileUtil.saveJoin(multi, request, null);
+			filePath = fUtil.saveJoin(multi, request, null);
 			dto.setImg(filePath.get("original"));
 		} catch (Exception e) {
 			e.printStackTrace();

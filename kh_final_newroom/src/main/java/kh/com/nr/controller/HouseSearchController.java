@@ -33,21 +33,8 @@ public class HouseSearchController extends HttpServlet {
 	
 	@Autowired
 	@Qualifier("fileUtil")
-	private FileUtil fileUtil;
-	
-//	@GetMapping("")
-//	public String search(Model model) {
-//		List<HouseDealDto> dealList = new ArrayList<>();
-//		try {
-//			dealList = hmservice.getDealInfo();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//
-//		model.addAttribute("dealList", dealList);
-//		return "search";
-//	}
-	
+	private FileUtil fUtil;
+		
 	@GetMapping("")
 	public String search(String sido, String gugun, String dong, String aptName, 
 			String houseType,String sortType, Model model) {
@@ -100,7 +87,7 @@ public class HouseSearchController extends HttpServlet {
 				
 		Map<String, String> filePath;
 		try {
-			filePath = fileUtil.saveFile(multi, request, null);
+			filePath = fUtil.saveFile(multi, request, null);
 			hdto.setScatchImg(filePath.get("original"));
 		} catch (Exception e) {
 			e.printStackTrace();
