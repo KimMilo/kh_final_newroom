@@ -21,6 +21,22 @@
   
 ## 3️⃣ 주요 기능
 
+<h3>✅ 회사소개 </h3>
+  
+<br>
+  
+<div align="center">
+<img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
+회사소개 
+<img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
+</div><br>
+<div align="center">
+
+![회사소개20230426_203529](https://user-images.githubusercontent.com/115056845/234895479-a357ecca-be07-40e2-b92a-6b7631108a3e.gif)
+
+
+<br>
+
 <br>
 
 <h3>✅ 회원가입/로그인(로그아웃) </h3>
@@ -260,11 +276,31 @@ Q&A
 
 </div>
 
-- 관리자용
-  - 회원별 채팅방 클릭 시 해당 회원과 1:1 채팅
 - 일반회원
   - 채팅 활성화 시 FAQ 공유 / 제목 클릭 시 해당 답변 메시지 안내
   - 관리자와 1:1 채팅
+- 관리자용
+  - 회원별 채팅방 클릭 시 해당 회원과 1:1 채팅
+  
+<br>
+
+<h3>✅ Exception 처리 </h3>
+  
+<br>
+  
+<div align="center">
+<img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
+예외처리 
+<img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
+</div><br>
+<div align="center">
+
+![Exception20230426_230436](https://user-images.githubusercontent.com/115056845/234895640-fab7fbfa-d51f-4cd2-98a0-8757b508daa6.gif)
+  
+</div>
+
+- 페이징 get방식 NumberFormatException 별도 alert처리
+- 404 에러, 500 및 공통 에러, 권한 접근금지, 권한없음, 로그인 Exception 처리
 
 <br>
 
