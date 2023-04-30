@@ -332,42 +332,39 @@ Q&A
 
 <h3 align="center">회원가입</h3>
 
-![시퀀스-회원가입 기능](https://user-images.githubusercontent.com/116356234/228153950-f66c6e08-c899-4102-9359-04d46a9289a0.jpg)
+![시퀀스-회원가입 기능]()
 
 <hr>
-<h3 align="center">클래스 신청</h3>
+<h3 align="center"> </h3>
 
-![클래스 신청](https://user-images.githubusercontent.com/116356234/228153973-5e9519d3-fe60-4464-be8b-1c9889627221.png)
 
-<hr>
-<h3 align="center">리뷰 등록</h3>
-
-![리뷰등록](https://user-images.githubusercontent.com/116356234/228153988-b4ebeb30-f361-430c-a2d3-6b50b20deace.png)
 
 <hr>
-<h3 align="center">리뷰 수정</h3>
+<h3 align="center"> </h3>
 
-![리뷰 수정(시퀀스)](https://user-images.githubusercontent.com/116356234/228153997-9caf0c0a-5645-48c8-8ef3-24c2b7e911b1.png)
+
+<hr>
+<h3 align="center"> </h3>
+
 
 ## 6.클래스 URL 맵핑
-![url mapping](https://user-images.githubusercontent.com/116356234/228155963-c840fb30-9642-44d9-bfbd-395d42d704c0.png)
+![url mapping]()
 
 ## 7.클래스 다이어그램
 
-<h3 align="center">목록 조회</h3>
+<h3 align="center"> </h3>
 
-![class](https://user-images.githubusercontent.com/116356234/228155785-cd863372-4c76-4d13-8124-7d88f96b7d2e.png)
 
 ## 8.history
-![히스토리 일부](https://user-images.githubusercontent.com/116356234/228162768-44f63460-d3c0-4712-9e2e-95bffab03af3.png)
-[history 전체 보기(Google Drive)](https://docs.google.com/spreadsheets/d/17JAPmGYTPVRHDcrvCwwMwiZ-16RYISPayvNI8cIO3gg/edit?usp=sharing)
+![히스토리 일부]()
+[history 전체 보기(Google Drive)]()
 
 
 ## 9.테스트 케이스
 
 <h3 align="center">마이페이지</h3>
 
-![테스트 케이스(마이 페이지)](https://user-images.githubusercontent.com/116356234/228162764-1d7083af-cd17-468f-8dc9-901ce7865f4b.png)
-[테스트 케이스 전체 보기(Google Drive)](https://docs.google.com/spreadsheets/d/1vm2aPEtXIhMBIqChLwXK-q4RTqgk3pphlwWo8_pCQuY/edit?usp=sharing)
+![테스트 케이스(마이 페이지)]()
+[테스트 케이스 전체 보기(Google Drive)]()
 
 -->
