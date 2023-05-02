@@ -60,10 +60,12 @@
   - 비밀번호 확인 입력 시 비밀번호와 일치 확인 한내
 
 - 회원가입 성공 시 메인페이지로 이동
+
 <div align="center">
-<img width="960px;" height="480px;" src="https://user-images.githubusercontent.com/115056845/235572512-afdabc1d-6031-4f09-b80d-ac9cfb341607.png">
+  <h4>회원가입<h4>
+  <img width="960px;" height="480px;" src="https://user-images.githubusercontent.com/115056845/235580033-65fd74ee-067d-4cc5-b25b-c0e8502b37ee.png">
 </div>
-<br> 
+<br>
   
 <div align="center">
 <img width="250" height="10" src="https://user-images.githubusercontent.com/115056845/234869666-5eaa3bde-d480-4bc5-8219-b234591df3e6.png">
@@ -121,7 +123,11 @@
   - 수정완료 후 공지사항 목록 페이지로 이동
   - 삭제완료 후 공지사항 목록 페이지로 이동
   - 목록 클릭 시 공지사항 목록 페이지로 이동
-
+  
+<div align="center">
+  <h4>공지사항 옵션 및 키워드별 검색기능<h4>
+  <img width="960px;" height="480px;" src="https://user-images.githubusercontent.com/115056845/235580091-70c4f393-b8bf-40f4-8b3c-c2ec5cd6968e.png">
+</div>
 <br>
 
 <h3>✅ Q&A</h3>
@@ -152,7 +158,11 @@ Q&A
   - 수정 클릭 시 수정 페이지 활성화 및 수정완료 후 Q&A 목록페이지로 이동
   - 삭제 클릭 시 삭제 완료 후 Q&A 목록 페이지로 이동
   - 닫기 클릭 시 상세보기 비활성화
-
+  
+<div align="center">
+  <h4>Q&A 질문등록, 상세보기, 삭제<h4>
+  <img width="960px;" height="480px;" src="https://user-images.githubusercontent.com/115056845/235580571-38817789-6aa3-4112-a98f-c32b89c6e00d.png">
+</div>
 <br>
 
 <h3>✅ 매물검색 및 등록</h3>
@@ -192,7 +202,11 @@ Q&A
 - 매물등록 클릭 시 매물등록 활성화
   - 등록 완료 후 매물검색 목록 페이지로 이동
   - 닫기 클릭 시 매물등록 비활성화
-  
+ 
+ <div align="center">
+  <h4>매물 찜 등록/해제 매물등록<h4>
+  <img width="960px;" height="480px;" src="https://user-images.githubusercontent.com/115056845/235582938-4f037f6f-eff7-4f66-aa33-0c0ce9cfe0d9.png">
+</div>
 <br>
 
 <h3>✅ 찜한 매물 목록 </h3>
@@ -262,6 +276,10 @@ Q&A
   - 확인 클릭 시 탈퇴 처리 후 메인페이지로 이동
   - 취소 클릭 시 마이페이지로 이동
 
+<div align="center">
+  <h4>회원 탈퇴 / 회원정보 수정<h4>
+  <img width="960px;" height="480px;" src="https://user-images.githubusercontent.com/115056845/235584402-e63c8aba-dfb4-4df2-a736-57a79be90a89.png">
+</div>
 <br>
 
 <h3>✅ 1:1 실시간 상담 </h3>
@@ -285,6 +303,10 @@ Q&A
 - 관리자용
   - 회원별 채팅방 클릭 시 해당 회원과 1:1 채팅
   
+<div align="center">
+  <h4>채팅 전송<h4>
+  <img width="960px;" height="480px;" src="https://user-images.githubusercontent.com/115056845/235585463-180d6cd8-d3af-415e-91ed-2092edd9756f.png">
+</div>  
 <br>
 
 <h3>✅ Exception 처리 </h3>
