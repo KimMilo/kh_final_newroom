@@ -51,7 +51,7 @@
 <div align="center">
   
 ![회원가입](https://user-images.githubusercontent.com/115056845/234856171-54069a22-adc6-4505-be89-500081882589.gif)
-  
+
 </div>
 
 - 정보입력 시 문구 안내
@@ -60,7 +60,9 @@
   - 비밀번호 확인 입력 시 비밀번호와 일치 확인 한내
 
 - 회원가입 성공 시 메인페이지로 이동
-
+<div align="center">
+<img width="960px;" height="480px;" src="https://user-images.githubusercontent.com/115056845/235572512-afdabc1d-6031-4f09-b80d-ac9cfb341607.png">
+</div>
 <br> 
   
 <div align="center">
