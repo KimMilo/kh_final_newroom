@@ -305,8 +305,8 @@ Q&A
   
 <div align="center">
   <h4>채팅 전송<h4>
-  <img width="960px;" height="480px;" src="https://user-images.githubusercontent.com/115056845/235585463-180d6cd8-d3af-415e-91ed-2092edd9756f.png">
-</div>  
+  <img width="960px;" height="480px;" src="https://user-images.githubusercontent.com/115056845/235585662-ef69998f-8942-44d0-89de-a369307e2a3a.png">
+</div>
 <br>
 
 <h3>✅ Exception 처리 </h3>
