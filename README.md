@@ -347,7 +347,6 @@ Q&A
 ![UI 설계서(샘플)](https://user-images.githubusercontent.com/115056845/234537990-a3ee01b7-40be-4a1b-b93f-5c118ffd3d92.png)
 [UI 설계서 전체보기(Google Drive)](https://docs.google.com/presentation/d/1GTrITCULJLhdCRnebIUGM4uWyecNLJnngN03LAYcvik/edit?usp=share_link)
 
-
 ## 4. ERD 다이어그램
 ![ERD](https://user-images.githubusercontent.com/115056845/234536834-8c377324-1280-42f2-a9af-c3392db7ee38.png)
 
